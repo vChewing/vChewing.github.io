@@ -7,20 +7,20 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 1.9.0 SP1 (Aug 08, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 1.9.1 SP2 (Aug 11, 2022) |
 
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
 - 另有[熱心網友製作的 Homebrew-Cask 安裝方式](https://github.com/windwords/homebrew-vchewing)可用。
 
-部分近期更新內容（v1.9.0 SP1 for macOS）：
+部分近期更新內容（v1.9.1 SP2 for macOS）：
 
-- 自該版開始，在以 Chromium 為核心的瀏覽器內使用 Shift 鍵輸入符號時，不會再誤切換中英文輸入模式。
-- 解決了在漢語拼音模式下用 Option(+Shift)+字母鍵 輸入文字時可能會出現的輸入法崩潰現象。
-- 在標記模式下，就地刪詞的熱鍵已改為 BackSpace 與 Delete。之前的 Shift+Command+Enter 的功能改為「降權」。
-- 允許像漢音輸入法那樣用 Shift+Delete 或者 Shift+BackSpace 清空當前組字區的內容。
-- 當組字區內有尚未組合完畢的注音/拼音輸入時，敲 Delete 鍵會清空正在輸入的注音/拼音組合。
-- 修正了上一版更新時不慎引入的極個別使用者偏好設定項目資料值彼此位置錯亂的現象。
-- 允許自訂 Shift+字母鍵 的輸入行為（現可允許繞過組字區直接遞交大寫或小寫字母）。
+- 針對 macOS 10.15 Catalina 啟用新版偏好設定視窗（之前僅對 macOS 11 開始的系統開放）。
+- 修正了針對舊版系統（macOS 10.11-14）的偏好設定視窗當中的一處開關失效故障。
+- 修正了天權星組字引擎 2.0.0 內部的某處不慎引入的缺陷，現在應該不會再崩潰了。
+- 針對所有類型的使用者語彙檔案，新增了可以應對「以大寫字母書寫的漢語拼音」的能力。
+- 載入使用者語言模組時，現在會根據某些功能模式的開關狀態按需載入。
+- 優化了在將拼音字串轉注音時的效率。這有助於提升使用者語彙檔案的載入速度。
+- 允許採用特殊手段修改逐字選字模式下的候選字的排序（下文會有介紹）。
 
 本文的 FAQ 會不定期更新來自 PTT 的提問。
 
@@ -161,7 +161,7 @@ Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
 
 ### 問：我想延續自己在 Windows 平台習慣了的「用 Shift 切換中英文」的習慣，該怎辦？需要額外開放 macOS 系統的進階輔助使用權限嗎？
 
-威注音 v1.8.8 版開始支援使用鍵盤右側的 Shift 鍵切換中英文。至於左側 Shift 鍵其實也可以，前提是你在偏好設定內有啟用（預設啟用）。
+威注音 v1.8.8 版開始支援使用鍵盤右側的 Shift 鍵切換中英文，但僅支援 macOS 10.15 Catalina 及之後的 macOS 版本。至於左側 Shift 鍵其實也可以，前提是你在偏好設定內有啟用（預設啟用）。
 
 威注音的「Shift 按鍵切換功能」承襲自 Qwertyyb 的[業火五筆輸入法](https://github.com/qwertyyb/Fire/)（MIT 授權），不依賴任何 macOS 系統進階權限，也就不會有對系統全局鍵盤事件的監聽行為與需求，請各大公司的資安主管們放心：反正你們也可以自己拿威注音的原始碼倉庫自行 build 自己的 binary 給自己公司員工的電腦使用。
 
@@ -206,9 +206,23 @@ Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
 
 請善用輸入法選單內的使用者語彙自訂功能。
 
+### 問：我用習慣了小麥注音的「傳統注音」模式的候選字順序。請問我該怎麼辦？
+
+可以點此下載 [data-plain-bpmf-cht.plist](./valueadd/data-plain-bpmf-cht.plist) [data-plain-bpmf-chs.plist](./valueadd/data-plain-bpmf-chs.plist) 檔案、覆蓋掉使用者語彙目錄下的同名檔案。因為某些字音審音方面的潔癖，威注音不打算預設收錄上游的語料資料，畢竟這些都是基於本身就被錯誤塞得千瘡百孔的 LibTabe 生成的資料。
+
+至於 Plist 檔案該如何編輯？可以用這些軟體：
+- 藉由 Mac App Store 下載免費的 [PLIST Editor](https://apps.apple.com/cn/app/plist-editor/id1157491961?mt=12)。
+- 安裝免費的 Xcode 可以直接編輯 Plist，就是 Xcode 實在太肥。
+- 使用付費的 [Plist Edit Pro](https://www.fatcatsoftware.com/plisteditpro/)。
+- 懂 XML 的話，你還可以用 [BBEdit](https://apps.apple.com/cn/app/bbedit/id404009241?mt=12)，免費模式就可以編輯。
+
 ### 問：要如何提升資料品質？我發現有用不到的爛詞出來干擾選字欸。產品 bug 該怎麼提報？
 
 請參照**[這篇文章的指引](./BUGREPORT.md)**用電郵聯絡研發方。至於 GitHub 倉庫工單，則可能無法得到第一時間的受理。至於爛詞，雖然可以使用就地刪詞的功能屏蔽掉，但也歡迎提報。
+
+### 問：威注音更新如此頻繁，是不是軟體發佈策略出了什麼問題？
+
+拋去 MIT 軟體授權的免責特性先不談，其實軟體複雜了就容易鬼打牆。這個輸入法都是自家人每天都在用的，敢拿出來發佈的版本一定是在發佈的時候自己還沒親自測試出問題的。但這就像是整天面對一堆鬼、整天都在通靈、口唸「鬼門開是殺小啦」，Dev 這邊也是超無奈。這也就是為什麼每次看到有人吐槽說輸入法崩潰的時候 Dev 都會超想問當事人要 ips 格式的軟體崩潰錯誤報告檔案。
 
 ### 問：為什麼只支援 Mac？
 
