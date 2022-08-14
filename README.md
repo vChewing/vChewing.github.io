@@ -7,20 +7,17 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 1.9.1 SP2 (Aug 11, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 1.9.3 (Aug 14, 2022) |
 
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
 - 另有[熱心網友製作的 Homebrew-Cask 安裝方式](https://github.com/windwords/homebrew-vchewing)可用。
 
-部分近期更新內容（v1.9.1 SP2 for macOS）：
+部分近期更新內容：
 
-- 針對 macOS 10.15 Catalina 啟用新版偏好設定視窗（之前僅對 macOS 11 開始的系統開放）。
-- 修正了針對舊版系統（macOS 10.11-14）的偏好設定視窗當中的一處開關失效故障。
-- 修正了天權星組字引擎 2.0.0 內部的某處不慎引入的缺陷，現在應該不會再崩潰了。
-- 針對所有類型的使用者語彙檔案，新增了可以應對「以大寫字母書寫的漢語拼音」的能力。
-- 載入使用者語言模組時，現在會根據某些功能模式的開關狀態按需載入。
-- 優化了在將拼音字串轉注音時的效率。這有助於提升使用者語彙檔案的載入速度。
-- 允許採用特殊手段修改逐字選字模式下的候選字的排序（下文會有介紹）。
+- [1.9.3] 允許在偏好設定面板的「開發道場」頁面徹底停用「Shift 鍵切換中英文輸入模式」、抑或是指定 Shift 鍵判定相容性處理的有效作用 App 範圍。
+- [1.9.2-1.9.3] 在「開發道場」內引入了實驗性的 IMK 選字窗支援（橫向的話則是 IMK 矩陣視窗）。
+- [1.9.2-1.9.3] 在偏好設定面板內引入了「開發道場」頁面、專門用來放置一些實驗性的功能。
+- [1.9.2] 修正了（在選詞範圍 Range 超出讀音陣列容量的情況下）加詞時「會因為字數與讀音數不批配」而導致的輸入法崩潰的問題。
 
 本文的 FAQ 會不定期更新來自 PTT 的提問。
 
@@ -31,8 +28,8 @@ nav_order: 1
 該輸入法恐怕是截至目前為止**在功能多樣性方面**最強的第三方免費 macOS 系統專用輸入法，採純 Swift 語言寫就。威注音的著力點不是去想著怎麼用指針，而是盡可能在力所能及的範圍內將整個產品的功能做得更好用。
 
 ![選字窗有頁碼提示。](assets/CandidateSelection.jpg)
-
 ![就地刪詞功能，隨時隨地將不想要的詞音配對塞入排除表內。](assets/CandidateFiltering.jpg)
+![IMK 選字窗。](assets/CandidateSelectionIMK.jpg)
 
 威注音的幾個產品目標：
 
@@ -113,6 +110,23 @@ Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
 ### 問：威注音輸入法的圖示當中的「ㄋ」是？
 
 威注音的圖示「ㄋ」取自 Komica 糟糕島流行的與劉寶傑有關的梗「[貼ㄋㄟㄋㄟ救寶傑](https://disp.cc/b/Joke/2sZ0)」。
+
+
+### 問：選字窗可以改成 macOS 內建注音那種橫版陣列型選字窗嗎？
+
+您可能想說的是 IMK 選字窗。IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當中的 IMKCandidates 子模組所實現的東西。但是，Zonble 十幾年前證明過了、且威注音這邊最近也再次證明了：IMKCandidates 在這十幾年以來一直都是爛貨、是能將賈伯斯氣得從棺材裡爬出來的殘次品。如果這個模組的研發團隊有設計過單元測試的話，他們自己明明就可以發現這些低級智障問題。但他們選擇了裝鴕鳥，給系統內建的輸入法用了一個 IMKCandidates 的克隆版本、僅供 Apple 內部使用（感興趣的話可以自行對 InputMethodKit 逆向工程）。至於給副廠輸入法開發者使用的 IMKCandidates 再怎樣殘障，他們這十幾年來一直都沒有在管。
+
+由於 IMK 橫版陣列型選字窗的功能特性獨此一家，使得第三方輸入法開發者想在功能方面「複製體驗」簡直難比登天。迄今為止對此操作體驗複製得最接近的是搜狗拼音輸入法，但在使用體驗角度來看仍舊遠遠落後於 IMK 橫版陣列選字窗。
+
+威注音輸入法自 v1.9.2 版開始，在偏好設定內引入了專門用來提供「出了錯誤不負責」的名為「開發道場」的實驗田，且在其中集成了威注音的 IMK 選字窗模式的開關、允許使用者在 IMK 選字窗與迄今為止的 Voltaire MK3 選字窗之間來回切換。之後，威注音輸入法在 v1.9.3 版當中將這個選字窗做得幾乎接近於能用的狀態。可以[點此閱讀使用說明](./manual/shortcuts.md)。然而，該選字窗仍舊有下述功能無法實現：
+
+- 選字鍵不起作用。IMK 選字窗的 setSelectionKeys() 與 setSelectionKeysKeylayout() 函數都不會起任何正面作用（前者用了反而會讓選字窗連選字鍵標記都不顯示）。不知道 Apple 的相關單元測試工程師閒了多少年（至少也得有十幾年了），都沒想過要去寫單元測試來檢查這種低級缺陷的存無。
+- 選字窗字號大小無法調整。
+- IMK 選字窗本身會被 Spotlight 視窗蓋住，且目前尚無手段強制修改其視窗顯示優先層級。偏偏 macOS 系統內建輸入法用的是 IMK 的非公開變種、就沒有這種問題。氣不氣人？
+
+此外，IMKCandidates 還有一個缺陷：當候選字詞陣列內出現了「候選字詞相同（往往是 Emoji）、但讀音數（幅位長度）不同」的多個候選字詞時，只有讀音數最多的那個候選字會生效：你選其它更短的讀音數的同名候選字，也只會被認為是選了讀音數最多的那個候選字。該問題的原因在於 IMK 選字窗不允許你獲取「被選取的候選字詞在候選字詞陣列當中的排序編號」這個極為重要的資訊、也不允許你藉由 candidates() 生成的 NSAttributedString 往 candidateSelected() 攜帶候選字詞的讀音資料（.attachment 也好，.tooltip 也好，這些資料都會被 IMK 濾除掉），自然無法在 candidateSelected() 函數內將 fixNode() 的行為用讀音來精準化。威注音輸入法在 v1.9.3 版當中引入了一個保守治療方法，代價就是會讓某些候選字在選字窗內顯示時變得又臭又長。
+
+結論：很多使用者都希望能在自己喜歡的副廠輸入法內用上 IMK 的矩陣選字窗（就是 macOS 系統內建的注音輸入法的橫版矩陣選字窗）。然而，經過這些天的研究，威注音輸入法團隊不得不認清（目前能推斷出來的）唯一可能事實：IMK 選字窗充其量也只是 Apple 用來滿足自家輸入法需求的產品部件、一開始就沒有讓副廠輸入法廠商用得爽的打算。
 
 ### 問：怎樣才能繞過組字區直接輸入大寫或小寫英文字母？
 
@@ -200,7 +214,9 @@ Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
 
 ### 問：選字鍵可以改 ASDF 之類的嗎？
 
-在偏好設定的第二頁可以改，輸入的選字鍵序列會被自動去重複、再做合規性判定。
+威注音輸入法預設的選字窗可以修改選字鍵：在偏好設定的第二頁或者第四頁可以改（取決於你在用的 macOS 系統版本），輸入的選字鍵序列會被自動去重複、再做合規性判定。
+
+偏好設定介面內的開發道場裡面的 IMK 選字窗是無法修改選字鍵的、且根本連預設的選字鍵都失效。因為 macOS 內建的 IMK 選字窗模組十幾年來都沒被修正的缺陷的存在，威注音的 IMK 選字窗無法實現這些功能。
 
 ### 問：請問可以自己增加字庫嗎？
 
