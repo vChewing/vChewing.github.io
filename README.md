@@ -7,17 +7,15 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 1.9.3 (Aug 14, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 1.9.4 (Aug 17, 2022) |
 
+- 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
 - 另有[熱心網友製作的 Homebrew-Cask 安裝方式](https://github.com/windwords/homebrew-vchewing)可用。
 
 部分近期更新內容：
 
-- [1.9.3] 允許在偏好設定面板的「開發道場」頁面徹底停用「Shift 鍵切換中英文輸入模式」、抑或是指定 Shift 鍵判定相容性處理的有效作用 App 範圍。
-- [1.9.2-1.9.3] 在「開發道場」內引入了實驗性的 IMK 選字窗支援（橫向的話則是 IMK 矩陣視窗）。
-- [1.9.2-1.9.3] 在偏好設定面板內引入了「開發道場」頁面、專門用來放置一些實驗性的功能。
-- [1.9.2] 修正了（在選詞範圍 Range 超出讀音陣列容量的情況下）加詞時「會因為字數與讀音數不批配」而導致的輸入法崩潰的問題。
+- [1.9.4] 在選字窗內選字之後，被選的字周圍的字不會再亂變了（也就是與 macOS 內建注音輸入法行為一致）。
 
 本文的 FAQ 會不定期更新來自 PTT 的提問。
 
@@ -58,6 +56,7 @@ nav_order: 1
 14. 不會有「當組字區內有繪文字時，選字長度上限與下限判斷會失誤」的問題。
 15. 可用 Ctrl+Option+Command+Enter 輸出符合教科書書寫規範的網頁 ruby 文字標記（注音/漢語拼音）的 HTML 內容。如果是 Ctrl+Command+Enter 的話，只會輸出非教科書標準的注音/漢語拼音。
 16. 選字窗內有當前頁數提示。
+17. 在選字窗內選字之後，被選的字周圍的字不會亂變。
 
 ## 安裝方式 (Install)
 
@@ -197,6 +196,12 @@ Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
 ### 問：Rayon 這款終端應用內，如果關掉了系統內建的「CapsLock / 中英鍵切換輸入法」的功能的話，威注音敲小寫字母完全沒反應。
 
 這與 Rayon 終端機應用內所用的終端機功能模組 xtermjs 有關、波及多款中文輸入法。該問題無解，唯有啟用系統偏好設定內「CapsLock / 中英鍵切換輸入法」的功能。如果你的電腦在使用「CapsLock / 中英鍵切換輸入法」的功能時出現時效延遲的話，請考慮安裝使用「[CapsLockNoDelay](https://github.com/gkpln3/CapsLockNoDelay)」這款開源小軟體。
+
+### 問：為什麼我在藉由選字窗選字之後、選了的字詞前後方的字會亂動？macOS 內建輸入法沒這個問題欸。
+
+此乃上游的設計缺陷、被威注音繼承了下來（至 v1.9.3 版為止）。該設計缺陷波及市面上多款輸入法，詳見 [GitHub 工單 #100](https://github.com/vChewing/vChewing-macOS/issues/100)。
+
+威注音輸入法已於 v1.9.4 版修正了這個問題，請放心使用。然需注意：為了解決這個問題而引入的「先鞏固上下文、再覆寫節點」這種**事前鞏固措施**僅對「藉由選字窗的選字」有效。你用鍵盤熱鍵在組字區內就地輪替候選字時，不會有這種事前鞏固措施，因為有了的話會影響使用體驗。
 
 ### 問：請問有學習常用詞彙的功能嗎？
 
