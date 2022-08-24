@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.0.0 SP2 (Aug 22, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.1.0 (Aug 26, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,11 +15,11 @@ nav_order: 1
 
 部分近期更新內容：
 
+- [2.1.0] 使 Shift+BackSpace 與聲調鍵的行為與 macOS 內建輸入法幾乎一致（有細微出入）。
+- [2.1.0] 糾正了（被 2.0.0 SP2 引入的）在 macOS 10.15 Catalina 與 macOS 11 Big Sur 系統下「藉由偏好設定修改選字窗字型尺寸時，修改結果始終為 12px」的問題。
+- [2.1.0] 修正了 ctlInputMethod.handle(event:) 無法處理被 macOS 誤傳入的垃圾參數（本該是 NSEvent 卻傳入了 nil）的故障，現在輸入法不會再因此崩潰。
 - [2.0.0 SP2] IMK 選字窗 (就是與 macOS 內建注音同款的矩陣選字窗) 已經對 macOS 10.14 - macOS 13 使用者群體正式開放，且可以調整候選字尺寸。
   - 但因為用到了 Apple 私有 API，所以還是放在開發道場內。
-- [2.0.0 SP1] 緊急解決了在 macOS 10.11-10.13 系統下連同接收文字輸入的客體應用一起無限連環崩潰的問題。
-- [2.0.0] 解決了 macOS 11 Big Sur 偏好設定介面開啟時輸入法會崩潰的故障。
-- [2.0.0] 在選字窗尚未顯示的時候，輸入法不再處理「Ctrl+波浪符號鍵」的組合鍵傳入事件。這樣就不會再打擾對諸如 GitHub Desktop 等應用的使用了。
 
 本文的 FAQ 會不定期更新來自 PTT 的提問。
 
