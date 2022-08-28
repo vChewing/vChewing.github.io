@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.1.0 (Aug 26, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.2.0 SP1 (Aug 29, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,11 +15,11 @@ nav_order: 1
 
 部分近期更新內容：
 
-- [2.1.0] 使 Shift+BackSpace 與聲調鍵的行為與 macOS 內建輸入法幾乎一致（有細微出入）。
-- [2.1.0] 糾正了（被 2.0.0 SP2 引入的）在 macOS 10.15 Catalina 與 macOS 11 Big Sur 系統下「藉由偏好設定修改選字窗字型尺寸時，修改結果始終為 12px」的問題。
-- [2.1.0] 修正了 ctlInputMethod.handle(event:) 無法處理被 macOS 誤傳入的垃圾參數（本該是 NSEvent 卻傳入了 nil）的故障，現在輸入法不會再因此崩潰。
-- [2.0.0 SP2] IMK 選字窗 (就是與 macOS 內建注音同款的矩陣選字窗) 已經對 macOS 10.14 - macOS 13 使用者群體正式開放，且可以調整候選字尺寸。
-  - 但因為用到了 Apple 私有 API，所以還是放在開發道場內。
+- [2.2.0 SP1] 修正了 2.2.0 版當中引入的與標點符號有關的新內容與新功能涵蓋範圍不夠全面的問題。
+- [2.2.0] 修正了在某些舊版 macOS 系統下會丟掉輸入法介面語言設定的問題。
+- [2.2.0] 修復了迄上一版為止「在每次選字窗選字時鞏固上下文的時候，上下文鞏固範圍過大」的問題。
+- [2.2.0] 修正了符號選單與標點符號候選字陣列在啟用 IMK 選字窗時初始載入速度過慢的問題。 
+- [2.2.0] 在偏好設定內新增了一個開關，允許在縱排輸入模式下強行將標點轉換成「無論縱排橫排，顯示的樣子都是縱排專用」的樣子。該功能不建議啟用，除非你在用的排版字型不支援橫排縱排標點動態適應切換。
 
 本文的 FAQ 會不定期更新來自 PTT 的提問。
 
@@ -114,6 +114,21 @@ Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
 
 威注音的圖示「ㄋ」取自 Komica 糟糕島流行的與劉寶傑有關的梗「[貼ㄋㄟㄋㄟ救寶傑](https://disp.cc/b/Joke/2sZ0)」。
 
+### 問：怎麼敲簡體？
+
+請在系統偏好設定內新增「威注音-簡」這個輸入法。只要系統內有安裝了威注音輸入法，就應該能在簡體中文輸入法分類下找到該輸入法。
+
+威注音不信任繁簡轉換與簡繁轉換，因為必然會有轉換錯誤發生。威注音的簡體中文模式使用單獨的原廠辭典、與繁體中文模式的辭典分隔開。然而，每次在新增使用者辭典時，威注音都會往另一個繁簡模式的使用者辭典內添入轉換過的結果。因轉換過的結果的正確性無法保證，所以任何轉換結果的所在行都會有行尾標記。
+
+### 問：符號選單很多符號都顯示成被方框框起來的問號，該怎麼辦？
+
+威注音只是允許輸入這些符號而已。至於這些符號怎樣顯示，則可能需要您系統內有安裝對應的字型。
+
+打比方說「音樂」這個符號分類，就需要您安裝 [SMuFL](https://w3c.github.io/smufl/latest/index.html) 標準的樂譜排版字型。如果您有安裝過 Steinberg Dorico 的話，您系統內應該已經有安裝 [Bravura](https://github.com/steinbergmedia/bravura/releases/tag/bravura-1.380) 這款字型。您也可以安裝 MakeMusic 出品的 [Finale Maestro SMuFL](https://makemusic.zendesk.com/hc/en-us/articles/1500013053461-MakeMusic-Fonts-and-Licensing-Information) 字型。
+
+另外，「注音」符號分類下，可能會有至少四個缺字，需要您安裝任何可以支援[粵語注音標準](https://www.unicode.org/L2/L2019/19100-cantonese-bopomofo.pdf)的字型（比如 [NotoUnicode](https://github.com/MY1L/Unicode/releases) 或者 [一點明體 I.Ming](https://github.com/ichitenfont/I.Ming) 都可以）。
+
+此外，macOS 內建的字型對某些萬國碼字元的顯示支援也會隨著 macOS 版本的不同而有異動。
 
 ### 問：選字窗可以改成 macOS 內建注音那種橫版陣列型選字窗嗎？
 
@@ -231,6 +246,14 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 
 請善用輸入法選單內的使用者語彙自訂功能。
 
+### 問：為什麼威注音沒有引入 Xcode 的 Sandbox 機制？
+
+目前研發團隊對 Apple Sandbox 沙箱技術的了解還不是很透徹。威注音目前的狀態啟用沙箱的話，會導致如下兩個問題：
+
+1. 輸入法無法自訂使用者辭典目錄，每次自訂成功之後、再次重新啟動輸入法之後，設定值又會變回到預設的沙箱目錄下。未來有時間有機會的話，威注音會考慮改良對使用者辭典目錄的自訂處理過程、使之與 macOS 的沙箱機制相容。
+
+2. 威注音內建的輸入法自我卸除機制會被 Sandbox 搞的一團糟，屆時 Zonble 又有給威注音潑髒水的新理由了。目前的唯一解法就是內建一個 Shell 腳本來完成這些，但這樣的話就顯得威注音特別 Geek 不親民。
+
 ### 問：我用習慣了小麥注音的「傳統注音」模式的候選字順序。請問我該怎麼辦？
 
 可以點此下載 [data-plain-bpmf-cht.plist](./valueadd/data-plain-bpmf-cht.plist) [data-plain-bpmf-chs.plist](./valueadd/data-plain-bpmf-chs.plist) 檔案、覆蓋掉使用者語彙目錄下的同名檔案。因為某些字音審音方面的潔癖，威注音不打算預設收錄上游的語料資料，畢竟這些都是基於本身就被錯誤塞得千瘡百孔的 LibTabe 生成的資料。
@@ -274,6 +297,14 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 這條新增的禁止項目，其實也是有利於 OpenVanilla 的。畢竟 OpenVanilla 也不希望有第三方打著 OpenVanilla 的旗號做壞事。其實，OpenVanilla 早期專案使用 3-Clause BSD 協議的時候，也有規定過類似的條款就是了。
 
 關於所謂「剽竊論」，乃 BrLi 對威注音的欲加之罪。請閱讀《[威注音著作權聲明](https://github.com/vChewing/vChewing-macOS/discussions/92)》。
+
+### 幹：[在 macOS 輸入法框架的設計中，並不會將單次點擊 Shift 按鍵的行為，送到像是小麥輸入法這樣的程式上。所以技術上可行的作法是，輸入法程式要跳過蘋果所規範的輸入法框架，直接暴力攔截「所有」的硬體事件，包括鍵盤滑鼠，然後找到單次點選 Shift 的事件。而且，就算用戶切到了其他輸入法，甚至用戶根本沒在打字，都在監聽「所有」的事件。](https://github.com/openvanilla/McBopomofo/issues/337#issuecomment-1231170409)
+
+其實 NSEvent 當中的 Shift 擊鍵事件是可以被監聽的、而無須向用戶請求系統全局鍵盤事件監聽。釐清事實再講話，也是一條該有的道德紅線。
+
+macOS 內建的 InputMethodKit 輸入法框架丟給威注音哪些 NSEvent，威注音就只處理哪些 NSEvent。雖然 NSEvent 並沒有直接提供對於 Shift 按鍵行為的偵測用 API，但可以根據其 Modified Flags 特徵來綜合判斷。威注音使用的「以 Shift 切換中英文輸入」的功能所依賴的 Shift 事件判定模組繼承自[業火五筆輸入法](https://github.com/qwertyyb/Fire)，全程不會用到任何系統全局鍵盤監聽技術。請各位放心使用。威注音在尊重使用者私隱這方面，對得起天地良心。
+
+某些人自己不會弄的技術、就寧願相信別人弄出來的都是奧步。借用此人的話改一下，來講給他自己聽：「這已經不是技術問題了，是道德的問題。任何軟體的作者，應該對自己是否能為自己的講話背書，要心中有數，如果可能會有欠缺事先調查而導致結論草率的危險的話，一開始就不應該做。以我的立場，我知道那邊有條道德的紅線，我就不會去碰。人沒有道德就只是禽獸而已。」希望 Cerence 能監督此人身為公眾人物的言行。
 
 ### 幹：Fork 小麥然後說自己唯一……
 
