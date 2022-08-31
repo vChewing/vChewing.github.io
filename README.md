@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.2.0 SP1 (Aug 29, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.3.1 (Sep 02, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,11 +15,11 @@ nav_order: 1
 
 部分近期更新內容：
 
-- [2.2.0 SP1] 修正了 2.2.0 版當中引入的與標點符號有關的新內容與新功能涵蓋範圍不夠全面的問題。
-- [2.2.0] 修正了在某些舊版 macOS 系統下會丟掉輸入法介面語言設定的問題。
-- [2.2.0] 修復了迄上一版為止「在每次選字窗選字時鞏固上下文的時候，上下文鞏固範圍過大」的問題。
-- [2.2.0] 修正了符號選單與標點符號候選字陣列在啟用 IMK 選字窗時初始載入速度過慢的問題。 
-- [2.2.0] 在偏好設定內新增了一個開關，允許在縱排輸入模式下強行將標點轉換成「無論縱排橫排，顯示的樣子都是縱排專用」的樣子。該功能不建議啟用，除非你在用的排版字型不支援橫排縱排標點動態適應切換。
+- [2.3.1] 允許在開發道場內徹底停用對 Chrome 系瀏覽器的 Shift 鍵單次擊鍵判定措施。
+- [2.3.0] 允許在切換輸入法或者切換中英文模式的時候「自動將未成字的注音刪除」。該行為承襲自微軟新注音輸入法。
+- [2.3.0] 針對縱排輸入情形下的上下文工具提示視窗新增了單獨的窗體座標處理。
+- [2.3.0] 修復了以 Shift 切換到英文模式時「摁著 Shift 輸入花括弧或者大於小於號時，會出現全形的空心方引號或者全形逗號句號」的問題。
+- [2.3.0] 新增沙箱特性處理。
 
 本文的 FAQ 會不定期更新來自 PTT 的提問。
 
@@ -94,9 +94,7 @@ Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
 
 ## 卸載方式 (Uninstall)
 
-要反安裝威注音，請在確保當前安裝為完整安裝之後、摁 Option 鍵的同時點擊輸入法選單圖示，此時會在選單內看到「卸除威注音…」。
-
-如果這樣還不行的話，請用終端機執行該卸除腳本：[Github](https://github.com/vChewing/vChewing-macOS/blob/main/uninstall.sh) § [Gitee](https://Gitee.com/vChewing/vChewing-macOS/blob/main/uninstall.sh)。
+請參見《[如何卸除威注音輸入法](./UNINSTALL.md)》一文。必要情況下，你可以持該文章向 Apple Support 求助。
 
 ## 部分常見問題 (FAQ)
 
@@ -246,13 +244,11 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 
 請善用輸入法選單內的使用者語彙自訂功能。
 
-### 問：為什麼威注音沒有引入 Xcode 的 Sandbox 機制？
+### 問：威注音自 2.3.0 開始引入的 Sandbox 沙箱機制是？
 
-目前研發團隊對 Apple Sandbox 沙箱技術的了解還不是很透徹。威注音目前的狀態啟用沙箱的話，會導致如下兩個問題：
+這是威注音為了應對「有心人士蠱惑人心、散播與威注音在程式行為道德方面有關的不實謠言」的情況、而做出的進一步自我約束。不過威注音一開始就視使用者私隱為第一位，所以實際上也沒有差。
 
-1. 輸入法無法自訂使用者辭典目錄，每次自訂成功之後、再次重新啟動輸入法之後，設定值又會變回到預設的沙箱目錄下。未來有時間有機會的話，威注音會考慮改良對使用者辭典目錄的自訂處理過程、使之與 macOS 的沙箱機制相容。
-
-2. 威注音內建的輸入法自我卸除機制會被 Sandbox 搞的一團糟，屆時 Zonble 又有給威注音潑髒水的新理由了。目前的唯一解法就是內建一個 Shell 腳本來完成這些，但這樣的話就顯得威注音特別 Geek 不親民。
+沙箱特性確實帶來了一些功能特性限制。詳情請洽 2.3.0 版的發行日誌。
 
 ### 問：我用習慣了小麥注音的「傳統注音」模式的候選字順序。請問我該怎麼辦？
 
