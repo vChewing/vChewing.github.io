@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.3.1 (Sep 02, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.4.0 SP2 (Sep 06, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,6 +15,9 @@ nav_order: 1
 
 部分近期更新內容：
 
+- [2.4.0 SP2] 正式提供對 Emacs 熱鍵的支援。該支援對 IMK 選字窗有效。
+- [2.4.0 SP2] 修復了傳統 CapsLock 英文輸入模式下無法輸入大寫英文字母的問題。 
+- [2.4.0] 在運作原理上允許在就地加詞時應對「字數與讀音數量不相等」的情形。內核模組更新內容有點多，請洽發行說明。
 - [2.3.1] 允許在開發道場內徹底停用對 Chrome 系瀏覽器的 Shift 鍵單次擊鍵判定措施。
 - [2.3.0] 允許在切換輸入法或者切換中英文模式的時候「自動將未成字的注音刪除」。該行為承襲自微軟新注音輸入法。
 - [2.3.0] 針對縱排輸入情形下的上下文工具提示視窗新增了單獨的窗體座標處理。
@@ -309,6 +312,8 @@ macOS 內建的 InputMethodKit 輸入法框架丟給威注音哪些 NSEvent，�
 > 沒錯，這個專案一開始是 Fork 小麥的，但所有涉及 C++ 的部分已經全都用 Swift 重寫了。威注音就是要做一些其它輸入法不會想到要去做功能，比如「摁 Option+前後方向鍵 來以詞語節點為單位移動游標」、「就地刪詞」、「macOS 螢幕模擬鍵盤支援」、「同時照顧兩岸的審音習慣」，等。這些功能都是得益於 Swift 易於製作功能拓展的特性、才可以輕鬆製作完成的。用 C++ 實現同樣的功能的話，需要付出多幾倍的技術成本（以及 C++ 本身的高技術門檻）。這就是為什麼威注音一定要用 Swift 重寫且淘汰掉所有 C++ 內容。**在開始講幹話之前，請先沉住氣，仔細比對一下兩者的功能多樣性方面的差異，再考慮要不要張嘴開幹：畢竟你這麼偽善、肯定不會為你心愛的小麥注音推送 Bug 修正與功能改良。**謝謝合作。
 
 > 另外澄清一下：威注音專案在剛立案的時候，也有從小麥注音繼承過一些由 Zonble 完成的 Swift 內容（詳見[研發參與者清單](./AUTHORS.md)）。當時小麥注音沒有被 Swift 化的有「注拼引擎」「組字引擎」「任何與語言模組有關的部分」「按鍵調度模組」。威注音將後三者徹底用 Swift 重寫，且將注拼引擎重新設計、以支援更多的漢語拼音輸入種類與注音排列種類。威注音專案分離設立的時間比較早，但一開始很長一段時間都在同步來自上游的改動。如果你分不清專案內哪些是 Zonble 的貢獻內容的話，請洽小麥注音的倉庫歷史記錄。另有《[威注音著作權聲明](https://github.com/vChewing/vChewing-macOS/discussions/92)》供參閱。
+
+P.S.: 威注音自 2.3.1 版開始正在逐漸汰換掉盡可能全部的由 Zonble 完成的部分。
 
 ---
 
