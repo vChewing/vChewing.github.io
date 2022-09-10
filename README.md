@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.4.0 SP2 (Sep 06, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.5.0 (Sep 10, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,6 +15,7 @@ nav_order: 1
 
 部分近期更新內容：
 
+- [2.5.0] 修復了些許 bug，且對工具提示視窗引入了縱排顯示支援。內核模組更新內容有點多，請洽發行說明。
 - [2.4.0 SP2] 正式提供對 Emacs 熱鍵的支援。該支援對 IMK 選字窗有效。
 - [2.4.0 SP2] 修復了傳統 CapsLock 英文輸入模式下無法輸入大寫英文字母的問題。 
 - [2.4.0] 在運作原理上允許在就地加詞時應對「字數與讀音數量不相等」的情形。內核模組更新內容有點多，請洽發行說明。
@@ -114,6 +115,10 @@ Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
 ### 問：威注音輸入法的圖示當中的「ㄋ」是？
 
 威注音的圖示「ㄋ」取自 Komica 糟糕島流行的與劉寶傑有關的梗「[貼ㄋㄟㄋㄟ救寶傑](https://disp.cc/b/Joke/2sZ0)」。
+
+### 問：有沒有ㄅ半模式？
+
+請摁 Ctrl+Command+Shift+P 來啟用ㄅ半模式。這在威注音當中被稱為「逐字選字模式」。
 
 ### 問：怎麼敲簡體？
 
