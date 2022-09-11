@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.5.0 (Sep 10, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.6.0 SP2 (Sep 13, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,6 +15,8 @@ nav_order: 1
 
 部分近期更新內容：
 
+- [2.6.0 SP2] 體驗：允許在輸入法偏好設定內專門為 Shift 切換到的英文輸入模式指定鍵盤佈局種類（可以換成 DVORAK 等）。
+- [2.6.0] 修復了些許 bug，且引入了對 Steam 的支援：對這種不遵守 IMKTextInput 協定的應用，威注音現在會啟用專門的浮動組字窗（讀音數量上限 20）。
 - [2.5.0] 修復了些許 bug，且對工具提示視窗引入了縱排顯示支援。內核模組更新內容有點多，請洽發行說明。
 - [2.4.0 SP2] 正式提供對 Emacs 熱鍵的支援。該支援對 IMK 選字窗有效。
 - [2.4.0 SP2] 修復了傳統 CapsLock 英文輸入模式下無法輸入大寫英文字母的問題。 
@@ -152,6 +154,12 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 
 結論：很多使用者都希望能在自己喜歡的副廠輸入法內用上 IMK 的矩陣選字窗（就是 macOS 系統內建的注音輸入法的橫版矩陣選字窗）。然而，經過這些天的研究，威注音輸入法團隊不得不認清（目前能推斷出來的）唯一可能事實：IMK 選字窗充其量也只是 Apple 用來滿足自家輸入法需求的產品部件、一開始就沒有讓副廠輸入法廠商用得爽的打算。第三方輸入法開發者們想要將 IMK 選字窗實作到企業級堪用的地步的話，往往需要使用私有 API 等強硬手段、也不見得就一定能做到這個地步。如果你們有誰認識在 Apple 的人的話，請他們關注 Bug Report #FB11300759，這樣 Apple 或許能稍微重視一下這些問題。至少，就 IMK 選字窗的功能實作而言，威注音已竭己所能。
 
+### 問：像 Steam 這種應用在敲字時看不到組字區，怎麼辦？
+
+威注音 2.6.0 版開始，對這種不遵守 IMKTextInput 協定的應用，會啟用獨立的浮動組字窗（讀音數量上限 20）。
+
+威注音會預設對 Steam 啟用該措施。如果想對其它應用採取該措施的話，請在輸入法選單當中的「管理客體應用」內添入這些應用（的唯一標幟「bundle identifier」）。
+
 ### 問：怎樣才能繞過組字區直接輸入大寫或小寫英文字母？
 
 偏好設定內有相關設定，要求威注音版本至少 v1.9.0 SP1。
@@ -271,6 +279,16 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 ### 問：要如何提升資料品質？我發現有用不到的爛詞出來干擾選字欸。產品 bug 該怎麼提報？
 
 請參照**[這篇文章的指引](./BUGREPORT.md)**用電郵聯絡研發方。至於 GitHub 倉庫工單，則可能無法得到第一時間的受理。至於爛詞，雖然可以使用就地刪詞的功能屏蔽掉，但也歡迎提報。
+
+### 問：macOS 12.6 系統下安裝完威注音輸入法之後出現了「輸入法從一開始就不能正常使用，連右上角螢幕提示可能都沒有出現」的情況。
+
+請參照**[這篇文章的指引](./BUGREPORT.md)**用電郵聯絡研發方。另：
+
+如果 Console 系統監視程式內與 vChewing 有關的當機報告有說主程式路徑是以「/private/var/」開頭的話，請在終端機內用 xattr 將威注音拽出 macOS 隔離區：
+```sh
+xattr -drs "com.apple.quarantine" $(HOME)/Library/Input\ Methods/vChewing.app
+```
+macOS 12.6 對任何沒有經過簽證與公證處理的 app 都好像有點喜歡塞隔離區的樣子。這種情況很少發生就是了，無非就是想從非營利的 devs 們身上也賺取 Apple 研發者會員年費。
 
 ### 問：威注音更新如此頻繁，是不是軟體發佈策略出了什麼問題？
 
