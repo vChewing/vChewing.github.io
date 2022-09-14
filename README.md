@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.6.0 SP2 (Sep 13, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.6.1 (Sep 13, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,16 +15,13 @@ nav_order: 1
 
 部分近期更新內容：
 
+- [2.6.1] 當目前的 App 被登記在威注音的客體管理員當中的時候，該 App 將不再能拿到輸入法的組字區內的資料。
 - [2.6.0 SP2] 體驗：允許在輸入法偏好設定內專門為 Shift 切換到的英文輸入模式指定鍵盤佈局種類（可以換成 DVORAK 等）。
 - [2.6.0] 修復了些許 bug，且引入了對 Steam 的支援：對這種不遵守 IMKTextInput 協定的應用，威注音現在會啟用專門的浮動組字窗（讀音數量上限 20）。
-- [2.5.0] 修復了些許 bug，且對工具提示視窗引入了縱排顯示支援。內核模組更新內容有點多，請洽發行說明。
 - [2.4.0 SP2] 正式提供對 Emacs 熱鍵的支援。該支援對 IMK 選字窗有效。
-- [2.4.0 SP2] 修復了傳統 CapsLock 英文輸入模式下無法輸入大寫英文字母的問題。 
 - [2.4.0] 在運作原理上允許在就地加詞時應對「字數與讀音數量不相等」的情形。內核模組更新內容有點多，請洽發行說明。
 - [2.3.1] 允許在開發道場內徹底停用對 Chrome 系瀏覽器的 Shift 鍵單次擊鍵判定措施。
 - [2.3.0] 允許在切換輸入法或者切換中英文模式的時候「自動將未成字的注音刪除」。該行為承襲自微軟新注音輸入法。
-- [2.3.0] 針對縱排輸入情形下的上下文工具提示視窗新增了單獨的窗體座標處理。
-- [2.3.0] 修復了以 Shift 切換到英文模式時「摁著 Shift 輸入花括弧或者大於小於號時，會出現全形的空心方引號或者全形逗號句號」的問題。
 - [2.3.0] 新增沙箱特性處理。
 
 本文的 FAQ 會不定期更新來自 PTT 的提問。
