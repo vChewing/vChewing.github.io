@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.6.1 (Sep 13, 2022) |
+| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.6.2 SP2 (Sep 16, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,9 +15,15 @@ nav_order: 1
 
 部分近期更新內容：
 
+- [2.6.2 SP2] 修復：解決了客體管理視窗在 macOS 10.13 High Sierra 系統下變成黑底黑字的問題。
+- [2.6.2 SP1] 修復：解決了因為 Sandbox 參數配置失誤而導致在某些舊版 macOS 系統下無法運作的問題。
+- [2.6.2] 修復：解決了首次安裝威注音輸入法之後「除非手動建立原廠辭典目錄」否則就會一直無限崩潰的問題。
+- [2.6.2] 解決了「選字窗」「工具提示」「內文組字窗」會在多螢幕的狀態下亂跑的問題。
+- [2.6.2] 解決了 App 格式的安裝包安裝完輸入法之後、輸入法會被 macOS 的門衛機制隔離掉的問題。
+- [2.6.2] PKG 格式的安裝包自現在起不會再在 macOS 12 開始的系統下「對安裝到錯誤位置的檔案進行刪除操作」。
 - [2.6.1] 當目前的 App 被登記在威注音的客體管理員當中的時候，該 App 將不再能拿到輸入法的組字區內的資料。
 - [2.6.0 SP2] 體驗：允許在輸入法偏好設定內專門為 Shift 切換到的英文輸入模式指定鍵盤佈局種類（可以換成 DVORAK 等）。
-- [2.6.0] 修復了些許 bug，且引入了對 Steam 的支援：對這種不遵守 IMKTextInput 協定的應用，威注音現在會啟用專門的浮動組字窗（讀音數量上限 20）。
+- [2.6.0] 引入了對 Steam 的支援：對這種不遵守 IMKTextInput 協定的應用，威注音現在會啟用專門的浮動組字窗（讀音數量上限 20）。
 - [2.4.0 SP2] 正式提供對 Emacs 熱鍵的支援。該支援對 IMK 選字窗有效。
 - [2.4.0] 在運作原理上允許在就地加詞時應對「字數與讀音數量不相等」的情形。內核模組更新內容有點多，請洽發行說明。
 - [2.3.1] 允許在開發道場內徹底停用對 Chrome 系瀏覽器的 Shift 鍵單次擊鍵判定措施。
@@ -277,11 +283,15 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 
 請參照**[這篇文章的指引](./BUGREPORT.md)**用電郵聯絡研發方。至於 GitHub 倉庫工單，則可能無法得到第一時間的受理。至於爛詞，雖然可以使用就地刪詞的功能屏蔽掉，但也歡迎提報。
 
-### 問：macOS 12.6 系統下安裝完威注音輸入法之後出現了「輸入法從一開始就不能正常使用，連右上角螢幕提示可能都沒有出現」的情況。
+### 問：為什麼威注音輸入法在首次安裝會無限崩潰？總之就是什麼字都敲不出來。
 
-請參照**[這篇文章的指引](./BUGREPORT.md)**用電郵聯絡研發方。另：
+有兩種情況。無論哪種情況，都可以藉由升級至至少 2.6.2 版來解決。
 
-如果 Console 系統監視程式內與 vChewing 有關的當機報告有說主程式路徑是以「/private/var/」開頭的話，請在終端機內用 xattr 將威注音拽出 macOS 隔離區：
+一、自威注音 2.5.0 版開始引入的全新的 FolderMonitor 模組（用來監視使用者辭典目錄的內容變化，以便就地重新載入）在嘗試監視的目錄不存在的時候被啟動的話，會崩潰掉輸入法。之前 Zonble 的 FSEventStreamHelper 有沒有這個特徵，我就不知道了，也沒測試過。然而，問題出在輸入法剛啟動時的檔案操作判斷邏輯上了：在尚未完成使用者辭典讀入的步驟的前提下，就開始了對使用者辭典目錄的「檔案變動事件有無變化之情況」的監視。
+
+二、威注音 2.3.0 至 2.6.1 版的備用安裝程式「-alternative.zip」有做過多餘的處理，使得系統反而會將要安裝的輸入法塞入 macOS 門衛體系的隔離區、導致輸入法徹底失能。
+
+如果 Console 系統監視程式內與 vChewing 有關的當機報告有說主程式路徑是以「/private/var/」開頭的話，那就是這種情況了。請在終端機內用 xattr 將威注音拽出 macOS 隔離區：
 ```sh
 xattr -drs "com.apple.quarantine" $(HOME)/Library/Input\ Methods/vChewing.app
 ```
