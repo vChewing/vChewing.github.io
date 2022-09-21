@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.11.5) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.6.2 SP2 (Sep 16, 2022) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.7.0 GM (Sep 21, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,19 +15,13 @@ nav_order: 1
 
 部分近期更新內容：
 
+- [2.7.0] 內部程式架構大調整；利用大中心派發機制來提升辭典資料的載入速度。
 - [2.6.2 SP2] 修復：解決了客體管理視窗在 macOS 10.13 High Sierra 系統下變成黑底黑字的問題。
 - [2.6.2 SP1] 修復：解決了因為 Sandbox 參數配置失誤而導致在某些舊版 macOS 系統下無法運作的問題。
 - [2.6.2] 修復：解決了首次安裝威注音輸入法之後「除非手動建立原廠辭典目錄」否則就會一直無限崩潰的問題。
 - [2.6.2] 解決了「選字窗」「工具提示」「內文組字窗」會在多螢幕的狀態下亂跑的問題。
-- [2.6.2] 解決了 App 格式的安裝包安裝完輸入法之後、輸入法會被 macOS 的門衛機制隔離掉的問題。
 - [2.6.2] PKG 格式的安裝包自現在起不會再在 macOS 12 開始的系統下「對安裝到錯誤位置的檔案進行刪除操作」。
 - [2.6.1] 當目前的 App 被登記在威注音的客體管理員當中的時候，該 App 將不再能拿到輸入法的組字區內的資料。
-- [2.6.0 SP2] 體驗：允許在輸入法偏好設定內專門為 Shift 切換到的英文輸入模式指定鍵盤佈局種類（可以換成 DVORAK 等）。
-- [2.6.0] 引入了對 Steam 的支援：對這種不遵守 IMKTextInput 協定的應用，威注音現在會啟用專門的浮動組字窗（讀音數量上限 20）。
-- [2.4.0 SP2] 正式提供對 Emacs 熱鍵的支援。該支援對 IMK 選字窗有效。
-- [2.4.0] 在運作原理上允許在就地加詞時應對「字數與讀音數量不相等」的情形。內核模組更新內容有點多，請洽發行說明。
-- [2.3.1] 允許在開發道場內徹底停用對 Chrome 系瀏覽器的 Shift 鍵單次擊鍵判定措施。
-- [2.3.0] 允許在切換輸入法或者切換中英文模式的時候「自動將未成字的注音刪除」。該行為承襲自微軟新注音輸入法。
 - [2.3.0] 新增沙箱特性處理。
 
 本文的 FAQ 會不定期更新來自 PTT 的提問。
