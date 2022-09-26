@@ -46,8 +46,8 @@ rm -rf ~/Library/Application\ Support/vChewing/
 
 3. 自威注音 2.3.0 版開始的使用者辭典目錄，請自行決定是否移除。<br />其實你也可以直接移除下文「4.」當中所示的容器。
 ```sh
-rm -rf /Users/shikisuen/Library/Containers/org.atelierInmu.inputmethod.vChewing/Data/Library/Application\ Support/vChewing/
-rm /Users/shikisuen/Library/Containers/org.atelierInmu.inputmethod.vChewing/Data/Library/Application\ Support/vChewing_*.dat
+rm -rf ~/Library/Containers/org.atelierInmu.inputmethod.vChewing/Data/Library/Application\ Support/vChewing/
+rm ~/Library/Containers/org.atelierInmu.inputmethod.vChewing/Data/Library/Application\ Support/vChewing_*.dat
 ## 註：dat 檔案為使用者半衰記憶模組檔案。
 ``` 
 
