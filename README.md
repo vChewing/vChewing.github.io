@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.7.5 GM (Sep 25, 2022) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.8 GM (Sep 29, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,6 +15,7 @@ nav_order: 1
 
 部分近期更新內容：
 
+- [2.8.0] 引入全新的田所浩二橫版矩陣選字窗；通知飄窗行為優化；CapsLock 英數模式體驗改進。
 - [2.7.5] 內部程式架構大調整持續進行中；徹底重新製作了通知飄窗，最新通知始終顯示在最右上角。
 - [2.7.0] 內部程式架構大調整；利用大中心派發機制來提升辭典資料的載入速度。
 - [2.6.2 SP2] 修復：解決了客體管理視窗在 macOS 10.13 High Sierra 系統下變成黑底黑字的問題。
@@ -33,9 +34,7 @@ nav_order: 1
 
 該輸入法恐怕是截至目前為止**在功能多樣性方面**最強的第三方免費 macOS 系統專用輸入法，採純 Swift 語言寫就。威注音的原廠詞庫同時兼顧兩岸各自的審音和讀音習慣。威注音的著力點不是去想著怎麼用指針，而是盡可能在力所能及的範圍內將整個產品的功能做得更好用。
 
-![選字窗有頁碼提示。](assets/CandidateSelection.jpg)
-![就地刪詞功能，隨時隨地將不想要的詞音配對塞入排除表內。](assets/CandidateFiltering.jpg)
-![IMK 選字窗。](assets/CandidateSelectionIMK.jpg)
+![](assets/Demonstration.jpg)
 
 威注音的幾個產品目標：
 
