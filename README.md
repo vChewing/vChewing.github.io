@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.8.6 (Oct 07, 2022) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.8.7 (Oct 09, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,7 +15,7 @@ nav_order: 1
 
 部分近期更新內容：
 
-- [2.8.6] 針對 2.8.5 的諸多問題進行累積修正。
+- [2.8.7] 針對 2.8.5 和 2.8.6 的諸多問題進行累積修正。
 - [2.8.5 SP1] 針對 macOS 10.15 與 macOS 11 移植了田所浩二橫版矩陣選字窗。
 - [2.8.0] 引入全新的田所浩二橫版矩陣選字窗（僅限 macOS 12 開始的系統）；通知飄窗行為優化；CapsLock 英數模式體驗改進。
 - [2.7.5] 內部程式架構大調整持續進行中；徹底重新製作了通知飄窗，最新通知始終顯示在最右上角。
@@ -152,6 +152,13 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 - 在縱排書寫模式下敲字時，選字窗會蓋住當前正在輸入的縱行。
 
 結論：很多使用者都希望能在自己喜歡的副廠輸入法內用上 IMK 的矩陣選字窗（就是 macOS 系統內建的注音輸入法的橫版矩陣選字窗）。然而，經過這些天的研究，威注音輸入法團隊不得不認清（目前能推斷出來的）唯一可能事實：IMK 選字窗充其量也只是 Apple 用來滿足自家輸入法需求的產品部件、一開始就沒有讓副廠輸入法廠商用得爽的打算。第三方輸入法開發者們想要將 IMK 選字窗實作到企業級堪用的地步的話，往往需要使用私有 API 等強硬手段、也不見得就一定能做到這個地步。如果你們有誰認識在 Apple 的人的話，請他們關注 Bug Report #FB11300759，這樣 Apple 或許能稍微重視一下這些問題。至少，就 IMK 選字窗的功能實作而言，威注音已竭己所能。
+
+### 問：偏好設定內的鍵盤佈局與注音排列設定很亂欸。該怎麼調整？
+
+威注音自 2.8.7 版開始升級了 Apple 動態鍵盤佈局翻譯引擎。從這一版開始，只需要注意：
+
+- 想用大千傳統 / 倚天傳統 / 漢語拼音的話，macOS 10.15 開始專用的威注音輸入法新版偏好設定介面內有對應的快速設定按鈕。
+- 對於注音而言，只需要設定「排列」即可：在使用注音排列的情況下，鍵盤佈局設定僅會影響到螢幕小鍵盤的顯示。
 
 ### 問：像 Steam 這種應用在敲字時看不到組字區，怎麼辦？
 
