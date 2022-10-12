@@ -5,16 +5,16 @@ nav_order: 100
 
 威注音只聲稱過「截至目前為止在功能多樣性方面最強的第三方免費 macOS 系統專用輸入法」，這裡並未提到「第一」。已經使用頂點算法的的小麥注音才是（C++ 技術層面上的）第一。但威注音 2.8.0 版開始內建的田所選字窗，可能還真的是獨家體驗。
 
-### macOS 版威注音用到了下述來自上游的內容：
+### macOS 版威注音專案目前僅用到 OpenVanilla for Mac 的下述程式組件（MIT License）：
 
-- 僅供研發人員調試方便而使用的 App 版安裝程式 (by Zonble Yang)，不對公眾使用。
+- 僅供研發人員調試方便而使用的 App 版安裝程式 (by Lukhnos Liu & MJHsieh)，不對公眾使用。
 
 威注音專案目前還用到如下的來自 Lukhnos Liu 的算法：
 
 - 半衰記憶模組 MK2，被 Shiki Suen 用 Swift 重寫。
 - 基於 Gramambular 2 組字引擎的算法、被 Shiki Suen 用 Swift 重寫（詳見 [Megrez 組字引擎](https://github.com/vChewing/Megrez)）。
 
-### macOS 版威注音專案使用了下述第三方模組：
+### macOS 版威注音專案也使用了下述第三方模組：
 
 - ShiftKeyUpChecker: (c) 2019 and onwards Qwertyyb (March Yang) (MIT License).
 - LineReader: (c) 2019 and onwards Robert Muckle-Jones (Apache 2.0 License).
