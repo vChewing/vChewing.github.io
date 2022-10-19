@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.9.0 (Oct 18, 2022) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.9.1 (Oct 19, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,18 +15,11 @@ nav_order: 1
 
 部分近期更新內容：
 
+- [2.9.1] 新增 CIN2 格式的磁帶檔案支援。
 - [2.9.0] 新增 CIN 磁帶模式支援，允許使用者以 CIN 碼表磁帶檔案給威注音擴充諸如嘸蝦米、五筆、倉頡這樣的筆畫輸入功能。
 - [2.8.8] 針對 2.8.5 至 2.8.7 的諸多問題進行累積修正。
 - [2.8.5 SP1] 針對 macOS 10.15 與 macOS 11 移植了田所浩二橫版矩陣選字窗。
 - [2.8.0] 引入全新的田所浩二橫版矩陣選字窗（僅限 macOS 12 開始的系統）；通知飄窗行為優化；CapsLock 英數模式體驗改進。
-- [2.7.5] 內部程式架構大調整持續進行中；徹底重新製作了通知飄窗，最新通知始終顯示在最右上角。
-- [2.7.0] 內部程式架構大調整；利用大中心派發機制來提升辭典資料的載入速度。
-- [2.6.2 SP2] 修復：解決了客體管理視窗在 macOS 10.13 High Sierra 系統下變成黑底黑字的問題。
-- [2.6.2 SP1] 修復：解決了因為 Sandbox 參數配置失誤而導致在某些舊版 macOS 系統下無法運作的問題。
-- [2.6.2] 修復：解決了首次安裝威注音輸入法之後「除非手動建立原廠辭典目錄」否則就會一直無限崩潰的問題。
-- [2.6.2] 解決了「選字窗」「工具提示」「內文組字窗」會在多螢幕的狀態下亂跑的問題。
-- [2.6.2] PKG 格式的安裝包自現在起不會再在 macOS 12 開始的系統下「對安裝到錯誤位置的檔案進行刪除操作」。
-- [2.6.1] 當目前的 App 被登記在威注音的客體管理員當中的時候，該 App 將不再能拿到輸入法的組字區內的資料。
 - [2.3.0] 新增沙箱特性處理。
 
 本文的 FAQ 會不定期更新來自 PTT 的提問。
