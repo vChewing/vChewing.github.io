@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [Gitee](https://gitee.com/vChewing/vChewing-macOS/wikis/sort_id=5401886) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.9.1 (Oct 19, 2022) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.9.3 SP2 (Oct 26, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,7 +15,8 @@ nav_order: 1
 
 部分近期更新內容：
 
-- [2.9.2] 允許在選字窗底部顯示可能的字根反查結果（僅對橫排輸入時的田所選字窗生效）。
+- [2.9.3 SP2] 緊急修正與「以 CRLF 換行的 CIN 磁帶檔案」的相容性問題；另附其它修正。
+- [2.9.0-2.9.3] 允許在選字窗底部顯示可能的字根反查結果（僅對橫排輸入時的田所選字窗生效）。
 - [2.9.0-2.9.1] 新增 CIN2 格式的磁帶檔案支援，允許使用者以 CIN 碼表磁帶檔案給威注音擴充諸如嘸蝦米、五筆、倉頡這樣的筆畫輸入功能。
 - [2.8.8] 針對 2.8.5 至 2.8.7 的諸多問題進行累積修正。
 - [2.8.5 SP1] 針對 macOS 10.15 與 macOS 11 移植了田所浩二橫版矩陣選字窗。
