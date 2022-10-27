@@ -7,7 +7,7 @@ nav_order: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.9.3 SP2 (Oct 26, 2022) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.9.4 SP1 (Oct 28, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
@@ -15,6 +15,7 @@ nav_order: 1
 
 部分近期更新內容：
 
+- [2.9.4 SP1] 緊急修正被 2.8.9 和 2.9.4 版不慎引入的某些嚴重影響使用的問題，另附其他修正。
 - [2.9.3 SP2] 緊急修正與「以 CRLF 換行的 CIN 磁帶檔案」的相容性問題；另附其它修正。
 - [2.9.0-2.9.3] 允許在選字窗底部顯示可能的字根反查結果（僅對橫排輸入時的田所選字窗生效）。
 - [2.9.0-2.9.1] 新增 CIN2 格式的磁帶檔案支援，允許使用者以 CIN 碼表磁帶檔案給威注音擴充諸如嘸蝦米、五筆、倉頡這樣的筆畫輸入功能。
@@ -118,7 +119,7 @@ Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
 
 ### 問：怎麼敲簡體？
 
-請在系統偏好設定內新增「威注音-簡」這個輸入法。只要系統內有安裝了威注音輸入法，就應該能在簡體中文輸入法分類下找到該輸入法。
+請在系統偏好設定內新增「威注音-簡」這個輸入法。只要系統內有安裝了威注音輸入法，就應該能在簡體中文輸入法分類下找到該輸入法。為什麼不像其他有些輸入法那樣直接做熱鍵開關呢？因為他們那樣無法做到在簡體輸出時讓 macOS 聽寫的內容「也是簡體中文」。
 
 威注音不信任繁簡轉換與簡繁轉換，因為必然會有轉換錯誤發生。威注音的簡體中文模式使用單獨的原廠辭典、與繁體中文模式的辭典分隔開。然而，每次在新增使用者辭典時，威注音都會往另一個繁簡模式的使用者辭典內添入轉換過的結果。因轉換過的結果的正確性無法保證，所以任何轉換結果的所在行都會有行尾標記。
 
