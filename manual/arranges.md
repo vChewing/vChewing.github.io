@@ -1,11 +1,24 @@
 ---
 parent: 使用手冊
-nav_order: 70
+sort: 9
 has_toc: true
 ---
 # 注音鍵盤排列參考清單
 
 本文部分解說內容取自 Wikipedia。
+
+- [注音鍵盤排列參考清單](#注音鍵盤排列參考清單)
+  - [大千傳統 (微軟標準 / 王安 / 零壹 / 仲鼎 / 國喬) (Dachen Standard)](#大千傳統-微軟標準--王安--零壹--仲鼎--國喬-dachen-standard)
+  - [倚天傳統 (ETen Traditional)](#倚天傳統-eten-traditional)
+  - [神通 (MiTAC)](#神通-mitac)
+  - [IBM](#ibm)
+  - [精業 (JINYEI / SEIGYOU)](#精業-jinyei--seigyou)
+  - [偽精業 (Fake-Seigyou)](#偽精業-fake-seigyou)
+  - [倚天忘形二十六鍵 (ETen26)](#倚天忘形二十六鍵-eten26)
+  - [許氏國音自然排列 (Hsu)](#許氏國音自然排列-hsu)
+  - [星光排列 (Starlight)](#星光排列-starlight)
+  - [酷音大千二十六鍵 (LibChewing Dachen-CP26)](#酷音大千二十六鍵-libchewing-dachen-cp26)
+  - [怎樣取捨？(How to choose?)](#怎樣取捨how-to-choose)
 
 威注音輸入法原廠提供下述注音排列支援：
 

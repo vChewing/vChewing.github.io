@@ -1,21 +1,21 @@
 ---
 layout: default
 title: vChewing 威注音輸入法
-nav_order: 1
+sort: 1
 ---
 # vChewing 威注音輸入法
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.9.4 SP1 (Oct 28, 2022) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 2.9.4 SP2 (Oct 30, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
-- 請參閱[《鍵盤熱鍵使用手冊》](./manual/shortcuts.md)以提升該輸入法的使用效率。
+- 請參閱《[鍵盤熱鍵使用手冊](./manual/shortcuts.md)》以提升該輸入法的使用效率。
 - 另有[熱心網友製作的 Homebrew-Cask 安裝方式](https://github.com/windwords/homebrew-vchewing)可用。
 
 部分近期更新內容：
 
-- [2.9.4 SP1] 緊急修正被 2.8.9 和 2.9.4 版不慎引入的某些嚴重影響使用的問題，另附其他修正。
+- [2.9.4 SP1] 緊急修正被 2.8.9 和 2.9.4 版不慎引入的某些嚴重影響使用的問題，另附其它修正。
 - [2.9.3 SP2] 緊急修正與「以 CRLF 換行的 CIN 磁帶檔案」的相容性問題；另附其它修正。
 - [2.9.0-2.9.3] 允許在選字窗底部顯示可能的字根反查結果（僅對橫排輸入時的田所選字窗生效）。
 - [2.9.0-2.9.1] 新增 CIN2 格式的磁帶檔案支援，允許使用者以 CIN 碼表磁帶檔案給威注音擴充諸如嘸蝦米、五筆、倉頡這樣的筆畫輸入功能。
@@ -63,31 +63,9 @@ nav_order: 1
 16. 選字窗內有當前頁數提示（該功能不對 IMK 選字窗提供，因為 IMK 選字窗是 macOS 系統內建的、威注音只做了銜接利用）。
 17. 在選字窗內選字之後，被選的字周圍的字不會亂變。
 
-## 安裝方式 (Install)
+## 安裝方式與系統需求 (Install & Sys. Req.)
 
-因為沒有條件完成 Apple Developer 數位簽名，所以安裝會麻煩些：請在**首次雙擊執行失敗之後**摁 Ctrl 的同時使用滑鼠右鍵點開安裝程式來安裝，如此方可被 macOS 允許跳過系統內建的門衛檢查。
-
-如對未簽名的 pkg 安裝包有安全疑慮的話，請自行下載 30 多 GB 的 Xcode 選「vChewingInstaller」這個 target scheme 自行編譯安裝。（也可以用 make 來編譯、接著用 make install 來安裝）。
-
-本次以 pkg 的形式發行安裝程式，方便資安管理業者們藉由終端機進行部署。由於仍舊只會安裝至使用者目錄內，所以同一台電腦不同使用者需要分別安裝一遍。下述終端命令亦可使下載來的程式從 macOS 門衛檢查隔離區內取出來：
-
-```bash
-xattr -dr com.apple.quarantine ~/Downloads/vChewing-macOS-?.?.?-unsigned.pkg
-xattr -dr com.apple.quarantine ~/Downloads/vChewingInstaller.app
-```
-
-另**請注意 macOS 10 & 11 的所有系統版本均有一處行為故障**：pkg 安裝包指定僅裝在使用者目錄下的話，在 macOS 10 & 11
- 內執行時，仍舊會往總根目錄下安裝，除非你**手動點「更改安裝位置」再將那唯一的「安裝只供我使用」再點一遍才可以**。終端部署可以用這道指令：
-
-```bash
-installer -pkg ~/Downloads/vChewing-macOS-?.?.?-unsigned.pkg -target CurrentUserHomeDirectory
-```
-
-強烈建議在安裝完畢之後重新登入或重新開機（均可）。
-
-## 系統需求 (Sys. Req.)
-
-Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
+要求至少 Mac OS X 10.13.4 以上版本（Xcode 14 所支援的最低建置目標）。詳細步驟請洽《[安裝/啟用/切換/停用/卸除](./manual/install_uninstall_enable_disable.md)》一文。
 
 ## 軟體授權 (License)
 
@@ -119,7 +97,7 @@ Mac OS X 10.11.5 以上版本（因為要求至少 Unicode 8.0）。
 
 ### 問：怎麼敲簡體？
 
-請在系統偏好設定內新增「威注音-簡」這個輸入法。只要系統內有安裝了威注音輸入法，就應該能在簡體中文輸入法分類下找到該輸入法。為什麼不像其他有些輸入法那樣直接做熱鍵開關呢？因為他們那樣無法做到在簡體輸出時讓 macOS 聽寫的內容「也是簡體中文」。
+請在系統偏好設定內新增「威注音-簡」這個輸入法。只要系統內有安裝了威注音輸入法，就應該能在簡體中文輸入法分類下找到該輸入法。為什麼不像其它有些輸入法那樣直接做熱鍵開關呢？因為他們那樣無法做到在簡體輸出時讓 macOS 聽寫的內容「也是簡體中文」。
 
 威注音不信任繁簡轉換與簡繁轉換，因為必然會有轉換錯誤發生。威注音的簡體中文模式使用單獨的原廠辭典、與繁體中文模式的辭典分隔開。然而，每次在新增使用者辭典時，威注音都會往另一個繁簡模式的使用者辭典內添入轉換過的結果。因轉換過的結果的正確性無法保證，所以任何轉換結果的所在行都會有行尾標記。
 
@@ -302,7 +280,7 @@ macOS 12.6 對任何沒有經過簽證與公證處理的 app 都好像有點喜�
 
 ### 問：為什麼只支援 Mac？
 
-因為 Swift 語言在其他平台上的研發維護成本太大。目前威注音專案有在將輸入法本身的非系統特性依賴的部分用 C# 寫成一個「LibvChewingNT」的總成專案，但尚未完工。一旦完工，則或許可以拿來做 Windows 版本。
+因為 Swift 語言在其它平台上的研發維護成本太大。目前威注音專案有在將輸入法本身的非系統特性依賴的部分用 C# 寫成一個「LibvChewingNT」的總成專案，但尚未完工。一旦完工，則或許可以拿來做 Windows 版本。
 
 ### 問：哪裡可以取得原始碼？
 
@@ -326,7 +304,7 @@ macOS 12.6 對任何沒有經過簽證與公證處理的 app 都好像有點喜�
 
 關於所謂「剽竊論」，乃 BrLi 對威注音的欲加之罪。請閱讀《[威注音著作權聲明](https://github.com/vChewing/vChewing-macOS/discussions/92)》。
 
-### 幹：[在 macOS 輸入法框架的設計中，並不會將單次點擊 Shift 按鍵的行為，送到像是小麥輸入法這樣的程式上。所以技術上可行的作法是，輸入法程式要跳過蘋果所規範的輸入法框架，直接暴力攔截「所有」的硬體事件，包括鍵盤滑鼠，然後找到單次點選 Shift 的事件。而且，就算用戶切到了其他輸入法，甚至用戶根本沒在打字，都在監聽「所有」的事件。](https://github.com/openvanilla/McBopomofo/issues/337#issuecomment-1231170409)
+### 幹：[在 macOS 輸入法框架的設計中，並不會將單次點擊 Shift 按鍵的行為，送到像是小麥輸入法這樣的程式上。所以技術上可行的作法是，輸入法程式要跳過蘋果所規範的輸入法框架，直接暴力攔截「所有」的硬體事件，包括鍵盤滑鼠，然後找到單次點選 Shift 的事件。而且，就算用戶切到了其它輸入法，甚至用戶根本沒在打字，都在監聽「所有」的事件。](https://github.com/openvanilla/McBopomofo/issues/337#issuecomment-1231170409)
 
 其實 NSEvent 當中的 Shift 擊鍵事件是可以被監聽的、而無須向用戶請求系統全局鍵盤事件監聽。釐清事實再講話，也是一條該有的道德紅線。
 

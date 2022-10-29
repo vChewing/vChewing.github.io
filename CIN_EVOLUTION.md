@@ -1,5 +1,5 @@
 ---
-nav_order: 86
+sort: 3
 ---
 # CIN 標準（v2.0）
 

@@ -1,6 +1,6 @@
 ---
 parent: 使用手冊
-nav_order: 72
+sort: 72
 has_toc: true
 ---
 # 寫給 OpenVanilla 的使用者

@@ -1,6 +1,6 @@
 ---
 parent: 使用手冊
-nav_order: 73
+sort: 73
 has_toc: true
 ---
 # 寫給小鶴音形的使用者
