@@ -7,7 +7,7 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.1.0 (Dec 11, 2022) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.1.1 (Dec 16, 2022) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱《[鍵盤熱鍵使用手冊](./manual/shortcuts.md)》以提升該輸入法的使用效率。
@@ -15,17 +15,12 @@ sort: 1
 
 部分近期主打更新內容：
 
+- [3.1.1] 取消了在就地輪替候選字時的使用者半衰記憶模組觀測行為。另附其它軟體故障修正。
 - [3.1.0] 新增注音反查功能。
 - [3.0.0] 換裝了全新的使用者語彙編輯器。
 - [2.9.8] 允許在田所選字窗內使用滑鼠右鍵選單控頻或排除指定的候選字詞、且盡量保持選字窗繼續顯示。
-- [2.9.7] 解決了自 2.8.0 版以來一直存在的田所選字窗記憶體洩漏故障。
-- [2.9.6] 移除了自 2.8.8 版引入的會引發記憶體洩漏故障的某處副本管理設計。
-- [2.9.5 SP2] 改善了輸入法在某些 Apple Silicon 機種的 mac 上的效能問題。
-- [2.9.4 SP1] 緊急修正被 2.8.9 和 2.9.4 版不慎引入的某些嚴重影響使用的問題，另附其它修正。
-- [2.9.3 SP2] 緊急修正與「以 CRLF 換行的 CIN 磁帶檔案」的相容性問題；另附其它修正。
 - [2.9.0-2.9.3] 允許在選字窗底部顯示可能的字根反查結果（僅對橫排輸入時的田所選字窗生效）。
 - [2.9.0-2.9.1] 新增 CIN2 格式的磁帶檔案支援，允許使用者以 CIN 碼表磁帶檔案給威注音擴充諸如嘸蝦米、五筆、倉頡這樣的筆畫輸入功能。
-- [2.8.8] 針對 2.8.5 至 2.8.7 的諸多問題進行累積修正。
 - [2.8.5 SP1] 針對 macOS 10.15 與 macOS 11 移植了田所浩二橫版矩陣選字窗。
 - [2.8.0] 引入全新的田所浩二橫版矩陣選字窗（僅限 macOS 12 開始的系統）；通知飄窗行為優化；CapsLock 英數模式體驗改進。
 - [2.3.0] 新增沙箱特性處理。
