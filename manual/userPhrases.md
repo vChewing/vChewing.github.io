@@ -14,6 +14,7 @@ has_toc: true
 		- [E. 語彙置換表](#e-語彙置換表)
 		- [F. 逐字選字模式注音字序表](#f-逐字選字模式注音字序表)
 		- [G. 自訂分層分類符號表](#g-自訂分層分類符號表)
+		- [H. 全形字母直接輸入](#h-全形字母直接輸入)
 
 ## 1. 辭典檔案類型介紹
 
@@ -170,5 +171,74 @@ Unicode=♨☀☁☂☃♠♥♣♦♩♪♫♬☺☻
 填色方塊=＿ˍ▁▂▃▄▅▆▇█▏▎▍▌▋▊▉◢◣◥◤
 線段=﹣﹦≡｜∣∥–︱—︳╴¯￣﹉﹊﹍﹎﹋﹌﹏︴∕﹨╱╲／＼
 ```
+
+### H. 全形字母直接輸入
+
+出於諸多原因及綜合考量，威注音輸入法預設情況下並未製作該功能。但使用者可以利用使用者語彙編輯系統的特性來間接實現該功能。
+
+前提：這需要您在輸入法偏好設定內將「Shift+字母鍵」的行為設定為「直接鍵入內文組字區」。
+
+如果您需要直接 SHIFT 輸入小寫全形字母的話，請確保如下段落插在使用者自訂語彙檔案內：
+
+```
+ａ _letter_A
+ｂ _letter_B
+ｃ _letter_C
+ｄ _letter_D
+ｅ _letter_E
+ｆ _letter_F
+ｇ _letter_G
+ｈ _letter_H
+ｉ _letter_I
+ｊ _letter_J
+ｋ _letter_K
+ｌ _letter_L
+ｍ _letter_M
+ｎ _letter_N
+ｏ _letter_O
+ｐ _letter_P
+ｑ _letter_Q
+ｒ _letter_R
+ｓ _letter_S
+ｔ _letter_T
+ｕ _letter_U
+ｖ _letter_V
+ｗ _letter_W
+ｘ _letter_X
+ｙ _letter_Y
+ｚ _letter_Z
+```
+
+如果您需要直接 SHIFT 輸入大寫全形字母的話，請確保如下段落插在使用者自訂語彙檔案內：
+
+```
+Ａ _letter_A
+Ｂ _letter_B
+Ｃ _letter_C
+Ｄ _letter_D
+Ｅ _letter_E
+Ｆ _letter_F
+Ｇ _letter_G
+Ｈ _letter_H
+Ｉ _letter_I
+Ｊ _letter_J
+Ｋ _letter_K
+Ｌ _letter_L
+Ｍ _letter_M
+Ｎ _letter_N
+Ｏ _letter_O
+Ｐ _letter_P
+Ｑ _letter_Q
+Ｒ _letter_R
+Ｓ _letter_S
+Ｔ _letter_T
+Ｕ _letter_U
+Ｖ _letter_V
+Ｗ _letter_W
+Ｘ _letter_X
+Ｙ _letter_Y
+Ｚ _letter_Z
+```
+以上兩段內容可以同時出現在使用者自訂語彙檔案內，但預設敲出來的只可能是行數最高者。
 
 $ EOF.
