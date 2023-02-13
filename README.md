@@ -7,7 +7,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.3.6 (Feb 11, 2023) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.3.9 (Mar 01, 2023) |
+| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.11 (Mar 01, 2023) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱《[鍵盤熱鍵使用手冊](./manual/shortcuts.md)》以提升該輸入法的使用效率。
@@ -15,6 +16,7 @@ sort: 1
 
 部分近期主打更新內容：
 
+- [3.3.8-3.3.9] 第三代田所選字窗，採 Cocoa 技術重新製作。另有諸多小修正與功能更新。
 - [3.3.6] 新增內碼輸入模式、且允許以此模式連續輸入漢字。另新增漢音符號表與漢音符號鍵盤模式支援。
 - [3.3.4-3.3.5] 新增對諸如英雄聯盟等硬體全螢幕電玩的輸入法介面顯示支援，且對田所選字窗的橫向排列模式做了排版調整。
 - [3.3.3] 允許以 Alt+Shift+Enter 將當前組字區「先逐字插入空格、再遞交」，方便 Sibelius 使用者整理中文歌詞。
@@ -88,8 +90,8 @@ sort: 1
 
 這裡分別解答一下：
 
-- 威注音專案的「威」取自 Zonble 在 GitHub 個人資料頁公開的羅馬音姓名「Weizhong Yang」的「Wei」的諧音，藉此彰其對中文輸入法業界的固有貢獻。
-- 至於「天權星」其實是「Megrez」星宿的中文名之一。該星宿另外有一個名字是「文曲星」，但這個名字太過於臭屁、就沒打算用。
+- 威注音專案的「威」取自「威而鋼」的「威」。
+- 至於「天權星」其實是「Megrez」星宿的中文名之一。該星宿乃璃月七星之首。
 - 至於「鐵恨」則是源自「齊鐵恨」這位人物的名字。
 
 ### 問：威注音輸入法的圖示當中的「ㄋ」是？
@@ -120,7 +122,7 @@ sort: 1
 
 您可能想說的是 IMK 選字窗，您可以在開發道場內啟用。該功能現階段僅在 macOS 10.14 Mojave 至 macOS 13.x Ventura 系統下測試過可用性。
 
-IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當中的 IMKCandidates 子模組所實現的東西。然而，Zonble 十幾年前證明過了、且威注音這邊最近也再次證明了：IMKCandidates 在這十幾年以來一直都是沒有經過單元測試考驗過的爛貨、是能將賈伯斯氣得從棺材裡爬出來的殘次品。如果這個模組的研發團隊有設計過單元測試的話，他們自己明明就可以發現這些低級智障問題。但他們選擇了裝鴕鳥，給系統內建的輸入法用了一個 IMKCandidates 的克隆版本、僅供 Apple 內部使用（感興趣的話可以自行對 InputMethodKit 逆向工程）。至於給副廠輸入法開發者使用的 IMKCandidates 再怎樣殘障，他們這十幾年來一直都沒有在管。
+IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當中的 IMKCandidates 子模組所實現的東西。然而，IMKCandidates 在這十幾年以來一直都是沒有經過單元測試考驗過的爛貨、是能將賈伯斯氣得從棺材裡爬出來的殘次品。如果這個模組的研發團隊有設計過單元測試的話，他們自己明明就可以發現這些低級智障問題。但他們選擇了裝鴕鳥，給系統內建的輸入法用了一個 IMKCandidates 的克隆版本、僅供 Apple 內部使用（感興趣的話可以自行對 InputMethodKit 逆向工程）。至於給副廠輸入法開發者使用的 IMKCandidates 再怎樣殘障，他們這十幾年來一直都沒有在管。
 
 由於 IMK 橫版陣列型選字窗的功能特性獨此一家，使得第三方輸入法開發者想在功能方面「複製體驗」簡直難比登天。迄今為止對此操作體驗複製得最接近的是搜狗拼音輸入法，但在使用體驗角度來看仍舊遠遠落後於 IMK 橫版陣列選字窗。
 
@@ -303,7 +305,7 @@ macOS 12.6 對任何沒有經過簽證與公證處理的 app 都好像有點喜�
 
 有人對威注音在用的 MIT-NTL 協議有疑問。其實就是 MIT 的基礎上新增了一條同時保護 OpenVanilla 與威注音這兩方的某些權益的內容而已：就是怕有人往威注音裡面摻了違法的內容之後、打著威注音（或者 OpenVanilla）的旗號二次分發。換言之，這條規定就是：你 Fork 可以，但 Fork 成單獨發行的產品名稱時就必須修改產品名稱。
 
-其實現在某些簡體中文線上商城網站內販賣的威注音下載版也都違反了這條規定。首先是拿威注音的源碼（裡面有 Zonble 的心血、也有威注音專案的心血）賺這種錢，其次是誰也不知道他們分發的 binary 是否有病毒。
+其實現在某些簡體中文線上商城網站內販賣的威注音下載版也都違反了這條規定。首先是拿威注音的源碼（裡面有曾經的上游的心血、也有威注音專案的心血）賺這種錢，其次是誰也不知道他們分發的 binary 是否有病毒。
 
 這條新增的禁止項目，其實也是有利於 OpenVanilla 的。畢竟 OpenVanilla 也不希望有第三方打著 OpenVanilla 的旗號做壞事。其實，OpenVanilla 早期專案使用 3-Clause BSD 協議的時候，也有規定過類似的條款就是了。
 
@@ -325,7 +327,7 @@ macOS 內建的 InputMethodKit 輸入法框架丟給威注音哪些 NSEvent，�
 
 > 另外澄清一下：威注音專案在剛立案的時候，也有從小麥注音繼承過一些由 Zonble 完成的 Swift 內容（詳見[研發參與者清單](./AUTHORS.md)）。當時小麥注音沒有被 Swift 化的有「注拼引擎」「組字引擎」「任何與語言模組有關的部分」「按鍵調度模組」。威注音將後三者徹底用 Swift 重寫，且將注拼引擎重新設計、以支援更多的漢語拼音輸入種類與注音排列種類。威注音專案分離設立的時間比較早，但一開始很長一段時間都在同步來自上游的改動。如果你分不清專案內哪些是 Zonble 的貢獻內容的話，請洽小麥注音的倉庫歷史記錄。另有《[威注音著作權聲明](https://github.com/vChewing/vChewing-macOS/discussions/92)》供參閱。
 
-P.S.: 威注音自 2.3.1 版開始正在逐漸汰換掉盡可能全部的由 Zonble 完成的部分。
+P.S.: 威注音自 2.3.1 版開始正在逐漸汰換掉盡可能全部的由 Zonble 完成的部分，目前已經汰換完畢。
 
 ---
 
