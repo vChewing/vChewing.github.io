@@ -7,8 +7,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.3.9 (Mar 01, 2023) |
-| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.11 (Mar 01, 2023) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.4.0 (Mar 02, 2023) |
+| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.12 (Mar 02, 2023) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱《[鍵盤熱鍵使用手冊](./manual/shortcuts.md)》以提升該輸入法的使用效率。
@@ -16,7 +16,7 @@ sort: 1
 
 部分近期主打更新內容：
 
-- [3.3.8-3.3.9] 第三代田所選字窗，採 Cocoa 技術重新製作。另有諸多小修正與功能更新。
+- [3.3.8-3.4.0] 第三代田所選字窗，採 Cocoa 技術重新製作；修復了組字引擎在爬軌時會出現的記憶體洩漏故障；另有諸多小修正與功能更新。
 - [3.3.6] 新增內碼輸入模式、且允許以此模式連續輸入漢字。另新增漢音符號表與漢音符號鍵盤模式支援。
 - [3.3.4-3.3.5] 新增對諸如英雄聯盟等硬體全螢幕電玩的輸入法介面顯示支援，且對田所選字窗的橫向排列模式做了排版調整。
 - [3.3.3] 允許以 Alt+Shift+Enter 將當前組字區「先逐字插入空格、再遞交」，方便 Sibelius 使用者整理中文歌詞。
@@ -301,6 +301,11 @@ macOS 12.6 對任何沒有經過簽證與公證處理的 app 都好像有點喜�
     
 請參考 libvChewing-data 倉庫內的說明檔案： [GitHub](https://github.com/vChewing/libvchewing-data/) § [Gitee](https://gitee.com/vChewing/libvchewing-data/)。
 
+<details>
+<summary>可能包含情緒垃圾的部分已經摺疊，要查看的話請點這行文字。
+
+</summary>
+
 ### 問：亂搞授權是怎麼回事？剽竊論又是怎麼回事？
 
 有人對威注音在用的 MIT-NTL 協議有疑問。其實就是 MIT 的基礎上新增了一條同時保護 OpenVanilla 與威注音這兩方的某些權益的內容而已：就是怕有人往威注音裡面摻了違法的內容之後、打著威注音（或者 OpenVanilla）的旗號二次分發。換言之，這條規定就是：你 Fork 可以，但 Fork 成單獨發行的產品名稱時就必須修改產品名稱。
@@ -328,6 +333,8 @@ macOS 內建的 InputMethodKit 輸入法框架丟給威注音哪些 NSEvent，�
 > 另外澄清一下：威注音專案在剛立案的時候，也有從小麥注音繼承過一些由 Zonble 完成的 Swift 內容（詳見[研發參與者清單](./AUTHORS.md)）。當時小麥注音沒有被 Swift 化的有「注拼引擎」「組字引擎」「任何與語言模組有關的部分」「按鍵調度模組」。威注音將後三者徹底用 Swift 重寫，且將注拼引擎重新設計、以支援更多的漢語拼音輸入種類與注音排列種類。威注音專案分離設立的時間比較早，但一開始很長一段時間都在同步來自上游的改動。如果你分不清專案內哪些是 Zonble 的貢獻內容的話，請洽小麥注音的倉庫歷史記錄。另有《[威注音著作權聲明](https://github.com/vChewing/vChewing-macOS/discussions/92)》供參閱。
 
 P.S.: 威注音自 2.3.1 版開始正在逐漸汰換掉盡可能全部的由 Zonble 完成的部分，目前已經汰換完畢。
+
+</details>
 
 ---
 
