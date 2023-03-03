@@ -9,6 +9,8 @@ has_toc: true
 
 這篇文章主要說明一下後者的某些功能在前者當中的存無。
 
+以下功能以威注音 3.4.0 版為準。
+
 | 漢音輸入法的功能 | 威注音對該功能請求的響應 | 註解 / 原因 / 補記 |
 |-|-|-|
 | 游標在字詞前方選字 | ✅有實作，前後方都可以 | 漢音 Windows 版是在後方選字。 |
@@ -28,232 +30,457 @@ has_toc: true
 | 專業詞庫 | ❌不原樣提供 | 威注音使用了其它的資料源，且鼓勵使用者自己新增自訂語彙。 |
 | 在詞首用 Shift+Enter 就地加詞 | ❓改採微軟新注音 2003 的操作風格：使用 Shift+前後方向鍵來標記字詞範圍，然後敲 Enter 就地加詞 | 威注音允許將就地將選中的字詞範圍對應的字詞塞入語彙排除表、允許對既有詞用這種方式提升或降低權重。 |
 | 略語 | ❌不提供 | 請活用使用者自訂語彙的功能。 |
-| 字音反查 reverse-lookup | ❌不提供 | 目前威注音的辭典檢索系統做這種功能實在太麻煩：輸入法體積可能需要翻倍，或者需要為了效能而放棄 2018 年以前的機種，等。 |
+| 字音反查 reverse-lookup | ✅有實作 | 詳見輸入法選單內「注音反查…」一項。 |
 | 取消最後一次辭彙自動轉換 | ❌不提供 | 目前組字引擎不支援該功能、且很難擴充該功能。使用輸入法本身的就地候選字輪替功能的話，可能會更快一些。 |
 | Ctrl-6 工具箱 | ❌不提供 | 兩款輸入法的互動方式存在固有差異。 |
-| Ctrl+3 符號清單 | ❓不預設提供（Option+(波浪)符號鍵） | 請根據軟體使用說明手冊自行擴充該符號表的內容。 |
-| 漢音符號表「\」 | ❌暫不實作 | 相比酷音輸入法那種分類符號選單而言，漢音的「\」符號表功能不太適合這個年代的新手們記憶學習。 |
+| Ctrl+3 符號清單 | ❓改為 Option+Shift+(波浪)符號鍵 | 可根據軟體使用說明手冊自行擴充該符號表的內容。 |
+| 漢音符號表「\」 | ✅有實作 | 漢音輸入法原版的「\」鍵功能得在輸入法偏好設定內手動啟用；另可連續敲「Option+(波浪)符號鍵」來切換該模式的開關（這樣也可以切換到 Big5 / GB 內碼模式）。 |
 
-如果您希望在威注音 2.9.4 SP2 開始的版本當中繼續藉由「Option+(波浪)符號鍵」使用漢音 Ctrl+3 那樣的符號選單內容的話，請在威注音使用者辭典內新增下述內容（行數越高，排序越靠前）：
+如果您希望在威注音 2.9.4 SP2 開始 **至 3.3.5 版為止** 的版本當中繼續藉由「Option+(波浪)符號鍵」使用漢音 Ctrl+3 那樣的符號選單內容的話，請在威注音使用者辭典內新增下述內容（行數越高，排序越靠前）：
 
 ```
-_punctuation_list ｀ 0.0
-_punctuation_list ， 0.0
-_punctuation_list 、 0.0
-_punctuation_list 。 0.0
-_punctuation_list ． 0.0
-_punctuation_list ； 0.0
-_punctuation_list ： 0.0
-_punctuation_list ？ 0.0
-_punctuation_list ！ 0.0
-_punctuation_list ︰ 0.0
-_punctuation_list ? 0.0
-_punctuation_list ⋯ 0.0
-_punctuation_list ‥ 0.0
-_punctuation_list … 0.0
-_punctuation_list ｜ 0.0
-_punctuation_list — 0.0
-_punctuation_list ︴ 0.0
-_punctuation_list ﹏ 0.0
-_punctuation_list （ 0.0
-_punctuation_list ） 0.0
-_punctuation_list ︵ 0.0
-_punctuation_list ︶ 0.0
-_punctuation_list 《 0.0
-_punctuation_list 》 0.0
-_punctuation_list ︽ 0.0
-_punctuation_list ︾ 0.0
-_punctuation_list 〈 0.0
-_punctuation_list 〉 0.0
-_punctuation_list ︿ 0.0
-_punctuation_list ﹀ 0.0
-_punctuation_list 【 0.0
-_punctuation_list 】 0.0
-_punctuation_list ︻ 0.0
-_punctuation_list ︼ 0.0
-_punctuation_list ｛ 0.0
-_punctuation_list ｝ 0.0
-_punctuation_list ︷ 0.0
-_punctuation_list ︸ 0.0
-_punctuation_list 〔 0.0
-_punctuation_list 〕 0.0
-_punctuation_list ︹ 0.0
-_punctuation_list ︺ 0.0
-_punctuation_list 「 0.0
-_punctuation_list 」 0.0
-_punctuation_list ﹁ 0.0
-_punctuation_list ﹂ 0.0
-_punctuation_list 『 0.0
-_punctuation_list 』 0.0
-_punctuation_list ﹃ 0.0
-_punctuation_list ﹄ 0.0
-_punctuation_list ＃ 0.0
-_punctuation_list ＆ 0.0
-_punctuation_list ＊ 0.0
-_punctuation_list ※ 0.0
-_punctuation_list § 0.0
-_punctuation_list 〃 0.0
-_punctuation_list ○ 0.0
-_punctuation_list ● 0.0
-_punctuation_list ◎ 0.0
-_punctuation_list ㊣ 0.0
-_punctuation_list △ 0.0
-_punctuation_list ▽ 0.0
-_punctuation_list ▲ 0.0
-_punctuation_list ▼ 0.0
-_punctuation_list ∴ 0.0
-_punctuation_list ∵ 0.0
-_punctuation_list ☆ 0.0
-_punctuation_list ★ 0.0
-_punctuation_list ◇ 0.0
-_punctuation_list ◆ 0.0
-_punctuation_list □ 0.0
-_punctuation_list ■ 0.0
-_punctuation_list ♀ 0.0
-_punctuation_list ♂ 0.0
-_punctuation_list → 0.0
-_punctuation_list ← 0.0
-_punctuation_list ↑ 0.0
-_punctuation_list ↓ 0.0
-_punctuation_list ↗ 0.0
-_punctuation_list ↖ 0.0
-_punctuation_list ↘ 0.0
-_punctuation_list ↙ 0.0
-_punctuation_list ㏕ 0.0
-_punctuation_list ㎜ 0.0
-_punctuation_list ㎝ 0.0
-_punctuation_list ㎞ 0.0
-_punctuation_list ㏎ 0.0
-_punctuation_list ㎡ 0.0
-_punctuation_list ㎎ 0.0
-_punctuation_list ㎏ 0.0
-_punctuation_list ㏄ 0.0
-_punctuation_list ℃ 0.0
-_punctuation_list ℉ 0.0
-_punctuation_list ° 0.0
-_punctuation_list ± 0.0
-_punctuation_list × 0.0
-_punctuation_list ÷ 0.0
-_punctuation_list ≒ 0.0
-_punctuation_list ≠ 0.0
-_punctuation_list ≦ 0.0
-_punctuation_list ≧ 0.0
-_punctuation_list ∼ 0.0
-_punctuation_list ∠ 0.0
-_punctuation_list ⊥ 0.0
-_punctuation_list ∟ 0.0
-_punctuation_list ≡ 0.0
-_punctuation_list ⊿ 0.0
-_punctuation_list ∞ 0.0
-_punctuation_list √ 0.0
-_punctuation_list ┌ 0.0
-_punctuation_list ┬ 0.0
-_punctuation_list ┐ 0.0
-_punctuation_list ├ 0.0
-_punctuation_list ┼ 0.0
-_punctuation_list ┤ 0.0
-_punctuation_list └ 0.0
-_punctuation_list ┴ 0.0
-_punctuation_list ┘ 0.0
-_punctuation_list ─ 0.0
-_punctuation_list │ 0.0
-_punctuation_list ═ 0.0
-_punctuation_list ╞ 0.0
-_punctuation_list ╪ 0.0
-_punctuation_list ╡ 0.0
-_punctuation_list ╱ 0.0
-_punctuation_list ╲ 0.0
-_punctuation_list ╳ 0.0
-_punctuation_list ╭ 0.0
-_punctuation_list ╮ 0.0
-_punctuation_list ╰ 0.0
-_punctuation_list ╯ 0.0
-_punctuation_list ▁ 0.0
-_punctuation_list ▂ 0.0
-_punctuation_list ▃ 0.0
-_punctuation_list ▄ 0.0
-_punctuation_list ▅ 0.0
-_punctuation_list ▆ 0.0
-_punctuation_list ▇ 0.0
-_punctuation_list █ 0.0
-_punctuation_list ▏ 0.0
-_punctuation_list ▎ 0.0
-_punctuation_list ▍ 0.0
-_punctuation_list ▌ 0.0
-_punctuation_list ▋ 0.0
-_punctuation_list ▊ 0.0
-_punctuation_list ▉ 0.0
-_punctuation_list ▔ 0.0
-_punctuation_list 〡 0.0
-_punctuation_list 〢 0.0
-_punctuation_list 〣 0.0
-_punctuation_list 〤 0.0
-_punctuation_list 〥 0.0
-_punctuation_list 〦 0.0
-_punctuation_list 〧 0.0
-_punctuation_list 〨 0.0
-_punctuation_list 〩 0.0
-_punctuation_list 十 0.0
-_punctuation_list 卄 0.0
-_punctuation_list 卅 0.0
-_punctuation_list Ⅰ 0.0
-_punctuation_list Ⅱ 0.0
-_punctuation_list Ⅲ 0.0
-_punctuation_list Ⅳ 0.0
-_punctuation_list Ⅴ 0.0
-_punctuation_list Ⅵ 0.0
-_punctuation_list Ⅶ 0.0
-_punctuation_list Ⅷ 0.0
-_punctuation_list Ⅸ 0.0
-_punctuation_list Ⅹ 0.0
-_punctuation_list Α 0.0
-_punctuation_list Β 0.0
-_punctuation_list Γ 0.0
-_punctuation_list Δ 0.0
-_punctuation_list Ε 0.0
-_punctuation_list Ζ 0.0
-_punctuation_list Η 0.0
-_punctuation_list Θ 0.0
-_punctuation_list Ι 0.0
-_punctuation_list Κ 0.0
-_punctuation_list Λ 0.0
-_punctuation_list Μ 0.0
-_punctuation_list Ν 0.0
-_punctuation_list Ξ 0.0
-_punctuation_list Ο 0.0
-_punctuation_list Π 0.0
-_punctuation_list Ρ 0.0
-_punctuation_list Σ 0.0
-_punctuation_list Τ 0.0
-_punctuation_list Υ 0.0
-_punctuation_list Φ 0.0
-_punctuation_list Χ 0.0
-_punctuation_list Ψ 0.0
-_punctuation_list Ω 0.0
-_punctuation_list α 0.0
-_punctuation_list β 0.0
-_punctuation_list γ 0.0
-_punctuation_list δ 0.0
-_punctuation_list ε 0.0
-_punctuation_list ζ 0.0
-_punctuation_list η 0.0
-_punctuation_list θ 0.0
-_punctuation_list ι 0.0
-_punctuation_list κ 0.0
-_punctuation_list λ 0.0
-_punctuation_list μ 0.0
-_punctuation_list ν 0.0
-_punctuation_list ξ 0.0
-_punctuation_list ο 0.0
-_punctuation_list π 0.0
-_punctuation_list ρ 0.0
-_punctuation_list σ 0.0
-_punctuation_list τ 0.0
-_punctuation_list υ 0.0
-_punctuation_list φ 0.0
-_punctuation_list χ 0.0
-_punctuation_list ψ 0.0
-_punctuation_list ω 0.0
+　 _punctuation_list
+， _punctuation_list
+、 _punctuation_list
+。 _punctuation_list
+． _punctuation_list
+‧ _punctuation_list
+； _punctuation_list
+： _punctuation_list
+？ _punctuation_list
+！ _punctuation_list
+︰ _punctuation_list
+… _punctuation_list
+‥ _punctuation_list
+﹐ _punctuation_list
+﹑ _punctuation_list
+﹒ _punctuation_list
+· _punctuation_list
+﹔ _punctuation_list
+﹕ _punctuation_list
+﹖ _punctuation_list
+﹗ _punctuation_list
+｜ _punctuation_list
+– _punctuation_list
+︱ _punctuation_list
+— _punctuation_list
+︳ _punctuation_list
+╴ _punctuation_list
+︴ _punctuation_list
+﹏ _punctuation_list
+（ _punctuation_list
+） _punctuation_list
+︵ _punctuation_list
+︶ _punctuation_list
+｛ _punctuation_list
+｝ _punctuation_list
+︷ _punctuation_list
+︸ _punctuation_list
+〔 _punctuation_list
+〕 _punctuation_list
+︹ _punctuation_list
+︺ _punctuation_list
+【 _punctuation_list
+】 _punctuation_list
+︻ _punctuation_list
+︼ _punctuation_list
+《 _punctuation_list
+》 _punctuation_list
+︽ _punctuation_list
+︾ _punctuation_list
+〈 _punctuation_list
+〉 _punctuation_list
+︿ _punctuation_list
+﹀ _punctuation_list
+「 _punctuation_list
+」 _punctuation_list
+﹁ _punctuation_list
+﹂ _punctuation_list
+『 _punctuation_list
+』 _punctuation_list
+﹃ _punctuation_list
+﹄ _punctuation_list
+﹙ _punctuation_list
+﹚ _punctuation_list
+﹛ _punctuation_list
+﹜ _punctuation_list
+﹝ _punctuation_list
+﹞ _punctuation_list
+‘ _punctuation_list
+’ _punctuation_list
+“ _punctuation_list
+” _punctuation_list
+〝 _punctuation_list
+〞 _punctuation_list
+‵ _punctuation_list
+′ _punctuation_list
+＃ _punctuation_list
+＆ _punctuation_list
+＊ _punctuation_list
+※ _punctuation_list
+§ _punctuation_list
+〃 _punctuation_list
+○ _punctuation_list
+● _punctuation_list
+△ _punctuation_list
+▲ _punctuation_list
+◎ _punctuation_list
+☆ _punctuation_list
+★ _punctuation_list
+◇ _punctuation_list
+◆ _punctuation_list
+□ _punctuation_list
+■ _punctuation_list
+▽ _punctuation_list
+▼ _punctuation_list
+㊣ _punctuation_list
+℅ _punctuation_list
+¯ _punctuation_list
+￣ _punctuation_list
+＿ _punctuation_list
+ˍ _punctuation_list
+﹉ _punctuation_list
+﹊ _punctuation_list
+﹍ _punctuation_list
+﹎ _punctuation_list
+﹋ _punctuation_list
+﹌ _punctuation_list
+＆ _punctuation_list
+﹠ _punctuation_list
+﹡ _punctuation_list
+＋ _punctuation_list
+－ _punctuation_list
+× _punctuation_list
+÷ _punctuation_list
+± _punctuation_list
+√ _punctuation_list
+＜ _punctuation_list
+＞ _punctuation_list
+＝ _punctuation_list
+≦ _punctuation_list
+≧ _punctuation_list
+≠ _punctuation_list
+∞ _punctuation_list
+≒ _punctuation_list
+≡ _punctuation_list
+﹢ _punctuation_list
+﹣ _punctuation_list
+﹤ _punctuation_list
+﹥ _punctuation_list
+﹦ _punctuation_list
+～ _punctuation_list
+∩ _punctuation_list
+∪ _punctuation_list
+⊥ _punctuation_list
+∠ _punctuation_list
+∟ _punctuation_list
+⊿ _punctuation_list
+㏒ _punctuation_list
+㏑ _punctuation_list
+∫ _punctuation_list
+∮ _punctuation_list
+∵ _punctuation_list
+∴ _punctuation_list
+♀ _punctuation_list
+♂ _punctuation_list
+⊕ _punctuation_list
+⊙ _punctuation_list
+↑ _punctuation_list
+↓ _punctuation_list
+← _punctuation_list
+→ _punctuation_list
+↖ _punctuation_list
+↗ _punctuation_list
+↙ _punctuation_list
+↘ _punctuation_list
+∥ _punctuation_list
+∣ _punctuation_list
+／ _punctuation_list
+＼ _punctuation_list
+∕ _punctuation_list
+﹨ _punctuation_list
+＄ _punctuation_list
+￥ _punctuation_list
+〒 _punctuation_list
+￠ _punctuation_list
+￡ _punctuation_list
+％ _punctuation_list
+＠ _punctuation_list
+℃ _punctuation_list
+℉ _punctuation_list
+﹩ _punctuation_list
+﹪ _punctuation_list
+﹫ _punctuation_list
+㏕ _punctuation_list
+㎜ _punctuation_list
+㎝ _punctuation_list
+㎞ _punctuation_list
+㏎ _punctuation_list
+㎡ _punctuation_list
+㎎ _punctuation_list
+㎏ _punctuation_list
+㏄ _punctuation_list
+° _punctuation_list
+兙 _punctuation_list
+兛 _punctuation_list
+兞 _punctuation_list
+兝 _punctuation_list
+兡 _punctuation_list
+兣 _punctuation_list
+嗧 _punctuation_list
+瓩 _punctuation_list
+糎 _punctuation_list
+▁ _punctuation_list
+▂ _punctuation_list
+▃ _punctuation_list
+▄ _punctuation_list
+▅ _punctuation_list
+▆ _punctuation_list
+▇ _punctuation_list
+█ _punctuation_list
+▏ _punctuation_list
+▎ _punctuation_list
+▍ _punctuation_list
+▌ _punctuation_list
+▋ _punctuation_list
+▊ _punctuation_list
+▉ _punctuation_list
+┼ _punctuation_list
+┴ _punctuation_list
+┬ _punctuation_list
+┤ _punctuation_list
+├ _punctuation_list
+▔ _punctuation_list
+─ _punctuation_list
+│ _punctuation_list
+▕ _punctuation_list
+┌ _punctuation_list
+┐ _punctuation_list
+└ _punctuation_list
+┘ _punctuation_list
+╭ _punctuation_list
+╮ _punctuation_list
+╰ _punctuation_list
+╯ _punctuation_list
+═ _punctuation_list
+╞ _punctuation_list
+╪ _punctuation_list
+╡ _punctuation_list
+◢ _punctuation_list
+◣ _punctuation_list
+◥ _punctuation_list
+◤ _punctuation_list
+╱ _punctuation_list
+╲ _punctuation_list
+╳ _punctuation_list
+０ _punctuation_list
+１ _punctuation_list
+２ _punctuation_list
+３ _punctuation_list
+４ _punctuation_list
+５ _punctuation_list
+６ _punctuation_list
+７ _punctuation_list
+８ _punctuation_list
+９ _punctuation_list
+Ⅰ _punctuation_list
+Ⅱ _punctuation_list
+Ⅲ _punctuation_list
+Ⅳ _punctuation_list
+Ⅴ _punctuation_list
+Ⅵ _punctuation_list
+Ⅶ _punctuation_list
+Ⅷ _punctuation_list
+Ⅸ _punctuation_list
+Ⅹ _punctuation_list
+〡 _punctuation_list
+〢 _punctuation_list
+〣 _punctuation_list
+〤 _punctuation_list
+〥 _punctuation_list
+〦 _punctuation_list
+〧 _punctuation_list
+〨 _punctuation_list
+〩 _punctuation_list
+十 _punctuation_list
+卄 _punctuation_list
+卅 _punctuation_list
+Ａ _punctuation_list
+Ｂ _punctuation_list
+Ｃ _punctuation_list
+Ｄ _punctuation_list
+Ｅ _punctuation_list
+Ｆ _punctuation_list
+Ｇ _punctuation_list
+Ｈ _punctuation_list
+Ｉ _punctuation_list
+Ｊ _punctuation_list
+Ｋ _punctuation_list
+Ｌ _punctuation_list
+Ｍ _punctuation_list
+Ｎ _punctuation_list
+Ｏ _punctuation_list
+Ｐ _punctuation_list
+Ｑ _punctuation_list
+Ｒ _punctuation_list
+Ｓ _punctuation_list
+Ｔ _punctuation_list
+Ｕ _punctuation_list
+Ｖ _punctuation_list
+Ｗ _punctuation_list
+Ｘ _punctuation_list
+Ｙ _punctuation_list
+Ｚ _punctuation_list
+ａ _punctuation_list
+ｂ _punctuation_list
+ｃ _punctuation_list
+ｄ _punctuation_list
+ｅ _punctuation_list
+ｆ _punctuation_list
+ｇ _punctuation_list
+ｈ _punctuation_list
+ｉ _punctuation_list
+ｊ _punctuation_list
+ｋ _punctuation_list
+ｌ _punctuation_list
+ｍ _punctuation_list
+ｎ _punctuation_list
+ｏ _punctuation_list
+ｐ _punctuation_list
+ｑ _punctuation_list
+ｒ _punctuation_list
+ｓ _punctuation_list
+ｔ _punctuation_list
+ｕ _punctuation_list
+ｖ _punctuation_list
+ｗ _punctuation_list
+ｘ _punctuation_list
+ｙ _punctuation_list
+ｚ _punctuation_list
+Α _punctuation_list
+Β _punctuation_list
+Γ _punctuation_list
+Δ _punctuation_list
+Ε _punctuation_list
+Ζ _punctuation_list
+Η _punctuation_list
+Θ _punctuation_list
+Ι _punctuation_list
+Κ _punctuation_list
+Λ _punctuation_list
+Μ _punctuation_list
+Ν _punctuation_list
+Ξ _punctuation_list
+Ο _punctuation_list
+Π _punctuation_list
+Ρ _punctuation_list
+Σ _punctuation_list
+Τ _punctuation_list
+Υ _punctuation_list
+Φ _punctuation_list
+Χ _punctuation_list
+Ψ _punctuation_list
+Ω _punctuation_list
+α _punctuation_list
+β _punctuation_list
+γ _punctuation_list
+δ _punctuation_list
+ε _punctuation_list
+ζ _punctuation_list
+η _punctuation_list
+θ _punctuation_list
+ι _punctuation_list
+κ _punctuation_list
+λ _punctuation_list
+μ _punctuation_list
+ν _punctuation_list
+ξ _punctuation_list
+ο _punctuation_list
+π _punctuation_list
+ρ _punctuation_list
+σ _punctuation_list
+τ _punctuation_list
+υ _punctuation_list
+φ _punctuation_list
+χ _punctuation_list
+ψ _punctuation_list
+ω _punctuation_list
+ㄅ _punctuation_list
+ㄆ _punctuation_list
+ㄇ _punctuation_list
+ㄈ _punctuation_list
+ㄉ _punctuation_list
+ㄊ _punctuation_list
+ㄋ _punctuation_list
+ㄌ _punctuation_list
+ㄍ _punctuation_list
+ㄎ _punctuation_list
+ㄏ _punctuation_list
+ㄐ _punctuation_list
+ㄑ _punctuation_list
+ㄒ _punctuation_list
+ㄓ _punctuation_list
+ㄔ _punctuation_list
+ㄕ _punctuation_list
+ㄖ _punctuation_list
+ㄗ _punctuation_list
+ㄘ _punctuation_list
+ㄙ _punctuation_list
+ㄚ _punctuation_list
+ㄛ _punctuation_list
+ㄜ _punctuation_list
+ㄝ _punctuation_list
+ㄞ _punctuation_list
+ㄟ _punctuation_list
+ㄠ _punctuation_list
+ㄡ _punctuation_list
+ㄢ _punctuation_list
+ㄣ _punctuation_list
+ㄤ _punctuation_list
+ㄥ _punctuation_list
+ㄦ _punctuation_list
+ㄧ _punctuation_list
+ㄨ _punctuation_list
+ㄩ _punctuation_list
+˙ _punctuation_list
+ˉ _punctuation_list
+ˊ _punctuation_list
+ˇ _punctuation_list
+ˋ _punctuation_list
+╔ _punctuation_list
+╦ _punctuation_list
+╗ _punctuation_list
+╠ _punctuation_list
+╬ _punctuation_list
+╣ _punctuation_list
+╚ _punctuation_list
+╩ _punctuation_list
+╝ _punctuation_list
+╒ _punctuation_list
+╤ _punctuation_list
+╕ _punctuation_list
+╞ _punctuation_list
+╪ _punctuation_list
+╡ _punctuation_list
+╘ _punctuation_list
+╧ _punctuation_list
+╛ _punctuation_list
+╓ _punctuation_list
+╥ _punctuation_list
+╖ _punctuation_list
+╟ _punctuation_list
+╫ _punctuation_list
+╢ _punctuation_list
+╙ _punctuation_list
+╨ _punctuation_list
+╜ _punctuation_list
+║ _punctuation_list
+═ _punctuation_list
+╭ _punctuation_list
+╮ _punctuation_list
+╰ _punctuation_list
+╯ _punctuation_list
+▓ _punctuation_list
 ```
 
 $ EOF.
