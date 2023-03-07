@@ -7,8 +7,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.4.0 SP2 (Mar 04, 2023) |
-| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.12 SP2 (Mar 04, 2023) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.4.1 GM (Mar 07, 2023) |
+| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.13 GM (Mar 07, 2023) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱《[鍵盤熱鍵使用手冊](./manual/shortcuts.md)》以提升該輸入法的使用效率。
@@ -16,7 +16,7 @@ sort: 1
 
 部分近期主打更新內容：
 
-- [3.3.8-3.4.0] 第三代田所選字窗，採 Cocoa 技術重新製作；修復了組字引擎在爬軌時會出現的記憶體洩漏故障；另有諸多小修正與功能更新。
+- [3.3.8-3.4.1] 第三代田所選字窗，採 Cocoa 技術重新製作；修復了組字引擎在爬軌時會出現的記憶體洩漏故障；另有諸多小修正與功能更新。
 - [3.3.6] 新增內碼輸入模式、且允許以此模式連續輸入漢字。另新增漢音符號表與漢音符號鍵盤模式支援。
 - [3.3.4-3.3.5] 新增對諸如英雄聯盟等硬體全螢幕電玩的輸入法介面顯示支援，且對田所選字窗的橫向排列模式做了排版調整。
 - [3.3.3] 允許以 Alt+Shift+Enter 將當前組字區「先逐字插入空格、再遞交」，方便 Sibelius 使用者整理中文歌詞。
@@ -302,9 +302,7 @@ macOS 12.6 對任何沒有經過簽證與公證處理的 app 都好像有點喜�
 請參考 libvChewing-data 倉庫內的說明檔案： [GitHub](https://github.com/vChewing/libvchewing-data/) § [Gitee](https://gitee.com/vChewing/libvchewing-data/)。
 
 <details>
-<summary>可能包含情緒垃圾的部分已經摺疊，要查看的話請點這行文字。
-
-</summary>
+<summary>可能包含情緒垃圾的部分已經摺疊，要查看的話請點這行文字。</summary>
 
 ### 問：亂搞授權是怎麼回事？剽竊論又是怎麼回事？
 
