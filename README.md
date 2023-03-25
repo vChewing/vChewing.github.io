@@ -7,15 +7,16 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.4.4 GM (Mar 23, 2023) |
-| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.16 GM (Mar 23, 2023) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.4.5 GM (Apr 05, 2023) |
+| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.17 GM (Apr 05, 2023) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱《[鍵盤熱鍵使用手冊](./manual/shortcuts.md)》以提升該輸入法的使用效率。
 - 另有[熱心網友製作的 Homebrew-Cask 安裝方式](https://github.com/windwords/homebrew-vchewing)可用。
 
-部分近期主打更新內容：
+部分近期主打更新內容概要：
 
+- [3.4.5] 解決了在某些包含同音異幅的候選字詞的選字窗內來回選字時的崩潰故障；新增韋氏拼音輸入支援。
 - [3.4.4] 修復了「單個漢字無法借由標記模式降頻」以及「當游標前後的漢字的讀音相同的時候，在此時叫出的選字窗內會出現橫跨游標的候選字詞」的故障。
 - [3.4.3] 允許在標記模式內以節點為單位移動「標記專用游標」；針對「Shift+字母鍵」新增了兩種行為模式。
 - [3.4.2] 組字區會實時反應你當前選字窗內的高亮的候選字詞的選字效果，另有程式庫內容維護更新。
@@ -100,6 +101,12 @@ sort: 1
 ### 問：威注音輸入法的圖示當中的「ㄋ」是？
 
 威注音的圖示「ㄋ」取自 Komica 糟糕島流行的與劉寶傑有關的梗「[貼ㄋㄟㄋㄟ救寶傑](https://disp.cc/b/Joke/2sZ0)」。
+
+### 問：我在用 Shift 鍵或者 JIS 英數鍵切換英文輸入的時候，為什麼會在每次敲兩下空格的時候出現全形中文句號？
+
+請聯絡 Apple Support。這是「macOS 剛剛安裝完畢之後在 OOBE 開箱階段選擇了（包括中文在內的）某些介面語言之後、會自動開啟的某個特性」所致，但他們沒有想到「應該對第三方輸入法禁用該特性」，所以只能讓 Apple 的服務專員手把手教您怎樣關掉該特性。
+
+威注音鼓勵每一位受此困擾的人向 Apple Support 求助，或者帶著您的電腦去 Apple Store 直營店求助。求助的人越多，Apple 也就越知道：這個預設啟用的選項給使用者帶來的更可能是困擾、而不是他們最開始的良性目的。
 
 ### 問：有沒有ㄅ半模式？
 
