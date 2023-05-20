@@ -7,8 +7,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.4.6 GM (Apr 15, 2023) |
-| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.18 GM (Apr 15, 2023) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.4.8 GM (May 25, 2023) |
+| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.20 GM (May 25, 2023) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱《[鍵盤熱鍵使用手冊](./manual/shortcuts.md)》以提升該輸入法的使用效率。
@@ -16,6 +16,7 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [3.4.7-3.4.8] 引入了一些與注音輸入有關的累積改進；另有引入對劉又銘教授的擬音注音排列的支援。
 - [3.4.6] 解決了在藉由 macOS 系統內建 Emoji 視窗輸入表情時會崩掉輸入法的故障；另有其它故障修正。
 - [3.4.5] 解決了在某些包含同音異幅的候選字詞的選字窗內來回選字時的崩潰故障；新增韋氏拼音輸入支援。
 - [3.4.4] 修復了「單個漢字無法借由標記模式降頻」以及「當游標前後的漢字的讀音相同的時候，在此時叫出的選字窗內會出現橫跨游標的候選字詞」的故障。
@@ -57,8 +58,8 @@ sort: 1
 
 幾乎都是在做上游缺失的功能、修上游不修的 Bug：
 
-1. 支援最多種類的拼音輸入（得帶有12345數字聲調）：漢語拼音、國音二式、耶魯拼音、華羅拼音、通用拼音。
-2. 支援最多種類的注音輸入排列：大千傳統排列（零壹/微軟）、酷音大千 26 鍵、倚天傳統、倚天忘形、許氏鍵盤、星光、IBM、神通、（偽）精業。
+1. 可能支援最多種類的拼音輸入（得帶有12345數字聲調）：漢語拼音、國音二式、耶魯拼音、華羅拼音、通用拼音、韋氏拼音。
+2. 支援足夠豐富的種類的注音輸入排列：大千傳統排列（零壹/微軟）、酷音大千 26 鍵、倚天傳統、倚天忘形、許氏鍵盤、星光、IBM、神通、（偽）精業。
 3. 逐字選字模式的聯想詞功能的辭典內容可自訂，也可以直接讀取（UTF-8 格式的）從 Windows XP 的ㄅ半輸入法關聯詞編輯器匯出的辭典檔案。
 4. 支援 macOS 螢幕模擬鍵盤（僅傳統大千與傳統倚天佈局）。
 5. 數字鍵盤區域不會敲出注音來，而是會直接放行＋不作處理（除非有選字窗出現，此時可以作為選字鍵）。
@@ -77,7 +78,8 @@ sort: 1
 
 ## 安裝方式與系統需求 (Install & Sys. Req.)
 
-要求至少 Mac OS X 10.13.4 以上版本（Xcode 14 所支援的最低建置目標）。詳細步驟請洽《[安裝/啟用/切換/停用/卸除](./manual/install_uninstall_enable_disable.md)》一文。
+- 主流發行版：要求至少 Mac OS X 10.13.4 以上版本（Xcode 14 所支援的最低建置目標）。詳細步驟請洽《[安裝/啟用/切換/停用/卸除](./manual/install_uninstall_enable_disable.md)》一文。
+- Aqua 紀念版：推薦 macOS 10.9 Mavericks。理論上可以在 macOS 10.10 - 10.13.3 系統下正常運作，但這幾版 macOS 不太成熟、不建議使用。
 
 ## 軟體授權 (License)
 
@@ -105,9 +107,11 @@ sort: 1
 
 ### 問：我在用 Shift 鍵或者 JIS 英數鍵切換英文輸入的時候，為什麼會在每次敲兩下空格的時候出現全形中文句號？
 
-請聯絡 Apple Support。這是「macOS 剛剛安裝完畢之後在 OOBE 開箱階段選擇了（包括中文在內的）某些介面語言之後、會自動開啟的某個特性」所致，但他們沒有想到「應該對第三方輸入法禁用該特性」，所以只能讓 Apple 的服務專員手把手教您怎樣關掉該特性。
+對於任何副廠輸入法，在遇到這個問題的時候，都請聯絡 Apple Support。這是「macOS 剛剛安裝完畢之後在 OOBE 開箱階段選擇了（包括中文在內的）某些介面語言之後、會自動開啟的某個特性」所致，但他們沒有想到「應該對第三方輸入法禁用該特性」，所以只能讓 Apple 的服務專員手把手教您怎樣關掉該特性。
 
 威注音鼓勵每一位受此困擾的人向 Apple Support 求助，或者帶著您的電腦去 Apple Store 直營店求助。求助的人越多，Apple 也就越知道：這個預設啟用的選項給使用者帶來的更可能是困擾、而不是他們最開始的良性目的。
+
+更新：威注音輸入法 3.4.8 版開始，找到了方法：將「敲兩下空格」取代成的字符由「一個全形空格」變成「兩個半形空格」，從而讓 macOS 的這一處綁架設計對威注音徒勞。是說 Apple 應該在 Xcode Documentation 當中將一款輸入法的 info.plist 的參數涵義盡數解釋出來、而不是什麼都不寫。如果有其它第三方輸入法也想實作這種對策的話，請將輸入法的 info.plist 當中的 `TISDoubleSpaceSubstitution` 這一項的參數值改為 `  `，也就是兩個西文半形空格。**為什麼不砍掉這一項呢？**因為你可能沒那個成本去測試這一項在每個 macOS 版本下的預設行為。
 
 ### 問：有沒有ㄅ半模式？
 
@@ -118,6 +122,8 @@ sort: 1
 請在系統偏好設定內新增「威注音-簡」這個輸入法。只要系統內有安裝了威注音輸入法，就應該能在簡體中文輸入法分類下找到該輸入法。為什麼不像其它有些輸入法那樣直接做熱鍵開關呢？因為他們那樣無法做到在簡體輸出時讓 macOS 聽寫的內容「也是簡體中文」。
 
 威注音不信任繁簡轉換與簡繁轉換，因為必然會有轉換錯誤發生。威注音的簡體中文模式使用單獨的原廠辭典、與繁體中文模式的辭典分隔開。然而，每次在新增使用者辭典時，威注音都會往另一個繁簡模式的使用者辭典內添入轉換過的結果。因轉換過的結果的正確性無法保證，所以任何轉換結果的所在行都會有行尾標記。
+
+自 v3.4.7 版開始，威注音的繁簡切換熱鍵是 Ctrl+Command+Shift+D。更舊版的威注音輸入法沒有專門的繁簡切換熱鍵。
 
 ### 問：符號選單很多符號都顯示成被方框框起來的問號，該怎麼辦？
 
@@ -140,10 +146,12 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 威注音輸入法自 v1.9.2 版開始，在偏好設定內引入了專門用來提供「出了錯誤不負責」的名為「開發道場」的實驗田，且在其中集成了威注音的 IMK 選字窗模式的開關、允許使用者在 IMK 選字窗與迄今為止的 Voltaire MK3 選字窗之間來回切換。之後，威注音輸入法在 v2.0.0 SP2 版當中將這個選字窗做得幾乎接近於能用的狀態。可以[點此閱讀使用說明](./manual/shortcuts.md)。然而，該選字窗仍舊至少有下述功能無法實現（詳見 v2.0.0 SP2 的發行日誌）：
 
 - Home / End 鍵不起作用。
-- 在對應的漢字轉換模式或辭典簡繁模式下，選字窗內的字型出現對應的變化（比如給簡體模式使用「蘋方-簡」）等。
+- 在對應的漢字轉換模式或辭典簡繁模式下，選字窗內的字型無法出現對應的變化（比如給簡體模式使用「蘋方-簡」）等。
 - 在縱排書寫模式下敲字時，選字窗會蓋住當前正在輸入的縱行。
 
 結論：很多使用者都希望能在自己喜歡的副廠輸入法內用上 IMK 的矩陣選字窗（就是 macOS 系統內建的注音輸入法的橫版矩陣選字窗）。然而，經過這些天的研究，威注音輸入法團隊不得不認清（目前能推斷出來的）唯一可能事實：IMK 選字窗充其量也只是 Apple 用來滿足自家輸入法需求的產品部件、一開始就沒有讓副廠輸入法廠商用得爽的打算。第三方輸入法開發者們想要將 IMK 選字窗實作到企業級堪用的地步的話，往往需要使用私有 API 等強硬手段、也不見得就一定能做到這個地步。如果你們有誰認識在 Apple 的人的話，請他們關注 Bug Report #FB11300759，這樣 Apple 或許能稍微重視一下這些問題。至少，就 IMK 選字窗的功能實作而言，威注音已竭己所能。
+
+另：從威注音輸入法 v3.3.9 版開始，當在未來某個 macOS 系統下因為執行了「被強制曝露的私有 API」而崩潰的話，會觸發威注音的選字窗安全保護機制，IMK 選字窗會因此自動停用。這樣一來，在作者釐清狀況做出應對之前，不會耽誤使用者正常使用威注音輸入法。
 
 ### 問：偏好設定內的鍵盤佈局與注音排列設定很亂欸。該怎麼調整？
 
@@ -192,6 +200,10 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
   - 沒錢又愛折騰的話，出門左轉去 RIME-TW 那邊用[鼠鬚管 TW 版](https://rimetw.gitbooks.io/rime/content/installSquirrelTW.html)，就是配置起來非常麻煩。
 - 習慣陸規審音與康熙繁體中文的話，請使用[由 RIME 官方發行的鼠鬚管](https://github.com/rime/squirrel/releases/tag/0.15.2)，就是配置起來非常麻煩。
 - 習慣陸規審音且只想用拼音的話，你還可以用[落格輸入法](https://im.logcg.com/)。
+
+### 問：我想使用三列注音，不想重複擊鍵，只是（比起通用拼音跟韋氏拼音）我更熟悉漢語拼音，該怎麼辦？
+
+如果您在用威注音 v3.4.8 開始的版本的話，您可以嘗試使用[劉氏注音排列](./manual/arranges.html#劉氏擬音注音排列-alvin-liu---imitative)。
 
 ### 問：使用者自訂辭典檔案頭部那串奇怪的 Pragma Header 是？砍掉又會冒出來，是病毒嗎？
 
@@ -323,7 +335,7 @@ macOS 12.6 對任何沒有經過簽證與公證處理的 app 都好像有點喜�
 
 這條新增的禁止項目，其實也是有利於 OpenVanilla 的。畢竟 OpenVanilla 也不希望有第三方打著 OpenVanilla 的旗號做壞事。其實，OpenVanilla 早期專案使用 3-Clause BSD 協議的時候，也有規定過類似的條款就是了。
 
-關於所謂「剽竊論」，乃 BrLi 對威注音的欲加之罪。請閱讀《[威注音著作權聲明](https://github.com/vChewing/vChewing-macOS/discussions/92)》。
+關於所謂「剽竊論」，乃欲加之罪。請閱讀《[研發參與者清單](./AUTHORS.html)》。
 
 ### 幹：[在 macOS 輸入法框架的設計中，並不會將單次點擊 Shift 按鍵的行為，送到像是小麥輸入法這樣的程式上。所以技術上可行的作法是，輸入法程式要跳過蘋果所規範的輸入法框架，直接暴力攔截「所有」的硬體事件，包括鍵盤滑鼠，然後找到單次點選 Shift 的事件。而且，就算用戶切到了其它輸入法，甚至用戶根本沒在打字，都在監聽「所有」的事件。](https://github.com/openvanilla/McBopomofo/issues/337#issuecomment-1231170409)
 
@@ -337,9 +349,9 @@ macOS 內建的 InputMethodKit 輸入法框架丟給威注音哪些 NSEvent，�
 
 你最好自己比對一下小麥與威注音各自的版本更新履歷記錄。威注音的很多特有的功能，你去請求小麥去做的話，只會被關票或者無視。這邊講多了又會涉嫌人身攻擊，你還不如去問小麥為什麼不做這些功能、為什麼不用純 Swift。
 
-> 沒錯，這個專案一開始是 Fork 小麥的，但所有涉及 C++ 的部分已經全都用 Swift 重寫了。威注音就是要做一些其它輸入法不會想到要去做功能，比如「摁 Option+前後方向鍵 來以詞語節點為單位移動游標」、「就地刪詞」、「macOS 螢幕模擬鍵盤支援」、「同時照顧兩岸的審音習慣」，等。這些功能都是得益於 Swift 易於製作功能拓展的特性、才可以輕鬆製作完成的。用 C++ 實現同樣的功能的話，需要付出多幾倍的技術成本（以及 C++ 本身的高技術門檻）。這就是為什麼威注音一定要用 Swift 重寫且淘汰掉所有 C++ 內容。**在開始講幹話之前，請先沉住氣，仔細比對一下兩者的功能多樣性方面的差異，再考慮要不要張嘴開幹：畢竟你這麼偽善、肯定不會為你心愛的小麥注音推送 Bug 修正與功能改良。**謝謝合作。
+> 沒錯，這個專案一開始是 Fork 小麥的，但所有涉及 C++ 的部分已經全都用 Swift 重寫過了。威注音就是要做一些其它輸入法不會想到要去做功能，比如「摁 Option+前後方向鍵 來以詞語節點為單位移動游標」、「就地刪詞」、「macOS 螢幕模擬鍵盤支援」、「同時照顧兩岸的審音習慣」，等。這些功能都是得益於 Swift 易於製作功能拓展的特性、才可以輕鬆製作完成的。用 C++ 實現同樣的功能的話，需要付出多幾倍的技術成本（以及 C++ 本身的高技術門檻）。這就是為什麼威注音一定要用 Swift 重寫且淘汰掉所有 C++ 內容。**在開始講幹話之前，請先沉住氣，仔細比對一下兩者的功能多樣性方面的差異，再考慮要不要張嘴開幹：畢竟你這麼偽善、肯定不會為你心愛的小麥注音推送 Bug 修正與功能改良。**謝謝合作。
 
-> 另外澄清一下：威注音專案在剛立案的時候，也有從小麥注音繼承過一些由 Zonble 完成的 Swift 內容（詳見[研發參與者清單](./AUTHORS.md)）。當時小麥注音沒有被 Swift 化的有「注拼引擎」「組字引擎」「任何與語言模組有關的部分」「按鍵調度模組」。威注音將後三者徹底用 Swift 重寫，且將注拼引擎重新設計、以支援更多的漢語拼音輸入種類與注音排列種類。威注音專案分離設立的時間比較早，但一開始很長一段時間都在同步來自上游的改動。如果你分不清專案內哪些是 Zonble 的貢獻內容的話，請洽小麥注音的倉庫歷史記錄。另有《[威注音著作權聲明](https://github.com/vChewing/vChewing-macOS/discussions/92)》供參閱。
+> 另外澄清一下：威注音專案在剛立案的時候，也有從小麥注音繼承過一些由 Zonble 完成的 Swift 內容。當時小麥注音沒有被 Swift 化的有「注拼引擎」「組字引擎」「任何與語言模組有關的部分」「按鍵調度模組」。威注音將後三者徹底用 Swift 重寫，且將注拼引擎重新設計、以支援更多的漢語拼音輸入種類與注音排列種類。威注音專案分離設立的時間比較早，但一開始很長一段時間都在同步來自上游的改動。如果你分不清專案內哪些是 Zonble 的貢獻內容的話，請洽小麥注音的倉庫歷史記錄。另有《[威注音著作權聲明](https://github.com/vChewing/vChewing-macOS/discussions/92)》以及《[技術白皮書](./TechnicalWhitePaper.md)》供參閱。
 
 P.S.: 威注音自 2.3.1 版開始正在逐漸汰換掉盡可能全部的由 Zonble 完成的部分，目前已經汰換完畢。
 
