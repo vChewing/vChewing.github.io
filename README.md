@@ -7,17 +7,18 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.5.3 GM (July 30, 2023) |
-| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.25 GM (July 30, 2023) |
+| macOS (10.13.4) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.5.4 GM (August 29, 2023) |
+| macOS (10.9 - 10.12) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 0.5.26 GM (August 29, 2023) |
 
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱《[鍵盤熱鍵使用手冊](./manual/shortcuts.md)》以提升該輸入法的使用效率。
 - 另有[熱心網友製作的 Homebrew-Cask 安裝方式](https://github.com/windwords/homebrew-vchewing)可用。
 
-> **注**：威注音輸入法有支援 macOS 14 Sonoma Beta 1，於是可以認為理論上對 macOS 14 今後的子版本更新也相容。如果今後的 macOS 14 測試版的使用者們發現威注音輸入法的 IMK 選字窗有無法使用的故障的話，歡迎**[電郵提報](./BUGREPORT.md)**。
+> **⚠️**：請在升級到 macOS 14 Sonoma 之前**先把威注音輸入法升級到至少 3.5.4 版**，否則可能會在剛升級完系統之後首次使用威注音輸入法時出現整個系統畫面失去響應（長達數十秒）的故障。該故障當且僅當「使用者辭典目錄或磁帶檔案在 iCloud Drive 裡面」這類情形才會發生。該故障乃威注音輸入法的 GCD 設計不慎觸發 macOS 一處設計缺陷所使然。從 3.5.4 版開始，威注音不會再在這種情況下觸發該系統缺陷。如果您發現了其他與輸入法有關的故障，歡迎**[電郵提報](./BUGREPORT.md)**。
 
 部分近期主打更新內容概要：
 
+- [3.5.4] 解決了一處與 macOS 14 有關的惡性相容性故障。
 - [3.5.3] 針對全系列受支援的 Intel Mac 機種重寫了 Cocoa 版田所選字窗，極大地改善了介面渲染效率、減輕記憶體佔用。
 - [3.5.0 - 3.5.2] 支援 CIN v2.1 - v2.2 標準；徹底重構了 IMK 選字窗的按鍵事件處理流程。
 - [3.4.9] 改用 JSON 作為原廠辭典格式，節省記憶體佔用與硬碟空間佔用；另修復 SwiftUI 田所選字窗在某些佈局下「無法顯示反查結果」的故障。
