@@ -1,0 +1,65 @@
+---
+parent: 使用手冊
+sort: 75
+has_toc: true
+---
+# 寫給雅虎奇摩輸入法的使用者
+
+雅虎奇摩輸入法 macOS 版的輸入法本體對 `__objc_empty_cache` 有強制依賴。然而，Apple 自 macOS 14.2 Beta 1 開始移除了這個 API、導致了兩個問題：
+
+1. 奇摩輸入法本體徹底罷工。
+2. 因為奇摩輸入法本體徹底罷工，導致無法藉由 XPC 通訊手段從輸入法本體匯出使用者自訂詞庫。（奇摩輸入法的偏好設定是一個獨立的 App、與輸入法本體之間採 XPC 通訊。）
+
+![onboarding_kimo_chrash_objcSymbolMissing](assets/onboarding_kimo_chrash_objcSymbolMissing.jpg)
+![onboarding_kimo_cannotExportPhrases](assets/onboarding_kimo_cannotExportPhrases.png)
+
+很多人使用雅虎奇摩輸入法十幾年了，各自的使用者語彙資料積累無法輕易捨棄。然而，奇摩輸入法的使用者辭典是經過 CEROD 加密的。這個加密模組早在 2012 年底就變成了收費套件，是奇摩輸入法專案結案的主要原因。
+
+本文介紹一些可行的辭典遷移方案。
+
+## 方案 1: 系統降級
+
+就地降級 macOS 到 macOS 14.1。相關方法請洽 Apple Support 求助。
+
+該方法只是紙上談兵。如果您的電腦系統已經是 macOS 15.x 或之後的版本的話，則不適用。
+
+降級之後，您也只能藉由 Zonble 維護的奇摩輸入法分支安裝包來匯出辭典資料，否則您根本無法點開輸入法偏好設定。
+
+## 方案 2: 遷移使用者辭典檔案到 Windows 再操作
+
+本文以 Windows 7 為例。
+
+首先，請前往下述目錄取得 `SmartMandarinUserData.db`：
+
+```
+/Users/使用者名稱/Library/Application Support/Yahoo! KeyKey/SmartMandarinUserData.db
+```
+![onboarding_kimo_dbDataFolderMac](assets/onboarding_kimo_dbDataFolderMac.png)
+
+然後用這個檔案取代 Windows 系統下的奇摩輸入法的同名檔案（注意將舊檔案備份喔，除非用不到）：
+```
+C:\Users\使用者名稱\AppData\Roaming\Yahoo! KeyKey\SmartMandarinUserData.db
+```
+![onboarding_kimo_dbDataFolderWinNT](assets/onboarding_kimo_dbDataFolderWinNT.png)
+
+之後請藉由 Windows 的語言列/輸入法圖示來開啟奇摩輸入法的偏好設定、完成資料匯出：
+![onboarding_kimo_phraseSettingsWindows](assets/onboarding_kimo_phraseSettingsWindows.png)
+![onboarding_kimo_phraseSettingsWindows10](assets/onboarding_kimo_phraseSettingsWindows10.png)
+
+以上。
+
+## 該怎樣將這些資料用到威注音內？
+
+＊＊忠告：從奇摩輸入法匯出的 TXT 檔案不要刪除，請務必保留備份。＊＊
+
+奇摩輸入法匯出的 TXT 檔可以將西文半形逗號「,」換成西文半形減號「-」，
+然後用 Excel （或任何試算表軟體）僅保留前兩個 Column 即可。
+
+將這樣處理過的前兩個 Column 的內容直接寫入威注音的使用者語彙檔案內，就可以直接繼承使用。**威注音另可以在第三個 Column 指定詞頻權重：最高頻是 0 ，最低頻是 -9.6，低於 -9.5 的話不會被爬軌函式（Walking Algorithm）主動讀取**。
+
+如果是要從試算表軟體**匯出 CSV 的話，匯出時 delimiter 分隔符號得是空格或 Tab**。
+
+至於奇摩輸入法匯出的 TXT 檔當中的 Database 部分的資料，屬於機器學習資料，僅包含經過 CEROD 二次加密的 Bigram 詞頻資料（以及 UserOverride 資料），是威注音無法利用的資料。
+但未來也許會有利用方法也說不定。
+
+$ EOF.
