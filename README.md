@@ -7,8 +7,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.6.1 SP1 (Oct 30, 2023) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 3.6.1-Legacy SP1 (Oct 30, 2023) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.6.1 SP2 (Nov 01, 2023) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 3.6.1-Legacy SP2 (Nov 01, 2023) |
 
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
 
@@ -20,7 +20,8 @@ sort: 1
 
 部分近期主打更新內容概要：
 
-- [3.6.1] 針對「在後檯濫用 SecureEventInput API 的執行緒」引入了主動偵測機制。
+- [3.6.1 SP2] 允許自動匯入處理藉由雅虎奇摩輸入法匯出的 txt 格式的使用者辭典資料，另解決了與 CapsLock 有關的當機故障。
+- [3.6.1 GM] 針對「在後檯濫用 SecureEventInput API 的執行緒」引入了主動偵測機制。
 - [3.6.0] 引入「強化型組字區安全防護」功能。與此功能有關的詳情請洽「純靠北工程師7ci」。
 - [3.5.5] 允許關閉田所選字窗的展頁特性、在剛叫出選字窗時就多行顯示。另有大量故障修正與內容維護更動。
 - [3.5.4] 解決了一處與 macOS 14 有關的惡性相容性故障。
@@ -122,6 +123,14 @@ sort: 1
 ### 問：為什麼 pkg 版安裝包在 Apple Silicon Mac 電腦上會要求安裝 Rosetta？
 
 因為安裝包內的輸入法主程式包含了針對 macOS 10.13 專用的 Swift 5 Runtime，且這套 Runtime 只有 Intel 版本。只要 pkg 安裝包當中有了這種純 Intel 的東西，macOS 就會主動要求使用者安裝 Rosetta。如果系統允許您跳過對 Rosetta 的安裝的話，您不安裝 Rosetta 也無妨，因為 macOS 11 開始的系統根本用不到 Swift 5 Runtime。
+
+### 問：為什麼我用系統內建的 Caps Lock 中英文切換時會有明顯的延遲？
+
+該故障並非發生於所有 mac 機種。兩點原因可導致該故障：
+
+1. 您的 USB 鍵盤藉由劣質 HUB 連到電腦上，產生了硬體處理延遲。
+2. 您沒有停用觸控列的「顯示輸入建議」功能（見下圖）：
+![觸控列的「顯示輸入建議」功能](assets/macOS_Disable_TouchBarSuggestions.jpg)
 
 ### 問：為什麼有的軟體內一旦開啟威注音輸入法、則 CMD+Z/X/C/V 等熱鍵就失效？
 
