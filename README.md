@@ -7,8 +7,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.6.2 GM (Nov 29, 2023) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 3.6.2-Legacy GM (Nov 29, 2023) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.6.3 SP1 (Dec 03, 2023) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 3.6.3-Legacy SP1 (Dec 03, 2023) |
 
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
 
@@ -20,7 +20,8 @@ sort: 1
 
 部分近期主打更新內容概要：
 
-- [3.6.2] 輸入法原廠詞庫改用 SQLite 技術，大幅度減少記憶體佔用、以應對 Apple 在 MacBook Pro 產品線對 8GB 運行記憶體的病態執著。
+- [3.6.3 SP1] 修復了 3.6.3 GM 版不慎引入的一個會讓磁帶系統徹底癱瘓的故障。
+- [3.6.2-3.6.3] 輸入法原廠詞庫改用 SQLite 技術，大幅度減少記憶體佔用。
 - [3.6.1 SP2] 允許自動匯入處理藉由雅虎奇摩輸入法匯出的 txt 格式的使用者辭典資料，另解決了與 CapsLock 有關的當機故障。
 - [3.6.1 GM] 針對「在後檯濫用 SecureEventInput API 的執行緒」引入了主動偵測機制。
 - [3.6.0] 引入「強化型組字區安全防護」功能。與此功能有關的詳情請洽「純靠北工程師7ci」。
@@ -194,6 +195,19 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 - 想用大千傳統 / 倚天傳統 / 漢語拼音的話，macOS 10.15 開始專用的威注音輸入法新版偏好設定介面內有對應的快速設定按鈕。
 - 對於注音而言，只需要設定「排列」即可：在使用注音排列的情況下，鍵盤佈局設定僅會影響到螢幕小鍵盤的顯示。
 
+### 問：有沒有辦法迅速備份/恢復輸入法的偏好設定？
+
+自威注音輸入法 v3.6.3 版起，威注音允許使用者使用終端機將當前輸入法偏好設定的絕大多數內容傾印成一份備份檔案。該備份檔案的實質是 Shell 腳本、需要在終端機內使用 pipeline 語句來指定寫到哪個新檔案當中（否則只會在終端機螢幕上顯示一遍腳本內容）。只需要將該腳本直接在終端機內運行、就可以將該檔案內的輸入法偏好設定恢復到電腦當中。命令用法參考範例：
+
+```sh
+~/Library/Input\ Methods/vChewing.app/Contents/MacOS/vChewing --dump-prefs > ~/Downloads/vChewingPrefBackup.sh
+```
+
+需要注意的事項有：
+  1. 任何涉及到檔案路徑的偏好設定內容均不在備份範圍內，因為會有 Sandbox 資料位置存取相容問題。因為 Sandbox 機制的存在，威注音輸入法在存取一個手動指定的目錄時必須由使用者藉由圖形介面親自點開這個資料夾/檔案才可以（將檔案拽入到路徑控制項內也可以，因為也是使用者親自在圖形介面操作）。
+  2. 該功能的設計交互特性決定了該功能不適合用來製作圖形介面版本。如果您希望將這個備份恢復過程自動化的話，您或許可以借助其他的輔助工具（比如 crontab）搭配您自己寫的其它 Shell 腳本工具來一同使用。
+  3. 如果您用的威注音輸入法是您自己組譯建置的版本的話，請簽名，否則該命令可能會用 NSLog 的形式抱怨說簽名資料不存在。這並不影響傾印過程。
+
 ### 問：像 Steam 這種應用在敲字時看不到組字區，怎麼辦？
 
 威注音 2.6.0 版開始，對這種不遵守 IMKTextInput 協定的應用，會啟用獨立的浮動組字窗（讀音數量上限 20）。
@@ -342,7 +356,7 @@ macOS 12.6 對任何沒有經過簽證與公證處理的 app 都好像有點喜�
 
 拋去 MIT 軟體授權的免責特性先不談，其實軟體複雜了就容易鬼打牆。這個輸入法都是自家人每天都在用的，敢拿出來發佈的版本一定是在發佈的時候自己還沒親自測試出問題的。但這就像是整天面對一堆鬼、整天都在通靈、口唸「鬼門開是殺小啦」，Dev 這邊也是超無奈。這也就是為什麼每次看到有人吐槽說輸入法崩潰的時候 Dev 都會超想問當事人要 ips 格式的軟體崩潰錯誤報告檔案。
 
-### 問：為什麼只支援 Mac？
+### 問：為什麼僅支援 Mac？
 
 因為 Swift 語言在其它平台上的研發維護成本太大。目前威注音專案有在將輸入法本身的非系統特性依賴的部分用 C# 寫成一個「LibvChewingNT」的總成專案，但尚未完工。一旦完工，則或許可以拿來做 Windows 版本。
 
