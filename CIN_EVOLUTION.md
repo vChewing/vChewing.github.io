@@ -144,6 +144,8 @@ aadw 萁
 
 在 [chinese-opendesktop/cin-tables](https://github.com/chinese-opendesktop/cin-tables/) 倉庫內有很多 CIN1 格式的磁帶檔案，可供使用者們自行補充相關內容、使其成為 CIN2 格式。
 
+如果您希望使用「行列30」輸入法的表格的話，請洽 Gontera 所維護的倉庫：[gontera/array30/tree/master/cin2](https://github.com/gontera/array30/tree/master/cin2)
+
 ### 2. 程式實作範例
 
 自 2.9.1 版開始，macOS 版威注音輸入法的倉庫內的「LMCassette.swift」檔案可用作範例。有些參數沒被威注音使用到，所以相關的實作不是很充分。

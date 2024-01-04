@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:_config.yml">
+   </FileRef>
+   <FileRef
+      location = "group:_sass">
+   </FileRef>
+   <FileRef
+      location = "group:assets">
+   </FileRef>
+   <FileRef
+      location = "group:AUTHORS.md">
+   </FileRef>
+   <FileRef
+      location = "group:BUGREPORT.md">
+   </FileRef>
+   <FileRef
+      location = "group:CIN_EVOLUTION.md">
+   </FileRef>
+   <FileRef
+      location = "group:index.html">
+   </FileRef>
+   <FileRef
+      location = "group:manual">
+   </FileRef>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:TechnicalWhitePaper.md">
+   </FileRef>
+   <FileRef
+      location = "group:UNINSTALL.md">
+   </FileRef>
+   <FileRef
+      location = "group:valueadd">
+   </FileRef>
+</Workspace>
