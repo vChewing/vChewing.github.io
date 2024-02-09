@@ -1,5 +1,5 @@
 ---
-sort: 6
+sort: 7
 ---
 ## 研發參與者清單
 
@@ -7,7 +7,7 @@ sort: 6
 
 ### macOS 版威注音專案目前僅用到 OpenVanilla for Mac 的下述程式組件（MIT License）：
 
-- 僅供研發人員調試方便而使用的 App 版安裝程式 (by Lukhnos Liu & MJHsieh)，不對公眾使用。
+- Aqua 紀念版限定：僅供研發人員調試方便而使用的 App 版安裝程式 (by Lukhnos Liu & MJHsieh)，不對公眾使用。
 
 威注音專案目前還用到如下的來自 Lukhnos Liu 的算法：
 

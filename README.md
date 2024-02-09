@@ -7,11 +7,11 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.7.3 GM (Feb 02, 2024) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 3.7.3-Legacy GM (Feb 02, 2024) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.8.0 SP1 (Feb 13, 2024) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 3.8.0-Legacy SP1 (Feb 13, 2024) |
 
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
-
+- 如欲了解針對主流發行版與 Aqua 紀念版的區分方式，請[點閱此文](./AQUASPECIAL.md)。
 - 歡迎關注威注音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Plurk](https://www.plurk.com/vChewingIME) 。
 - 請參閱《[鍵盤熱鍵使用手冊](./manual/shortcuts.md)》以提升該輸入法的使用效率。
 - 另有[熱心網友製作的 Homebrew-Cask 安裝方式](https://github.com/windwords/homebrew-vchewing)可用。
@@ -20,7 +20,11 @@ sort: 1
 
 部分近期主打更新內容概要：
 
-- [3.7.2] 解決了「SecureEventInput 濫用行為偵測模組」的幾處缺陷；允許自訂數字小鍵盤的輸入行為；允許在選字窗內移動組字區內的游標。
+- [3.8.0] 對偏好設定視窗做了精實案；允許以 J / K 鍵在選字窗內移動組字區內的游標；重構了輸入法的一部分內部模組。
+
+<details>
+<summary>（點此查看更早的版本的更新記錄概要……）</summary>
+- [3.7.2-3.7.3] 解決了「SecureEventInput 濫用行為偵測模組」的幾處缺陷；允許自訂數字小鍵盤的輸入行為；允許在選字窗內移動組字區內的游標。
 - [3.7.0-3.7.1] 新增對 CIN2 v2.4 磁帶格式標準的支援、且新增了代令系統；另有其他雜項問題修正。
 - [3.6.3 SP1] 修復了 3.6.3 GM 版不慎引入的一個會讓磁帶系統徹底癱瘓的故障。
 - [3.6.2-3.6.3] 輸入法原廠詞庫改用 SQLite 技術，大幅度減少記憶體佔用。
@@ -35,8 +39,6 @@ sort: 1
 - [3.4.7-3.4.8] 引入了一些與注音輸入有關的累積改進；另有引入對劉又銘教授的擬音注音排列的支援。
 - [3.4.6] 解決了在藉由 macOS 系統內建 Emoji 視窗輸入表情時會崩掉輸入法的故障；另有其它故障修正。
 - [3.4.5] 解決了在某些包含同音異幅的候選字詞的選字窗內來回選字時的崩潰故障；新增韋氏拼音輸入支援。
-<details>
-<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [3.4.4] 修復了「單個漢字無法借由標記模式降頻」以及「當游標前後的漢字的讀音相同的時候，在此時叫出的選字窗內會出現橫跨游標的候選字詞」的故障。
 - [3.4.3] 允許在標記模式內以節點為單位移動「標記專用游標」；針對「Shift+字母鍵」新增了兩種行為模式。
 - [3.4.2] 組字區會實時反應你當前選字窗內的高亮的候選字詞的選字效果，另有程式庫內容維護更新。
@@ -95,10 +97,14 @@ sort: 1
 16. 選字窗內有當前頁數提示（該功能不對 IMK 選字窗提供，因為 IMK 選字窗是 macOS 系統內建的、威注音只做了銜接利用）。
 17. 在選字窗內選字之後，被選的字周圍的字不會亂變。
 
-## 安裝方式與系統需求 (Install & Sys. Req.)
+## 系統需求 (Sys. Req.)
 
-- 主流發行版：要求至少 Mac OS X 10.13.4 以上版本（Xcode 14 所支援的最低建置目標）。詳細步驟請洽《[安裝/啟用/切換/停用/卸除](./manual/install_uninstall_enable_disable.md)》一文。
-- Aqua 紀念版：推薦 macOS 10.9 Mavericks。理論上可以在 macOS 10.10 - 10.13.3 系統下正常運作，但這幾版 macOS 不太成熟、不建議使用。
+- 主流發行版：要求至少 Mac OS X 13 以上版本（Xcode 14 所支援的最低建置目標）。詳細步驟請洽《[安裝/啟用/切換/停用/卸除](./manual/install_uninstall_enable_disable.md)》一文。
+  - 對 macOS 12 系統的支持仍保留，但僅僅是因為 Homebrew 有支援而已。主流發行版的系統支援範圍在原則上與 Homebrew 的系統支援範圍保持一致。
+- Aqua 紀念版：針對 macOS 10.9 Mavericks 系統建置。
+  - 理論上可以在 macOS 10.10 - 10.13.3 系統下正常運作，但這幾版 macOS 不太成熟、不建議使用。
+
+
 
 ## 軟體授權 (License)
 

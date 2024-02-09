@@ -54,9 +54,19 @@ C:\Users\使用者名稱\AppData\Roaming\Yahoo! KeyKey\SmartMandarinUserData.db
 
 ### 1. 自動匯入
 
+目前的自動匯入功能不會去處理原始 TXT 檔案當中的 Database 部分的資料，原因見下文。
+
+#### a. 如果您的系統版本不低於 macOS 10.13 的話
+
 從威注音輸入法 3.6.1 SP2 開始，「威注音偏好設定->辭典設定」頁面的右下角會有「匯入奇摩輸入法自訂詞資料庫」按鈕。點擊該按鈕之後，會指引您選取藉由奇摩輸入法匯出的 TXT 檔案（所謂「原始 TXT 檔案」），然後自動匯入那些在威注音輸入法內缺失的詞語。
 
-目前的自動匯入功能不會去處理原始 TXT 檔案當中的 Database 部分的資料，原因見下文。
+#### b. 如果您的系統版本低於 macOS 10.13 的話
+
+低於 macOS 10.13 的系統下，輸入法在叫出 NSOpenPanel 檔案讀取視窗時，會觸發系統本身的故障缺陷、導致整個桌面徹底失去響應。從威注音 3.8.0 版開始，使用者可以按照下圖所示的方法使用終端機匯入從奇摩輸入法匯出的 TXT 辭典檔案。
+
+> P.S.: 威注音輸入法 3.8.1 版開始會改良與此功能有關的圖形介面操作交互方式。屆時，使用者可以直接從 Finder 將檔案拽入到輸入法偏好設定視窗的指定位置、完成資料匯入。
+
+![onboarding_kimo_importPhraseByTerminalCommand](assets/onboarding_kimo_importPhraseByTerminalCommand.png)
 
 ### 2. 手動匯入
 
