@@ -7,8 +7,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.8.1 GM (Feb 17, 2024) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 3.8.1-Legacy GM (Feb 17, 2024) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.8.1 SP1 (Feb 17, 2024) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 3.8.1-Legacy SP1 (Feb 17, 2024) |
 
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
 - 如欲了解針對主流發行版與 Aqua 紀念版的區分方式，請[點閱此文](./AQUASPECIAL.md)。
@@ -20,7 +20,7 @@ sort: 1
 
 部分近期主打更新內容概要：
 
-- [3.8.1] 重新設計了「匯入奇摩輸入法自訂詞資料庫」功能的圖形介面交互方式；選字窗支援萬國碼字元的碼位資訊顯示。
+- [3.8.1] 重新設計了「匯入奇摩輸入法自訂詞資料庫」功能的圖形介面交互方式；選字窗支援統一碼字元的碼位資訊顯示。
 - [3.8.0] 對偏好設定視窗做了精實案；允許以 J / K 鍵在選字窗內移動組字區內的游標；重構了輸入法的一部分內部模組。
 
 <details>
@@ -187,7 +187,7 @@ sort: 1
 
 另外，「注音」符號分類下，可能會有至少四個缺字，需要您安裝任何可以支援[粵語注音標準](https://www.unicode.org/L2/L2019/19100-cantonese-bopomofo.pdf)的字型（比如 [NotoUnicode](https://github.com/MY1L/Unicode/releases) 或者 [一點明體 I.Ming](https://github.com/ichitenfont/I.Ming) 都可以）。
 
-此外，macOS 內建的字型對某些萬國碼字元的顯示支援也會隨著 macOS 版本的不同而有異動。
+此外，macOS 內建的字型對某些統一碼字元的顯示支援也會隨著 macOS 版本的不同而有異動。
 
 ### 問：選字窗可以改成 macOS 內建注音那種橫版陣列型選字窗嗎？
 
