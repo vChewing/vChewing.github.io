@@ -374,6 +374,22 @@ xattr -drs "com.apple.quarantine" $(HOME)/Library/Input\ Methods/vChewing.app
 ```
 macOS 12.6 對任何沒有經過簽證與公證處理的 app 都好像有點喜歡塞隔離區的樣子。這種情況很少發生就是了，無非就是想從非營利的 devs 們身上也賺取 Apple 研發者會員年費。
 
+### 問：我在 macOS 14 Sonoma 開始的系統內發現內文組字區的分段下劃線的功能失效了。請問我該怎麼辦才能還原 macOS 13 為止的內文組字區體驗？
+
+欲關閉此系統功能，可輸入如下終端指令並運行：
+
+```
+sudo defaults write /Library/Preferences/FeatureFlags/Domain/UIKit.plist redesigned_text_cursor -dict-add Enabled -bool NO
+```
+
+要再重新啟用此功能，可輸入如下終端指令並運行：
+
+```
+sudo defaults delete /Library/Preferences/FeatureFlags/Domain/UIKit.plist redesigned_text_cursor
+```
+
+以上方法由 Goston 藉由[其 HackMD 網站](https://hackmd.io/@Goston/SJJjkIzvyx)公開分享。
+
 ### 問：威注音更新如此頻繁，是不是軟體發佈策略出了什麼問題？
 
 拋去 MIT 軟體授權的免責特性先不談，其實軟體複雜了就容易鬼打牆。這個輸入法都是自家人每天都在用的，敢拿出來發佈的版本一定是在發佈的時候自己還沒親自測試出問題的。但這就像是整天面對一堆鬼、整天都在通靈、口唸「鬼門開是殺小啦」，Dev 這邊也是超無奈。這也就是為什麼每次看到有人吐槽說輸入法崩潰的時候 Dev 都會超想問當事人要 ips 格式的軟體崩潰錯誤報告檔案。
