@@ -5,10 +5,19 @@ sort: 1
 ---
 # vChewing 威注音輸入法
 
+> **敝專案目前正式接收捐款**。捐款渠道：[Patreon](https://www.patreon.com/c/shikisuen/membership) ，微信使用者與支付寶使用者可以電郵給開發者以詢問其他可行的渠道。
+> （微信使用者與支付寶使用者可以電郵給開發者以詢問其他可行的渠道。）
+> （這些費用會用於 Apple 開發者會員年費、以及 Codex 用量等。）
+> 請注意所有的獻金（包括這個獻金檔位）只會被當作餽贈，
+> 且不會對在下施加任何義務與合約。感謝您的理解。
+> 如果您有配樂製作或流行歌曲弦樂編曲的需求的話、或者管弦樂錄音樂譜製作需求的話，
+> 也歡迎外包給威注音輸入法的開發者，這是他希望能接到的主要業務。
+> 開發者目前最需要的主要業務是配樂相關的客戶資源，期待能與您合作。
+
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 3.9.2 GM (Apr 25, 2025) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 3.9.2-Legacy GM (Apr 25, 2025) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.0.0 GM (Oct 04, 2025) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.0.0-Legacy GM (Oct 04, 2025) |
 
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
 - 如欲了解針對主流發行版與 Aqua 紀念版的區分方式，請[點閱此文](./AQUASPECIAL.md)。
@@ -20,6 +29,10 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.0.0] 解決了記憶體洩漏的問題。更新了臨時記憶模組與組字引擎，兩者均有更換算法。後端程式大翻修＆對 macOS 26 提供支援。
+
+<details>
+<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [3.9.2] 修復了與半衰記憶模組有關的一些實作失誤之故障。
 - [3.9.1] 大量程式碼重構、以圖更優的效能；針對 ChatGPT 的 mac 版預設啟用相容模式。
 - [3.9.0] 更換了效能更優的 Dijkstra 組句算法；在選字窗顯示時，允許以 H / L 鍵移動組字區游標；可關閉蜂鳴音效。
@@ -30,9 +43,6 @@ sort: 1
 - [3.8.2] 內部程式維護更新；另有針對原廠辭典內容的一些累積問題修正。
 - [3.8.1] 重新設計了「匯入奇摩輸入法自訂詞資料庫」功能的圖形介面交互方式；選字窗支援統一碼字元的碼位資訊顯示。
 - [3.8.0] 對偏好設定視窗做了精實案；允許以 J / K 鍵在選字窗內移動組字區內的游標；重構了輸入法的一部分內部模組。
-
-<details>
-<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [3.7.2-3.7.3] 解決了「SecureEventInput 濫用行為偵測模組」的幾處缺陷；允許自訂數字小鍵盤的輸入行為；允許在選字窗內移動組字區內的游標。
 - [3.7.0-3.7.1] 新增對 CIN2 v2.4 磁帶格式標準的支援、且新增了代令系統；另有其他雜項問題修正。
 - [3.6.3 SP1] 修復了 3.6.3 GM 版不慎引入的一個會讓磁帶系統徹底癱瘓的故障。
@@ -404,9 +414,11 @@ sudo defaults delete /Library/Preferences/FeatureFlags/Domain/UIKit.plist redesi
 
 拋去 MIT 軟體授權的免責特性先不談，其實軟體複雜了就容易鬼打牆。這個輸入法都是自家人每天都在用的，敢拿出來發佈的版本一定是在發佈的時候自己還沒親自測試出問題的。但這就像是整天面對一堆鬼、整天都在通靈、口唸「鬼門開是殺小啦」，Dev 這邊也是超無奈。這也就是為什麼每次看到有人吐槽說輸入法崩潰的時候 Dev 都會超想問當事人要 ips 格式的軟體崩潰錯誤報告檔案。
 
+另：從 2024 年開始，威注音輸入法改為每年更新一次，除非有其他需要修補的問題。
+
 ### 問：為什麼僅支援 Mac？
 
-因為 Swift 語言在其它平台上的研發維護成本太大。目前威注音專案有在將輸入法本身的非系統特性依賴的部分用 C# 寫成一個「LibvChewingNT」的總成專案，但尚未完工。一旦完工，則或許可以拿來做 Windows 版本。
+因為 Swift 語言在其它平台上的研發維護成本太大。目前開發者在編寫下一代輸入法引擎，至少可以移植給 Linux。至於 Windows 還得繼續觀望。
 
 ### 問：哪裡可以取得原始碼？
 
