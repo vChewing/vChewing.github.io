@@ -103,7 +103,7 @@ sort: 2
 - **OpenVanilla 框架**：CIN 系統輸入法集合，現已不再綁定香草注音模組。
 - **香草注音 (SpaceChewing)**：新酷音移植，不屬於小麥注音支線。
 - **奇摩輸入法**：Zonble / Lukhnos 於商業案打造，奠定 OVMandarin + Gramambular 早期實作。
-- **LibFormosa**：提供 OVMandarin MK1 與 Gramambular MK1 引擎，是小麥注音語言模組核心。但後來 OVMandarin MK2 與 Gramambular MK2 沒被繼續統稱為 LibFormosa。
+- **LibFormosa**：提供 OVMandarin MK1 與 Gramambular MK1 引擎，是小麥注音語言模組核心。
 
 ## 架構剖析
 
@@ -159,6 +159,7 @@ sort: 2
 | CIN 表格 | ✖️ | ✅（磁帶模式支援 CIN2） | 
 | Emoji 組態 | 原廠 Emoji，無獨立詞頻 | 專屬使用者 Emoji 辭典 + 開關 | 
 | 就地加詞/刪詞/控頻 | 只支援加詞 | 加詞、刪詞、升降頻（Shift+Command+Enter 降頻） | 支援詞音不等長 |
+| 選字窗刪詞/控頻 | 鍵盤交互，只支援刪詞、升頻 | 滑鼠右鍵選單刪詞、升降頻 |  |
 | CapsLock 強制英文忽略 | ✖️ | ✅ | 顧及微軟新注音習慣 |
 | 候選矩陣 | ✖️ | ✅ 橫/縱排矩陣（田所） | 
 | Unicode 資訊 | ✖️ | ✅（田所） | 
@@ -228,9 +229,9 @@ sort: 2
 
 ## 建議引用格式
 
-- APA：vChewing 專案團隊（2024）。《威注音輸入法技術白皮書（重構版）》版本 4.0.0。取自 https://vchewing.github.io/TechnicalWhitepaper-rewritten
-- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.0.0, 2024. Web. https://vchewing.github.io/TechnicalWhitepaper-rewritten
-- Chicago：vChewing Project Team. 2024. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.0.0. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitepaper-rewritten
+- APA：vChewing 專案團隊（2024）。《威注音輸入法技術白皮書（重構版）》版本 4.0.0。取自 https://vchewing.github.io/TechnicalWhitepaper-AIWritten
+- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.0.0, 2024. Web. https://vchewing.github.io/TechnicalWhitepaper-AIWritten
+- Chicago：vChewing Project Team. 2024. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.0.0. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitepaper-AIWritten
 
 ## 版本註記
 
