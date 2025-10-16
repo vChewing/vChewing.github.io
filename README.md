@@ -5,19 +5,16 @@ sort: 1
 ---
 # vChewing 威注音輸入法
 
-> **敝專案目前正式接收捐款**。捐款渠道：[Patreon](https://www.patreon.com/c/shikisuen/membership) ，微信使用者與支付寶使用者可以電郵給開發者以詢問其他可行的渠道。
-> （微信使用者與支付寶使用者可以電郵給開發者以詢問其他可行的渠道。）
-> （這些費用會用於 Apple 開發者會員年費、以及 Codex 用量等。）
-> 請注意所有的獻金（包括這個獻金檔位）只會被當作餽贈，
-> 且不會對在下施加任何義務與合約。感謝您的理解。
+> **敝專案目前正式接收捐款**。捐款渠道：[Patreon](https://www.patreon.com/c/shikisuen/membership) ，微信使用者與支付寶使用者可以電郵給開發者以詢問其他可行的渠道。這些費用會用於 Apple 開發者會員年費、以及 Codex 用量等。
+> 請注意 **所有的獻金（包括這個獻金檔位）只會被當作餽贈，且不會對在下施加任何義務與合約**。感謝您的理解。
 > 如果您有配樂製作或流行歌曲弦樂編曲的需求的話、或者管弦樂錄音樂譜製作需求的話，
 > 也歡迎外包給威注音輸入法的開發者，這是他希望能接到的主要業務。
 > 開發者目前最需要的主要業務是配樂相關的客戶資源，期待能與您合作。
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.0.3 GM (Oct 15, 2025) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.0.3-Legacy GM (Oct 15, 2025) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.0.4 GM (Oct 17, 2025) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.0.4-Legacy GM (Oct 17, 2025) |
 
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
 - 如欲了解針對主流發行版與 Aqua 紀念版的區分方式，請[點閱此文](./AQUASPECIAL.md)。
@@ -29,6 +26,7 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.0.4] 修復了就地刪詞功能失靈的故障；選字窗熱鍵刪詞功能現在不再需要摁 Fn 鍵。
 - [4.0.3] 修復了打字行為記憶模組（POM）對正常打字行為的劫持故障。修復了在就地加詞、控頻之後沒能正確清理對應的 POM 記憶的故障。
 - [4.0.2] 新增了對 CIN2 v2.5 磁帶格式的支援。行列輸入法使用者得向老刀索取新版磁帶、方可使用行列詞彙之功能。
 - [4.0.1] 解決了選字窗選字會被使用者打字行為記憶觀測資料綁架而失效等故障。
