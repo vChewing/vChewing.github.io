@@ -1,11 +1,11 @@
 ---
 sort: 2
 ---
-# 技術白皮書-機器稿 (v4.0.0)
+# 技術白皮書-機器稿 (v4.1.0)
 
-# 威注音 v4.0.0 與小麥注音 v2.9.3：技術白皮書（重構版）
+# 威注音 v4.1.0 與小麥注音 v2.9.3：技術白皮書（重構版）
 
-> 資料截取日期：2025-10-04。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）當日狀態整理。
+> 資料截取日期：2025-11-11。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）當日狀態整理。
 
 ## 摘要
 
@@ -37,7 +37,8 @@ sort: 2
 | **KBEvent 與游標操作**<br>3.7.x | 3.7.0～3.7.4 | KBEvent Struct 正式上線、Alt 游標移動、InputToken 擴展。|
 | **CandidatePool 服務化**<br>3.8.x | 3.8.1～3.8.6 | Unicode 資訊、服務選單、盲文輸出、JSON Dump、Electron App 自動浮窗、Swift Concurrency 全面導入。|
 | **Megrez 第四代**<br>3.9.0～3.9.2 | 3.9.0（`Dijkstra`）、3.9.2（POM 修訂） | 採最佳化 Dijkstra，並行輸入法控制元件重構、ChatGPT 黑名單。|
-| **Megrez 第五代**<br>4.0.0 | DAG-DP、POM（野獸常數）、FolderMonitor Actor+Debounce、Sandbox 整併 | 去除上游半衰模組依賴，安全機制統合，田所選字窗玻璃特效自適應。|
+| **Megrez 第五代**<br>4.0.0～4.0.6 | DAG-DP、POM（野獸常數）、FolderMonitor Actor+Debounce、Sandbox 整併 | 去除上游半衰模組依賴，安全機制統合，田所選字窗玻璃特效自適應。|
+| **效能與體驗優化**<br>4.1.0 | ARC 物件釋放管理優化、POM 防抖機制、羅馬數字輸入、候選字朗讀 | 改善能耗與記憶體管理，新增羅馬數字輸入模式與 VoiceOver 輔助功能。|
 
 > 註：表中提交號僅列核心節點；1.3.x～1.9.x 完整 commit 清單請參考 AncientArchive (`1e7459a`~`345c03d`)，2.6.2 以後則可在主倉 `vChewing-macOS` 以 tag 對照。
 
@@ -88,6 +89,13 @@ sort: 2
 - **2024-02-13 — 3.8.0／2024-02-17 — 3.8.1**：3.8 系列釋出；田所選字窗新增碼位資訊與反查刷新（commits `424a736c`, `b20dfec6`, `e887ba01`）。
 - **2025-01-28 — 3.9.0**：海燈節版；Megrez 改以最佳化 Dijkstra 路徑（commit `1c3225d3`），為 4.0.0 DAG-DP 過渡階段。
 - **2025-10-04 — 4.0.0**：Megrez `PathFinder` 採 DAG 動態規劃（`Packages/vChewing_Megrez/Sources/Megrez/2_PathFinder.swift`），FolderMonitor Actor 化與 Debounce 完成，直書提示方案改版；同日發佈 tag `4.0.0`。
+- **2025-10-09 — 4.0.1**：修復選字窗選字行為故障，完善 Actor 化資料寫入操作，改善與 iCloud Drive 相容性；Megrez 更新至 v5.0.5。
+- **2025-10-12 — 4.0.2**：Tekkon 更新至 v1.7.0（改用 Unicode.Scalar），新增 CIN2 v2.5 磁帶格式支援，Megrez 更新至 v5.0.6。
+- **2025-10-15 — 4.0.3**：修復 POM 對正常打字行為的劫持故障，完善就地加詞控頻後的 POM 記憶清理。
+- **2025-10-16 — 4.0.4**：修復就地刪詞故障，完善態械-打字控制器-會話控制器聯立單元測試體系。
+- **2025-10-29 — 4.0.5**：Megrez 更新至 v5.0.7（放棄 Unigram class 化），修復熱鍵指南故障，對 POM 硬碟寫入施加防抖。
+- **2025-10-30 — 4.0.6**：移除會話控制體系的過激 autoreleasepool 處理，優化先鋒語料庫建置過程。
+- **2025-11-10 — 4.1.0**：修復 ARC 物件釋放管理設計缺陷，引入防抖機制改良能耗，新增羅馬數字輸入模式與候選字朗讀功能，對 macOS 26 停用 Liquid Glass 介面支援。
 
 ## 背景與定位
 
@@ -96,7 +104,7 @@ sort: 2
 | 專案 | 主要語言 | 核心維運者 | 目標系統 | 授權 | 定位 |
 | -- | -- | -- | -- | -- | -- |
 | 小麥注音 (McBopomofo) 2.9.3 | Objective-C++, C++17, Swift | OpenVanilla 核心團隊 | macOS 10.15+ | MIT | Formosa::Gramambular2／OVMandarin MK2 實作、強調穩健與開源協作 |
-| 威注音 (vChewing) 4.0.0 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 13+；Aqua 紀念版支援 10.9 | MIT-NTL | Swift 原生化注音輸入法、專注安全與模組擴展 |
+| 威注音 (vChewing) 4.1.0 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 13+；Aqua 紀念版支援 10.9 | MIT-NTL | Swift 原生化注音輸入法、專注安全與模組擴展 |
 
 ### 名詞釐清（摘要）
 
