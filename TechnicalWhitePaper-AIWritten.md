@@ -117,7 +117,7 @@ sort: 2
 
 ### 模組對照（概要）
 
-| 面向 | 小麥注音 2.9.3 | 威注音 4.0.0 | 來源參考 |
+| 面向 | 小麥注音 2.9.3 | 威注音 4.1.0 | 來源參考 |
 | -- | -- | -- | -- |
 | 輸入訊號 | `KeyHandler` (Objective-C++) + `KeyHandlerInput` (Swift struct) | `InputHandler` (Swift) 直接擴展 `NSEvent` / `KBEvent` | `mcbopomofo/Source/KeyHandler.mm`；`vChewing_MainAssembly/InputHandler_Handle*.swift` |
 | 態械 | `InputState` 類別階層（NSObject） | `IMEState` / `IMEStateData` 單一 struct + protocol | `mcbopomofo/Source/InputState.swift`；`vChewing_MainAssembly/IMEState.swift` |
@@ -160,18 +160,20 @@ sort: 2
 
 ## 功能矩陣（節選）
 
-| 功能 | 小麥注音 2.9.3 | 威注音 4.0.0 | 備註 |
+| 功能 | 小麥注音 2.9.3 | 威注音 4.1.0 | 備註 |
 | -- | -- | -- | -- |
 | 注音排列 | 大千傳統、倚天傳統、IBM、許氏、倚天 26 | 上述＋神通、(偽)精業、酷音大千 26、星光、劉氏 | 威注音動態排列可因模式調整鍵位 |
 | 拼音 | 單一拼音模式（未提供文件） | 漢語、國音二式、華羅、耶魯、通用、韋氏；並擊提示拼音 | 
 | CIN 表格 | ✖️ | ✅（磁帶模式支援 CIN2） | 
 | Emoji 組態 | 原廠 Emoji，無獨立詞頻 | 專屬使用者 Emoji 辭典 + 開關 | 
+| 羅馬數字輸入 | ✅（2.10.0+ Ctrl+\\）三種風格：字母、全形大寫、全形小寫 | ✅（4.1.0+ Shift+Cmd+R）1-3999 範圍，全形大小寫 | 小麥注音：2025→MMXXV/ⅯⅯⅩⅩⅤ/ⅿⅿⅹⅹⅴ；威注音：Ⅰ、Ⅱ、Ⅲ/ⅰ、ⅱ、ⅲ |
 | 就地加詞/刪詞/控頻 | 只支援加詞 | 加詞、刪詞、升降頻（Shift+Command+Enter 降頻） | 支援詞音不等長 |
 | 選字窗刪詞/控頻 | 鍵盤交互，只支援刪詞、升頻 | 滑鼠右鍵選單刪詞、升降頻 |  |
+| 候選字朗讀 | ✅（2.9.3+ 與 VoiceOver 聯動）整合關聯詞語及 macOS 輔助功能資料庫 | ✅（4.1.0+ 可設定）查詢使用者自訂關聯詞語資料庫 | 小麥例：「中國地方的中」 |
 | CapsLock 強制英文忽略 | ✖️ | ✅ | 顧及微軟新注音習慣 |
 | 候選矩陣 | ✖️ | ✅ 橫/縱排矩陣（田所） | 
 | Unicode 資訊 | ✖️ | ✅（田所） | 
-| VoiceOver | ✅（2.9.3 後） | ➖（規劃重做） | 威注音採自繪矩陣，尚未加入 AX 子樹 |
+| VoiceOver 辨識 | ✅（2.9.3+ 修復縱排選字窗消失、朗讀候選字） | ➖（規劃重做） | 威注音採自繪矩陣，尚未加入 AX 子樹 |
 | 熱鍵輪替候選 | Shift(+Alt)+Space、Alt+↑/↓ 等 | Shift(+Alt)+Space、Alt+↑/↓（橫）／Alt+←/→（縱） | 威注音納入直書焦點鞏固 |
 | Alt 熱鍵佈局切換 | ✅（終端設定） | ✖️（避免 NSMenu 攔截） | 
 | 漢音符號 | 部分符號 | 完整漢音符號＋分層符號表（可自訂 `symbols.dat`） | 
