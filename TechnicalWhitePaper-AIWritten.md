@@ -3,21 +3,21 @@ sort: 2
 ---
 # 技術白皮書-機器稿 (v4.1.0)
 
-# 威注音 v4.1.0 與小麥注音 v2.9.3：技術白皮書（重構版）
+# 唯音 v4.1.0 與小麥注音 v2.9.3：技術白皮書（重構版）
 
 > 資料截取日期：2025-11-11。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）當日狀態整理。
 
 ## 摘要
 
-- **架構重寫幅度顯著不同**：威注音自 2022 年起以 Swift 為主體重構輸入調度、組字引擎、候選窗與安全模組；小麥注音延續 Objective-C++ / C++ 基建並聚焦效能與穩定維護。
-- **安全模型差異鮮明**：威注音以 macOS Sandbox、浮動組字窗強化模式與可選客體清單阻絕 markedText 洩露；小麥注音保留腳本掛鉤與無沙箱設計，提供高度開放但安全自負的體驗。
-- **語言模組策略分歧**：小麥注音採 Formosa::Gramambular2（DAG-Relax）搭配 OVMandarin MK2；威注音自研 Megrez（第四代最佳化 Dijkstra、第五代 DAG-DP），針對就地加詞、UTF-8 游標與自訂權重做最佳化。
-- **候選窗與 UX**：威注音第三代田所選字窗採前後端分離、支援橫/縱排矩陣與 Unicode 資訊；小麥注音維持 Voltaire MK2 + VoiceOver 支援並提供熱鍵升頻介面。
+- **架構重寫幅度顯著不同**：唯音自 2022 年起以 Swift 為主體重構輸入調度、組字引擎、候選窗與安全模組；小麥注音延續 Objective-C++ / C++ 基建並聚焦效能與穩定維護。
+- **安全模型差異鮮明**：唯音以 macOS Sandbox、浮動組字窗強化模式與可選客體清單阻絕 markedText 洩露；小麥注音保留腳本掛鉤與無沙箱設計，提供高度開放但安全自負的體驗。
+- **語言模組策略分歧**：小麥注音採 Formosa::Gramambular2（DAG-Relax）搭配 OVMandarin MK2；唯音自研 Megrez（第四代最佳化 Dijkstra、第五代 DAG-DP），針對就地加詞、UTF-8 游標與自訂權重做最佳化。
+- **候選窗與 UX**：唯音第三代田所選字窗採前後端分離、支援橫/縱排矩陣與 Unicode 資訊；小麥注音維持 Voltaire MK2 + VoiceOver 支援並提供熱鍵升頻介面。
 - **多排列與拼音支援**：Tekkon 引擎提供九種注音排列與六種拼音系統並可同時顯示拼音，遠超 OVMandarin 的固定排列設計。
 
 ## 歷程年表與版本世代
 
-威注音的開工點位於 `vChewing-macOS-AncientArchive` 倉庫提交 `5e0978b`，首個公開版 1.2.0 對應 `4083f18`。下表將 1.2.0 至 4.0.0 的重點演進濃縮成可引用的章節索引，便於在白皮書各處敘述時指涉具體世代。
+唯音的開工點位於 `vChewing-macOS-AncientArchive` 倉庫提交 `5e0978b`，首個公開版 1.2.0 對應 `4083f18`。下表將 1.2.0 至 4.0.0 的重點演進濃縮成可引用的章節索引，便於在白皮書各處敘述時指涉具體世代。
 
 | 時間段 / 版本 | 主要節點（含提交參考） | 關鍵成果與影響 |
 | -- | -- | -- |
@@ -54,7 +54,7 @@ sort: 2
 - **2025-03-04 — 2.9.2**：修復 macOS 15.4 beta 安裝失敗（標籤訊息）。
 - **2025-07-07 — 2.9.3**：新增重複標點循環、候選窗「+」「-」控頻、詞長上限調整為八字、詞庫更新（標籤訊息）。
 
-### 威注音（標籤與關鍵提交）
+### 唯音（標籤與關鍵提交）
 
 > 2022 年度版本資料取自 `vChewing-macOS-AncientArchive` 的鏡像歷史；由於該倉庫未保留 Git tag 實體，故以「Bump version」提交與同日合併提交對應公開版本。
 
@@ -104,7 +104,7 @@ sort: 2
 | 專案 | 主要語言 | 核心維運者 | 目標系統 | 授權 | 定位 |
 | -- | -- | -- | -- | -- | -- |
 | 小麥注音 (McBopomofo) 2.9.3 | Objective-C++, C++17, Swift | OpenVanilla 核心團隊 | macOS 10.15+ | MIT | Formosa::Gramambular2／OVMandarin MK2 實作、強調穩健與開源協作 |
-| 威注音 (vChewing) 4.1.0 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 13+；Aqua 紀念版支援 10.9 | MIT-NTL | Swift 原生化注音輸入法、專注安全與模組擴展 |
+| 唯音 (vChewing) 4.1.0 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 13+；Aqua 紀念版支援 10.9 | MIT-NTL | Swift 原生化注音輸入法、專注安全與模組擴展 |
 
 ### 名詞釐清（摘要）
 
@@ -117,7 +117,7 @@ sort: 2
 
 ### 模組對照（概要）
 
-| 面向 | 小麥注音 2.9.3 | 威注音 4.1.0 | 來源參考 |
+| 面向 | 小麥注音 2.9.3 | 唯音 4.1.0 | 來源參考 |
 | -- | -- | -- | -- |
 | 輸入訊號 | `KeyHandler` (Objective-C++) + `KeyHandlerInput` (Swift struct) | `InputHandler` (Swift) 直接擴展 `NSEvent` / `KBEvent` | `mcbopomofo/Source/KeyHandler.mm`；`vChewing_MainAssembly/InputHandler_Handle*.swift` |
 | 態械 | `InputState` 類別階層（NSObject） | `IMEState` / `IMEStateData` 單一 struct + protocol | `mcbopomofo/Source/InputState.swift`；`vChewing_MainAssembly/IMEState.swift` |
@@ -131,12 +131,12 @@ sort: 2
 ### 輸入訊號管線
 
 - **小麥注音**：`KeyHandlerInput` 將 `NSEvent` 轉換成內部 struct，`KeyHandler` 依狀態機驅動。Emacs key 等特殊鍵需逐層傳遞。
-- **威注音**：直接對 `NSEvent` 擴展 `InputSignalProtocol`，並提供 `KBEvent` 克隆以 struct semantics 處理；在訊號入口即翻譯 Emacs 快捷鍵並塞入狀態資訊（例如直書模式）。
+- **唯音**：直接對 `NSEvent` 擴展 `InputSignalProtocol`，並提供 `KBEvent` 克隆以 struct semantics 處理；在訊號入口即翻譯 Emacs 快捷鍵並塞入狀態資訊（例如直書模式）。
 
 ### 態械設計
 
 - **小麥注音**：每種狀態為獨立子類別，依賴 `NSStringUtils` 處理 UTF-16 範圍；UI 資料（`NSAttributedString`）與狀態緊耦合。
-- **威注音**：`IMEState` + `IMEStateData` 拆分資料與行為，預設以 UTF-8 游標記錄，僅在回傳 IMK 時投影到 UTF-16；就地加詞/刪詞/降頻、Tooltip 顏色與候選過濾皆以 value-type 快照儲存。
+- **唯音**：`IMEState` + `IMEStateData` 拆分資料與行為，預設以 UTF-8 游標記錄，僅在回傳 IMK 時投影到 UTF-16；就地加詞/刪詞/降頻、Tooltip 顏色與候選過濾皆以 value-type 快照儲存。
 
 ### 組字與語言模型
 
@@ -151,43 +151,43 @@ sort: 2
 ### 候選窗與 UI
 
 - 小麥注音：Voltaire MK2 以 Cocoa 實作、支援 VoiceOver；自 2.9.3 起提供熱鍵升頻，但不支援矩陣佈局與 Unicode 詳情。
-- 威注音：田所選字窗第三代使用 CandidatePool 前後端分離；支援橫/縱排矩陣顯示、Unicode 資訊、CIN 字根反查、右鍵控頻／刪詞、介面字型針對簡繁模式自動切換（需在開發道場啟用）。
+- 唯音：田所選字窗第三代使用 CandidatePool 前後端分離；支援橫/縱排矩陣顯示、Unicode 資訊、CIN 字根反查、右鍵控頻／刪詞、介面字型針對簡繁模式自動切換（需在開發道場啟用）。
 
 ### 安全與沙箱
 
 - 小麥注音允許在 `defaults write` 後就地執行腳本；無沙箱束縛，FSEventStream 監控可能放大外部干預風險。
-- 威注音使用 Sandbox Profile 限制檔案與進程互動，浮動組字窗可針對特定客體 App 為組字區加殼，防止 `markedText` 被探知；新增 FolderMonitor Actor 化並加入 Debounce，降低 iCloud 同步抖動造成的 Hang 風險。
+- 唯音使用 Sandbox Profile 限制檔案與進程互動，浮動組字窗可針對特定客體 App 為組字區加殼，防止 `markedText` 被探知；新增 FolderMonitor Actor 化並加入 Debounce，降低 iCloud 同步抖動造成的 Hang 風險。
 
 ## 功能矩陣（節選）
 
-| 功能 | 小麥注音 2.9.3 | 威注音 4.1.0 | 備註 |
+| 功能 | 小麥注音 2.9.3 | 唯音 4.1.0 | 備註 |
 | -- | -- | -- | -- |
-| 注音排列 | 大千傳統、倚天傳統、IBM、許氏、倚天 26 | 上述＋神通、(偽)精業、酷音大千 26、星光、劉氏 | 威注音動態排列可因模式調整鍵位 |
+| 注音排列 | 大千傳統、倚天傳統、IBM、許氏、倚天 26 | 上述＋神通、(偽)精業、酷音大千 26、星光、劉氏 | 唯音動態排列可因模式調整鍵位 |
 | 拼音 | 單一拼音模式（未提供文件） | 漢語、國音二式、華羅、耶魯、通用、韋氏；並擊提示拼音 | 
 | CIN 表格 | ✖️ | ✅（磁帶模式支援 CIN2） | 
 | Emoji 組態 | 原廠 Emoji，無獨立詞頻 | 專屬使用者 Emoji 辭典 + 開關 | 
 | 羅馬數字輸入 | ✅（2.10.0+ Ctrl+\\）三種風格：ASCII 小寫、Unicode 大寫、Unicode 小寫 | ✅（4.1.0+ Shift+Cmd+R）1-3999 範圍，Unicode 大小寫 & ASCII 大小寫 | 兩者的實作方式與各自在輸入法當中的集成方式各異，用以呼叫該功能的方法也不一樣。 |
 | 就地加詞/刪詞/控頻 | 只支援加詞 | 加詞、刪詞、升降頻（Shift+Command+Enter 降頻） | 支援詞音不等長 |
 | 選字窗刪詞/控頻 | 鍵盤交互，只支援刪詞、升頻 | 滑鼠右鍵選單刪詞、升降頻 |  |
-| 候選字朗讀 | ✅（2.9.3+）使用 macOS 系統內建的 SQLite 輔助功能資料庫；僅與 VoiceOver 聯動 | ✅（4.1.0+ 可設定）查詢使用者自訂關聯詞語資料庫 | 威注音沿用了自身本來就有的語音朗讀模組 |
+| 候選字朗讀 | ✅（2.9.3+）使用 macOS 系統內建的 SQLite 輔助功能資料庫；僅與 VoiceOver 聯動 | ✅（4.1.0+ 可設定）查詢使用者自訂關聯詞語資料庫 | 唯音沿用了自身本來就有的語音朗讀模組 |
 | CapsLock 強制英文忽略 | ✖️ | ✅ | 顧及微軟新注音習慣 |
 | 候選矩陣 | ✖️ | ✅ 橫/縱排矩陣（田所） | 
 | Unicode 資訊 | ✖️ | ✅（田所） | 
-| 熱鍵輪替候選 | Shift(+Alt)+Space、Alt+↑/↓ 等 | Shift(+Alt)+Space、Alt+↑/↓（橫）／Alt+←/→（縱） | 威注音納入直書焦點鞏固 |
+| 熱鍵輪替候選 | Shift(+Alt)+Space、Alt+↑/↓ 等 | Shift(+Alt)+Space、Alt+↑/↓（橫）／Alt+←/→（縱） | 唯音納入直書焦點鞏固 |
 | Alt 熱鍵佈局切換 | ✅（終端設定） | ✖️（避免 NSMenu 攔截） | 
 | 漢音符號 | 部分符號 | 完整漢音符號＋分層符號表（可自訂 `symbols.dat`） | 
-| 簡繁支援 | 轉換（OpenCC / VXHanConvert） | 原生繁/簡詞庫 + Hotenka 詞組轉換 + JIS/康熙選項 | 威注音就地加詞跨模式同步 |
+| 簡繁支援 | 轉換（OpenCC / VXHanConvert） | 原生繁/簡詞庫 + Hotenka 詞組轉換 + JIS/康熙選項 | 唯音就地加詞跨模式同步 |
 | W3C Ruby | Linux 版支援注音，mac 版無 | 支援注音（教科書式）、漢語拼音 Ruby | 
 | 日期巨集 | ✅ | ✅（並新增銀行大寫數字等） | 
 
 ## 字典與資料管理
 
 - **小麥注音**：Parseless LM 以 TXT 表格儲存，FSEventStream 監控使用者詞庫；就地加詞時執行 `EOF` 修復與可選腳本。
-- **威注音**：原廠詞庫採 SQLite，使用者詞庫仍以 TXT 儲存但由內建整理器重整；學習權重資料以 JSON 保存，可於偏好設定清除；FolderMonitor 透過 Actor + 去抖動防止高頻事件連鎖。
+- **唯音**：原廠詞庫採 SQLite，使用者詞庫仍以 TXT 儲存但由內建整理器重整；學習權重資料以 JSON 保存，可於偏好設定清除；FolderMonitor 透過 Actor + 去抖動防止高頻事件連鎖。
 
 ## 安全與隱私對照
 
-| 項目 | 小麥注音 | 威注音 |
+| 項目 | 小麥注音 | 唯音 |
 | -- | -- | -- |
 | 沙箱 | ✖️ | ✅ （限制檔案/進程存取） |
 | 浮動組字窗 | ✖️ | ✅（強化模式，可針對客體 App 指定） |
@@ -195,11 +195,11 @@ sort: 2
 | 就地腳本 | ✅（可在 defaults 中設定） | ✖️（禁止執行） |
 | 資料上傳 | 無 | 無（沙箱防護） |
 
-典型風險與緩解：威注音以浮動組字窗阻斷 markedText 被輪詢、SandBox 避免腳本濫用；仍無法抵禦系統層級鍵盤側錄。小麥注音提供彈性但須使用者自律，腳本掛鉤若被濫用可能造成資料外洩。
+典型風險與緩解：唯音以浮動組字窗阻斷 markedText 被輪詢、SandBox 避免腳本濫用；仍無法抵禦系統層級鍵盤側錄。小麥注音提供彈性但須使用者自律，腳本掛鉤若被濫用可能造成資料外洩。
 
 ## 無障礙與國際化
 
-- 介面語言：小麥注音提供繁中與英文；威注音支援繁中、簡中、日文、英文。
+- 介面語言：小麥注音提供繁中與英文；唯音支援繁中、簡中、日文、英文。
 
 ## 效能觀測（vChewing 4.0.0 實測）
 
@@ -217,25 +217,25 @@ sort: 2
 
 ## 維運與生態
 
-- 威注音拆分 20+ Swift Packages（Tekkon、Megrez、CandidateWindow、TooltipUI 等），利於跨平台或未來延伸；同時保留 Aqua 紀念版支援舊系統（Swift 5.9 上限）。
+- 唯音拆分 20+ Swift Packages（Tekkon、Megrez、CandidateWindow、TooltipUI 等），利於跨平台或未來延伸；同時保留 Aqua 紀念版支援舊系統（Swift 5.9 上限）。
 - 小麥注音維持 Xcode 專案一體化，著重 Stability；語言模型沿用 LibFormosa 生態，便於與其它 OpenVanilla 模組共用資源。
 - vChewing integrate `HangarRash_SwiftyCapsLockToggler`, `Qwertyyb_ShiftKeyUpChecker` 等外部套件以強化體驗；相對地 mcbopomofo 使用 `NSStringUtils`、`FSEventStreamHelper` 等傳統依賴。
 
 ## 既知限制與後續規劃（摘錄）
 
 - **大篇幅簡繁轉換**：Hotenka 著重詞組級互換，不適合批次文件；建議使用外部工具。
-- **Emacs 鍵支援範圍**：威注音現支援 Ctrl+N / Ctrl+P 等常用移動鍵；其它（如 Ctrl+K）仍在評估。
+- **Emacs 鍵支援範圍**：唯音現支援 Ctrl+N / Ctrl+P 等常用移動鍵；其它（如 Ctrl+K）仍在評估。
 - **SwiftUI 選字窗**：因效能犧牲已退場；待 SwiftUI 繪製效率提升再評估混合方案。
 - **SandBox 限制**：無法防範使用者允許的系統層錄音工具。
 
 ## 參考原始碼位置
 
 - 小麥注音：`mcbopomofo/Source/Engine/gramambular2/`、`mcbopomofo/Source/Engine/mandarin/`、`mcbopomofo/Source/InputState.swift`、`mcbopomofo/Source/KeyHandler.mm`。
-- 威注音：`vChewing-macOS/Packages/vChewing_Megrez/`、`vChewing-macOS/Packages/vChewing_Tekkon/`、`vChewing-macOS/Packages/vChewing_MainAssembly/`、`vChewing-macOS/Packages/vChewing_CandidateWindow/`。
+- 唯音：`vChewing-macOS/Packages/vChewing_Megrez/`、`vChewing-macOS/Packages/vChewing_Tekkon/`、`vChewing-macOS/Packages/vChewing_MainAssembly/`、`vChewing-macOS/Packages/vChewing_CandidateWindow/`。
 
 ## 建議引用格式
 
-- APA：vChewing 專案團隊（2024）。《威注音輸入法技術白皮書（重構版）》版本 4.0.0。取自 https://vchewing.github.io/TechnicalWhitepaper-AIWritten
+- APA：vChewing 專案團隊（2024）。《唯音輸入法技術白皮書（重構版）》版本 4.0.0。取自 https://vchewing.github.io/TechnicalWhitepaper-AIWritten
 - MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.0.0, 2024. Web. https://vchewing.github.io/TechnicalWhitepaper-AIWritten
 - Chicago：vChewing Project Team. 2024. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.0.0. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitepaper-AIWritten
 
