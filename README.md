@@ -13,8 +13,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.1.2 GM (Nov 24, 2025) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.1.2-Legacy GM (Nov 24, 2025) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.1.3 GM (Nov 30, 2025) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.1.3-Legacy GM (Nov 30, 2025) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -27,9 +27,13 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.1.3] 修復了無法在由系統給出的檔案保存視窗內正常打字的故障。
 - [4.1.2] 修復了與候選字詞覆寫行為有關的一些故障；選字窗與浮動組字窗現照顧系統偏好主題色之設定。
 - [4.1.1] 繼續精簡記憶體佔用；從打字會話體系徹底移除了 autoreleasepool，理論上應該不會再卡頓了。
 - [4.1.0] 新增羅馬數字輸入模式與選字窗候選字唸讀功能。另附多項能耗改良，且為了規避系統層面的 Bug 而停用了 Liquid Glass 介面。
+
+<details>
+<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [4.0.6] 針對輸入法的會話控制體系移除了一些過激的 autoreleasepool 處理，藉此減少輸入法的閒時功耗。
 - [4.0.5] 解決了自 4.0.0 版開始至 4.0.4 為止的記憶體效能故障；減少了打字行為學習模組對硬碟的寫入頻次。
 - [4.0.4] 修復了就地刪詞功能失靈的故障；選字窗熱鍵刪詞功能現在不再需要摁 Fn 鍵。
@@ -37,9 +41,6 @@ sort: 1
 - [4.0.2] 新增了對 CIN2 v2.5 磁帶格式的支援。行列輸入法使用者得向老刀索取新版磁帶、方可使用行列詞彙之功能。
 - [4.0.1] 解決了選字窗選字會被使用者打字行為記憶觀測資料綁架而失效等故障。
 - [4.0.0] 解決了記憶體洩漏的問題。更新了臨時記憶模組與組字引擎，兩者均有更換算法。後端程式大翻修＆對 macOS 26 提供支援。
-
-<details>
-<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [3.9.2] 修復了與半衰記憶模組有關的一些實作失誤之故障。
 - [3.9.1] 大量程式碼重構、以圖更優的效能；針對 ChatGPT 的 mac 版預設啟用相容模式。
 - [3.9.0] 更換了效能更優的 Dijkstra 組句算法；在選字窗顯示時，允許以 H / L 鍵移動組字區游標；可關閉蜂鳴音效。
