@@ -5,6 +5,8 @@ has_toc: true
 ---
 # 寫給雅虎奇摩輸入法的使用者
 
+> 本文已過期，過期時間戳是 2025 年 12 月 9 日。唯音輸入法 4.1.6 版起已經支援對奇摩輸入法的 SmartMandarinUserData.db 的直接讀取、不再需要 NSConnection 跨程通訊。本文的方法仍有效，只是不再是最有效的方法。
+
 雅虎奇摩輸入法 macOS 版的輸入法本體對 `__objc_empty_cache` 有強制依賴。然而，Apple 自 macOS 14.2 Beta 1 開始移除了這個 API、導致了兩個問題：
 
 1. 奇摩輸入法本體徹底罷工。
