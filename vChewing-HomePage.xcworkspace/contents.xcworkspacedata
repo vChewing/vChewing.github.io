@@ -37,4 +37,7 @@
    <FileRef
       location = "group:_config.yml">
    </FileRef>
+   <FileRef
+      location = "group:_RELEASE_NOTES_LATEST.markdown">
+   </FileRef>
 </Workspace>
