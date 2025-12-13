@@ -15,7 +15,7 @@ has_toc: true
 ![onboarding_kimo_chrash_objcSymbolMissing](assets/onboarding_kimo_chrash_objcSymbolMissing.jpg)
 ![onboarding_kimo_cannotExportPhrases](assets/onboarding_kimo_cannotExportPhrases.png)
 
-很多人使用雅虎奇摩輸入法十幾年了，各自的使用者語彙資料積累無法輕易捨棄。然而，奇摩輸入法的使用者辭典是經過 CEROD 加密的。這個加密模組早在 2012 年底就變成了收費套件，是奇摩輸入法專案結案的主要原因。
+很多人使用雅虎奇摩輸入法十幾年了，各自的使用者語彙資料積累無法輕易捨棄。然而，奇摩輸入法的原廠辭典是經過 CEROD 加密的。這個加密模組早在 2012 年底就變成了收費套件，是奇摩輸入法專案結案的主要原因。
 
 本文介紹一些可行的辭典遷移方案。
 
@@ -79,7 +79,7 @@ C:\Users\使用者名稱\AppData\Roaming\Yahoo! KeyKey\SmartMandarinUserData.db
 
 如果是要從試算表軟體**匯出 CSV 的話，匯出時 delimiter 分隔符號得是空格或 Tab**。
 
-至於奇摩輸入法匯出的 TXT 檔當中的 Database 部分的資料，屬於機器學習資料，僅包含經過 CEROD 二次加密的 Bigram 詞頻資料（以及 UserOverride 資料），是唯音無法利用的資料。
+至於奇摩輸入法匯出的 TXT 檔當中的 Database 部分的資料，屬於機器學習資料，僅包含經過 SEE 二次加密的 Bigram 詞頻資料（以及 UserOverride 資料），是唯音輸入法暫時無法利用的資料。
 但未來也許會有利用方法也說不定。
 
 $ EOF.
