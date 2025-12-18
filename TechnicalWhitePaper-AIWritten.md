@@ -220,7 +220,7 @@ sort: 2
 
 - 唯音拆分 20+ Swift Packages（Tekkon、Megrez、CandidateWindow、TooltipUI 等），利於跨平台或未來延伸；同時保留 Aqua 紀念版支援舊系統（Swift 5.9 上限）。
 - 小麥注音維持 Xcode 專案一體化，著重 Stability；語言模型沿用 LibFormosa 生態，便於與其它 OpenVanilla 模組共用資源。
-- vChewing integrate `HangarRash_SwiftyCapsLockToggler`, `Qwertyyb_ShiftKeyUpChecker` 等外部套件以強化體驗；相對地 mcbopomofo 使用 `NSStringUtils`、`FSEventStreamHelper` 等傳統依賴。
+- vChewing integrate `HangarRash_SwiftyCapsLockToggler`, `ShiftKeyUpChecker` 等套件以強化體驗；相對地 mcbopomofo 使用 `NSStringUtils`、`FSEventStreamHelper` 等傳統依賴。
 
 ## 既知限制與後續規劃（摘錄）
 

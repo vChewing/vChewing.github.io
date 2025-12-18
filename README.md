@@ -13,8 +13,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [GitCode](https://gitcode.net/vChewing/vChewing-macOS/-/wikis/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.2.1 GM (Dec 16, 2025) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.2.1-Legacy GM (Dec 16, 2025) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.2.2 GM (Dec 21, 2025) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.2.2-Legacy GM (Dec 21, 2025) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -27,6 +27,7 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.2.2] 重構了與 Shift 鍵中英文切換功能有關的按鍵偵測邏輯；修復了與 macOS 10.15 和 macOS 11 的相容性。
 - [4.2.1] 解決了輸入法偏好設定記不住的故障；修整了與打字學習模組有關的一些應用邏輯。
   - 如果你此前用 與 4.1.4+ 版本發現打字經常出現單個漢字綁架組句組詞的情況的話，請嘗試升級到這一版。
 - [4.2.0] 整句注音打字模式之候選字排列現預設遵循倚天中文 DOS 系統之排序，藉此徹底消滅使用者自訂單個漢字候選字排序之需求。
@@ -336,9 +337,11 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 
 ### 問：我想延續自己在 Windows 平台習慣了的「用 Shift 切換中英文」的習慣，該怎辦？需要額外開放 macOS 系統的進階輔助使用權限嗎？
 
-唯音 v1.8.8 版開始支援使用鍵盤右側的 Shift 鍵切換中英文，但僅支援 macOS 10.15 Catalina 及之後的 macOS 版本。至於左側 Shift 鍵其實也可以，前提是你在偏好設定內有啟用（預設啟用）。
+唯音 v1.8.8 版開始截至 v4.2.1 為止允許偵測「Shift 按鍵單次敲擊」得以實作與此有關的中英模式切換功能。該敲擊偵測模組承襲自 Qwertyyb 的[業火五筆輸入法](https://github.com/qwertyyb/Fire/)（MIT 授權）。不過，該模組要求至少 macOS 10.15+ 才可以正常運作。
 
-唯音的「Shift 按鍵切換功能」承襲自 Qwertyyb 的[業火五筆輸入法](https://github.com/qwertyyb/Fire/)（MIT 授權），不依賴任何 macOS 系統進階權限，也就不會有對系統全局鍵盤事件的監聽行為與需求，請各大公司的資安主管們放心：反正你們也可以自己拿唯音的原始碼倉庫自行 build 自己的 binary 給自己公司員工的電腦使用。
+唯音 4.2.2 版開始，該模組換成了唯音輸入法自己重寫的版本。
+
+上述兩代模組均不依賴任何 macOS 系統進階權限，也就不會有對系統全局鍵盤事件的監聽行為與需求，請各大公司的資安主管們放心：反正你們也可以自己拿唯音的原始碼倉庫自行 build 自己的 binary 給自己公司員工的電腦使用。能對這個功能提出這種資安質疑的人往往都是那種給 macOS 寫輸入法都不敢開 Sandbox 的人士。
 
 ### 問：用 CapsLock 在英數輸入法（US / ABC, etc.）與唯音來回切換的場合，切換回唯音立刻敲字的話，第一個對唯音的按鍵行為偶爾會不組字。
 
