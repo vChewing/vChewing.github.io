@@ -13,8 +13,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.2.2 GM (Dec 21, 2025) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.2.2-Legacy GM (Dec 21, 2025) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.2.3 GM (Dec 28, 2025) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.2.3-Legacy GM (Dec 28, 2025) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -27,6 +27,7 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.2.3] 修復了對使用者辭典目錄內資料變化無法感知的故障；允許自訂通知飄窗的配色與行為；允許添入原廠辭典不存在的「漢字-讀音」配對。
 - [4.2.2] 重構了與 Shift 鍵中英文切換功能有關的按鍵偵測邏輯；修復了與 macOS 10.15 和 macOS 11 的相容性。
 - [4.2.1] 解決了輸入法偏好設定記不住的故障；修整了與打字學習模組有關的一些應用邏輯。
   - 如果你此前用 與 4.1.4+ 版本發現打字經常出現單個漢字綁架組句組詞的情況的話，請嘗試升級到這一版。
@@ -406,7 +407,7 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 
 有兩種情況。無論哪種情況，都可以藉由升級至至少 2.6.2 版來解決。
 
-一、自唯音 2.5.0 版開始引入的全新的 FolderMonitor 模組（用來監視使用者辭典目錄的內容變化，以便就地重新載入）在嘗試監視的目錄不存在的時候被啟動的話，會崩潰掉輸入法。之前 Zonble 的 FSEventStreamHelper 有沒有這個特徵，我就不知道了，也沒測試過。然而，問題出在輸入法剛啟動時的檔案操作判斷邏輯上了：在尚未完成使用者辭典讀入的步驟的前提下，就開始了對使用者辭典目錄的「檔案變動事件有無變化之情況」的監視。
+一、自唯音 2.5.0 版開始引入的全新的 FolderMonitor 模組（用來監視使用者辭典目錄的內容變化，以便就地重新載入）在嘗試監視的目錄不存在的時候被啟動的話，會崩潰掉輸入法。之前 Zonble 的 FSEventStreamHelper 有沒有這個特徵，我就不知道了，也沒測試過。然而，問題出在輸入法剛啟動時的檔案操作判斷邏輯上了：在尚未完成使用者辭典讀入的步驟的前提下，就開始了對使用者辭典目錄的「檔案變動事件有無變化之情況」的監視。// FolderMonitor 自唯音輸入法 4.2.3 版開始換成了開發者自己重寫的版本，擁有更強的 Sandbox 相容性。
 
 二、唯音 2.3.0 至 2.6.1 版的備用安裝程式「-alternative.zip」有做過多餘的處理，使得系統反而會將要安裝的輸入法塞入 macOS 門衛體系的隔離區、導致輸入法徹底失能。
 
