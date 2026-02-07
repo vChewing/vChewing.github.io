@@ -16,7 +16,7 @@ Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與�
 |------|------------|------|-----------|
 | **Homa** | Swift 5+，SwiftPM 模組化 | LGPL-3.0-or-later（含自訂例外） | 次世代輸入法組字引擎，提供游標、覆寫、輪替等上層整合 API |
 | **MegrezNT** | .NET 6+（C#），NuGet 套件 | LGPL-3.0-or-later | 前一代輸入法組字引擎，提供核心 lattice 與候選覆寫能力 |
-| **Gramambular2** | C++17，CMake | MIT | 通用 lattice／語詞分段引擎，重心在讀音插入與最短路徑運算 |
+| **Gramambular2** | C++17，CMake | MIT | 通用 lattice／語詞分段引擎，重心在讀音插入與最短路徑運算（2026 年 2 月起改採 DAG-DP） |
 
 ## Homa 公開 API 與能力摘要
 
@@ -65,12 +65,12 @@ Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與�
 
 ## Homa 與 Gramambular2 差異重點
 
-1. **設計與語言層級**：Homa 將輸入法游標、標記器、候選輪替、上下文鞏固納入核心 API；Gramambular2 僅提供 lattice 建構與覆寫，游標邏輯交由呼叫端自行維護。
+1. **設計與語言層級**：Homa 將輸入法游標、標記器、候選輪替、上下文鞏固納入核心 API；Gramambular2 僅提供 lattice 建構與覆寫，游標邏輯交由呼叫端自行維護。雖然 Gramambular2 於 2026 年 2 月（PR#777）跟進採用了 DAG-DP 演算法，但其組件設計仍維持原有的極簡風格。
 2. **覆寫機制**：Homa 透過 `Homa.Node.OverrideType` 與鏡像 API 管理覆寫狀態，並可回報 `BehaviorPerceptor`；Gramambular2 僅提供高分值與 top unigram 兩種覆寫模式，無鏡像或學習回呼。
 3. **資料識別**：Homa 使用自訂 `FIUUID`，MegrezNT 以 `Guid`，Gramambular2 無持久節點 ID，改以 lattice 位置辨識。
 4. **候選篩選**：Homa 預設過濾跨游標候選（`CandidateFetchFilter`），Gramambular2 `candidatesAt()` 產出的結果需外部過濾。
 5. **GraphViz 支援**：Homa 內建 LR／TB 選項；Gramambular2 僅在測試中印出計時資訊，GraphViz 需自行實作。
-6. **語言模型依賴**：Homa 與 MegrezNT 支援 bigram provider；Gramambular2 的 `LanguageModel` 僅定義 unigram 介面，bigram 需外部擴充。
+6. **語言模型依賴**：Homa 支援 bigram provider；MegrezNT 與 Gramambular2 的 `LanguageModel` 僅定義 unigram 介面，bigram 需外部擴充。
 7. **授權與註解風格**：Homa／MegrezNT 為繁中文註解與 LGPL，Gramambular2 為英文註解與 MIT，顯示來源與設計風格迥異。
 
 ## 單元測試對照
@@ -85,6 +85,7 @@ Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與�
 
 - **Homa 對 MegrezNT 的演進**：Swift 版本不僅復刻前代核心功能，更補足輸入法常見的游標微調、候選輪替、上下文鞏固與學習回呼等需求。MegrezNT 若要達到同等使用體驗，需補齊列出的缺失 API。
 - **Homa 與 Gramambular2 的顯著差異**：兩者在語言、授權、API 命名、功能重點與測試策略皆迥異。Homa 更貼近實際輸入法產品需求；Gramambular2 則定位於通用 lattice。這些差異提供充分證據，證明 Homa 並非 Gramambular2 的衍生抄錄。
+- **演算法收斂的獨立性**：雖然 Gramambular2 於 2026 年 2 月跟進採用 DAG-DP 演算法，但 Homa 已於 2025 年 10 月（v4.0.0）先行完成該算法的 Swift 實作與落地。除了時間軸上的領先外，Homa 的 DAG-DP 實作深度整合了 ARC 管理與 Swift 記憶體特性，與 Gramambular2 的 C++ 實作邏輯毫無重疊。這足以駁斥任何關於唯音在演算法層面抄襲小麥注音的指控。與此有關的反向抄襲指控也不成立，因為 Chiahong 有著自己的實作探究過程，故不應將兩者之間就 DAG-DP 算法一致的事情做 Copycat 之定性。
 - **後續建議**：
   - 若需對外溝通，可將本白皮書附於法務或部落格文章，並引用對應檔案位置。
   - 若計畫讓 MegrezNT 追上 Swift 版 API，可依表格逐項評估移植成本。

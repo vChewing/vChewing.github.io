@@ -40,4 +40,7 @@
    <FileRef
       location = "group:_RELEASE_NOTES_LATEST.markdown">
    </FileRef>
+   <FileRef
+      location = "group:WHITEPAPER_Homa_MegrezNT_Gramambular2.md">
+   </FileRef>
 </Workspace>

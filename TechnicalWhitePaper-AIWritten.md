@@ -11,7 +11,7 @@ sort: 2
 
 - **架構重寫幅度顯著不同**：唯音自 2022 年起以 Swift 為主體重構輸入調度、組字引擎、候選窗與安全模組；小麥注音延續 Objective-C++ / C++ 基建並聚焦效能與穩定維護。
 - **安全模型差異鮮明**：唯音以 macOS Sandbox、浮動組字窗強化模式與可選客體清單阻絕 markedText 洩露；小麥注音保留腳本掛鉤與無沙箱設計，提供高度開放但安全自負的體驗。
-- **語言模組策略分歧**：小麥注音採 Formosa::Gramambular2（DAG-Relax）搭配 OVMandarin MK2；唯音自研 Megrez（第四代最佳化 Dijkstra、第五代 DAG-DP），針對就地加詞、UTF-8 游標與自訂權重做最佳化。
+- **語言模組策略分歧**：小麥注音採 Formosa::Gramambular2（原為 DAG-Relax，2026 年 2 月起改為 DAG-DP）搭配 OVMandarin MK2；唯音自研 Megrez（第四代最佳化 Dijkstra、第五代 DAG-DP），針對就地加詞、UTF-8 游標與自訂權重做最佳化。
 - **候選窗與 UX**：唯音第三代田所選字窗採前後端分離、支援橫/縱排矩陣與 Unicode 資訊；小麥注音維持 Voltaire MK2 + VoiceOver 支援並提供熱鍵升頻介面。
 - **多排列與拼音支援**：Tekkon 引擎提供九種注音排列與六種拼音系統並可同時顯示拼音，遠超 OVMandarin 的固定排列設計。
 
@@ -121,7 +121,7 @@ sort: 2
 | -- | -- | -- | -- |
 | 輸入訊號 | `KeyHandler` (Objective-C++) + `KeyHandlerInput` (Swift struct) | `InputHandler` (Swift) 直接擴展 `NSEvent` / `KBEvent` | `mcbopomofo/Source/KeyHandler.mm`；`vChewing_MainAssembly/InputHandler_Handle*.swift` |
 | 態械 | `InputState` 類別階層（NSObject） | `IMEState` / `IMEStateData` 單一 struct + protocol | `mcbopomofo/Source/InputState.swift`；`vChewing_MainAssembly/IMEState.swift` |
-| 組字引擎 | Gramambular 2 (C++, DAG-Relax) | Megrez (Swift, DAG-DP；3.9 系列曾採強化版 Dijkstra) | `mcbopomofo/Source/Engine/gramambular2`；`vChewing_Megrez` |
+| 組字引擎 | Gramambular 2 (C++, 原為 DAG-Relax，2026 年起改為 DAG-DP) | Megrez (Swift, DAG-DP；3.9 系列曾採強化版 Dijkstra) | `mcbopomofo/Source/Engine/gramambular2`；`vChewing_Megrez` |
 | 聲韻並擊 | OVMandarin MK2 (C++) | Tekkon (Swift) | `mcbopomofo/Source/Engine/mandarin`；`vChewing_Tekkon` |
 | 候選窗 | Voltaire MK2 (Swift Cocoa) | 田所選字窗第三代（Cocoa + CoreGraphics，自繪矩陣，前後端分離） | `mcbopomofo/Source/NonModalAlertWindowController.swift` 等；`vChewing_CandidateWindow` |
 | 安全 | 無沙箱；允許就地腳本掛鉤 | macOS Sandbox、浮動組字窗強化模式、客體管理器白名單 | `mcbopomofo/add-phrase-hook.sh`；`vChewing_MainAssembly/InputHandler_HandleSecurity.swift` |
@@ -140,8 +140,8 @@ sort: 2
 
 ### 組字與語言模型
 
-- **Gramambular 2**：採 DAG-Relax，與 OVMandarin MK2 成熟整合；增量輸入時需重新鬆弛圖邊。
-- **Megrez**：三代演進後採 DAG-DP，自底向上計分，支援字詞/讀音長度不等、就地標記游標、JSON 行為分析；三代曾使用自訂優先佇列 Dijkstra 以優化長句效能。
+- **Gramambular 2**：原採 DAG-Relax，與 OVMandarin MK2 成熟整合。2026 年 2 月（PR#777）後改採 DAG-DP，與唯音在組字演算法的核心思路殊途同歸、但實作細節相異。
+- **Megrez**：幾代演進後於第五代採 DAG-DP（2025 年 10 月 v4.0.0 實裝，早於 Gramambular MK2 隔年 2 月的同類改動），自底向上計分，支援字詞/讀音長度不等、就地標記游標、JSON 行為分析；第四代 Megrez 曾使用自訂優先佇列 Dijkstra 以優化長句效能。
 
 ### 聲韻並擊與拼音
 

@@ -23,8 +23,8 @@ sort: 2
 > - OpenVanilla 輸入法框架：以 CIN 表格為主的輸入法框架。該框架的早期版本會同捆香草注音（下文會提到），但後來香草注音模組被停止維護、就沒再被同捆入 OpenVanilla。OpenVanilla 旗下的組句型注音輸入法的職責由後來被 MJHsieh 發起的小麥注音專案繼任。
 > - 香草注音（SpaceChewing）：新酷音輸入法模組被 Zonble 等人移植到 OpenVanilla 框架上的形態。香草注音身為注音輸入法而言的所有程式碼著作權均屬於新酷音專案，OpenVanilla 團隊僅擁有移植工作的著作權。除了可能會共用相同款式的安裝程式以外，這個專案與小麥注音連一根毛的關係都沒有。
 > - 奇摩輸入法：Zonble 與 Lukhnos Liu 二人開設石磬軟體公司，成為了雅虎奇摩的輸入法外包開發商，開發了奇摩輸入法。奇摩輸入法使用由 Sinica Corpus 生成的 Bigram 語料庫。此期間 Lukhnos 完成了 OVMandarin MK1 注拼引擎與 Manjusri（文殊）組句引擎的開發。文殊引擎採貪婪組句算法。後來，Lukhnos 完成了開源的 Gramambular MK1 組句引擎的第一代版本的開發，將該組句引擎與 OVMandarin MK1 合併為 LibFromosa 開發套件。
-> - 小麥注音一開始是 MJHsieh 在 2011 年開發的個人作品（Zonble 從這時起就有參與）。該輸入法被視為 LibFormosa 開發套件的典型輸入法開發實踐。後來，小麥注音被併入 OpenVanilla。小麥注音真正開始進入堪用期則是 2022 年，此期間 Lukhnos Liu 為小麥注音完成了 OVMandarin MK2 與 Gramambular MK2 的開發、以享受近代 C++ 版本所帶來的便利。Gramambular MK2 改採 DAG-Vertex Topological 排序鬆弛算法來組句，以因應貪婪組句算法在效能上的先天不足。
-> 
+> - 小麥注音一開始是 MJHsieh 在 2011 年開發的個人作品（Zonble 從這時起就有參與）。該輸入法被視為 LibFormosa 開發套件的典型輸入法開發實踐。後來，小麥注音被併入 OpenVanilla。小麥注音真正開始進入堪用期則是 2022 年，此期間 Lukhnos Liu 為小麥注音完成了 OVMandarin MK2 與 Gramambular MK2 的開發、以享受近代 C++ 版本所帶來的便利。Gramambular MK2 改採 DAG-Vertex Topological 排序鬆弛算法來組句，以因應貪婪組句算法在效能上的先天不足。再到 2026 年 2 月初，Chiahong 的 [PR#777](https://github.com/openvanilla/McBopomofo/pull/777) 給 Gramambular MK2 更換到了 DAG-DP 算法、但用的是他們自己的探索實作方式。
+>
 > 本文僅討論「小麥注音」與「唯音」的功能模組差異，不涉及下述風馬牛不相及的內容：奇摩輸入法、香草注音、OpenVanilla 輸入法框架。至於為什麼上文將這些內容講這麼細緻，是因為真的有不少糊塗人把這些東西都徹徹底底地搞混了、然後在那裡講豪洨話，非常耽誤交流效率。
 
 ## 引文＆專案演進時間軸（精簡）
@@ -83,7 +83,7 @@ CIN 模組 | 不具備 | 支援 CIN2 標準 | 小麥注音團隊另有 OpenVanil
 內碼輸入 | 具備 | 具備 | 兩者各自對此的實現方式不同；<br />唯音在簡體模式下有支援 GB 內碼輸入。
 輸入調度模組 | KeyHandler (Objective-C++) | InputHandler (Swift) | 職能很相似 
 按鍵訊號承載單位 | KeyHandlerInput | NSEvent及其私有功能拓展<br />以及其對等克隆體 KBEvent Struct | 唯音利用 NSEvent / KBEvent 的 characters ignoring modifiers 參數塞入狀態上下文情境描述用中繼資料。
-組字引擎 | Gramambular 2 (C++)<br />by Lukhnos Liu<br />採 DAG-Relax 組字算法。 | Megrez (Swift)<br />by Shiki Suen<br />採 DAG-DP 算法。 | Megrez 擁有包括對就地加詞功能要用到的標記游標的管理等獨特功能。DAG-DP 算法無須 Vertex Topological 排序。
+組字引擎 | Gramambular 2 (C++)<br />by Lukhnos Liu<br />2026 年 1 月底為止採 DAG-Relax 組字算法；於次月被 Chiahong 換成 DAG-DP。 | Megrez (Swift)<br />by Shiki Suen<br />2025 年 01 月改用 Dijkstra 算法；同年 10 月改採 DAG-DP 算法。 | Megrez 擁有包括對就地加詞功能要用到的標記游標的管理等獨特功能。DAG-DP 算法無須 Vertex Topological 排序。
 注音並擊引擎 | OVMandarin (C++)<br />by Lukhnos Liu | Tekkon (Swift)<br />支援更多注音排列與拼音種類 | 均無允許使用者自行設計注音排列之能力 。
 詞庫管理模組 | Objective-C++ & C++<br />ParselessLM<br />採 TXT 格式的原廠辭典 | Swift<br />採 SQLite 格式的原廠辭典<br />使用者辭典採 txt 格式 | 
 態械引擎 | 多型別狀態策略設計模式<br />無專有內部資料型別 | 單結構狀態策略設計模式<br />有專有內部資料型別 | 雙方的開發習慣不同、導致各自的取捨不同。
@@ -192,13 +192,13 @@ Emacs Key | 在輸入調度模組內部處理 | 在水源入口處理：發現 E
 
 Dijkstra 算法的實作難免需要一個專門用來排序的機器。Swift Foundation 原生的排序算法並非最高效的方案。所以，第三代 Megrez 組字引擎針對輸入法的使用情景重新訂製了這個排序過程、藉此縮短了 Dijkstra 的運算耗時。
 
-然而，Dijkstra 算法有著記憶體管理上的難點。於是，唯音輸入法在 v4.0.0 版更換了 DAG-DP 算法。這個算法不需要 Vertex Topological 排序。
+然而，Dijkstra 算法有著記憶體管理上的難點。於是，唯音輸入法在 v4.0.0 版（2025 年 10 月）更換了 DAG-DP 算法。這個算法不需要 Vertex Topological 排序。此實作時間點（2025 年 10 月）早於小麥注音社群貢獻者 Chiahong 於次年二月初提交的 [相同算法實作 PR#777](https://github.com/openvanilla/McBopomofo/pull/777)。儘管兩者最終都採用了 DAG-DP 這一公有領域的成熟算法，但唯音的的 Swift 實作架構（基於 Value Type 與 ARC 優化）與小麥注音的 C++ 實作（基於 Class 與指針管理）截然不同。時間軸的先後順序與代碼實作的本質差異，足以證明唯音並未參考或抄襲小麥注音的該項改動。與此有關的反向抄襲指控也不成立，因為 Chiahong 有著自己的實作探究過程，故不應將兩者之間就 DAG-DP 算法一致的事情做 Copycat 之定性。
 
 #### 組字算法對照表（摘要）
 
 項目 | DAG-Relax | Dijkstra（最佳化版） | DAG-DP
 -- | -- | -- | --
-使用世代 | 唯音早期、小麥注音2.0 | 唯音 3.9.x | 唯音 4.0.0 現行
+使用世代 | 唯音早期、小麥注音2.0 (~2026-01) | 唯音 3.9.x | 唯音 4.0.0 現行、小麥注音 (2026-02+)
 核心思路 | 對 DAG 中邊進行鬆弛求最優路徑 | 最短路徑優先擴展 | 以 DP 自底向上計分決策
 主要資料結構 | DAG（節點=切分位置） | 優先佇列 + 鄰接表 | 線性索引節點陣列
 需拓撲排序 | 是 | 否 | 否
