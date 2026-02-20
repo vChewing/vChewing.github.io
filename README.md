@@ -13,8 +13,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.2.5 GM (Feb 04, 2026) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.2.5-Legacy GM (Feb 04, 2026) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.3.0 GM (Feb 20, 2026) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.3.0-Legacy GM (Feb 20, 2026) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -27,7 +27,11 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.3.0] 讓使用者辭典模組就檔案讀寫方面使用統一的 Queue 來完成任務，藉此解決一些會破壞使用體驗的衍生故障。
 - [4.2.5] 修復了與通知飄窗觸發時機有關的行為故障，也修復了與使用者辭典存取有關的一些故障。
+
+<details>
+<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [4.2.4] 調整了橫向多列選字窗排版行為；例行更新語料。
 - [4.2.3] 修復了對使用者辭典目錄內資料變化無法感知的故障；允許自訂通知飄窗的配色與行為；允許添入原廠辭典不存在的「漢字-讀音」配對。
 - [4.2.2] 重構了與 Shift 鍵中英文切換功能有關的按鍵偵測邏輯；修復了與 macOS 10.15 和 macOS 11 的相容性。
@@ -42,9 +46,6 @@ sort: 1
 - [4.1.2] 修復了與候選字詞覆寫行為有關的一些故障；選字窗與浮動組字窗現照顧系統偏好主題色之設定。
 - [4.1.1] 繼續精簡記憶體佔用；從打字會話體系徹底移除了 autoreleasepool，理論上應該不會再卡頓了。
 - [4.1.0] 新增羅馬數字輸入模式與選字窗候選字唸讀功能。另附多項能耗改良，且為了規避系統層面的 Bug 而停用了 Liquid Glass 介面。
-
-<details>
-<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [4.0.6] 針對輸入法的會話控制體系移除了一些過激的 autoreleasepool 處理，藉此減少輸入法的閒時功耗。
 - [4.0.5] 解決了自 4.0.0 版開始至 4.0.4 為止的記憶體效能故障；減少了打字行為學習模組對硬碟的寫入頻次。
 - [4.0.4] 修復了就地刪詞功能失靈的故障；選字窗熱鍵刪詞功能現在不再需要摁 Fn 鍵。
