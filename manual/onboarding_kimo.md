@@ -15,7 +15,7 @@ has_toc: true
 ![onboarding_kimo_chrash_objcSymbolMissing](assets/onboarding_kimo_chrash_objcSymbolMissing.jpg)
 ![onboarding_kimo_cannotExportPhrases](assets/onboarding_kimo_cannotExportPhrases.png)
 
-很多人使用雅虎奇摩輸入法十幾年了，各自的使用者語彙資料積累無法輕易捨棄。然而，奇摩輸入法的原廠辭典是經過 CEROD 加密的。這個加密模組早在 2012 年底就變成了收費套件，是奇摩輸入法專案結案的主要原因。
+很多人使用雅虎奇摩輸入法十幾年了，各自的使用者語彙資料積累無法輕易捨棄。然而，奇摩輸入法的原廠辭典是經過 CEROD 加密的。這個加密模組早在 2012 年底就變成了收費套件，是奇摩輸入法專案結案的契機之一（同時仍有其他原因，但都屬於奇摩內部的產品戰略考量）。
 
 本文介紹一些可行的辭典遷移方案。
 
