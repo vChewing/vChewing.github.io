@@ -13,8 +13,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.3.7 GM (Apr 19, 2026) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.3.7-Legacy GM (Apr 19, 2026) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.4.0 GM (Apr 27, 2026) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.4.0-Legacy GM (Apr 27, 2026) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -27,6 +27,7 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.4.0] 換用了「護摩」次世代組字引擎；拼音模式允許免聲調連打；修復了 CIN 磁帶模式滿碼不自動組字的故障。
 - [4.3.7] 針對 CIN2 磁帶模式追加檔案快取保底機制；也就由 iCloud Drive 代管的 Documents / Desktop 等鏡照目錄特性導致的磁帶檔案存取失敗的情況完善了錯誤提示內容。
 - [4.3.6] 與 macOS 26.4.1 有關的緊急相容性修復：修復了「在輸入法每次嘗試存取被設在 iCloud Drive 的使用者辭典目錄時，都會連同正在接收文字輸入的軟體一同僵死數秒的故障。
 - [4.3.5] 緊急修復了「藉由標記模式加詞時會讓萬國碼異種文字選擇器混入使用者片語辭典」的故障；全字庫字音過濾器對單個漢字的候選字詞僅降頻且不再濾除。
@@ -176,7 +177,7 @@ sort: 1
 這裡分別解答一下：
 
 - 威注音專案的「威」取自「威而鋼」的「威」。
-- 至於「天權星」其實是「Megrez」星宿的中文名之一。該星宿乃璃月七星之首。
+- 至於「天權星」其實是「Megrez」星宿的中文名之一。該星宿乃璃月七星之首。 // Megrez 組字引擎現已更換為 Homa 護摩引擎。
 - 至於「鐵恨」則是源自「齊鐵恨」這位人物的名字。
 
 因為「威注音」這個中文名稱的 SEO 太爛，故更名為唯音輸入法。
@@ -459,7 +460,7 @@ sudo defaults delete /Library/Preferences/FeatureFlags/Domain/UIKit.plist redesi
 
 ### 問：選字的原理是什麼？
 
-請參考 Megrez 原始碼： [GitHub](https://github.com/vChewing/Megrez/) § [Gitee](https://gitee.com/vChewing/Megrez/)。
+請在敝專案的 Source Code 內參考 Homa 原始碼。選字原理是 DAG-DP。
 
 ### 問：資料是從哪邊來的？
     
