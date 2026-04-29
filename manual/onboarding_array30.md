@@ -1,6 +1,6 @@
 ---
 parent: 使用手冊
-sort: 73
+sort: 74
 has_toc: true
 ---
 # 寫給行列三十輸入法的使用者

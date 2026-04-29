@@ -1,6 +1,6 @@
 ---
 parent: 使用手冊
-sort: 76
+sort: 77
 has_toc: true
 ---
 # 寫給自然輸入法的使用者

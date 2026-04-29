@@ -1,6 +1,6 @@
 ---
 parent: 使用手冊
-sort: 71
+sort: 72
 has_toc: true
 ---
 # 寫給小麥注音輸入法的使用者

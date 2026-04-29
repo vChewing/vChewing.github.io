@@ -1,6 +1,6 @@
 ---
 parent: 使用手冊
-sort: 70
+sort: 76
 has_toc: true
 ---
 # 寫給漢音輸入法使用者
