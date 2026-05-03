@@ -201,6 +201,8 @@ sort: 1
 2. 您沒有停用觸控列的「顯示輸入建議」功能（見下圖）：
 ![觸控列的「顯示輸入建議」功能](assets/macOS_Disable_TouchBarSuggestions.jpg)
 
+> 你或許會想運行 `sudo hidutil property --set '{"CapsLockDelayOverride":0}'`。
+
 ### 問：為什麼有的軟體內一旦開啟唯音輸入法、則 CMD+Z/X/C/V 等熱鍵就失效？
 
 有個方法可以避開該故障：就是開啟輸入法偏好設定當中的鍵盤設定畫面，將基礎鍵盤佈局改成 ABC。
