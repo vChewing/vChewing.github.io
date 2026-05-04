@@ -13,8 +13,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.4.1 GM (May 1, 2026) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.4.1-Legacy GM (May 1, 2026) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.4.2 GM (May 5, 2026) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.4.2-Legacy GM (May 5, 2026) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -27,6 +27,7 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.4.2] 對中英混打功能使用窮舉單元測試檢出且修復了上百個漢字讀音打字失敗的故障，顯著增強了該功能的可用性。
 - [4.4.1] 新增了「中英文混合輸入回退」功能、實現中英混打；修復了無法用注音輸入假名的故障。
 - [4.4.0] 換用了「護摩」次世代組字引擎；拼音模式允許免聲調連打；修復了 CIN 磁帶模式滿碼不自動組字的故障。
 - [4.3.7] 針對 CIN2 磁帶模式追加檔案快取保底機制；也就由 iCloud Drive 代管的 Documents / Desktop 等鏡照目錄特性導致的磁帶檔案存取失敗的情況完善了錯誤提示內容。
