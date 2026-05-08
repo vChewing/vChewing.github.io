@@ -173,8 +173,6 @@ sort: 1
 
 ## 部分常見問題 (FAQ)
 
-更進階的常見問題解答可參見： [GitHub](https://github.com/vChewing/vChewing-macOS/blob/main/FAQ.md) § [Gitee](https://gitee.com/vChewing/vChewing-macOS/blob/main/FAQ.md)。
-
 ### 問：為什麼唯音專案的舊名稱「威注音」裡面的產品名稱喜歡用「權」「威」「恨」之類的字？為什麼現在輸入法中文名改名了？
 
 這裡分別解答一下：
