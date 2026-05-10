@@ -13,8 +13,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.4.3 GM (May 6, 2026) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.4.3-Legacy GM (May 6, 2026) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.4.4 GM (May 10, 2026) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.4.4-Legacy GM (May 10, 2026) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -27,18 +27,19 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.4.4] 新增「濾除掉與輸入模式不相符的漢字候選」功能；田所選字窗現可顯示讀音消歧義資訊；緊急修復了浮動組字窗與 Ghostty 的相容性故障。
 - [4.4.3] 緊急修復了倚天 26 鍵等動態注音排列功能壞掉的故障；中英混打現可藉由 Shift+Space 直接遞交 ASCII 英數與空格。
 - [4.4.2] 對中英混打功能使用窮舉單元測試檢出且修復了上百個漢字讀音打字失敗的故障，顯著增強了該功能的可用性。
 - [4.4.1] 新增了「中英文混合輸入回退」功能、實現中英混打；修復了無法用注音輸入假名的故障。
 - [4.4.0] 換用了「護摩」次世代組字引擎；拼音模式允許免聲調連打；修復了 CIN 磁帶模式滿碼不自動組字的故障。
+
+<details>
+<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [4.3.7] 針對 CIN2 磁帶模式追加檔案快取保底機制；也就由 iCloud Drive 代管的 Documents / Desktop 等鏡照目錄特性導致的磁帶檔案存取失敗的情況完善了錯誤提示內容。
 - [4.3.6] 與 macOS 26.4.1 有關的緊急相容性修復：修復了「在輸入法每次嘗試存取被設在 iCloud Drive 的使用者辭典目錄時，都會連同正在接收文字輸入的軟體一同僵死數秒的故障。
 - [4.3.5] 緊急修復了「藉由標記模式加詞時會讓萬國碼異種文字選擇器混入使用者片語辭典」的故障；全字庫字音過濾器對單個漢字的候選字詞僅降頻且不再濾除。
 - [4.3.4] 新增 ButKo BPMFVS 注音字型破音字標記的輸出支援；允許始終敲出倚天中文 DOS 系統能敲的漢字；改良使用者片語檔案與 CIN2 磁帶的載入速度。
 - [4.3.3] 將原廠辭典格式由 SQLite 升級成 VanguardTextMap 以便於今後的功能開發；修復了選字窗等 UI 模組的一些排版瑕疵。
-
-<details>
-<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [4.3.2] 解決了輸入法打字會話與正在接收文字輸入的軟體的可能的連線故障；允許以 JSON 匯入/匯出偏好設定；新增選字窗動畫。
 - [4.3.1] 貫徹了與 InputMethodKit 有關的 API 交互效能優化，以照顧 CapsLock 中英文切換時的順暢體驗。
 - [4.3.0] 讓使用者辭典模組就檔案讀寫方面使用統一的 Queue 來完成任務，藉此解決一些會破壞使用體驗的衍生故障。
