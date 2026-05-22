@@ -32,6 +32,6 @@ Aqua 紀念版選擇從 macOS 10.9 開始支援的原因：
 
 除了安裝程式介面的文字描述以外，這兩個發行版的全新區分方式如圖：
 
-![](./assets/HowToDistinguishAquaSpecial.png)
+![](./assets/HowToDistinguishAquaSpecial.jpg)
 
 $ EOF.
