@@ -43,4 +43,7 @@
    <FileRef
       location = "group:WHITEPAPER_Homa_MegrezNT_Gramambular2.md">
    </FileRef>
+   <FileRef
+      location = "group:SPONSOR_ME.md">
+   </FileRef>
 </Workspace>

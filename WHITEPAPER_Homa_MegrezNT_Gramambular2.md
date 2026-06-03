@@ -1,5 +1,5 @@
 ---
-sort: 9
+sort: 10
 ---
 # Homa vs. MegrezNT vs. Gramambular2 Whitepaper
 
