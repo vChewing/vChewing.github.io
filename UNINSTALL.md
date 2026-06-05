@@ -42,19 +42,19 @@ sort: 5
 	rm ~/Library/Receipts/org.atelierInmu.vChewing.plist
 	```
 
-2. 截至 2.2.x 版為止原廠預設的使用者辭典目錄，請自行決定是否移除：
+2. 截至 2.2.x 版為止原廠預設的使用者片語辭典目錄，請自行決定是否移除：
 	```sh
 	rm -rf ~/Library/Application\ Support/vChewing/
 	```
 
-3. 自唯音 2.3.0 版開始的使用者辭典目錄，請自行決定是否移除。<br />其實你也可以直接移除下文「4.」當中所示的容器。
+3. 自唯音 2.3.0 版開始的使用者片語辭典目錄，請自行決定是否移除。<br />其實你也可以直接移除下文「4.」當中所示的容器。
 	```sh
 	rm -rf ~/Library/Containers/org.atelierInmu.inputmethod.vChewing/Data/Library/Application\ Support/vChewing/
 	rm ~/Library/Containers/org.atelierInmu.inputmethod.vChewing/Data/Library/Application\ Support/vChewing_*.dat
 	## 註：dat 檔案為使用者半衰記憶模組檔案。
 	``` 
 
-4. 自唯音 2.3.0 版開始的原廠預設的資料容器，其中包含使用者辭典目錄，請自行決定是否移除：
+4. 自唯音 2.3.0 版開始的原廠預設的資料容器，其中包含使用者片語辭典目錄，請自行決定是否移除：
 	```sh
 	rm -rf ~/Library/Containers/org.atelierInmu.inputmethod.vChewing/
 	## 註：該資料夾的名稱在 Finder (訪達) 當中會顯示為「唯音」或「vChewing」。

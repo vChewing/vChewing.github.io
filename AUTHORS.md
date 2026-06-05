@@ -16,7 +16,7 @@ sort: 8
 - LineReader: (c) 2019 and onwards Robert Muckle-Jones (Apache 2.0 License).
 - SwiftUI VDKComboBox: (c) 2022 and onwards Bryan Jones (CC BY-SA 4.0)
 - 步天歌繁簡轉換引擎，源自 Nick Chen 用 MIT License 發行的 Objective-C 框架「NCChineseConverter」，被 Shiki Suen 以 Swift 語言徹底重寫、且改用了 plist 作為資料存儲格式。
-    - 該繁簡轉換引擎僅用作就地加詞時對「非當前繁簡模式」的使用者辭典的內容寫入。
+    - 該繁簡轉換引擎僅用作就地加詞時對「非當前繁簡模式」的使用者片語辭典的內容寫入。
 
 ### 下述人員參與 macOS 版 vChewing 研發：
 

@@ -15,7 +15,7 @@ has_toc: true
 ![onboarding_kimo_chrash_objcSymbolMissing](assets/onboarding_kimo_chrash_objcSymbolMissing.jpg)
 ![onboarding_kimo_cannotExportPhrases](assets/onboarding_kimo_cannotExportPhrases.png)
 
-很多人使用雅虎奇摩輸入法十幾年了，各自的使用者語彙資料積累無法輕易捨棄。然而，奇摩輸入法的原廠辭典是經過 CEROD 加密的。這個加密模組早在 2012 年底就變成了收費套件，是奇摩輸入法專案結案的契機之一（同時仍有其他原因，但都屬於奇摩內部的產品戰略考量）。
+很多人使用雅虎奇摩輸入法十幾年了，各自的使用者片語資料積累無法輕易捨棄。然而，奇摩輸入法的原廠辭典是經過 CEROD 加密的。這個加密模組早在 2012 年底就變成了收費套件，是奇摩輸入法專案結案的契機之一（同時仍有其他原因，但都屬於奇摩內部的產品戰略考量）。
 
 本文介紹一些可行的辭典遷移方案。
 
@@ -27,7 +27,7 @@ has_toc: true
 
 降級之後，您也只能藉由 Zonble 維護的奇摩輸入法分支安裝包來匯出辭典資料，否則您根本無法點開輸入法偏好設定。
 
-## 方案 2: 遷移使用者辭典檔案到 Windows 再操作
+## 方案 2: 遷移使用者片語辭典檔案到 Windows 再操作
 
 本文以 Windows 7 為例。
 
@@ -75,7 +75,7 @@ C:\Users\使用者名稱\AppData\Roaming\Yahoo! KeyKey\SmartMandarinUserData.db
 奇摩輸入法匯出的 TXT 檔可以將西文半形逗號「,」換成西文半形減號「-」，
 然後用 Excel （或任何試算表軟體）僅保留前兩個 Column 即可。
 
-將這樣處理過的前兩個 Column 的內容直接寫入唯音的使用者語彙檔案內，就可以直接繼承使用。**唯音另可以在第三個 Column 指定詞頻權重：最高頻是 0 ，最低頻是 -9.6，低於 -9.5 的話不會被爬軌函式（Walking Algorithm）主動讀取**。
+將這樣處理過的前兩個 Column 的內容直接寫入唯音的使用者片語檔案內，就可以直接繼承使用。**唯音另可以在第三個 Column 指定詞頻權重：最高頻是 0 ，最低頻是 -9.6，低於 -9.5 的話不會被爬軌函式（Walking Algorithm）主動讀取**。
 
 如果是要從試算表軟體**匯出 CSV 的話，匯出時 delimiter 分隔符號得是空格或 Tab**。
 
