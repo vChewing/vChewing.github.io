@@ -16,8 +16,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.5.2 GM (Jun 05, 2026) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.5.2-Legacy GM (Jun 05, 2026) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.5.3 GM (Jun 15, 2026) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.5.3-Legacy GM (Jun 15, 2026) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -30,6 +30,7 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.5.3] 允許對逐字選字模式強制單行選字窗佈局；允許修改浮動組字窗的字號；ㄅ半懶人包按鈕行為調整。
 - [4.5.2] 改良了磁帶模組對 CIN / CIN2 輸入法表格檔案的載入速率與記憶體佔用；選字窗滑鼠滾輪行為調整；介面文字調整＆輸入法選單內容順序調整。
 - [4.5.1 SP1] 緊急修復了選字窗在系統尚未啟用暗黑模式的情況下可能會出現的「部分候選字詞的文字顏色與選字窗背景顏色幾乎相同」的故障。
 - [4.5.1] 就地加詞/控頻時不再遲鈍；選字窗現正式支援滑鼠捲動；允許以空格鍵就地輪替候選字；新增ㄅ半模式配置專用懶人包按鈕。
