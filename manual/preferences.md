@@ -5,6 +5,8 @@ has_toc: true
 ---
 # 偏好設定
 
+> 本文的原始 markdown 可以[點此存取](https://raw.githubusercontent.com/vChewing/vChewing.github.io/refs/heads/main/manual/preferences.md)，以便使用者轉交給各種 AI 服務代為閱讀講解。
+
 本文對應至少唯音輸入法 4.5.3 版（SwiftUI 偏好設定介面，需 macOS 14 以上）。本文逐頁、逐選項講解偏好設定介面當中每一個選項的作用、影響、以及可能用來滿足的使用者需求。
 
 > macOS 10.13 與 10.14 系統使用的是舊版 AppKit 偏好設定介面（外觀與互動細節不同，但選項集合基本一致）。舊版介面會隱藏少數需要較新系統版本的選項（例如需要 macOS 10.15 / 12 的通知相關選項），相關差異會在文末〈舊版介面差異〉一節統整。
