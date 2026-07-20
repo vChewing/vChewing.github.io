@@ -209,13 +209,27 @@ sort: 1
 
 ### 問：為什麼我用系統內建的 Caps Lock 中英文切換時會有明顯的延遲？
 
-該故障並非發生於所有 mac 機種。兩點原因可導致該故障：
+該故障並非發生於所有 mac 機種。三點原因可導致該故障：
 
-1. 您的 USB 鍵盤藉由劣質 HUB 連到電腦上，產生了硬體處理延遲。
-2. 您沒有停用觸控列的「顯示輸入建議」功能（見下圖）：
+#### 1. 您的 USB 鍵盤藉由劣質 HUB 連到電腦上，產生了硬體處理延遲。
+
+#### 2. 您沒有停用觸控列的「顯示輸入建議」功能（見下圖）：
+
 ![觸控列的「顯示輸入建議」功能](assets/macOS_Disable_TouchBarSuggestions.jpg)
 
 > 你或許會想運行 `sudo hidutil property --set '{"CapsLockDelayOverride":0}'`。
+
+#### 3. IMK 層面的 ARC Churn / ObjC-AutoReleasePool 導致的對 MainActor 的硬控延遲。
+
+   此問題在唯音輸入法歷經三次版本迭代之後被徹底解決：
+
+   - **v4.3.1**：首次引入 per-client 的 `InputSession` 複用機制——同一個接收文字輸入的客體物件盡可能共用同一個打字會話副本，避免每次 CapsLock 切換都重新建構全套輸入管線。
+   - **v4.5.4**：將複用快取從 `NSMapTable` 改為純 Swift 的 LRU Table（`sessionsByClient`），解決了 Chrome / Electron 等頻繁變更 client proxy 的場景下的相容性問題。
+   - **v4.5.5**：全專案停用 Objective-C ARC 編譯標誌，並將 `SessionCtl`（IMKInputController 子類別）與 `InputSession` 之間的所有物件參照改為純記憶體位址（`UInt`）傳遞——徹底移除 IMK 與輸入法之間的任何 `retain`/`release` 呼叫。經受災使用者之實測，CapsLock 高頻切換的遲滯現象已不復存在、且實際表現（CapsLock 中英文輸入法切換）之迅速可與（同樣沒在用 Objective-C ARC 的）奇摩輸入法匹敵；如有殘留，則為 IMK 自身的設計瓶頸，超出第三方輸入法可解決的範圍。
+
+   > v4.5.5 的這個改動會略微增加輸入法的記憶體佔用（大約 50MB ~ 100MB 不等），因為 IMKServer 對 IMKInputController 孤棄副本的回收變得被動、不激進了，乃至於同時存在的 IMKInputController 副本數量可能會在短時間內多達 6 個。但這是一筆非常划算的付出，因為使用者的中英文混合打字體驗得到了保證。
+
+   另見本倉庫內的 Release Notes。
 
 ### 問：為什麼有的軟體內一旦開啟唯音輸入法、則 CMD+Z/X/C/V 等熱鍵就失效？
 
