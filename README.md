@@ -16,8 +16,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.5.6 GM (July 24, 2026) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.5.6-Legacy GM (July 24, 2026) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.5.7 GM (July 29, 2026) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.5.7-Legacy GM (July 29, 2026) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -30,10 +30,14 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.5.7] 徹底改寫了輸入法與「經由 macOS 系統輸入法框架的」接收文字輸入的客體軟體之間的通訊方式，以圖除盡在快速切換輸入法/客體軟體時出現的一些額外異常；同時修復了兩處記憶體管理缺陷，也修復了前置聲調 Enter 遞交功能失能的故障。
 - [4.5.6] 徹底重構了打字會話體系與 InputMethodKit 的交互方式，以適應 MRC 時代的記憶體管理需求。
 - [4.5.5] 全專案在編譯階段停用 ObjC ARC，藉此試圖解決與 CpLk 輸入法切換「在部分電腦上卡頓」有關的其他極端情形。
 - [4.5.4] 針對「就地輪替候選字詞」的功能引入了「弱輪替」特性；修復了倚天傳統鍵盤佈局無法正常中英混打故障；對調了 VIM 熱鍵「J / K」的行為。
 - [4.5.3] 允許對逐字選字模式強制單行選字窗佈局；允許修改浮動組字窗的字號；ㄅ半懶人包按鈕行為調整。
+
+<details>
+<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [4.5.2] 改良了磁帶模組對 CIN / CIN2 輸入法表格檔案的載入速率與記憶體佔用；選字窗滑鼠滾輪行為調整；介面文字調整＆輸入法選單內容順序調整。
 - [4.5.1 SP1] 緊急修復了選字窗在系統尚未啟用暗黑模式的情況下可能會出現的「部分候選字詞的文字顏色與選字窗背景顏色幾乎相同」的故障。
 - [4.5.1] 就地加詞/控頻時不再遲鈍；選字窗現正式支援滑鼠捲動；允許以空格鍵就地輪替候選字；新增ㄅ半模式配置專用懶人包按鈕。
@@ -46,9 +50,6 @@ sort: 1
 - [4.4.2] 對中英混打功能使用窮舉單元測試檢出且修復了上百個漢字讀音打字失敗的故障，顯著增強了該功能的可用性。
 - [4.4.1] 新增了「中英文混合輸入回退」功能、實現中英混打；修復了無法用注音輸入假名的故障。
 - [4.4.0] 換用了「護摩」次世代組字引擎；拼音模式允許免聲調連打；修復了 CIN 磁帶模式滿碼不自動組字的故障。
-
-<details>
-<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [4.3.7] 針對 CIN2 磁帶模式追加檔案快取保底機制；也就由 iCloud Drive 代管的 Documents / Desktop 等鏡照目錄特性導致的磁帶檔案存取失敗的情況完善了錯誤提示內容。
 - [4.3.6] 與 macOS 26.4.1 有關的緊急相容性修復：修復了「在輸入法每次嘗試存取被設在 iCloud Drive 的使用者片語辭典目錄時，都會連同正在接收文字輸入的軟體一同僵死數秒的故障。
 - [4.3.5] 緊急修復了「藉由標記模式加詞時會讓萬國碼異種文字選擇器混入使用者片語辭典」的故障；全字庫字音過濾器對單個漢字的候選字詞僅降頻且不再濾除。
