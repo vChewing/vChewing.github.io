@@ -7,23 +7,12 @@
 > 也歡迎外包給唯音輸入法的開發者，這是他希望能接到的主要業務。
 > 開發者目前最需要的主要業務是配樂相關的客戶資源，期待能與您合作。
 
-#### 4.5.7 版針對 4.5.6 版更新了下述內容：
+#### 4.6.0 版針對 4.5.7 版更新了下述內容：
 
-- 懶人包總結：徹底改寫了輸入法與「經由 macOS 系統輸入法框架的」接收文字輸入的客體軟體之間的通訊方式，以圖除盡在快速切換輸入法/客體軟體時出現的一些額外異常；同時修復了兩處記憶體管理缺陷，也修復了前置聲調 Enter 遞交功能失能的故障。
-- 修復：[所有發行版] 修復了 IMEMenuSputnik 選單建構過程中 `imp_implementationWithBlock` 的記憶體洩漏（每次重建選單時，舊的 block IMP 未被 `imp_removeBlock` 釋放，連帶導致 NSMenu / NSMenuItem 堆積）。
-- 修復：[所有發行版] 修復了 VanguardTrie TextMapTrie 辭典快取的記憶體洩漏：將 `NSCache<NSNumber, CachedEntriesBox>`（含 `NSObject` 包裝類別）替換為純 Swift Dictionary LRU 快取，從根源杜絕 NSCache 內部 CFDictionary 自訂回呼導致的記憶體無法回收問題。快取上限由舊版的 8192 調降為 256，進一步節省穩態記憶體。
-- 修復：[所有發行版] 修復了「單獨輸入聲調」（前置聲調）模式下，敲 Enter 鍵無法遞交聲調符號的問題。此前工具提示雖告知「敲 Enter 以遞交」，但實際上 Enter 鍵按下後聲調符號並未被遞交出去。本次修正確保該功能如預期運作。
-- 研發：[所有發行版] 繼續重構該輸入法的打字會話副本管理邏輯暨其與 InputMethodKit 的交互邏輯：
-    - 此前 4.5.6 版在這個重構工作上仍有一些不足：
-        - IMKTextInput client 物件的生命週期仍有被 Swift ARC 干涉的餘地，且其生命週期不可手動追蹤干涉管理。
-        - InputSession「應該在什麼時候對接哪個 IMKTextInput client」的行為應該由 controller 統一調配，畢竟 IMKTextInput 現在作為 XPC 遠端連線物件而言已經永遠都不可能讓自身的記憶體位址「跨 Controller Activation 保持一致」了。干涉太細緻的話，以唯音輸入法 4.5.6 的重構實作來看，會在以 Electron 構築的客體軟體內偶爾出現「無法正常打字」或「無法用熱鍵切換繁簡模式」等故障。
-    - 這次 4.5.7 版更新對此所做出了進一步重構：
-        - 針對目前的 InputSession 雙極性 singleton pair 設計特性專門調整了輸入法的「基於熱鍵的繁簡輸入模式轉換」「軟鍵盤佈局套用」這兩套邏輯，使其可以像唯音輸入法 4.5.4 ~ 4.5.5 那樣正常工作。
-        - IMKInputSessionController 不再從 ObjC 曝露任何與 IMKTextInput client 有關的記憶體位址。
-        - Swift 端的 InputSession 在輸入法實際運行工作時不再對 IMKTextInput client 物件有任何直接碰觸。取而代之的是：擴充 IMKInputSessionController 的 ObjC API、使其成為 InputSession 與 IMKTextInput client 之間的代理介面。唯音輸入法內建的 IMKSwift 套件的 IMKInputSessionController 是會在 deactivateServer 之後三秒後主動凋亡的（除非在這三秒內再次 activateServer），生命週期可控。
-    - 由於 4.5.5 版開始 IMKInputSessionController 全面改為 MRC 編譯與管理，Swift→ObjC 橋接過程中產生的 autorelease 物件不再有 ARC 自動介入，因此同步進行了下述記憶體管理補強：
-        - 對 IMKSwift.m 內全部 27 個方法進行了 autorelease pool 審計與修復。所有 Swift block dispatch 路徑（`menu`、`composedString:`、`activateServer:` 等）與 IMKTextInput client proxy 路徑（`clientMarkedTextSetupWith:`、`clientTextInsertionWith:` 等）均包裹 `@autoreleasepool`：回傳 ObjC 物件者以 `retain` 保護後 `autorelease` 交還給 IMKServer；void 方法直接包裹以清理 Swift bridge 與 `[client …]` 內部產生的 autorelease 暫存。MRC 下 `@autoreleasepool` 的成本僅是 `objc_autoreleasePoolPush`/`Pop` 兩次函式呼叫，換取每個方法返回後即刻清空 autorelease 暫存的確定性。
-        - 強化了對 IMKServer 內部孤棄 controller 的清理策略：移除 `pruneStaleControllersOnServer:` 的 `count <= 2` 門檻（現改為每次 init 都主動掃描）；驅逐 controller 時一併對其在 `_controllers` dictionary 中的 key（per-controller XPC endpoint/proxy 物件）呼叫 `invalidate`，主動撕掉殘留的 `NSXPCConnection`，連帶釋放 `dispatch_queue_t`、`xpc_connection_t`、`_NSXPCConnectionExpectedReplies` 等全部依附於該連線的 XPC 基礎設施——解決了 CpLk 切換後 Instruments 報告的 `<Call stack limit reached>` XPC 洩漏。
+- 懶人包總結：在辭典資料索引層面進一步節約了記憶體佔用；新增對 CIN v2.7 磁帶表格標準的支援；允許略過特定建置版本的軟體更新通知。
+- 體驗：[所有發行版] 軟體版本更新通知視窗會顯示「略過此版本」按鈕、會叫停與該建置版本編號有關的今後的自動更新通知。略過紀錄以建置編號為依據，下一個建置編號的新版仍會照常提醒；使用者若想重新收到被略過版本的提醒，可手動執行一次「檢查更新」。
+- 體驗：[所有發行版] 優化了原廠辭典資料模組、使用者片語資料模組、磁帶模組的「索引資料」的記憶體佔用，效果拔群。
+- 體驗：[所有發行版] 磁帶模組現適配 CIN v2.7 標準、規定了「花牌鍵（單個或多個連續的萬用通配字元）」與「任意單個通配字元」這兩種不同的通配字元。這將允許行列輸入法的 CIN2 磁帶表格在唯音輸入法內支援「Shift+?」通配字元（僅能匹配一個任意字根），但需要 Gontera 親自更新行列輸入法的 CIN2 磁帶表格檔案。迄今為止的花牌鍵現在也可以作為初始字元鍵入到組筆區內。當磁帶檔案內的定義（無論是功能定義還是資料對應）使得該磁帶會響應「Shift+?」這個按鍵配對時，磁帶模組會在 Quick Candidate（急速候選）模式下停用「Shift+? 呼叫服務選單」的特性。
 - 辭典：[所有發行版] 例行語彙資料更新。
 
 <details>
@@ -58,11 +47,11 @@
 - 本次提供的安裝檔案均已做公證處理。
 - 如果遇到 pkg 安裝包故障的話，請嘗試以「-alternative.zip」結尾的安裝程式。
 
-vChewing-macOS-4.5.7-signed-alternative.zip (個人用戶推薦使用該安裝包)
-f733ab91c337ab9a28479a79c3be72bf732eb549af261f5dd6fb0c7c85ef8e21
+vChewing-macOS-4.6.0-signed-alternative.zip (個人用戶推薦使用該安裝包)
+eef08755e0afa2a2593d3ddb6ecc0436ccc084477abb961a3f1560be0c3f34de
 
-vChewing-macOS-4.5.7-signed.pkg (僅建議 Homebrew 或企業電腦藉由終端機批次部署時使用，部署時請勿使用管理員權限)
-010c3885471bdb31511bf27d7fa50821c9e7b4e9a450d2e2a4ba376b0fa48d27
+vChewing-macOS-4.6.0-signed.pkg (僅建議 Homebrew 或企業電腦藉由終端機批次部署時使用，部署時請勿使用管理員權限)
+c8cb75567fa3ecca24952c935f200f122238eeb552afc2bbc4f71961e1f91925
 
-vChewingAqua-4.5.7-signed.zip (macOS 10.09 ~ 12.x 專用)
-f1ea431a25ed4e15597dfb678251f2ffa66ce722d194be686d0c72785d6878b0
+vChewingAqua-4.6.0-signed.zip (macOS 10.09 ~ 12.x 專用)
+65adcb2296dfcb642dc73756202cb7554404f810054fe4c23a4a53f9d69f7897
