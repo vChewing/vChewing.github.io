@@ -16,8 +16,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.6.3 GM (Aug 27, 2026) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.6.3-Legacy GM (Aug 27, 2026) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.7.0 GM (Aug 30, 2026) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.7.0-Legacy GM (Aug 30, 2026) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -30,6 +30,7 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.7.0] 狂拼模式全面進化（簡拼整詞、替代切分候選、臨時記憶融入語言模型統計）；漢字轉換整合為「當代繁體／康熙／JIS」三態輪替並支援熱鍵；組字引擎的笛卡爾積防禦機制精化。
 - [4.6.3] 拼音打字現可使用狂拼模式（類似於搜狗拼音的體驗）；對修飾鍵變更事件改採放行策略；修補康熙轉換模式惡例。
 - [4.6.2] 改良了對巨型使用者片語檔案與巨型 CIN 磁帶表格檔案的讀寫效率。
 - [4.6.1] 全專案多處子模組重構，藉此提升對記憶體的利用效率、進一步降低輸入法自身的專有記憶體佔用量。
@@ -160,7 +161,7 @@ sort: 1
 3. 逐字選字模式的關聯詞語功能的辭典內容可自訂，也可以直接讀取（UTF-8 格式的）從 Windows XP 的ㄅ半輸入法關聯詞編輯器匯出的辭典檔案。
 4. 支援 macOS 螢幕模擬鍵盤（僅傳統大千與傳統倚天佈局）。
 5. 數字鍵盤區域不會敲出注音來，而是會直接放行＋不作處理（除非有選字窗出現，此時可以作為選字鍵）。
-6. 可以將自己打的繁體中文自動轉成日本 JIS 新字體來輸出（包括基礎的字詞轉換）、也可以轉成康熙繁體來輸出。
+6. 可以用熱鍵在「當代繁體／康熙正體／日本 JIS 新字體」之間循環輪替繁體中文輸出的字形轉換（僅對繁體中文輸出模式有效）。
 7. 簡繁體中文語料庫彼此分離，徹底杜絕任何繁簡轉換過程可能造成的失誤。
 8. 支持近年的全字庫漢字輸入（計畫每年更新一次，也偶爾會有例外）。
 9. 會自行整理使用者片語辭典的內容的格式。
@@ -501,7 +502,7 @@ sudo defaults delete /Library/Preferences/FeatureFlags/Domain/UIKit.plist redesi
 
 ### 問：資料是從哪邊來的？
 
-請參考 libvChewing-data 倉庫內的說明檔案： [GitHub](https://github.com/vChewing/libvchewing-data/) § [Gitee](https://gitee.com/vChewing/libvchewing-data/)。
+請參考 vChewing-VanguardLexicon 倉庫內的說明檔案： [GitHub](https://github.com/vChewing/vChewing-VanguardLexicon/) § [Gitee](https://gitee.com/vChewing/vChewing-VanguardLexicon/)。
 
 ---
 
