@@ -16,7 +16,7 @@ Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與�
 |------|------------|------|-----------|
 | **Homa** | Swift 5+，SwiftPM 模組化 | LGPL-3.0-or-later（含自訂例外） | 次世代輸入法組字引擎，提供游標、覆寫、輪替等上層整合 API |
 | **MegrezNT** | .NET 6+（C#），NuGet 套件 | LGPL-3.0-or-later | 前一代輸入法組字引擎，提供核心 lattice 與候選覆寫能力 |
-| **Gramambular2** | C++17，CMake | MIT | 通用 lattice／語詞分段引擎，重心在讀音插入與最短路徑運算（2026 年 2 月起改採 DAG-DP） |
+| **Gramambular2** | C++17/20，CMake | MIT | 通用 lattice／語詞分段引擎，重心在讀音插入與最短路徑運算（2026 年 2 月起改採 DAG-DP） |
 
 ## Homa 公開 API 與能力摘要
 
@@ -36,7 +36,7 @@ Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與�
 
 ## Gramambular2 公開 API 與能力摘要
 
-- `Formosa::Gramambular2::ReadingGrid` 接受 `LanguageModel`，提供 `insertReading`、`deleteReadingBeforeCursor`／`AfterCursor`、`setCursor`、`walk()`、`candidatesAt`、`overrideCandidate`。
+- `Formosa::Gramambular2::ReadingGrid` 接受 `LanguageModel`，提供 `insertReading`、`deleteReadingBeforeCursor`／`AfterCursor`、`setCursor`、`walk()`、`candidatesAt`、`overrideCandidate`。`walk()` 於 2026-02-02（PR#777）改採 DAG-DP（Viterbi 動態規劃）。
 - `Node` 僅含 `OverrideType`（`kNone`、`kOverrideValueWithHighScore`、`kOverrideValueWithScoreFromTopUnigram`）與 `kOverridingScore = 42` 常數，無節點鏡像或使用者學習回呼。
 - `Span` 使用 `std::array` 管理節點；`ScoreRankedLanguageModel` 將語言模型回傳結果排序。
 - 無游標／標記器概念，GraphViz dump 需自行實作，`walk()` 回傳 `WalkResult`（附計時與節點統計）。
@@ -70,7 +70,7 @@ Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與�
 3. **資料識別**：Homa 使用自訂 `FIUUID`，MegrezNT 以 `Guid`，Gramambular2 無持久節點 ID，改以 lattice 位置辨識。
 4. **候選篩選**：Homa 預設過濾跨游標候選（`CandidateFetchFilter`），Gramambular2 `candidatesAt()` 產出的結果需外部過濾。
 5. **GraphViz 支援**：Homa 內建 LR／TB 選項；Gramambular2 僅在測試中印出計時資訊，GraphViz 需自行實作。
-6. **語言模型依賴**：Homa 支援 bigram provider；MegrezNT 與 Gramambular2 的 `LanguageModel` 僅定義 unigram 介面，bigram 需外部擴充。
+6. **語言模型依賴**：Homa 支援 bigram／trigram provider（4.7.0 起支援 trigram）；MegrezNT 與 Gramambular2 的 `LanguageModel` 僅定義 unigram 介面，bigram 需外部擴充。
 7. **授權與註解風格**：Homa／MegrezNT 為繁中文註解與 LGPL，Gramambular2 為英文註解與 MIT，顯示來源與設計風格迥異。
 
 ## 單元測試對照
@@ -91,4 +91,4 @@ Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與�
   - 若計畫讓 MegrezNT 追上 Swift 版 API，可依表格逐項評估移植成本。
   - 可補強自動化 API 對照（Swift `symbolgraph`, .NET Reflection, C++ `nm`）以利長期追蹤差異。
 
-> 本白皮書彙整自倉庫當前版本：`vChewing-LibVanguard/Sources/_Modules/Homa`、`MegrezNT/Megrez/src`、`!LABS/mcbopomofo/Source/Engine/gramambular2`。如後續版本有重大更新，建議重新驗證。
+> 本白皮書彙整自倉庫當前版本：`vChewing-LibVanguard/Sources/_Modules/Homa`、`MegrezNT/Megrez/src`、`mcbopomofo/Source/Engine/gramambular2`。如後續版本有重大更新，建議重新驗證。

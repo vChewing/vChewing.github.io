@@ -1,18 +1,18 @@
 ---
 sort: 2
 ---
-# 技術白皮書-機器稿 (v4.4.0)
+# 技術白皮書-機器稿 (v4.7.1)
 
-# 唯音 v4.4.0 與小麥注音 v3.0：技術白皮書（重構版）
+# 唯音 v4.7.1 與小麥注音 v3.1：技術白皮書（重構版）
 
-> 資料截取日期：2025-11-11。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）當日狀態整理。
+> 資料截取日期：2026-08-31。小麥注音側依 v3.1（2026-08-23 發行）、唯音側依 v4.7.1（2026-08-31 發行）整理。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）狀態整理。
 
 ## 摘要
 
 - **架構重寫幅度顯著不同**：唯音自 2022 年起以 Swift 為主體重構輸入調度、組字引擎、候選窗與安全模組；小麥注音延續 Objective-C++ / C++ 基建並聚焦效能與穩定維護。
 - **安全模型差異鮮明**：唯音以 macOS Sandbox、浮動組字窗強化模式與可選客體清單阻絕 markedText 洩露；小麥注音保留腳本掛鉤與無沙箱設計，提供高度開放但安全自負的體驗。
-- **語言模組策略分歧**：小麥注音採 Formosa::Gramambular2（原為 DAG-Relax，2026 年 2 月起改為 DAG-DP）搭配 Formosa::Mandarin；唯音自研 Homa（次世代 DAG-DP 組字引擎，前身為 Megrez），針對就地加詞、UTF-8 游標、候選輪替、上下文鞏固與自訂權重做最佳化。
-- **候選窗與 UX**：唯音第三代田所選字窗採前後端分離、支援橫/縱排矩陣與 Unicode 資訊；小麥注音維持 CandidateUI + VoiceOver 支援並提供熱鍵升頻介面。
+- **語言模組策略分歧**：小麥注音採 Formosa::Gramambular2（原為 DAG-Relax，2026 年 2 月（PR#777）起改為 DAG-DP／Viterbi）搭配 Formosa::Mandarin；唯音自研 Homa（次世代 DAG-DP 組字引擎，前身為 Megrez），針對就地加詞、UTF-8 游標、候選輪替、上下文鞏固與自訂權重做最佳化。
+- **候選窗與 UX**：唯音第四代田所選字窗「我修院」採前後端分離、支援橫/縱排矩陣、Unicode 資訊與原生捲動；小麥注音維持 Voltaire（現為 CandidateUI 套件）+ VoiceOver 支援並提供熱鍵升頻／排除介面。
 - **多排列與拼音支援**：Tekkon 引擎提供九種注音排列與六種拼音系統並可同時顯示拼音，遠超 Formosa::Mandarin 的固定排列設計。
 
 ## 歷程年表與版本世代
@@ -41,6 +41,10 @@ sort: 2
 | **效能與體驗優化**<br>4.1.0 | ARC 物件釋放管理優化、POM 防抖機制、羅馬數字輸入、候選字朗讀 | 改善能耗與記憶體管理，新增羅馬數字輸入模式與 VoiceOver 輔助功能。|
 | **Hotenka v2.0 與 CNS 過濾改良**<br>4.3.5 ~ 4.3.7 | Hotenka 繁簡轉換引擎升級至 v2.0（SQLite → StringMap）；CNS 單讀音漢字改降權不濾除；CIN2 磁帶快取與 iCloud 書籤相容修復。 | 提升磁帶模式可靠性，改善沙箱書籤與 macOS 26.4.1 iCloud Drive 相容性。|
 | **Homa 引擎世代**<br>4.4.0 | Megrez → Homa 全面替換；LX_Perceptor 升級；VanguardTrie.TextMapTrie 原廠辭典；拼音無調 auto-chop；LMCoreEX 前綴匹配；多輪長句效能優化。 | 次世代組字引擎落地，拼音模式體驗與效能大幅提升。|
+| **維護與體驗精修**<br>4.4.1～4.4.7 | 4.4.7 偏好設定關鍵字檢索；辭典／組字權重修復；全字庫資料更新。 | 完善 4.4.0 Homa 落地後的體驗細節。|
+| **田所第四代與 IMK 重構**<br>4.5.x | 4.5.1 田所選字窗第四代「我修院」（原生捲動）；空格鍵三態；4.5.5～4.5.7 IMK 交互層全面 MRC 化、純記憶體位址傳遞。 | 解決 CapsLock 快速切換中英輸入法的卡頓與孤棄 controller 記憶體堆積。|
+| **磁帶與記憶體工程**<br>4.6.x | 4.6.0 CIN v2.7 通配字元；4.6.1 記憶體利用效率重構；4.6.2 棄用同捆 SQLite 與 LineReader；4.6.3 狂拼模式首發。 | 磁帶支援「Shift+?」通配字元；狂拼（連續組句）現身。|
+| **狂拼進化與漢字轉換整合**<br>4.7.x | 4.7.0 簡拼整詞、替代切分候選、臨時記憶融入 n-gram、漢字轉換三態（當代繁體／康熙／JIS）、Homa trigram；4.7.1 Intel 效能改良。 | 拼音打字體驗全面升級；康熙／JIS 獨立模式整併為單一轉換模式。|
 
 > 註：表中提交號僅列核心節點；1.3.x～1.9.x 完整 commit 清單請參考 AncientArchive (`1e7459a`~`345c03d`)，2.6.2 以後則可在主倉 `vChewing-macOS` 以 tag 對照。
 
@@ -55,6 +59,10 @@ sort: 2
 - **2025-02-25 — 2.9.1**：修正連打一聲出現句號、偏好設定新增 Shift+Enter 聯想詞選項、加入漢語拼音輸出；詞庫更新（標籤訊息）。
 - **2025-03-04 — 2.9.2**：修復 macOS 15.4 beta 安裝失敗（標籤訊息）。
 - **2025-07-07 — 2.9.3**：新增重複標點循環、候選窗「+」「-」控頻、詞長上限調整為八字、詞庫更新（標籤訊息）。
+- **2025-11-18 — 2.9.4**：新增羅馬數字輸入（Ctrl+\）、選字時 J/K 與 H/L 移動游標／翻頁選項、VoiceOver 朗讀候選字詞、自訂詞可夾空白、破音字與成語詞條增補。
+- **2026-01-05 — 2.9.5**：精簡數字輸入轉換模式、新增以聲調鍵複寫前一字聲調的選項（終端機開啟）、小幅 UI 與詞庫修訂。
+- **2026-03-07 — 3.0**：破音字標記模式（BPMFVS，配合注音字型顯示標音正確的破音字）、Gramambular2 改採 DAG-DP（Viterbi，PR#777）效能提升、最低系統需求調升為 macOS 11。
+- **2026-08-23 — 3.1**：詞庫大幅修訂並擴充注音可用中文字、新增 Shift+\ 快速文字轉換（輸入羅馬拼音輸出日文假名／韓文／泰文等）、「`」鍵漢音式符號輸入、選字窗「?」字元資訊與全字庫查詢、ASCII 式點字輸出、文字服務選單破音字標註、最低系統需求調升為 macOS 13。
 
 ### 唯音（標籤與關鍵提交）
 
@@ -98,6 +106,11 @@ sort: 2
 - **2025-10-29 — 4.0.5**：Megrez 更新至 v5.0.7（放棄 Unigram class 化），修復熱鍵指南故障，對 POM 硬碟寫入施加防抖。
 - **2025-10-30 — 4.0.6**：移除會話控制體系的過激 autoreleasepool 處理，優化先鋒語料庫建置過程。
 - **2025-11-10 — 4.1.0**：修復 ARC 物件釋放管理設計缺陷，引入防抖機制改良能耗，新增羅馬數字輸入模式與候選字朗讀功能，對 macOS 26 停用 Liquid Glass 介面支援。
+- **2026-04-27 — 4.4.0**：Megrez 全面升級為 Homa；LX_Perceptor 升級；VanguardTrie.TextMapTrie 原廠辭典；拼音無調 auto-chop；LMCoreEX 前綴匹配。（4.2.0～4.3.7 之單漢字控頻開關、倚天 DOS 排序開關、CNS 過濾改良等請見歷程年表。）
+- **2026-05-22 — 4.4.7**：偏好設定關鍵字檢索與 4.4 系列收尾修復。
+- **2026-05-24 ～ 2026-07-29 — 4.5.0～4.5.7**：田所選字窗第四代「我修院」（原生捲動）、空格鍵三態、IMK 交互層 MRC 化、CapsLock 切換卡頓與記憶體堆積修復。
+- **2026-08-01 ～ 2026-08-27 — 4.6.0～4.6.3**：CIN v2.7 磁帶通配字元、記憶體利用效率重構、棄用同捆 SQLite／LineReader、狂拼模式首發。
+- **2026-08-30 ～ 2026-08-31 — 4.7.0～4.7.1**：簡拼整詞與替代切分候選、漢字轉換三態輪替、Homa trigram 支援、Intel Mac 效能改良。
 
 ## 背景與定位
 
@@ -105,8 +118,8 @@ sort: 2
 
 | 專案 | 主要語言 | 核心維運者 | 目標系統 | 授權 | 定位 |
 | -- | -- | -- | -- | -- | -- |
-| 小麥注音 (McBopomofo) 3.0 | Objective-C++, C++17, Swift | OpenVanilla 核心團隊 | macOS 11+ | MIT | Formosa::Gramambular2／Formosa::Mandarin 實作、強調穩健與開源協作 |
-| 唯音 (vChewing) 4.4.0 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 13+；Aqua 紀念版支援 10.9 | MIT-NTL | Swift 原生化注音輸入法、專注安全與模組擴展 |
+| 小麥注音 (McBopomofo) 3.1 | Objective-C++, C++17/20, Swift | OpenVanilla 核心團隊 | macOS 13+ | MIT | Formosa::Gramambular2／Formosa::Mandarin 實作、強調穩健與開源協作 |
+| 唯音 (vChewing) 4.7.1 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 13+；Aqua 紀念版支援 10.9 | MIT-NTL | Swift 原生化注音輸入法、專注安全與模組擴展 |
 
 ### 名詞釐清（摘要）
 
@@ -119,13 +132,13 @@ sort: 2
 
 ### 模組對照（概要）
 
-| 面向 | 小麥注音 3.0 | 唯音 4.4.0 | 來源參考 |
+| 面向 | 小麥注音 3.1 | 唯音 4.7.1 | 來源參考 |
 | -- | -- | -- | -- |
 | 輸入訊號 | `KeyHandler` (Objective-C++) + `KeyHandlerInput` (Swift struct) | `InputHandler` (Swift) 直接擴展 `NSEvent` / `KBEvent` | `mcbopomofo/Source/KeyHandler.mm`；`vChewing_MainAssembly/InputHandler_Handle*.swift` |
 | 態械 | `InputState` 類別階層（NSObject） | `IMEState` / `IMEStateData` 單一 struct + protocol | `mcbopomofo/Source/InputState.swift`；`vChewing_MainAssembly/IMEState.swift` |
-| 組字引擎 | Gramambular 2 (C++, 原為 DAG-Relax，2026 年起改為 DAG-DP) | Homa (Swift, DAG-DP；前身 Megrez 3.9 系列曾採強化版 Dijkstra) | `mcbopomofo/Source/Engine/gramambular2`；`vChewing_Megrez` |
+| 組字引擎 | Gramambular 2 (C++, 原為 DAG-Relax，2026 年 2 月（PR#777）起改為 DAG-DP／Viterbi) | Homa (Swift, DAG-DP；前身 Megrez 3.9 系列曾採強化版 Dijkstra) | `mcbopomofo/Source/Engine/gramambular2`；`vChewing_Megrez` |
 | 聲韻並擊 | Formosa::Mandarin (C++) | Tekkon (Swift) | `mcbopomofo/Source/Engine/mandarin`；`vChewing_Tekkon` |
-| 候選窗 | CandidateUI (Swift Cocoa) | 田所選字窗第三代（Cocoa + CoreGraphics，自繪矩陣，前後端分離） | `mcbopomofo/Source/NonModalAlertWindowController.swift` 等；`vChewing_CandidateWindow` |
+| 候選窗 | Voltaire（現為 CandidateUI 套件，Swift Cocoa） | 田所選字窗第四代「我修院」（Cocoa + CoreGraphics，自繪矩陣，原生捲動，前後端分離） | `mcbopomofo/Source/NonModalAlertWindowController.swift` 等；`vChewing_CandidateWindow` |
 | 安全 | 無沙箱；允許就地腳本掛鉤 | macOS Sandbox、浮動組字窗強化模式、客體管理器白名單 | `mcbopomofo/add-phrase-hook.sh`；`vChewing_MainAssembly/InputHandler_HandleSecurity.swift` |
 | 字典 | Parseless LM (TXT) + 使用者詞庫 TXT | VanguardTrie.TextMapTrie 原廠詞庫 + 使用者 TXT，內建整理器 | `LanguageModelManager.mm`；`vChewing_LangModelAssembly` |
 | 監控 | FSEventStream | DispatchSourceFileSystemObject + Actor + Debounce | `Packages/FSEventStreamHelper`；`DanielGalasko_FolderMonitor` 改造 |
@@ -142,7 +155,7 @@ sort: 2
 
 ### 組字與語言模型
 
-- **Gramambular 2**：原採 DAG-Relax，與 Formosa::Mandarin 成熟整合。2026 年 2 月（PR#777）後改採 DAG-DP，與唯音在組字演算法的核心思路殊途同歸、但實作細節相異。
+- **Gramambular 2**：原採 DAG-Relax，與 Formosa::Mandarin 成熟整合。2026 年 2 月 2 日（PR#777，ChiahongHong）後改採 DAG-DP（Viterbi 動態規劃），與唯音在組字演算法的核心思路殊途同歸、但實作細節相異。
 - **Megrez**：幾代演進後於第五代採 DAG-DP（2025 年 10 月 v4.0.0 實裝，早於 Gramambular MK2 隔年 2 月的同類改動），自底向上計分，支援字詞/讀音長度不等、就地標記游標、JSON 行為分析；第四代 Megrez 曾使用自訂優先佇列 Dijkstra 以優化長句效能。
 
 ### 聲韻並擊與拼音
@@ -152,8 +165,8 @@ sort: 2
 
 ### 候選窗與 UI
 
-- 小麥注音：CandidateUI 以 Cocoa 實作、支援 VoiceOver；自 2.9.3 起提供熱鍵升頻，但不支援矩陣佈局與 Unicode 詳情。
-- 唯音：田所選字窗第三代使用 CandidatePool 前後端分離；支援橫/縱排矩陣顯示、Unicode 資訊、CIN 字根反查、右鍵控頻／刪詞、介面字型針對簡繁模式自動切換（需在開發道場啟用）。
+- 小麥注音：Voltaire 選字窗（現以 CandidateUI 套件實作，Swift Cocoa）支援 VoiceOver；自 2.9.3 起提供熱鍵升頻（`+`）與排除（`-`），但不支援矩陣佈局；字元資訊需於選字窗按「?」查詢（3.1 起含 Unihan 資料）。
+- 唯音：田所選字窗第四代「我修院」使用 CandidatePool 前後端分離；支援橫/縱排矩陣顯示、Unicode 資訊、CIN 字根反查、右鍵控頻／刪詞、原生捲動（4.5.1+）、介面字型針對簡繁模式自動切換（需在開發道場啟用）。
   （註：自 v4.2.0 起，針對單個漢字的升權/降頻/排除操作之開關已被移至「偏好設定 → 開發道場」，預設為關閉；當此開關未啟用時，透過輸入法介面對單漢字執行的升頻/降頻/排除操作將被禁用，且使用者片語辭典中已存的單漢字升降頻覆寫亦不會生效。此前啟用過該選項的使用者在升級到該版本時，該選項會被強制取消勾選；使用者可在升級後重新啟用，但後果自負。另自 v4.2.0 起亦新增「對所有單漢字候選字強制施加倚天中文DOS系統排序」開關（預設啟用），將覆蓋打字學習模組對單漢字候選字排序的影響；逐字選字模式仍始終遵循倚天 DOS 排序。）
 
 ### 安全與沙箱
@@ -163,29 +176,29 @@ sort: 2
 
 ## 功能矩陣（節選）
 
-| 功能 | 小麥注音 3.0 | 唯音 4.4.0 | 備註 |
+| 功能 | 小麥注音 3.1 | 唯音 4.7.1 | 備註 |
 | -- | -- | -- | -- |
 | 注音排列 | 大千傳統、倚天傳統、IBM、許氏、倚天 26 | 上述＋神通、(偽)精業、酷音大千 26、星光、劉氏 | 唯音動態排列可因模式調整鍵位 |
-| 拼音 | 單一拼音模式（未提供文件） | 漢語、國音二式、華羅、耶魯、通用、韋氏；並擊提示拼音 |
-| CIN 表格 | ✖️ | ✅（磁帶模式支援 CIN2） |
+| 拼音 | 單一漢語拼音模式（第 6 種鍵盤排列，聲調以數字 1–5 標記，未提供說明文件） | 漢語、國音二式、華羅、耶魯、通用、韋氏；並擊提示拼音；狂拼連續組句（4.6.3+）並支援簡拼整詞（4.7.0+） |
+| CIN 表格 | ✖️ | ✅（磁帶模式支援 CIN2 v2.7） |
 | Emoji 組態 | 原廠 Emoji，無獨立詞頻 | 專屬使用者 Emoji 辭典 + 開關 |
-| 羅馬數字輸入 | ✅（2.10.0+ Ctrl+\\）三種風格：ASCII 小寫、Unicode 大寫、Unicode 小寫 | ✅（4.1.0+ Shift+Cmd+R）1-3999 範圍，Unicode 大小寫 & ASCII 大小寫 | 兩者的實作方式與各自在輸入法當中的集成方式各異，用以呼叫該功能的方法也不一樣。 |
-| 就地加詞/刪詞/控頻 | 只支援加詞 | 加詞、刪詞、升降頻（Shift+Command+Enter 降頻） （註：自 v4.2.0 起，對單個漢字的升權/降頻/排除操作之開關已被移至「偏好設定 → 開發道場」，預設為關閉；當此開關未啟用時，透過輸入法介面對單漢字執行的升頻/降頻/排除操作將被禁用，且使用者片語辭典中已存的單漢字升降頻覆寫亦不會生效。） | 支援詞音不等長 |
-| 選字窗刪詞/控頻 | 鍵盤交互，只支援刪詞、升頻 | 滑鼠右鍵選單刪詞、升降頻（註：自 v4.2.0 起，對單個漢字的升權/降頻/排除操作之開關已移至「偏好設定 → 開發道場」，預設為關閉；未啟用時，使用者片語辭典內對單漢字的覆蓋不再生效。） |  |
-| 候選字朗讀 | ✅（2.9.3+）使用 macOS 系統內建的 SQLite 輔助功能資料庫；僅與 VoiceOver 聯動 | ✅（4.1.0+ 可設定）查詢使用者自訂關聯詞語資料庫 | 唯音沿用了自身本來就有的語音朗讀模組 |
+| 羅馬數字輸入 | ✅（2.9.4+ Ctrl+\\）三種風格：ASCII 小寫、Unicode 大寫、Unicode 小寫 | ✅（4.1.0+ Shift+Cmd+R）1-3999 範圍，Unicode 大小寫 & ASCII 大小寫 | 兩者的實作方式與各自在輸入法當中的集成方式各異，用以呼叫該功能的方法也不一樣。 |
+| 就地加詞/刪詞/控頻 | 就地僅支援加詞；選字窗內可升頻（+）／排除（-） | 加詞、刪詞、升降頻（Shift+Command+Enter 降頻） （註：自 v4.2.0 起，對單個漢字的升權/降頻/排除操作之開關已被移至「偏好設定 → 開發道場」，預設為關閉；當此開關未啟用時，透過輸入法介面對單漢字執行的升頻/降頻/排除操作將被禁用，且使用者片語辭典中已存的單漢字升降頻覆寫亦不會生效。） | 支援詞音不等長 |
+| 選字窗刪詞/控頻 | 鍵盤交互：`+`/`=` 升頻、`-`/`_` 排除（自 2.9.3 起） | 滑鼠右鍵選單刪詞、升降頻（註：自 v4.2.0 起，對單個漢字的升權/降頻/排除操作之開關已移至「偏好設定 → 開發道場」，預設為關閉；未啟用時，使用者片語辭典內對單漢字的覆蓋不再生效。） |  |
+| 候選字朗讀 | ✅（2.9.4+）VoiceOver 可朗讀候選字詞（系統 SQLite 輔助功能資料庫）；「?」鍵選單可主動朗讀（2.7+） | ✅（4.1.0+ 可設定）查詢使用者自訂關聯詞語資料庫 | 唯音沿用了自身本來就有的語音朗讀模組 |
 | CapsLock 強制英文忽略 | ✖️ | ✅ | 顧及微軟新注音習慣 |
 | 候選矩陣 | ✖️ | ✅ 橫/縱排矩陣（田所） |
-| Unicode 資訊 | ✖️ | ✅（田所） |
-| 熱鍵輪替候選 | Shift(+Alt)+Space、Alt+↑/↓ 等 | Shift(+Alt)+Space、Alt+↑/↓（橫）／Alt+←/→（縱） | 唯音納入直書焦點鞏固 |
+| Unicode 資訊 | 「?」鍵字元資訊（3.1 起含 Unihan 名稱／讀音／倉頡／日韓讀音等） | ✅（田所） |
+| 熱鍵輪替候選 | 僅 (Shift+)Tab | Shift(+Alt)+Space、Alt+↑/↓（橫）／Alt+←/→（縱） | 唯音納入直書焦點鞏固；4.5.1 起空格鍵三態（插入空格／呼出選字窗／輪替候選） |
 | Alt 熱鍵佈局切換 | ✅（終端設定） | ✖️（避免 NSMenu 攔截） |
-| 漢音符號 | 部分符號 | 完整漢音符號＋分層符號表（可自訂 `symbols.dat`） |
-| 簡繁支援 | 轉換（OpenCC / VXHanConvert） | 原生繁/簡詞庫 + Hotenka 詞組轉換 + JIS/康熙選項 | 唯音就地加詞跨模式同步 |
-| W3C Ruby | Linux 版支援注音，mac 版無 | 支援注音（教科書式）、漢語拼音 Ruby |
+| 漢音符號 | 自 3.1 起完整漢音式符號輸入（「\`」鍵標點清單，逐鍵對應符號組） | 完整漢音符號＋分層符號表（可自訂 `symbols.dat`） |
+| 簡繁支援 | 轉換（僅 OpenCC，詞組級） | 原生繁/簡詞庫 + Hotenka 詞組轉換 + JIS/康熙選項 | 唯音就地加詞跨模式同步 |
+| W3C Ruby | mac 版自 2.7 起可輸出注音 HTML Ruby（Ctrl+Enter）；Linux 版支援注音；無漢語拼音 Ruby | 支援注音（教科書式）、漢語拼音 Ruby |
 | 日期巨集 | ✅ | ✅（並新增銀行大寫數字等） |
 
 ## 字典與資料管理
 
-- **小麥注音**：Parseless LM 以 TXT 表格儲存，FSEventStream 監控使用者詞庫；就地加詞時執行 `EOF` 修復與可選腳本。
+- **小麥注音**：Parseless LM 以排序 TXT（`data.txt`）儲存，採 memory-mapped 檔案與二分搜尋（C++20，選配 ARM NEON 加速）；FSEventStream 監控使用者詞庫；就地加詞時執行 `EOF` 修復與可選腳本。
 - **唯音**：原廠詞庫採 VanguardTrie.TextMapTrie（排序鍵索引 + 二分搜尋 + 前綴範圍掃描），使用者詞庫仍以 TXT 儲存但由內建整理器重整；學習權重資料以 JSON 保存，可於偏好設定清除；FolderMonitor 透過 Actor + 去抖動防止高頻事件連鎖。
 
 ## 安全與隱私對照
@@ -238,10 +251,10 @@ sort: 2
 
 ## 建議引用格式
 
-- APA：vChewing 專案團隊（2026）。《唯音輸入法技術白皮書（重構版）》版本 4.4.0。取自 https://vchewing.github.io/TechnicalWhitepaper-AIWritten
-- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.4.0, 2026. Web. https://vchewing.github.io/TechnicalWhitepaper-AIWritten
-- Chicago：vChewing Project Team. 2026. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.4.0. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitepaper-AIWritten
+- APA：vChewing 專案團隊（2026）。《唯音輸入法技術白皮書（重構版）》版本 4.7.1。取自 https://vchewing.github.io/TechnicalWhitepaper-AIWritten
+- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.7.1, 2026. Web. https://vchewing.github.io/TechnicalWhitepaper-AIWritten
+- Chicago：vChewing Project Team. 2026. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.7.1. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitepaper-AIWritten
 
 ## 版本註記
 
-- 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 4.4.0。
+- 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 4.7.1；小麥注音側對照 v3.1（2026-08-23）。
