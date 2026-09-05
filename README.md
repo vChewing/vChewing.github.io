@@ -16,8 +16,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.7.3 GM (Sep 5, 2026) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.7.3-Legacy GM (Sep 5, 2026) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.7.3 SP1 (Sep 5, 2026) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.7.3-Legacy SP1 (Sep 5, 2026) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -30,11 +30,15 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.7.3 SP1] 緊急修正了漸退記憶模組「可能把與所打讀音不符的記憶（如同音異調、或字詞與讀音錯位的紀錄）誤套用於組句與選字」的故障。
 - [4.7.3] 半形標點模式行為設計缺陷修正；狂拼模式副駕選字窗排版調整；使用者打字學習資料複用方法有所改良；舊系統相容性改良；支援部分 GBEX 字集。
 - [4.7.2] 狂拼模式體驗精修（未完成讀音敲標點不再蜂鳴、簡拼容錯查詢按詞值去重、重切候選拒絕過大建議）；選字窗讀音消歧義支援漢語拼音顯示。
 - [4.7.1] 狂拼模式副駕選字窗不再響應 Emacs 熱鍵；修復了狂拼模式下與打字學習記憶內容套用有關的行為故障；Intel Mac 效能改良。
 - [4.7.0] 狂拼模式全面進化（簡拼整詞、替代切分候選、臨時記憶融入語言模型統計）；漢字轉換整合為「當代繁體／康熙／JIS」三態輪替並支援熱鍵；組字引擎的笛卡爾積防禦機制精化。
 - [4.6.3] 拼音打字現可使用狂拼模式（類似於搜狗拼音的體驗）；對修飾鍵變更事件改採放行策略；修補康熙轉換模式惡例。
+
+<details>
+<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [4.6.2] 改良了對巨型使用者片語檔案與巨型 CIN 磁帶表格檔案的讀寫效率。
 - [4.6.1] 全專案多處子模組重構，藉此提升對記憶體的利用效率、進一步降低輸入法自身的專有記憶體佔用量。
 - [4.6.0] 在辭典資料索引層面進一步節約了記憶體佔用；新增對 CIN v2.7 磁帶表格標準的支援；允許略過特定建置版本的軟體更新通知。
@@ -43,9 +47,6 @@ sort: 1
 - [4.5.5] 全專案在編譯階段停用 ObjC ARC，藉此試圖解決與 CpLk 輸入法切換「在部分電腦上卡頓」有關的其他極端情形。
 - [4.5.4] 針對「就地輪替候選字詞」的功能引入了「弱輪替」特性；修復了倚天傳統鍵盤佈局無法正常中英混打故障；對調了 VIM 熱鍵「J / K」的行為。
 - [4.5.3] 允許對逐字選字模式強制單行選字窗佈局；允許修改浮動組字窗的字號；ㄅ半懶人包按鈕行為調整。
-
-<details>
-<summary>（點此查看更早的版本的更新記錄概要……）</summary>
 - [4.5.2] 改良了磁帶模組對 CIN / CIN2 輸入法表格檔案的載入速率與記憶體佔用；選字窗滑鼠滾輪行為調整；介面文字調整＆輸入法選單內容順序調整。
 - [4.5.1 SP1] 緊急修復了選字窗在系統尚未啟用暗黑模式的情況下可能會出現的「部分候選字詞的文字顏色與選字窗背景顏色幾乎相同」的故障。
 - [4.5.1] 就地加詞/控頻時不再遲鈍；選字窗現正式支援滑鼠捲動；允許以空格鍵就地輪替候選字；新增ㄅ半模式配置專用懶人包按鈕。
