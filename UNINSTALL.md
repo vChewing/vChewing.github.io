@@ -51,14 +51,14 @@ sort: 5
 	```sh
 	rm -rf ~/Library/Containers/org.atelierInmu.inputmethod.vChewing/Data/Library/Application\ Support/vChewing/
 	rm ~/Library/Containers/org.atelierInmu.inputmethod.vChewing/Data/Library/Application\ Support/vChewing_*.dat
-	## 註：dat 檔案為使用者半衰記憶模組檔案。
-	``` 
+	## 註：dat 檔案為使用者漸退記憶模組檔案。
+	```
 
 4. 自唯音 2.3.0 版開始的原廠預設的資料容器，其中包含使用者片語辭典目錄，請自行決定是否移除：
 	```sh
 	rm -rf ~/Library/Containers/org.atelierInmu.inputmethod.vChewing/
 	## 註：該資料夾的名稱在 Finder (訪達) 當中會顯示為「唯音」或「vChewing」。
-	``` 
+	```
 
 5. 輸入法偏好設定檔案：
 	```sh

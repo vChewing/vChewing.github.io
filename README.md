@@ -16,8 +16,8 @@ sort: 1
 
 | 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.7.2 GM (Aug 31, 2026) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.7.2-Legacy GM (Aug 31, 2026) |
+| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.7.3 GM (Sep 5, 2026) |
+| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.7.3-Legacy GM (Sep 5, 2026) |
 
 - 敝專案的中文名稱從 4.1.3 版開始更名為《唯音輸入法》，因為《威注音輸入法》這個名稱的 SEO 效果太糟糕、在大多數場合下均無法被正常檢索到：檢索結果往往會將「威注音」這個詞頑固地拆成「威」「注音」，導致檢索結果都變成了漢字讀音查詢。
 - 自 3.6.1 版開始，macOS 12 Monterey 為止的 macOS 系統版本的支援將轉交給 Aqua 紀念版。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
@@ -30,6 +30,7 @@ sort: 1
 
 部分近期主打更新內容概要：
 
+- [4.7.3] 半形標點模式行為設計缺陷修正；狂拼模式副駕選字窗排版調整；使用者打字學習資料複用方法有所改良；舊系統相容性改良；支援部分 GBEX 字集。
 - [4.7.2] 狂拼模式體驗精修（未完成讀音敲標點不再蜂鳴、簡拼容錯查詢按詞值去重、重切候選拒絕過大建議）；選字窗讀音消歧義支援漢語拼音顯示。
 - [4.7.1] 狂拼模式副駕選字窗不再響應 Emacs 熱鍵；修復了狂拼模式下與打字學習記憶內容套用有關的行為故障；Intel Mac 效能改良。
 - [4.7.0] 狂拼模式全面進化（簡拼整詞、替代切分候選、臨時記憶融入語言模型統計）；漢字轉換整合為「當代繁體／康熙／JIS」三態輪替並支援熱鍵；組字引擎的笛卡爾積防禦機制精化。
@@ -165,7 +166,7 @@ sort: 1
 5. 數字鍵盤區域不會敲出注音來，而是會直接放行＋不作處理（除非有選字窗出現，此時可以作為選字鍵）。
 6. 可以用熱鍵在「當代繁體／康熙正體／日本 JIS 新字體」之間循環輪替繁體中文輸出的字形轉換（僅對繁體中文輸出模式有效）。
 7. 簡繁體中文語料庫彼此分離，徹底杜絕任何繁簡轉換過程可能造成的失誤。
-8. 支持近年的全字庫漢字輸入（計畫每年更新一次，也偶爾會有例外）。
+8. 支持近年的全字庫漢字輸入（自 v4.7.3 版起亦含 GB18030-2022 擴充 C/D/E/F 生僻字；CNS 資料大概每年更新一次，偶爾會有例外）。
 9. 會自行整理使用者片語辭典的內容的格式。
 10. 可以在敲字時用 Option+前後方向鍵 來以詞組節點為單位迅速移動游標、以 Option+「與前後方向鍵呈 90 度的方向鍵」 來就地輪替候選字（而不用叫出選字窗）、以  Ctrl+Option+前後方向鍵 迅速將游標挪到最後或者最前。
 11. 支援最多十個字的長度的自訂語彙。
@@ -422,7 +423,7 @@ IMK 選字窗是 macOS 內建的 InputMethodKit 輸入法開發套裝模組當�
 
 ### 問：請問有學習常用詞彙的功能嗎？
 
-預設的半衰記憶模組只有不到六天的有效記憶，且會有個別記憶觀測失效導致的「記不住」的情形。想要持久記憶的話，可以隨時用 SHIFT+前後方向鍵 來選中您想要手動記憶的詞彙、再摁 Enter 添入使用者片語辭典。
+預設的漸退記憶模組只有不到六天的有效記憶，且會有個別記憶觀測失效導致的「記不住」的情形。想要持久記憶的話，可以隨時用 SHIFT+前後方向鍵 來選中您想要手動記憶的詞彙、再摁 Enter 添入使用者片語辭典。
 
 ### 幹：不要有莫名其妙的自動選字邏輯，再來說強。
 
