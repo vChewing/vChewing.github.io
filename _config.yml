@@ -1,6 +1,7 @@
 remote_theme: vChewing/jekyll-theme-read-the-docs
-title: [vChewing 唯音]
-description: [恐怕是 截至目前為止 在功能性方面 最強的 第三方免費 macOS 系統專用輸入法]
+title: vChewing 唯音
+description: 恐怕是 截至目前為止 在功能性方面 最強的 第三方免費 macOS 系統專用輸入法
+lang: zh-Hant-TW
 show_downloads: false
 github:
   is_project_page: false
@@ -8,3 +9,8 @@ github:
 readme_index:
   with_frontmatter: true
 show_sorted: false
+
+# 使用站內建置輸出的版面資產（theme.css / theme.js）。
+# 若不設定，版面資產會改從上游 jsDelivr CDN 載入——屆時 vChewing fork 的任何樣式（SCSS）改動都不會生效。
+debug:
+  dist: false
