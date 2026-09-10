@@ -1,6 +1,6 @@
 ---
 layout: default
-title: vChewing 唯音輸入法
+title: 主頁
 sort: 1
 permalink: /README.html
 ---

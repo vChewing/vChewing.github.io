@@ -2,7 +2,7 @@
 sort: 9
 permalink: /ReleaseNotes.html
 ---
-# 發行版本履歷
+# 發行日誌
 
 下文從 v4.1.3 開始都是唯音輸入法的發行履歷。
 
