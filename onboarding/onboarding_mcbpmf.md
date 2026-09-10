@@ -1,0 +1,11 @@
+---
+parent: 新手上路
+sort: 4
+has_toc: true
+permalink: /manual/onboarding_mcbpmf.html
+---
+# 寫給小麥注音輸入法的使用者
+
+關於小麥注音與唯音輸入法在身為注音輸入法的職能上的差異，請洽《[技術白皮書](../techdocs/TechnicalWhitePaper.md)》。
+
+$ EOF.

@@ -21,7 +21,7 @@ has_toc: true
 
 ## 磁帶模式
 
-請參見《[寫給 OpenVanilla 的使用者](./onboarding_ov.md)》一文。
+請參見《[寫給 OpenVanilla 的使用者](../onboarding/onboarding_ov.md)》一文。
 
 ## 客體軟體
 

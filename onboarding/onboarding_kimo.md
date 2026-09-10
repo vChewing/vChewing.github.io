@@ -1,6 +1,6 @@
 ---
-parent: 使用手冊
-sort: 76
+parent: 新手上路
+sort: 6
 has_toc: true
 permalink: /manual/onboarding_kimo.html
 ---

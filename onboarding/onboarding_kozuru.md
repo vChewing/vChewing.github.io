@@ -1,6 +1,6 @@
 ---
-parent: 使用手冊
-sort: 79
+parent: 新手上路
+sort: 9
 has_toc: true
 permalink: /manual/onboarding_kozuru.html
 ---
@@ -10,7 +10,7 @@ permalink: /manual/onboarding_kozuru.html
 
 唯音輸入法的磁帶模式允許掛載 CIN 碼表（磁帶檔案）。然而，因為第三方無權擅自分發小鶴音形的碼表，所以恐怕需要您藉由小鶴音形的官方途徑獲取小鶴音形的 CIN 磁帶檔案。
 
-各位也可以根據 [CIN 目前的標準](../CIN_EVOLUTION.md) 將小鶴官方公開的掛接檔案自行加工成唯音輸入法可用的磁帶檔案。
+各位也可以根據 [CIN 目前的標準](../techdocs/CIN_EVOLUTION.md) 將小鶴官方公開的掛接檔案自行加工成唯音輸入法可用的磁帶檔案。
 
 > ⚠️注意：**請務必確保任何以 # 開頭的註釋行都不可以有半形空格與 Tab 符號的存在**，否則可能會導致唯音將註釋行解析成垃圾資料來讀入。
 

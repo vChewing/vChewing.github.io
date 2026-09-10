@@ -1,6 +1,6 @@
 ---
 title: 使用手冊
-sort: 20
+sort: 5
 has_children: true
 ---
 # 使用手冊

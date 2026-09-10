@@ -1,6 +1,6 @@
 ---
 title: 常見問題
-sort: 7
+sort: 4
 has_children: true
 has_toc: true
 ---

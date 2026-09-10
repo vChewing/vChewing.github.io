@@ -130,3 +130,15 @@ sudo defaults delete /Library/Preferences/FeatureFlags/Domain/UIKit.plist redesi
 ```
 
 以上方法由 Goston 藉由[其 HackMD 網站](https://hackmd.io/@Goston/SJJjkIzvyx)公開分享。
+
+### 問：打字打到一半，輸入法突然不能用了（選單變灰色）？
+
+
+通常是有軟體濫用了 macOS 的安全模式（SecureEventInput）：某些軟體（例如部分密碼管理工具）用完之後忘了關閉，會導致所有第三方輸入法在選單中變灰、無法切換。唯音會主動偵測這種情況、跳通知告訴您是哪一款軟體造成的，讓您不再誤怪輸入法。若不需要此偵測，可在「偏好設定 → 開發道場」關閉。
+
+（macOS 15 起的系統於此情境已有所改善，第三方輸入法較不會被妨礙。）
+
+### 問：我的自訂詞彙突然不見了？
+
+
+4.1.4 版起唯音加強了 Sandbox（沙箱）保護。請至「偏好設定 → 辭典設定 → 使用者資料夾」重新確認路徑是否正確。

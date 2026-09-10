@@ -1,6 +1,6 @@
 ---
-parent: 使用手冊
-sort: 78
+parent: 新手上路
+sort: 8
 has_toc: true
 permalink: /manual/onboarding_goingime.html
 ---

@@ -1,6 +1,6 @@
 ---
-parent: 使用手冊
-sort: 72
+parent: 新手上路
+sort: 2
 has_toc: true
 permalink: /manual/onboarding_pinyinsimp.html
 ---

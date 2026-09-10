@@ -1,6 +1,6 @@
 ---
-parent: 使用手冊
-sort: 71
+parent: 新手上路
+sort: 1
 has_toc: true
 permalink: /manual/onboarding_asus.html
 ---
