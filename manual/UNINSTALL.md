@@ -1,5 +1,7 @@
 ---
-sort: 5
+parent: 使用手冊
+sort: 11
+has_toc: true
 permalink: /UNINSTALL.html
 ---
 # 如何卸除唯音輸入法

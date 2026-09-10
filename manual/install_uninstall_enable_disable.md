@@ -63,6 +63,6 @@ has_toc: true
 
 ## E. 卸除唯音
 
-請參見《[如何卸除唯音輸入法](../UNINSTALL.md)》一文。如果自己看不懂的話，請帶著這篇文章求助 Apple Support，因為他們的專員能看懂。
+請參見《[如何卸除唯音輸入法](./UNINSTALL.md)》一文。如果自己看不懂的話，請帶著這篇文章求助 Apple Support，因為他們的專員能看懂。
 
 $ EOF.

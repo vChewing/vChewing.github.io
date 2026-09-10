@@ -86,7 +86,7 @@ permalink: /README.html
 
 ## 卸載方式 (Uninstall)
 
-請參見《[如何卸除唯音輸入法](./UNINSTALL.md)》一文。必要情況下，你可以持該文章向 Apple Support 求助。
+請參見《[如何卸除唯音輸入法](./manual/UNINSTALL.md)》一文。必要情況下，你可以持該文章向 Apple Support 求助。
 
 ## 常見問題 (FAQ)
 
@@ -96,7 +96,7 @@ permalink: /README.html
 - [故障排除](./faq/troubleshooting.md)——CapsLock 切換延遲、特定軟體相容性、閃退故障等。
 - [技術問答](./faq/technical.md)——沙箱機制、選字原理、資料來源等。
 
-如果這裡沒有您想要的答案，歡迎查閱《[故障提報與用儀器捉蟲](./BUGREPORT.md)》一文。
+如果這裡沒有您想要的答案，歡迎查閱《[故障提報與用儀器捉蟲](./faq/BUGREPORT.md)》一文。
 
 ---
 

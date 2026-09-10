@@ -1,6 +1,6 @@
 ---
 title: 新手上路
-sort: 3
+sort: 4
 has_children: true
 has_toc: true
 permalink: /onboarding/

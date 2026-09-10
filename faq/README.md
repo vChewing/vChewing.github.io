@@ -1,6 +1,6 @@
 ---
 title: 常見問題
-sort: 4
+sort: 5
 has_children: true
 has_toc: true
 ---
@@ -16,4 +16,4 @@ has_toc: true
 2. [故障排除](./troubleshooting.md)——CapsLock 切換延遲、特定軟體相容性、閃退故障……
 3. [技術問答](./technical.md)——沙箱機制、選字原理、資料來源……
 
-如果這裡沒有您想要的答案，歡迎查閱《[故障提報與用儀器捉蟲](../BUGREPORT.md)》一文。
+如果這裡沒有您想要的答案，歡迎查閱《[故障提報與用儀器捉蟲](./BUGREPORT.md)》一文。

@@ -1,5 +1,7 @@
 ---
-sort: 6
+parent: 常見問題
+sort: 4
+has_toc: true
 permalink: /BUGREPORT.html
 ---
 ## 故障提報與用儀器捉蟲

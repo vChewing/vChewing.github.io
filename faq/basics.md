@@ -151,4 +151,4 @@ has_toc: true
 ### 問：安裝後覺得不順手，怎麼完整移除？
 
 
-請見《[如何卸除唯音輸入法](../UNINSTALL.md)》與《[安裝/啟用/切換/停用/卸除](../manual/install_uninstall_enable_disable.md)》。因為 macOS 沙箱（Sandbox）權限限制，卸除時需要在系統設定內手動操作。
+請見《[如何卸除唯音輸入法](../manual/UNINSTALL.md)》與《[安裝/啟用/切換/停用/卸除](../manual/install_uninstall_enable_disable.md)》。因為 macOS 沙箱（Sandbox）權限限制，卸除時需要在系統設定內手動操作。

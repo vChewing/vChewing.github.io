@@ -1,6 +1,6 @@
 ---
 title: 技術文書
-sort: 6
+sort: 7
 has_children: true
 has_toc: true
 permalink: /techdocs/
