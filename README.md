@@ -6,20 +6,12 @@ permalink: /README.html
 ---
 # vChewing 唯音輸入法
 
-> ☕️ **唯音輸入法專案目前正式接收贊助**，將用於年度維護更新、Apple 開發者年費等開銷。所有贊助金僅會被當作餽贈、不對開發者施加任何義務與合約。
-> 您可以[藉由 Patreon 贊助](https://www.patreon.com/c/ShikiSuen)；其他渠道（微信／支付寶／Wise 等）與配樂製作／編曲等外包合作機會，請[點此詳閱贊助方式](./SPONSOR_ME.md)。
+> ☕️ **唯音輸入法專案目前[正在接收贊助](./SPONSOR_ME.md)**，將用於年度維護更新、Apple 開發者年費等開銷。
 
-| 作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
+| 發行版與作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
-| macOS (13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/) | 4.7.4 GM (Sep 8, 2026) |
-| macOS (10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.7.4-Legacy GM (Sep 8, 2026) |
-
-- 如欲了解針對主流發行版與 Aqua 紀念版的區分方式，請[點閱此文](./techdocs/AQUASPECIAL.md)。請留意上述表格內的不同發行版本分支對應的作業系統範圍。
-- 歡迎關注唯音輸入法的 SNS 專頁： [Twitter](https://twitter.com/vChewingIME) § [Patreon](https://www.patreon.com/c/ShikiSuen) 。
-- 請參閱《[鍵盤熱鍵使用手冊](./manual/shortcuts.md)》以提升該輸入法的使用效率。
-- 另有[熱心網友製作的 Homebrew-Cask 安裝方式](https://github.com/windwords/homebrew-vchewing)可用。
-
-> **⚠️**：如果您發現了其他與輸入法有關的故障，歡迎**[電郵提報](./BUGREPORT.md)**。
+| 主流發行版<br />(macOS 13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.7.4 GM<br />(Sep 8, 2026) |
+| [Aqua 紀念版](./techdocs/AQUASPECIAL.md)<br />(macOS 10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.7.4-Legacy GM<br />(Sep 8, 2026) |
 
 ## 產品介紹 (Intro)
 
@@ -111,3 +103,5 @@ permalink: /README.html
 Copyright (c) 2021 and onwards The vChewing Project (MIT-NTL License).
 
 Authors (macOS 版): [GitHub](https://github.com/vChewing/vChewing-macOS/blob/main/AUTHORS) § [Gitee](https://gitee.com/vChewing/vChewing-macOS/blob/main/AUTHORS) § [中文](./techdocs/AUTHORS.md)。
+
+- [Twitter](https://twitter.com/vChewingIME) § [Patreon 贊助](https://www.patreon.com/c/ShikiSuen) 。
