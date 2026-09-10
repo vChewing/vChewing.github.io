@@ -1,5 +1,7 @@
 ---
-sort: 8
+parent: 技術文書
+sort: 3
+has_toc: true
 permalink: /AUTHORS.html
 ---
 ## 研發參與者清單

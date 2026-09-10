@@ -1,5 +1,7 @@
 ---
-sort: 4
+parent: 技術文書
+sort: 1
+has_toc: true
 permalink: /CIN_EVOLUTION.html
 ---
 # CIN 標準（v2.7）

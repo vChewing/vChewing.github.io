@@ -1,5 +1,7 @@
 ---
-sort: 92
+parent: 技術文書
+sort: 5
+has_toc: true
 permalink: /TechnicalWhitePaper-AIWritten.html
 ---
 # 技術白皮書-機器稿 (v4.7.1)

@@ -1,5 +1,7 @@
 ---
-sort: 10
+parent: 技術文書
+sort: 4
+has_toc: true
 permalink: /WHITEPAPER_Homa_MegrezNT_Gramambular2.html
 ---
 # Homa vs. MegrezNT vs. Gramambular2 Whitepaper

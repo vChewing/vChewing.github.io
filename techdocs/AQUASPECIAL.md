@@ -1,5 +1,7 @@
 ---
-sort: 6
+parent: 技術文書
+sort: 2
+has_toc: true
 permalink: /AQUASPECIAL.html
 ---
 ## 如何區別主流發行版與 Aqua 紀念版

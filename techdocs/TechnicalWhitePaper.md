@@ -1,5 +1,7 @@
 ---
-sort: 93
+parent: 技術文書
+sort: 6
+has_toc: true
 permalink: /TechnicalWhitePaper.html
 ---
 # 技術白皮書-手工稿 (v4.7.1)
