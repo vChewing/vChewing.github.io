@@ -1,5 +1,6 @@
 ---
 sort: 3
+permalink: /TechnicalWhitePaper.html
 ---
 # 技術白皮書-手工稿 (v4.7.1)
 

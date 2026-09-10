@@ -2,6 +2,7 @@
 parent: 使用手冊
 sort: 75
 has_toc: true
+permalink: /manual/onboarding_array30.html
 ---
 # 寫給行列三十輸入法的使用者
 

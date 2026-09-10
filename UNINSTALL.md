@@ -1,5 +1,6 @@
 ---
 sort: 5
+permalink: /UNINSTALL.html
 ---
 # 如何卸除唯音輸入法
 

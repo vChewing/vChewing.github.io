@@ -1,5 +1,6 @@
 ---
 sort: 6
+permalink: /BUGREPORT.html
 ---
 ## 故障提報與用儀器捉蟲
 

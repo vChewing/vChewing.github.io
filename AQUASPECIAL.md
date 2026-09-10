@@ -1,5 +1,6 @@
 ---
 sort: 6
+permalink: /AQUASPECIAL.html
 ---
 ## 如何區別主流發行版與 Aqua 紀念版
 

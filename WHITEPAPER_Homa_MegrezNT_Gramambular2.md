@@ -1,5 +1,6 @@
 ---
 sort: 10
+permalink: /WHITEPAPER_Homa_MegrezNT_Gramambular2.html
 ---
 # Homa vs. MegrezNT vs. Gramambular2 Whitepaper
 

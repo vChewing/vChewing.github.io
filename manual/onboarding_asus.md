@@ -2,6 +2,7 @@
 parent: 使用手冊
 sort: 71
 has_toc: true
+permalink: /manual/onboarding_asus.html
 ---
 # 寫給華碩輸入法的使用者
 

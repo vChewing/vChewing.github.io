@@ -1,5 +1,6 @@
 ---
 sort: 8
+permalink: /AUTHORS.html
 ---
 ## 研發參與者清單
 

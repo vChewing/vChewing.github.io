@@ -2,6 +2,7 @@
 parent: 使用手冊
 sort: 74
 has_toc: true
+permalink: /manual/onboarding_mcbpmf.html
 ---
 # 寫給小麥注音輸入法的使用者
 

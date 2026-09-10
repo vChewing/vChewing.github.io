@@ -2,6 +2,7 @@
 parent: 使用手冊
 sort: 72
 has_toc: true
+permalink: /manual/onboarding_pinyinsimp.html
 ---
 # 寫給搜狗拼音/昇陽拼音/智能狂拼/紫光拼音的使用者
 

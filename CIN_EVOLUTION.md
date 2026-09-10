@@ -1,5 +1,6 @@
 ---
 sort: 4
+permalink: /CIN_EVOLUTION.html
 ---
 # CIN 標準（v2.7）
 

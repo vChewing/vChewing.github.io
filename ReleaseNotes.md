@@ -1,5 +1,6 @@
 ---
 sort: 9
+permalink: /ReleaseNotes.html
 ---
 # 發行版本履歷
 

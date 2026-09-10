@@ -1,5 +1,6 @@
 ---
 sort: 2
+permalink: /TechnicalWhitePaper-AIWritten.html
 ---
 # 技術白皮書-機器稿 (v4.7.1)
 

@@ -2,6 +2,7 @@
 parent: 使用手冊
 sort: 77
 has_toc: true
+permalink: /manual/onboarding_hanin.html
 ---
 # 寫給漢音輸入法使用者
 

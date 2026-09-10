@@ -2,6 +2,7 @@
 layout: default
 title: vChewing 唯音輸入法
 sort: 1
+permalink: /README.html
 ---
 # vChewing 唯音輸入法
 

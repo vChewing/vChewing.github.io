@@ -1,5 +1,6 @@
 ---
 sort: 2
+permalink: /SPONSOR_ME.html
 ---
 # 如何贊助唯音輸入法的開發
 
