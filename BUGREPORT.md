@@ -11,7 +11,8 @@ sort: 6
 - 當前電腦的機種特徵資訊：是 MacBook Pro / Air / Mac mini 還是……？具體哪一年哪一月開賣的機種？等。
 - 當前在用的注音排列或者拼音種類。
 - 在用的鍵盤特徵（佈局語種、是否有小鍵盤、還比如說是否是 ThinkPad USB Keyboard，等）。
-- 系統的 `~/Library/Logs/DiagnosticReports/` 目錄及子目錄下有沒有事發時產生的以「vChewing」開頭的 ips 檔案？有的話也請打包電郵過來。
+- 從輸入法的開發道場匯出一份用以承載您當前輸入法偏好設定的 JSON 資料檔。
+- 系統的 `~/Library/Logs/DiagnosticReports/` 目錄及子目錄下有沒有事發時產生的以「vChewing」開頭的 ips 檔案？比如以「vChewing-案發日期年-月-日-案發時間戳.ips」格式命名的檔案。有的話也請務必打包電郵過來。
 
 ### 用儀器捉蟲
 
