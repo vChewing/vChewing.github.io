@@ -14,3 +14,7 @@ show_sorted: false
 # 若不設定，版面資產會改從上游 jsDelivr CDN 載入——屆時 vChewing fork 的任何樣式（SCSS）改動都不會生效。
 debug:
   dist: false
+
+# 站內字樣自訂（覆蓋 theme 內建 i18n 文字：此處設定檢索框的佔位字）
+translate:
+  search_docs: 檢索
