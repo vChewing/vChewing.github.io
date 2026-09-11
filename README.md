@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 主頁
+title: 軟體主頁
 sort: 1
 permalink: /README.html
 autohide_article_chapter_index: true
@@ -73,10 +73,7 @@ hide_breadcrumbs: true
 
 <centerbox markdown="block">
 
-| 發行版與作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
-|-------|----|----|----|----|
-| 主流發行版<br />(macOS 13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.7.4 GM<br />(Sep 8, 2026) |
-| [Aqua 紀念版](./techdocs/AQUASPECIAL.md)<br />(macOS 10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.7.4-Legacy GM<br />(Sep 8, 2026) |
+[⬇️ 點此下載唯音輸入法](./Downloads.md){: .cta-button}
 
 > ☕️ **唯音輸入法專案目前[正在接收贊助](./SPONSOR_ME.md)**，將用於年度維護更新、Apple 開發者年費等開銷。
 

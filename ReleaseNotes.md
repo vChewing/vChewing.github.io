@@ -1,5 +1,5 @@
 ---
-sort: 3
+sort: 4
 permalink: /ReleaseNotes.html
 ---
 # 發行日誌

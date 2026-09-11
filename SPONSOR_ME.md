@@ -1,5 +1,5 @@
 ---
-sort: 2
+sort: 3
 title: 贊助開發
 permalink: /SPONSOR_ME.html
 ---
