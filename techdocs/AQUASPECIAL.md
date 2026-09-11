@@ -13,7 +13,7 @@ permalink: /AQUASPECIAL.html
   - 採最新 Xcode 與最新的 macOS SDK 建置（除非最新版 SDK 有 Bug）。
   - 部分軟體功能會利用到最新版系統的特性（比如 SwiftUI 等）。
   - 有同時提供 pkg 與 app 版安裝程式。
-  - 輸入法選單圖示是圓角長方形「简ㄋ」「繁ㄋ」、符合 macOS 13 Ventura 開始的設計風格。
+  - 輸入法選單圖示是圓角長方形「简唯」「繁唯」、符合 macOS 13 Ventura 開始的設計風格。
 - Aqua 紀念版：
   - 支援 macOS 10.9 Mavericks 以來的所有 macOS。
   - 採盡可能最新版 Xcode 建置，但有做過 libArcLite 修補（相關檔案取自 Xcode 14.2.0）。
