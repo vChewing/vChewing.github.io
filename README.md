@@ -79,6 +79,52 @@ hide_breadcrumbs: true
 
 </centerbox>
 
+<cardset markdown="block">
+
+<centerbox>
+<cardset_title>為什麼唯音值得您選擇</cardset_title>
+
+<cardset_subtitle>市面上注音輸入法那麼多，但您總有一條理由選擇唯音輸入法。</cardset_subtitle>
+</centerbox>
+
+<card markdown="block">
+
+<card_title>資訊安全</card_title>
+
+唯音敢於開啟 App Sandbox，拒絕引入「加詞之後執行 shell 腳本」等危險設計，不會主動聯網，更容易符合大公司對第三方輸入法的資安審查要求。唯音更允許使用者啟用強化型組字區安全防護，防止網頁提前讀取您的內文組字區的內容來做擅自的互動，保護您的打字節奏與私隱。
+
+![資訊安全](./assets/Cards_WhyUseMe_ITSecurity.png)
+
+</card>
+<card markdown="block">
+
+<card_title>更聰明強大的獨家引擎</card_title>
+
+護摩組字引擎原生支援游標跳轉、候選字詞輪替。漸退記憶模組基於野獸曲線記錄學習您的打字行為，直接將多元圖資料提供給護摩引擎來利用，在您的電腦上原湯化原食。齊鐵恨注拼引擎使得唯音的打字體驗同時支援六種拼音方案、至少五種靜態注音鍵盤佈局、五種動態注音鍵盤佈局。這些均有縝密的單元測試來檢證。
+
+![更聰明強大的引擎](./assets/Cards_WhyUseMe_CleverIntelligentEngines.png)
+
+</card>
+<card markdown="block">
+
+<card_title>更豐富細膩的偏好設定配置</card_title>
+
+唯音獨家的田所選字窗可重現微軟新注音那樣的多欄選字窗佈局，更遑論 macOS 內建注音的多列選字窗佈局。唯音亦有更多細膩的產品體驗細節供您探索。不同的輸入法使用者們的習慣眾口難調。唯音輸入法提供上百條偏好設定選項，允許您深度客製化您的打字體驗。
+
+![更豐富細膩的偏好設定配置](./assets/Cards_WhyUseMe_NeutrientOptionsOfPrefs.png)
+
+</card>
+<card markdown="block">
+
+<card_title>我用小麥/香草/奇摩就很好用</card_title>
+
+每個人的取捨各異。但如果您對唯音不了解的話，GitHub 原始碼倉庫都是公開的，用 Claude Fable 都翻一遍，交叉比對便知。另：mac 上其實沒有「香草注音」。香草框架本身不提供注音引擎；桌面端被叫做「香草注音」的，是新酷音引擎接上香草框架的產物（OVIMChewing，2010 年前已停止維護）。您習慣的那種「香草注音」打字體驗，來自新酷音團隊。
+
+![我用小麥/香草/奇摩就很好用](./assets/Cards_WhyUseMe_IAmStillUsingOVProducts.png)
+
+</card>
+</cardset>
+
 ## 產品介紹 (Intro)
 
 該輸入法恐怕是截至目前為止**在功能多樣性方面**最強的第三方免費 macOS 系統專用輸入法，採純 Swift 語言寫就。唯音的原廠詞庫同時兼顧兩岸各自的審音和讀音習慣。唯音的著力點不是去想著怎麼用指針，而是盡可能在力所能及的範圍內將整個產品的功能做得更好用。
