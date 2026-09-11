@@ -1,6 +1,6 @@
 ---
 sort: 3
-title: 贊助開發
+title: 贊助
 permalink: /SPONSOR_ME.html
 ---
 # 如何贊助唯音輸入法的開發

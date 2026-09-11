@@ -1,5 +1,5 @@
 ---
-title: 軟體下載
+title: 下載
 sort: 2
 permalink: /Downloads.html
 autohide_article_chapter_index: true

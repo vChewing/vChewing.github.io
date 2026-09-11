@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 軟體主頁
+title: 主頁
 sort: 1
 permalink: /README.html
 autohide_article_chapter_index: true
