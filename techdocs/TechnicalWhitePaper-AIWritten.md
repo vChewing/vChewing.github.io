@@ -127,7 +127,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 ### 名詞釐清（摘要）
 
 - **OpenVanilla 框架**：CIN 系統輸入法集合，現已不再綁定香草注音模組。
-- **香草注音 (SpaceChewing)**：新酷音移植，不屬於小麥注音支線。
+- **香草注音 (SpaceChewing / OVIMChewing)**：新酷音移植，不屬於小麥注音支線。
 - **奇摩輸入法**：Zonble / Lukhnos 於商業案打造，奠定 OVMandarin + Gramambular 早期實作。
 - **LibFormosa**：提供 OVMandarin MK1 與 Gramambular MK1 引擎，是小麥注音語言模組核心。
 

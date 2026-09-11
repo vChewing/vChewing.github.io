@@ -26,7 +26,7 @@ permalink: /TechnicalWhitePaper.html
 > OpenVanilla 團隊有三套產品，但很多 OpenVanilla 早期產品使用者會將這些產品搞混。如果算上團隊骨幹的同期的商業作品的話，則還要加算石磬軟體開發的奇摩輸入法。
 >
 > - OpenVanilla 輸入法框架：以 CIN 表格為主的輸入法框架。該框架的早期版本會同捆香草注音（下文會提到），但後來香草注音模組被停止維護、就沒再被同捆入 OpenVanilla。OpenVanilla 旗下的組句型注音輸入法的職責由後來被 MJHsieh 發起的小麥注音專案繼任。
-> - 香草注音（SpaceChewing）：新酷音輸入法模組被 Zonble 等人移植到 OpenVanilla 框架上的形態。香草注音身為注音輸入法而言的所有程式碼著作權均屬於新酷音專案，OpenVanilla 團隊僅擁有移植工作的著作權。除了可能會共用相同款式的安裝程式以外，這個專案與小麥注音連一根毛的關係都沒有。
+> - 香草注音（SpaceChewing / OVIMChewing）：新酷音輸入法模組被 Zonble 等人移植到 OpenVanilla 框架上的形態。香草注音身為注音輸入法而言的所有程式碼著作權均屬於新酷音專案，OpenVanilla 團隊僅擁有移植工作的著作權。除了可能會共用相同款式的安裝程式以外，這個專案與小麥注音連一根毛的關係都沒有。
 > - 奇摩輸入法：Zonble 與 Lukhnos Liu 二人開設石磬軟體公司，成為了雅虎奇摩的輸入法外包開發商，開發了奇摩輸入法。奇摩輸入法使用由 Sinica Corpus 生成的 Bigram 語料庫。此期間 Lukhnos 完成了 OVMandarin MK1 注拼引擎與 Manjusri（文殊）組字引擎的開發。文殊引擎採貪婪組句算法。後來，Lukhnos 完成了開源的 Gramambular MK1 組字引擎的第一代版本的開發，將該組字引擎與 OVMandarin MK1 合併為 LibFormosa 開發套件。
 > - 小麥注音一開始是 MJHsieh 在 2011 年開發的個人作品（Zonble 從這時起就有參與）。該輸入法被視為 LibFormosa 開發套件的典型輸入法開發實踐。後來，小麥注音被併入 OpenVanilla。小麥注音真正開始進入堪用期則是 2022 年，此期間 Lukhnos Liu 為小麥注音完成了 Formosa::Mandarin（注拼引擎）與 Gramambular MK2 的開發、以享受近代 C++ 版本所帶來的便利。Gramambular MK2 改採 DAG-Vertex Topological 排序鬆弛算法來組句，以因應貪婪組句算法在效能上的先天不足。再到 2026 年 2 月初，Chiahong 的 [PR#777](https://github.com/openvanilla/McBopomofo/pull/777) 給 Gramambular MK2 更換到了 DAG-DP 算法、但用的是他們自己的探索實作方式。
 >
