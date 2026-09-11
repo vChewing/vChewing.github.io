@@ -8,11 +8,7 @@ permalink: /AUTHORS.html
 
 唯音只聲稱過「截至目前為止在功能多樣性方面最強的第三方免費 macOS 系統專用輸入法」。
 
-本文針對唯音 4.2.2 的情況做過修訂。
-
-### macOS 版唯音專案目前僅用到 OpenVanilla for Mac 的下述程式組件（MIT License）：
-
-- Aqua 紀念版限定：僅供研發人員調試方便而使用的 App 版安裝程式 (by Lukhnos Liu & MJHsieh)，不對公眾使用。
+本文針對唯音 4.7.4 的情況做過修訂。
 
 ### macOS 版唯音專案也使用了下述第三方模組：
 
@@ -28,7 +24,7 @@ permalink: /AUTHORS.html
   - 也製作了唯音目前的介面語言切換系統（XIB 版本）。
 - Isaac Xen (僅參與唯音 v1.x):
   - 唯音早期版本的音效系統研發。
-  - 針對 Swift 語言的 StringView 擴展（該技術現用於使用者自訂語彙檔案的快速讀取）。
+  - 唯音前期版本針對 Swift 語言的 StringView 擴展（該技術用於使用者自訂語彙檔案的快速讀）。
 
 ### 特別鳴謝:
 
