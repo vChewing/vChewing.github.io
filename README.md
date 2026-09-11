@@ -3,6 +3,7 @@ layout: default
 title: 主頁
 sort: 1
 permalink: /README.html
+autohide_article_chapter_index: true
 ---
 # vChewing 唯音輸入法
 
