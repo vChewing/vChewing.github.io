@@ -4,6 +4,7 @@ title: 主頁
 sort: 1
 permalink: /README.html
 autohide_article_chapter_index: true
+autocollapse_h2_sections: true
 hide_breadcrumbs: true
 ---
 <centerbox>
@@ -102,7 +103,7 @@ hide_breadcrumbs: true
 
 如果這裡沒有您想要的答案，歡迎查閱《[故障提報與用儀器捉蟲](./faq/BUGREPORT.md)》一文。
 
----
+## 著作權與網站 (Copyright and Website)
 
 Copyright (c) 2021 and onwards The vChewing Project (MIT-NTL License).
 
