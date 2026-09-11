@@ -19,7 +19,7 @@ hide_breadcrumbs: true
 <cardset markdown="block">
 
 <centerbox>
-<cardset_title>你的打字習慣 照樣承襲</cardset_title>
+<cardset_title>您的打字習慣 照樣承襲</cardset_title>
 
 <cardset_subtitle>遠遠不止有大千聲韻並擊組句注音打字體驗：唯音輸入法可應對不同的打字習慣，只需您做出對應的配置。</cardset_subtitle>
 </centerbox>
@@ -121,7 +121,7 @@ hide_breadcrumbs: true
 13. 會自行整理使用者片語辭典的內容的格式。
 14. 可以在敲字時用 Option+前後方向鍵 來以詞組節點為單位迅速移動游標、以 Option+「與前後方向鍵呈 90 度的方向鍵」 來就地輪替候選字（而不用叫出選字窗）、以  Ctrl+Option+前後方向鍵 迅速將游標挪到最後或者最前。
 15. 支援最多十個字的長度的自訂語彙。
-16. 在用「Shift+前後方向鍵」選中組字區內的詞語範圍時，你除了可以就地加詞以外，還可以就地刪詞（會放入語彙排除表內）。
+16. 在用「Shift+前後方向鍵」選中組字區內的詞語範圍時，您除了可以就地加詞以外，還可以就地刪詞（會放入語彙排除表內）。
 17. 允許使用者片語辭典內的讀音以「漢語拼音+數字標調」的方式記錄（會被自動辨識）。
 18. 繪文字不會干擾到選字長度上限與下限的判斷。
 19. 可用 Ctrl+Option+Command+Enter 輸出符合教科書書寫規範的網頁 ruby 文字標記（注音/漢語拼音）的 HTML 內容。如果是 Ctrl+Command+Enter 的話，只會輸出非教科書標準的注音/漢語拼音。
@@ -142,7 +142,7 @@ hide_breadcrumbs: true
 
 ## 卸載方式 (Uninstall)
 
-請參見《[如何卸除唯音輸入法](./manual/UNINSTALL.md)》一文。必要情況下，你可以持該文章向 Apple Support 求助。
+請參見《[如何卸除唯音輸入法](./manual/UNINSTALL.md)》一文。必要情況下，您可以持該文章向 Apple Support 求助。
 
 ## 常見問題 (FAQ)
 
