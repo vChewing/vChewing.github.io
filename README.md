@@ -4,21 +4,32 @@ title: 主頁
 sort: 1
 permalink: /README.html
 autohide_article_chapter_index: true
+hide_breadcrumbs: true
 ---
-# vChewing 唯音輸入法
+<centerbox>
+<carousel timesec=9>
+<carousel_title>唯音輸入法 for macOS</carousel_title>
+<carousel_subtitle>唯音輸入法是 macOS 最安全、功能最完整的副廠中文注音/拼音輸入法。</carousel_subtitle>
+![就地加詞](./assets/Carousel_InPlacePhraseOps.gif)
+![拼音打字](./assets/Carousel_TypingPinyin.gif)
+![注音打字](./assets/Carousel_TypingZhuyin.gif)
+</carousel>
+</centerbox>
 
-> ☕️ **唯音輸入法專案目前[正在接收贊助](./SPONSOR_ME.md)**，將用於年度維護更新、Apple 開發者年費等開銷。
+<centerbox markdown="block">
 
 | 發行版與作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |-------|----|----|----|----|
 | 主流發行版<br />(macOS 13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.7.4 GM<br />(Sep 8, 2026) |
 | [Aqua 紀念版](./techdocs/AQUASPECIAL.md)<br />(macOS 10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.7.4-Legacy GM<br />(Sep 8, 2026) |
 
+> ☕️ **唯音輸入法專案目前[正在接收贊助](./SPONSOR_ME.md)**，將用於年度維護更新、Apple 開發者年費等開銷。
+
+</centerbox>
+
 ## 產品介紹 (Intro)
 
 該輸入法恐怕是截至目前為止**在功能多樣性方面**最強的第三方免費 macOS 系統專用輸入法，採純 Swift 語言寫就。唯音的原廠詞庫同時兼顧兩岸各自的審音和讀音習慣。唯音的著力點不是去想著怎麼用指針，而是盡可能在力所能及的範圍內將整個產品的功能做得更好用。
-
-![](assets/Demonstration.jpg)
 
 唯音的幾個產品目標：
 
