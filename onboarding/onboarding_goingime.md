@@ -12,6 +12,8 @@ permalink: /manual/onboarding_goingime.html
 
 這套工具是 CLI 工具，需要用 git 工具克隆到您的電腦來使用。
 
+> 不知道怎麼使用 CLI 工具的話，可以花錢找電腦維修公司的工程師們幫你操作，或者你用 Claude / Gemini / Codex 等 LLM 代勞（但後果自負）。
+
 - macOS 系統下的話，clone 完畢之後，在確保系統已經安裝至少 Swift 6.1（或至少 Xcode 15.x）。然後，在專案倉庫目錄下直接運行 `swift run ncidump dumpall`。
 - Windows 系統下的話，請安裝至少 .NET 10。之後，在專案倉庫目錄內的 `WinNT` 目錄下運行 `dotnet run --project WinNT/NCIUserDBCLI -- dumpall`。
 

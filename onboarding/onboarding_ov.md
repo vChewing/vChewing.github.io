@@ -4,7 +4,7 @@ sort: 3
 has_toc: true
 permalink: /manual/onboarding_ov.html
 ---
-# 寫給 OpenVanilla 的使用者
+# 寫給 OpenVanilla 等 CIN 輸入法的的使用者
 
 > 本文提及的 OpenVanilla 最新版本為 1.6.4 版（2022-04-25）。
 
