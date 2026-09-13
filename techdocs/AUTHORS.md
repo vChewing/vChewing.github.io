@@ -29,4 +29,4 @@ permalink: /AUTHORS.html
 ### 特別鳴謝:
 
 - 所有對唯音輸入法的研發給予過精神鼓勵的人士們。
-- PanStar 與 Ryan Wu 對唯音的宣傳支援。
+- 下述熱心人士對唯音的宣傳支援：「PanStar」「Ryan Wu」「Will 保哥」等。
