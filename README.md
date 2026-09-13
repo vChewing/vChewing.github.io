@@ -184,7 +184,7 @@ hide_breadcrumbs: true
 
 ## 軟體授權 (License)
 
-本專案採用 MIT-NTL License 釋出，使用者可自由使用、散播本軟體，惟散播時必須保持軟體完整、不得修改版權文字。如若在此基礎上做出修改版軟體的話，除非唯音專案書面允許，否則請勿使用唯音（vChewing）的產品名稱（包括《唯音輸入法》的前身《威注音》產品名稱）。詳細資料請洽程式碼倉庫內的各種 Markdown 說明檔案（包含部分不在本頁面列出的 FAQ 常見問題解答）。
+本專案採用木蘭寬鬆授權條款第 2 版（MulanPSL-2.0）釋出，全文見 `vChewing-macOS` 倉庫的 `LICENSE.txt`。使用者可自由使用、散播本軟體，惟散播時必須保持軟體完整、不得修改版權文字。木蘭寬鬆授權條款第 2 版第 3 條不提供商標許可，故如若在此基礎上做出修改版軟體的話，除非唯音專案書面允許，否則請勿使用唯音（vChewing）的產品名稱（包括《唯音輸入法》的前身《威注音》產品名稱）。另請注意：唯音的核心引擎模組群（含護摩組字引擎 Homa）以 LGPLv3 授權釋出，且對 Swift 靜態鏈接之情形有額外准許。詳細資料請洽程式碼倉庫內的各種 Markdown 說明檔案（包含部分不在本頁面列出的 FAQ 常見問題解答）。
 
 ## 卸載方式 (Uninstall)
 
@@ -202,7 +202,7 @@ hide_breadcrumbs: true
 
 ## 著作權與網站 (Copyright and Website)
 
-Copyright (c) 2021 and onwards The vChewing Project (MIT-NTL License).
+Copyright (c) 2021 and onwards The vChewing Project (MulanPSL-2.0 License).
 
 Authors (macOS 版): [GitHub](https://github.com/vChewing/vChewing-macOS/blob/main/AUTHORS) § [Gitee](https://gitee.com/vChewing/vChewing-macOS/blob/main/AUTHORS) § [中文](./techdocs/AUTHORS.md)。
 

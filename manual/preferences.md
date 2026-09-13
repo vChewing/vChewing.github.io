@@ -65,8 +65,8 @@ has_toc: true
 | 捐贈訊息 | 請考慮對敝專案捐贈，詳情 https://vchewing.github.io |
 | 著作權標籤 | 著作權聲明 |
 | 研發成員 | 唯音 macOS 程式研發、詞庫維護、DAG-DP 組句算法實作等資訊 |
-| 授權合約 | 麻理去商標授權合約（MIT-NTL License），可捲動閱讀並選取文字 |
-| 免責補記 | Homa 組字引擎採 LGPLv3（對 Swift 靜態鏈接另有准許）；先鋒語料庫由多個外部資源組成、其建置程式以 3-Clause BSD 釋出 |
+| 授權合約 | 木蘭寬鬆授權條款第 2 版（MulanPSL-2.0），可捲動閱讀並選取文字 |
+| 免責補記 | 唯音的核心引擎模組群（含 Homa 組字引擎）採 LGPLv3（對 Swift 靜態鏈接另有准許）；先鋒語料庫由多個外部資源組成、其資料與建置程式以 MulanPSL-2.0 釋出 |
 | 網站連結 | 連往 https://vchewing.github.io/ |
 | 故障提報連結 | 連往 https://vchewing.github.io/BUGREPORT.html |
 

@@ -122,7 +122,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 | 專案 | 主要語言 | 核心維運者 | 目標系統 | 授權 | 定位 |
 | -- | -- | -- | -- | -- | -- |
 | 小麥注音 (McBopomofo) 3.1 | Objective-C++, C++17/20, Swift | OpenVanilla 核心團隊 | macOS 13+ | MIT | Formosa::Gramambular2／Formosa::Mandarin 實作、強調穩健與開源協作 |
-| 唯音 (vChewing) 4.7.1 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 13+；Aqua 紀念版支援 10.9 | MIT-NTL | Swift 原生化注音輸入法、專注安全與模組擴展 |
+| 唯音 (vChewing) 4.7.1 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 13+；Aqua 紀念版支援 10.9 | MulanPSL-2.0 | Swift 原生化注音輸入法、專注安全與模組擴展 |
 
 ### 名詞釐清（摘要）
 
