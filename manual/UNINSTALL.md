@@ -66,8 +66,6 @@ permalink: /UNINSTALL.html
 5. 輸入法偏好設定檔案：
 	```sh
 	rm -rf ~/Library/Preferences/org.atelierInmu.inputmethod.vChewing.plist
-	# 如果您有使用過早於唯音 1.2.0 的唯音內部測試版本的話，對應的輸入法偏好設定檔案：
-	rm -rf ~/Library/Preferences/org.openvanilla.inputmethod.vChewing.plist
 	```
 
 6. 如果輸入法因為 macOS 10.x - macOS 11.x 的安裝程式的 bug 而沒能被正確安裝的話，您還需要清理下述檔案：
