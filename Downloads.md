@@ -9,13 +9,18 @@ hide_breadcrumbs: true
 
 > ☕️ **唯音輸入法專案目前[正在接收贊助](./SPONSOR_ME.md)**，將用於年度維護更新、Apple 開發者年費等開銷。
 
-| 發行版與作業系統 (至少) | 下載及發行說明 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
-|-------|----|----|----|----|
-| 主流發行版<br />(macOS 13 Ventura - 至今) | [GitHub](https://github.com/vChewing/vChewing-macOS/releases), [Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7), [敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.7.4 GM<br />(Sep 8, 2026) |
-| [Aqua 紀念版](./techdocs/AQUASPECIAL.md)<br />(macOS 10.9 Mavericks - 12 Monterey) | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/releases), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/releases) | 參見下載頁面 | [GitHub](https://github.com/vChewing/vChewing-OSX-Legacy/), [Gitee](https://gitee.com/vChewing/vChewing-OSX-Legacy/) | 4.7.4-Legacy GM<br />(Sep 8, 2026) |
+| 下載地點 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
+|----|----|----|----|
+| [GitHub](https://github.com/vChewing/vChewing-macOS/releases)<br >[Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7)<br >[敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.8.0 GM<br />(Sep 17, 2026) |
+
+注意：
+- **主流發行版** 是為 macOS 13 Ventura 至今的系統服務的。
+- **[Aqua 紀念版](./techdocs/AQUASPECIAL.md)** 是專門為 macOS 10.9 Mavericks - 12 Monterey 這幾版 macOS 服務的。
+- 自 v4.8.0 版起，主流發行版的倉庫已具備直接建置 Aqua 紀念版之能力，故將 Aqua 紀念版的下載頁面併入主流發行版的下載頁面。
 
 部分近期主打更新內容概要：
 
+- [4.8.0] 組字區為空時敲 Shift+Space 的空格字元可設定改敲半形（預設仍為全形）；中英混打模式現於英數內容工具提示顯示當前可能拼出的注音；允許藉由 CLI 介面匯入 / 匯出 JSON 格式的偏好設定備份；專案改採 LGPLv3+MulanPSLv2 混合授權。
 - [4.7.4] 盲文點字輸出現支援 ASCII 點字（SimBraille）；新增「對接輸入客體時顯示當前打字模式」的內文提示（預設關閉）；修復原廠辭典目錄未設定時被誤判為無效路徑而反覆彈窗的故障、以及第一聲讀音被跨聲調漸退記憶誤套用的故障；例行語彙資料更新。
 - [4.7.3 SP1] 緊急修正了漸退記憶模組「可能把與所打讀音不符的記憶（如同音異調、或字詞與讀音錯位的紀錄）誤套用於組句與選字」的故障。
 - [4.7.3] 半形標點模式行為設計缺陷修正；狂拼模式副駕選字窗排版調整；使用者打字學習資料複用方法有所改良；舊系統相容性改良；支援部分 GBEX 字集。
