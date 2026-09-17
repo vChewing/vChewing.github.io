@@ -11,7 +11,7 @@ hide_breadcrumbs: true
 
 | 下載地點 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |----|----|----|----|
-| [GitHub](https://github.com/vChewing/vChewing-macOS/releases)<br >[Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7)<br >[敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.8.0 GM<br />(Sep 17, 2026) |
+| [GitHub](https://github.com/vChewing/vChewing-macOS/releases)<br >[Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7)<br >[敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.8.1 GM<br />(Sep 18, 2026) |
 
 注意：
 - **主流發行版** 是為 macOS 13 Ventura 至今的系統服務的。
@@ -20,6 +20,7 @@ hide_breadcrumbs: true
 
 部分近期主打更新內容概要：
 
+- [4.8.1] 中英混打模式的英數內容工具提示現會隨文脈挪位，並可用 Option+BackSpace 一次清空尚未遞交的英數/尚未插入組句引擎的讀音；「以聲調鍵覆寫游標身後讀音」的上下文提示現可於偏好設定內關閉；修復了就地加詞與打字學習記憶模組搶佔檔案寫入的死鎖故障、以及加詞或控頻後未能立即生效的故障。
 - [4.8.0] 組字區為空時敲 Shift+Space 的空格字元可設定改敲半形（預設仍為全形）；中英混打模式現於英數內容工具提示顯示當前可能拼出的注音；允許藉由 CLI 介面匯入 / 匯出 JSON 格式的偏好設定備份；專案改採 LGPLv3+MulanPSLv2 混合授權。
 - [4.7.4] 盲文點字輸出現支援 ASCII 點字（SimBraille）；新增「對接輸入客體時顯示當前打字模式」的內文提示（預設關閉）；修復原廠辭典目錄未設定時被誤判為無效路徑而反覆彈窗的故障、以及第一聲讀音被跨聲調漸退記憶誤套用的故障；例行語彙資料更新。
 - [4.7.3 SP1] 緊急修正了漸退記憶模組「可能把與所打讀音不符的記憶（如同音異調、或字詞與讀音錯位的紀錄）誤套用於組句與選字」的故障。
