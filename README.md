@@ -125,6 +125,49 @@ hide_breadcrumbs: true
 </card>
 </cardset>
 
+<cardset markdown="block">
+
+<centerbox>
+<cardset_title>您的資料，直接繼承</cardset_title>
+
+<cardset_subtitle>之前的輸入法用了快二十多年，攢了成千上萬條使用者片語，可遷移至唯音輸入法。</cardset_subtitle>
+</centerbox>
+
+<card markdown="block">
+
+<card_title>奇摩輸入法（本體）</card_title>
+
+奇摩輸入法的使用者片語的加密採用的是公開的密鑰，目前已有[公開的解讀工具](https://github.com/vChewing/KeyKeyUserDBKit)可以解出其中的單元圖 (unigram) 與雙元圖 (bigram)。唯音輸入法亦可直接從奇摩輸入法的使用者片語資料庫繼承單元圖資料，且[操作步驟](./onboarding/onboarding_kimo.md)非常簡單。無論是奇摩輸入法 Windows 版匯出的 TXT 格式的使用者片語資料，還是奇摩輸入法自身的 SQLite 格式的 `SmartMandarinUserData.db` 使用者片語資料庫，都可被唯音輸入法直接解讀。
+
+</card>
+<card markdown="block">
+
+<card_title>任何基於菸草注音引擎的輸入法</card_title>
+
+有一些輸入法（比如自然輸入法 v10 至 v13）是使用姜天戩的「OVIMTobacco 菸草注音引擎」開發的，其使用者片語資料庫擁有[通用的資料解讀工具](https://github.com/vChewing/NCIUserDBKit)。使用者可使用該工具自行解出自己的使用者片語資產。
+
+唯音輸入法現階段不內建對該格式的直接讀取功能。重要的是，使用者自己知道怎樣把資料取出來、使自己得以行使對自己資料的自決權。尤其是這種可能會攢上二十多年的資料。
+
+</card>
+<card markdown="block">
+
+<card_title>小麥注音</card_title>
+
+唯音輸入法與小麥注音的使用者片語格式都是 TSV 格式，且前兩個 Column 都是通用的：第一個 Column 是詞，第二個 Column 是以 ASCII 減號相連的讀音、且讀音須為「聲介韻調」順序書寫的注音（包括輕聲也得依此順序書寫）。第三個 Column 是權重，需落在 `[-9.5, 0]` 區間內。
+
+至於小麥注音怎樣定義第三個 Column 的作用，請研讀他們的軟體倉庫裡面的實作方法。
+
+</card>
+<card markdown="block">
+
+<card_title>奇摩的各種分支</card_title>
+
+如果是諸如 `ChiaKey` 或 `Yahoo KeyKey 2` 或 `快打注音(SuperKeyin)` 等源自奇摩輸入法原始碼倉庫的分支的話，請洽相關分支維護者獲取「如何匯出 TXT 格式的使用者片語資料」的方法、亦或可嘗試直接載入他們輸入法的 `SmartMandarinUserData.db` 資料庫（不一定能成功，得看他們改了哪些內容）。這些分支只是為了在功能上希望 1:1 繼承奇摩輸入法的打字體驗的人群準備的，缺乏功能全面性，並不是當代注音輸入法的最優解。
+
+</card>
+</cardset>
+
+
 ## 產品介紹 (Intro)
 
 該輸入法恐怕是截至目前為止**在功能多樣性方面**最強的第三方免費 macOS 系統專用輸入法，採純 Swift 語言寫就。唯音的原廠詞庫同時兼顧兩岸各自的審音和讀音習慣。唯音的著力點不是去想著怎麼用指針，而是盡可能在力所能及的範圍內將整個產品的功能做得更好用。
