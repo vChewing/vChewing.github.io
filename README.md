@@ -10,7 +10,7 @@ hide_breadcrumbs: true
 <centerbox>
 <carousel timesec=9>
 <carousel_title>唯音輸入法 for macOS</carousel_title>
-<carousel_subtitle>唯音輸入法是 macOS 最安全、功能最完整的副廠中文注音/拼音輸入法。</carousel_subtitle>
+<carousel_subtitle>唯音輸入法是 macOS 最安全、功能最完整的中文注音/拼音輸入法。</carousel_subtitle>
 ![就地加詞](./assets/Carousel_InPlacePhraseOps.gif)
 ![拼音打字](./assets/Carousel_TypingPinyin.gif)
 ![注音打字](./assets/Carousel_TypingZhuyin.gif)
@@ -21,7 +21,7 @@ hide_breadcrumbs: true
 <centerbox>
 <cardset_title>您的打字習慣 照樣承襲</cardset_title>
 
-<cardset_subtitle>遠遠不止有大千聲韻並擊組句注音打字體驗：唯音輸入法可應對不同的打字習慣，只需您做出對應的配置。</cardset_subtitle>
+<cardset_subtitle>唯音輸入法可應對不同的打字習慣，只需您做出對應的配置。<br />這遠遠不止大千聲韻並擊組句注音打字。</cardset_subtitle>
 </centerbox>
 
 <card markdown="block">
@@ -84,7 +84,7 @@ hide_breadcrumbs: true
 <centerbox>
 <cardset_title>為什麼唯音值得您選擇</cardset_title>
 
-<cardset_subtitle>市面上注音輸入法那麼多，但您總有一條理由選擇唯音輸入法。</cardset_subtitle>
+<cardset_subtitle>市面上注音輸入法那麼多，但您或許會有一條理由選擇唯音輸入法。</cardset_subtitle>
 </centerbox>
 
 <card markdown="block">
@@ -170,7 +170,7 @@ hide_breadcrumbs: true
 
 ## 產品介紹 (Intro)
 
-該輸入法恐怕是截至目前為止**在功能多樣性方面**最強的第三方免費 macOS 系統專用輸入法，採純 Swift 語言寫就。唯音的原廠詞庫同時兼顧兩岸各自的審音和讀音習慣。唯音的著力點不是去想著怎麼用指針，而是盡可能在力所能及的範圍內將整個產品的功能做得更好用。
+該輸入法是截至目前為止**在功能多樣性方面**最強的第三方免費 macOS 系統專用輸入法，採純 Swift 語言寫就。唯音的原廠詞庫同時兼顧兩岸各自的審音和讀音習慣。唯音輸入法盡可能在力所能及的範圍內將整個產品的功能做得更好用。
 
 唯音的幾個產品目標：
 
