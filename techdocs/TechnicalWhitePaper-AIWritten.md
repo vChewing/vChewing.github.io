@@ -4,11 +4,11 @@ sort: 5
 has_toc: true
 permalink: /TechnicalWhitePaper-AIWritten.html
 ---
-# 技術白皮書-機器稿 (v4.7.1)
+# 技術白皮書-機器稿 (v4.8.4)
 
-# 唯音 v4.7.1 與小麥注音 v3.1：技術白皮書（重構版）
+# 唯音 v4.8.4 與小麥注音 v3.1.1：技術白皮書（重構版）
 
-> 資料截取日期：2026-08-31。小麥注音側依 v3.1（2026-08-23 發行）、唯音側依 v4.7.1（2026-08-31 發行）整理。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）狀態整理。
+> 資料截取日期：2026-09-22。小麥注音側依 v3.1.1（2026-09 版）、唯音側依 v4.8.4（2026-09-22 發行）整理。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）狀態整理。
 
 ## 摘要
 
@@ -16,7 +16,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 - **安全模型差異鮮明**：唯音以 macOS Sandbox、浮動組字窗強化模式與可選客體清單阻絕 markedText 洩露；小麥注音保留腳本掛鉤與無沙箱設計，提供高度開放但安全自負的體驗。
 - **語言模組策略分歧**：小麥注音採 Formosa::Gramambular2（原為 DAG-Relax，2026 年 2 月（PR#777）起改為 DAG-DP／Viterbi）搭配 Formosa::Mandarin；唯音自研 Homa（次世代 DAG-DP 組字引擎，前身為 Megrez），針對就地加詞、UTF-8 游標、候選輪替、上下文鞏固與自訂權重做最佳化。
 - **候選窗與 UX**：唯音第四代田所選字窗「我修院」採前後端分離、支援橫/縱排矩陣、Unicode 資訊與原生捲動；小麥注音維持 Voltaire（現為 CandidateUI 套件）+ VoiceOver 支援並提供熱鍵升頻／排除介面。
-- **多排列與拼音支援**：Tekkon 引擎提供九種注音排列與六種拼音系統並可同時顯示拼音，遠超 Formosa::Mandarin 的固定排列設計。
+- **多排列與拼音支援**：Tekkon 引擎提供十一種注音排列與六種拼音系統並可同時顯示拼音，遠超 Formosa::Mandarin 的固定排列設計。
 
 ## 歷程年表與版本世代
 
@@ -48,6 +48,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 | **田所第四代與 IMK 重構**<br>4.5.x | 4.5.1 田所選字窗第四代「我修院」（原生捲動）；空格鍵三態；4.5.5～4.5.7 IMK 交互層全面 MRC 化、純記憶體位址傳遞。 | 解決 CapsLock 快速切換中英輸入法的卡頓與孤棄 controller 記憶體堆積。|
 | **磁帶與記憶體工程**<br>4.6.x | 4.6.0 CIN v2.7 通配字元；4.6.1 記憶體利用效率重構；4.6.2 棄用同捆 SQLite 與 LineReader；4.6.3 狂拼模式首發。 | 磁帶支援「Shift+?」通配字元；狂拼（連續組句）現身。|
 | **狂拼進化與漢字轉換整合**<br>4.7.x | 4.7.0 簡拼整詞、替代切分候選、臨時記憶融入 n-gram、漢字轉換三態（當代繁體／康熙／JIS）、Homa trigram；4.7.1 Intel 效能改良。 | 拼音打字體驗全面升級；康熙／JIS 獨立模式整併為單一轉換模式。|
+| **先鋒引擎與中英混打強化**<br>4.8.x | 4.8.0 先鋒引擎套件正式啟用（可跨作業系統建置）、授權調整為「先鋒引擎 LGPLv3＋其餘 MulanPSLv2」、Aqua 紀念版改由主流倉庫建置；4.8.1～4.8.4 中英混打判定強化（英數閂滯狀態、依槽序鍵入判定讀音）。 | 引擎套件化與授權落定；中英混打體驗成熟。|
 
 > 註：表中提交號僅列核心節點；1.3.x～1.9.x 完整 commit 清單請參考 AncientArchive (`1e7459a`~`345c03d`)，2.6.2 以後則可在主倉 `vChewing-macOS` 以 tag 對照。
 
@@ -57,7 +58,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ### 小麥注音（標籤摘錄）
 
-- **2024-10-21 — 2.8**：詞庫補強（行政區／教育部辭典對齊）、點字數字轉換修正、可關閉錯誤蜂鳴、保留傳統注音自訂字庫、最低系統需求調整為 macOS 10.15（標籤訊息）。
+- **2024-10-21 — 2.8**：詞庫補強（行政區／MOE辭典對齊）、點字數字轉換修正、可關閉錯誤蜂鳴、保留傳統注音自訂字庫、最低系統需求調整為 macOS 10.15（標籤訊息）。
 - **2025-02-10 — 2.9.0**：詞庫增修、聯想詞強化（標籤訊息）。
 - **2025-02-25 — 2.9.1**：修正連打一聲出現句號、偏好設定新增 Shift+Enter 聯想詞選項、加入漢語拼音輸出；詞庫更新（標籤訊息）。
 - **2025-03-04 — 2.9.2**：修復 macOS 15.4 beta 安裝失敗（標籤訊息）。
@@ -114,6 +115,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 - **2026-05-24 ～ 2026-07-29 — 4.5.0～4.5.7**：田所選字窗第四代「我修院」（原生捲動）、空格鍵三態、IMK 交互層 MRC 化、CapsLock 切換卡頓與記憶體堆積修復。
 - **2026-08-01 ～ 2026-08-27 — 4.6.0～4.6.3**：CIN v2.7 磁帶通配字元、記憶體利用效率重構、棄用同捆 SQLite／LineReader、狂拼模式首發。
 - **2026-08-30 ～ 2026-08-31 — 4.7.0～4.7.1**：簡拼整詞與替代切分候選、漢字轉換三態輪替、Homa trigram 支援、Intel Mac 效能改良。
+- **2026-09-22 — 4.8.0～4.8.4**：先鋒引擎套件正式啟用（可跨作業系統建置）、授權調整為「先鋒引擎 LGPLv3＋其餘 MulanPSLv2」、Aqua 紀念版併入主流倉庫建置；中英混打判定持續強化（英數閂滯狀態、依槽序鍵入判定讀音）。
 
 ## 背景與定位
 
@@ -121,29 +123,29 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 | 專案 | 主要語言 | 核心維運者 | 目標系統 | 授權 | 定位 |
 | -- | -- | -- | -- | -- | -- |
-| 小麥注音 (McBopomofo) 3.1 | Objective-C++, C++17/20, Swift | OpenVanilla 核心團隊 | macOS 13+ | MIT | Formosa::Gramambular2／Formosa::Mandarin 實作、強調穩健與開源協作 |
-| 唯音 (vChewing) 4.7.1 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 13+；Aqua 紀念版支援 10.9 | MulanPSL-2.0 | Swift 原生化注音輸入法、專注安全與模組擴展 |
+| 小麥注音 (McBopomofo) 3.1.1 | Objective-C++, C++17/20, Swift | OpenVanilla 核心團隊 | macOS 13+ | MIT | Formosa::Gramambular2／Formosa::Mandarin 實作、強調穩健與開源協作 |
+| 唯音 (vChewing) 4.8.4 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 12+；Aqua 紀念版支援 10.9 | MulanPSL-2.0（先鋒引擎模組群採 LGPLv3） | Swift 原生化注音輸入法、專注安全與模組擴展 |
 
 ### 名詞釐清（摘要）
 
 - **OpenVanilla 框架**：CIN 系統輸入法集合，現已不再綁定香草注音模組。
 - **香草注音 (SpaceChewing / OVIMChewing)**：新酷音移植，不屬於小麥注音支線。
-- **奇摩輸入法**：Zonble / Lukhnos 於商業案打造，奠定 OVMandarin + Gramambular 早期實作。
+- **奇摩輸入法**：Zonble / Lukhnos 於商業案打造；其注拼引擎為 OVMandarin、組句器為 Manjusri（並未採用 Gramambular）。
 - **LibFormosa**：提供 OVMandarin MK1 與 Gramambular MK1 引擎，是小麥注音語言模組核心。
 
 ## 架構剖析
 
 ### 模組對照（概要）
 
-| 面向 | 小麥注音 3.1 | 唯音 4.7.1 | 來源參考 |
+| 面向 | 小麥注音 3.1.1 | 唯音 4.8.4 | 來源參考 |
 | -- | -- | -- | -- |
-| 輸入訊號 | `KeyHandler` (Objective-C++) + `KeyHandlerInput` (Swift struct) | `InputHandler` (Swift) 直接擴展 `NSEvent` / `KBEvent` | `mcbopomofo/Source/KeyHandler.mm`；`vChewing_MainAssembly/InputHandler_Handle*.swift` |
-| 態械 | `InputState` 類別階層（NSObject） | `IMEState` / `IMEStateData` 單一 struct + protocol | `mcbopomofo/Source/InputState.swift`；`vChewing_MainAssembly/IMEState.swift` |
-| 組字引擎 | Gramambular 2 (C++, 原為 DAG-Relax，2026 年 2 月（PR#777）起改為 DAG-DP／Viterbi) | Homa (Swift, DAG-DP；前身 Megrez 3.9 系列曾採強化版 Dijkstra) | `mcbopomofo/Source/Engine/gramambular2`；`vChewing_Megrez` |
-| 聲韻並擊 | Formosa::Mandarin (C++) | Tekkon (Swift) | `mcbopomofo/Source/Engine/mandarin`；`vChewing_Tekkon` |
+| 輸入訊號 | `KeyHandler` (Objective-C++) + `KeyHandlerInput` (Swift struct) | `InputHandler` (Swift) 直接擴展 `NSEvent` / `KBEvent` | `mcbopomofo/Source/KeyHandler.mm`；`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/InputHandler/InputHandler_Handle*.swift` |
+| 態械 | `InputState` 類別階層（NSObject） | `IMEState` / `IMEStateData` 單一 struct + protocol | `mcbopomofo/Source/InputState.swift`；`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/Session/IMEState.swift` |
+| 組字引擎 | Gramambular 2 (C++, 原為 DAG-Relax，2026 年 2 月（PR#777）起改為 DAG-DP／Viterbi) | Homa (Swift, DAG-DP；前身 Megrez 3.9 系列曾採強化版 Dijkstra) | `mcbopomofo/Source/Engine/gramambular2`；`vChewing-LibVanguard/Sources/Homa`（前身 Megrez） |
+| 聲韻並擊 | Formosa::Mandarin (C++) | Tekkon (Swift) | `mcbopomofo/Source/Engine/Mandarin`；`vChewing-LibVanguard/Sources/Tekkon` |
 | 候選窗 | Voltaire（現為 CandidateUI 套件，Swift Cocoa） | 田所選字窗第四代「我修院」（Cocoa + CoreGraphics，自繪矩陣，原生捲動，前後端分離） | `mcbopomofo/Source/NonModalAlertWindowController.swift` 等；`vChewing_CandidateWindow` |
-| 安全 | 無沙箱；允許就地腳本掛鉤 | macOS Sandbox、浮動組字窗強化模式、客體管理器白名單 | `mcbopomofo/add-phrase-hook.sh`；`vChewing_MainAssembly/InputHandler_HandleSecurity.swift` |
-| 字典 | Parseless LM (TXT) + 使用者詞庫 TXT | VanguardTrie.TextMapTrie 原廠詞庫 + 使用者 TXT，內建整理器 | `LanguageModelManager.mm`；`vChewing_LangModelAssembly` |
+| 安全 | 無沙箱；允許就地腳本掛鉤 | macOS Sandbox、浮動組字窗強化模式、客體管理器白名單 | `mcbopomofo/add-phrase-hook.sh`；`vChewing_PopupCompositionBuffer/Sources/PopupCompositionBuffer/PopupCompositionBuffer.swift`、`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/Session/` |
+| 字典 | Parseless LM (TXT) + 使用者詞庫 TXT | VanguardTrie.TextMapTrie 原廠詞庫 + 使用者 TXT，內建整理器 | `mcbopomofo/Source/LanguageModelManager.mm`；`vChewing_OSNeutral_LibVanguard/Sources/LexiconAssembly/` |
 | 監控 | FSEventStream | DispatchSourceFileSystemObject + Actor + Debounce | `Packages/FSEventStreamHelper`；`DanielGalasko_FolderMonitor` 改造 |
 
 ### 輸入訊號管線
@@ -164,7 +166,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 ### 聲韻並擊與拼音
 
 - **Formosa::Mandarin**：固定排列、專注傳統注音輸入。
-- **Tekkon**：支援九種注音排列（含動態排列）與六種拼音系統，可於注音並擊時同步顯示拼音；對 JIS 小鍵盤與聲調鍵覆寫提供客製行為。
+- **Tekkon**：支援十一種注音排列（含動態排列）與六種拼音系統，可於注音並擊時同步顯示拼音；對 JIS 小鍵盤與聲調鍵覆寫提供客製行為。
 
 ### 候選窗與 UI
 
@@ -179,9 +181,9 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ## 功能矩陣（節選）
 
-| 功能 | 小麥注音 3.1 | 唯音 4.7.1 | 備註 |
+| 功能 | 小麥注音 3.1.1 | 唯音 4.8.4 | 備註 |
 | -- | -- | -- | -- |
-| 注音排列 | 大千傳統、倚天傳統、IBM、許氏、倚天 26 | 上述＋神通、(偽)精業、酷音大千 26、星光、劉氏 | 唯音動態排列可因模式調整鍵位 |
+| 注音排列 | 大千傳統、倚天傳統、IBM、許氏、倚天 26 | 上述＋神通、精業、偽精業、酷音大千 26、星光、劉氏 | 唯音動態排列可因模式調整鍵位 |
 | 拼音 | 單一漢語拼音模式（第 6 種鍵盤排列，聲調以數字 1–5 標記，未提供說明文件） | 漢語、國音二式、華羅、耶魯、通用、韋氏；並擊提示拼音；狂拼連續組句（4.6.3+）並支援簡拼整詞（4.7.0+） |
 | CIN 表格 | ✖️ | ✅（磁帶模式支援 CIN2 v2.7） |
 | Emoji 組態 | 原廠 Emoji，無獨立詞頻 | 專屬使用者 Emoji 辭典 + 開關 |
@@ -236,7 +238,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ## 維運與生態
 
-- 唯音拆分 20+ Swift Packages（Tekkon、Megrez、CandidateWindow、TooltipUI 等），利於跨平台或未來延伸；同時保留 Aqua 紀念版支援舊系統（Swift 5.9 上限）。
+- 唯音拆分 20+ Swift Packages（Tekkon、Homa、CandidateWindow、TooltipUI 等），利於跨平台或未來延伸；同時保留 Aqua 紀念版支援舊系統（Swift 5.9 上限）。
 - 小麥注音維持 Xcode 專案一體化，著重 Stability；語言模型沿用 LibFormosa 生態，便於與其它 OpenVanilla 模組共用資源。
 - vChewing integrate `HangarRash_SwiftyCapsLockToggler`, `ShiftKeyUpChecker` 等套件以強化體驗；相對地 mcbopomofo 使用 `NSStringUtils`、`FSEventStreamHelper` 等傳統依賴。
 
@@ -249,15 +251,15 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ## 參考原始碼位置
 
-- 小麥注音：`mcbopomofo/Source/Engine/gramambular2/`、`mcbopomofo/Source/Engine/mandarin/`、`mcbopomofo/Source/InputState.swift`、`mcbopomofo/Source/KeyHandler.mm`。
-- 唯音：`vChewing-macOS/Packages/vChewing_Megrez/`、`vChewing-macOS/Packages/vChewing_Tekkon/`、`vChewing-macOS/Packages/vChewing_MainAssembly/`、`vChewing-macOS/Packages/vChewing_CandidateWindow/`。
+- 小麥注音：`mcbopomofo/Source/Engine/gramambular2/`、`mcbopomofo/Source/Engine/Mandarin/`、`mcbopomofo/Source/InputState.swift`、`mcbopomofo/Source/KeyHandler.mm`。
+- 唯音：`vChewing-LibVanguard/Sources/Homa`、`vChewing-LibVanguard/Sources/Tekkon`、`vChewing-macOS/Packages/vChewing_OSNeutral_LibVanguard/`、`vChewing-macOS/Packages/vChewing_CandidateWindow/`。
 
 ## 建議引用格式
 
-- APA：vChewing 專案團隊（2026）。《唯音輸入法技術白皮書（重構版）》版本 4.7.1。取自 https://vchewing.github.io/TechnicalWhitepaper-AIWritten
-- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.7.1, 2026. Web. https://vchewing.github.io/TechnicalWhitepaper-AIWritten
-- Chicago：vChewing Project Team. 2026. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.7.1. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitepaper-AIWritten
+- APA：vChewing 專案團隊（2026）。《唯音輸入法技術白皮書（重構版）》版本 4.8.4。取自 https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.8.4, 2026. Web. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- Chicago：vChewing Project Team. 2026. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.8.4. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
 
 ## 版本註記
 
-- 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 4.7.1；小麥注音側對照 v3.1（2026-08-23）。
+- 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 4.8.4；小麥注音側對照 v3.1.1（2026-09 版）。
