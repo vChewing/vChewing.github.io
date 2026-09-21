@@ -10,6 +10,10 @@ readme_index:
   with_frontmatter: true
 show_sorted: false
 
+# 文章內文 {:toc} 目錄只列出 h2 與 h3（免得連文章大標題都被列進去）。
+kramdown:
+  toc_levels: 2..3
+
 # 使用站內建置輸出的版面資產（theme.css / theme.js）。
 # 若不設定，版面資產會改從上游 jsDelivr CDN 載入——屆時 vChewing fork 的任何樣式（SCSS）改動都不會生效。
 debug:
