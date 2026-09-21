@@ -15,10 +15,10 @@ has_toc: true
 	- [G. 符號＆繪文字輸入](#g-符號繪文字輸入)
 ## A. 中英切換
 
-唯音輸入法的中英文切換有兩種方式：用 CapsLock 或者用 Shift 鍵。
+唯音輸入法的中英文切換有兩種主要方式：用 CapsLock 或者用 Shift 鍵；JIS 日語鍵盤還可以用英數鍵切換。
 
 - CapsLock 中英文切換（也包括「中/英」鍵）：請洽 [Apple 官方的操作說明](https://support.apple.com/zh-tw/guide/chinese-input-method/cim119a8d473/mac)。
-- Shift 中英文切換：該功能要求 macOS 版本至少為 10.15 Catalina。預設情況下，唯音僅會啟用右側 Shift 切換中英文輸入。您可以在輸入法偏好設定內啟用左側 Shift 中英文輸入切換，也可以將兩者都停用。
+- Shift 中英文切換：該功能要求 macOS 版本至少為 10.15 Catalina。預設情況下，唯音的左右兩側 Shift 都能切換中英文輸入。您可以在輸入法偏好設定內停用左側或右側 Shift 中英文輸入切換，也可以將兩者都停用。
 
 需要澄清的是：唯音對 Shift 按鍵的擊鍵事件判定方法源自於「對前後連續兩個 NSEvent 事件的結合分析」，不會有資安層面上的問題。
 

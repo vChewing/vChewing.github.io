@@ -11,15 +11,16 @@ hide_breadcrumbs: true
 
 | 下載地點 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |----|----|----|----|
-| [GitHub](https://github.com/vChewing/vChewing-macOS/releases)<br >[Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7)<br >[敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.8.3 GM<br />(Sep 20, 2026) |
+| [GitHub](https://github.com/vChewing/vChewing-macOS/releases)<br >[Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7)<br >[敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.8.4 GM<br />(Sep 22, 2026) |
 
 注意：
-- **主流發行版** 是為 macOS 13 Ventura 至今的系統服務的。
+- **主流發行版** 是為 macOS 12 Monterey 至今的系統服務的。
 - **[Aqua 紀念版](./techdocs/AQUASPECIAL.md)** 是專門為 macOS 10.9 Mavericks - 12 Monterey 這幾版 macOS 服務的。
 - 自 v4.8.0 版起，主流發行版的倉庫已具備直接建置 Aqua 紀念版之能力，故將 Aqua 紀念版的下載頁面併入主流發行版的下載頁面。
 
 部分近期主打更新內容概要：
 
+- [4.8.4] 中英混打模式的讀音判定新增可切換之選項「依槽序鍵入判定讀音」（預設開啟），供已習慣舊制判定者切回舊制行為；選字窗UI美工細節調整。
 - [4.8.3] 修復選字窗橫向展頁時可捲動範圍不隨字號變化的故障；中英混打模式新增「英數閂滯狀態」選項（預設關閉），並改良英文判定：短英文如 `ls` 不再被吞、動態注音排列不再被誤判。
 - [4.8.2] 大幅度提升了對使用者片語資料的載入速度。原廠詞庫大勘誤、持續清掃 LibTaBE 歷史積誤，亦同時確保至少五千多筆四字成語有被收錄。
 - [4.8.1] 中英混打模式的英數內容工具提示現會隨文脈挪位，並可用 Option+BackSpace 一次清空尚未遞交的英數/尚未插入組句引擎的讀音；「以聲調鍵覆寫游標身後讀音」的上下文提示現可於偏好設定內關閉；修復了就地加詞與打字學習記憶模組搶佔檔案寫入的死鎖故障、以及加詞或控頻後未能立即生效的故障。

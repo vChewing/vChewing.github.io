@@ -12,7 +12,7 @@ has_toc: true
 		- [C. 使用者關聯詞語](#c-使用者關聯詞語)
 		- [D. 語彙濾除表](#d-語彙濾除表)
 		- [E. 語彙置換表](#e-語彙置換表)
-		- [F. 逐字選字模式注音字序表](#f-逐字選字模式注音字序表)
+		- [F. 逐字選字模式注音字序表（已移除）](#f-逐字選字模式注音字序表已移除)
 		- [G. 自訂分層分類符號表](#g-自訂分層分類符號表)
 		- [H. 全形字母直接輸入](#h-全形字母直接輸入)
 
@@ -33,7 +33,6 @@ has_toc: true
 | associatedPhrases-chs.txt<br />associatedPhrases-cht.txt     | 是   | 使用者關聯詞語 | 是       |
 | exclude-phrases-cht.txt<br />exclude-phrases-chs.txt         | 是   | 語彙濾除表 | 是       |
 | phrases-replacement-cht.txt<br />phrases-replacement-chs.txt | 是   | 語彙置換表 | 是       |
-| data-plain-bpmf-cht.plist<br />data-plain-bpmf-chs.plist     | 否   | 逐字選字模式注音字序表 | 是       |
 | symbols.dat                                                  | 否   | 自訂分層分類符號表 | 否       |
 
 上表當中的**以 .txt 結尾的檔案**在被輸入法讀取時，有這幾個**共性**：
@@ -133,38 +132,9 @@ has_toc: true
 
 > ⚠️ 注意：該功能無法就原廠辭典當中的單個記錄詞做內容置換，因為置換對象必須是整個記錄詞。比如說 如果只添入「修 脩」的記錄的話，不會讓「歐陽修」被訂正為「歐陽脩」。
 
-### F. 逐字選字模式注音字序表
+### F. 逐字選字模式注音字序表（已移除）
 
-該 plist 檔案會始終存在，專門用來指定「逐字選字模式」當中的注音候選字的排序。預設情況下，唯音會生成一個 0KB 的假檔案用來佔位，但您可以隨時編輯裡面的內容。有些使用者可能已經習慣於 OpenVanilla 或者ㄅ半注音的原廠候選字排序，但唯音出於某些原因不太方便以原廠辭典的方式現成提供這樣的資料檔案（更何況會與原廠辭典內容的排序互相矛盾），所以就只能給出這種開放手段、讓使用者們有自己完成自訂需求的空間。
-
-當輸入法在讀入逐字選字模式注音字序表的 plist 檔案時，裡面的內容會被先插入到選字窗當中的候選字清單內、再插入那些只有原廠語彙庫才有的內容。
-
-編輯 plist 檔案的工具有很多。最著名的免費工具就是 Xcode，但實在太肥（幾十個 GB）。還有一個輕量級的免費選擇就是使用 [Microsoft Visual Studio Code (VSCode)](https://code.visualstudio.com/) 搭配 [Binary Plist 功能模組](https://marketplace.visualstudio.com/items?itemName=dnicolson.binary-plist)。當然，Xcode 與 VSCode 在這裡都是牛鼎烹雞。如果想要專門的「只做這一種事情」的工具的話，很多這種 plist 小工具 app 都是收費的，比如 PlistEdit Pro 等。
-
-如果您不用 binary plist 的話，BBEdit 等純文字編輯軟體都可以拿來編輯檔案內容。但唯音輸入法讀取這種明文 plist 內容的速度會很慢就是了。範例檔案內容如下：
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>ㄅㄚ</key>
-	<string>八捌巴疤芭笆粑叭扒豝吧仈朳峇</string>
-	<key>ㄅㄚˇ</key>
-	<string>把靶鈀</string>
-	<key>ㄅㄚˊ</key>
-	<string>拔跋鈸魃茇鼥軷犮菝胈詙</string>
-	<key>ㄅㄚˋ</key>
-	<string>罷爸霸壩耙弝灞伯猈</string>
-	<key>ㄅㄚ˙</key>
-	<string>吧罷琶杷</string>
-	<key>ㄩㄥˋ</key>
-	<string>用佣醟</string>
-</dict>
-</plist>
-```
-
-您也可以隨時用 plutil 或者 plistutil 這兩款終端工具將其轉為 binary plist。相關的教學內容有些不太親民，所以歡迎各位對此有興趣的讀者們另外學習終端機的用法。
+> 本節所述的自訂途徑已不再存在：唯音現在不再於使用者片語辭典目錄內生成 `data-plain-bpmf-*.plist`，逐字選字模式的注音候選字排序資料已改由組字引擎內建的原始資料供應，使用者無法再藉由編輯該檔案來調整排序。
 
 ### G. 自訂分層分類符號表
 

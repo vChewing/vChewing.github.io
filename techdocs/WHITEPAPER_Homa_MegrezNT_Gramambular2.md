@@ -94,4 +94,4 @@ Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與�
   - 若計畫讓 MegrezNT 追上 Swift 版 API，可依表格逐項評估移植成本。
   - 可補強自動化 API 對照（Swift `symbolgraph`, .NET Reflection, C++ `nm`）以利長期追蹤差異。
 
-> 本白皮書彙整自倉庫當前版本：`vChewing-LibVanguard/Sources/_Modules/Homa`、`MegrezNT/Megrez/src`、`mcbopomofo/Source/Engine/gramambular2`。如後續版本有重大更新，建議重新驗證。
+> 本白皮書彙整自倉庫當前版本：`vChewing-LibVanguard/Sources/Homa`、`MegrezNT/Megrez/src`、`mcbopomofo/Source/Engine/gramambular2`。如後續版本有重大更新，建議重新驗證。

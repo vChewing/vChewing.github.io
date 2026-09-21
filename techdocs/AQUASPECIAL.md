@@ -6,19 +6,19 @@ permalink: /AQUASPECIAL.html
 ---
 ## 如何區別主流發行版與 Aqua 紀念版
 
-唯音輸入法有兩個分支（以 3.7.3 版的情況來講）：
+唯音輸入法有兩種發行版（以 4.8.4 版的情況來講）：
 
 - 主流發行版：
-  - 支援最新的三版正式版的 macOS（這也是 Homebrew 的支援範圍）。
+  - 支援 macOS 12 Monterey 以來的系統（原則上與 Homebrew 的系統支援範圍保持一致）。
   - 採最新 Xcode 與最新的 macOS SDK 建置（除非最新版 SDK 有 Bug）。
   - 部分軟體功能會利用到最新版系統的特性（比如 SwiftUI 等）。
   - 有同時提供 pkg 與 app 版安裝程式。
   - 輸入法選單圖示是圓角長方形「简唯」「繁唯」、符合 macOS 13 Ventura 開始的設計風格。
 - Aqua 紀念版：
   - 支援 macOS 10.9 Mavericks 以來的所有 macOS。
-  - 採盡可能最新版 Xcode 建置，但有做過 libArcLite 修補（相關檔案取自 Xcode 14.2.0）。
-  - 以 macOS 13.1 SDK 建置，這是最後一版對 macOS 10.9 有實質支援的 SDK。
-  - 可能會因為今後的 Xcode 對舊版系統的建置困難程度、而出現更新進度落後於主流發行版的情況。
+  - 自 v4.8.0 版起，改由主流發行版倉庫的 legacy 建置目標產出（以 Xcode 15 為開發者目錄），且有做過 libArcLite 修補（相關檔案取自 Xcode 14.2.0、直接置於倉庫的 `LegacyZone/ARCLite/`）。
+  - 以 macOS 13.3 SDK 建置，這是最後一版對 macOS 10.9 有實質支援的 SDK。
+  - 與主流發行版同批發行，不再有更新進度落後於主流發行版的情況；Aqua 紀念版的下載頁面亦已併入主流發行版的下載頁面。
   - 僅提供 app 版安裝程式，且安裝程式介面會有提醒說安裝的是 Aqua Special 紀念版。
   - 從唯音 3.7.4 版開始，軟體的關於視窗也會有 Aqua Special 字樣。
   - 輸入法選單圖示是圓角正方形「繁」「简」字樣、符合 macOS 10.9 ~ 12.x 的設計風格。
