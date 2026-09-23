@@ -7,7 +7,6 @@ has_toc: true
 
 ### 問：唯音的 Sandbox 沙箱機制是？
 
-
 敝輸入法一向遵循 InputMethodKit 協議、僅處理藉由該協議獲得的鍵盤擊鍵事件。但為了應對「有心人士蠱惑人心、散播與威注音在程式行為道德方面有關的不實謠言」，唯音輸入法有啟用 Apple 的沙箱處理、作為形式上的進一步自我約束、藉以粉碎任何同質謊言。
 
 不過唯音一開始就視使用者私隱為第一位，所以實際上也沒有差。
@@ -21,21 +20,17 @@ has_toc: true
 
 ### 問：為什麼僅支援 Mac？
 
-
 因為 Swift 語言在其它平台上的輸入法本體研發維護成本太大。不過唯音的核心引擎套件（先鋒引擎，自 v4.8.0 版起正式啟用）已可跨作業系統建置、並在 Linux 與 Windows NT 系統下使用；唯音輸入法本體目前仍僅支援 macOS。
 
 ### 問：哪裡可以取得原始碼？
-
 
 請洽本文開頭。
 
 ### 問：選字的原理是什麼？
 
-
 請在敝專案的 Source Code 內參考 Homa 原始碼。選字原理是 DAG-DP。
 
 ### 問：為什麼唯音專案的舊名稱「威注音」裡面的產品名稱喜歡用「權」「威」「恨」之類的字？為什麼現在輸入法中文名改名了？
-
 
 這裡分別解答一下：
 
@@ -47,12 +42,10 @@ has_toc: true
 
 ### 問：唯音輸入法前身的圖示當中的「ㄋ」是？
 
-
 威注音的圖示「ㄋ」取自 Komica 糟糕島流行的與劉寶傑有關的梗「[貼ㄋㄟㄋㄟ救寶傑](https://disp.cc/b/Joke/2sZ0)」。
 
 更名為唯音輸入法之後，便棄用了這個設計。
 
 ### 問：資料是從哪邊來的？
-
 
 請參考 vChewing-VanguardLexicon 倉庫內的說明檔案： [GitHub](https://github.com/vChewing/vChewing-VanguardLexicon/) § [Gitee](https://gitee.com/vChewing/vChewing-VanguardLexicon/)。
