@@ -40,6 +40,7 @@ permalink: /onboarding/
 - [寫給雅虎奇摩輸入法的使用者](./onboarding_kimo.md)
 - [寫給小鶴音形的使用者](./onboarding_kozuru.md)
 - [寫給小麥注音輸入法的使用者](./onboarding_mcbpmf.md)
+- [寫給微軟新注音的使用者](./onboarding_msnewphonetic.md)
 - [寫給 OpenVanilla 的使用者](./onboarding_ov.md)
 - [寫給搜狗拼音／昇陽拼音／智能狂拼／紫光拼音的使用者](./onboarding_pinyinsimp.md)
 
