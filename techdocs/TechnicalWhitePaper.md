@@ -336,7 +336,6 @@ UI 維度 | 狀態類別內建 `NSAttributedString` | `IMEStateData` 統一產�
 
 整體而言，唯音態械的 value-type 重構使狀態切換更容易測試與推導，也為 Swift Concurrency、Actor 化模組（例如 FolderMonitor）打下基礎，並直接支撐了就地降頻 / 過濾、開發者模式提示等新功能。
 
-
 ### 檔案目錄異動檢查模組
 
 該模組用來監測任何發生在使用者片語辭典目錄內的變化。上游的這套模組使用了 FSEventStream，但比較麻煩。**更危險的是，這是 Carbon API，沒準哪天就被 Apple 從系統當中徹底割掉**。
@@ -344,7 +343,6 @@ UI 維度 | 狀態類別內建 `NSAttributedString` | `IMEStateData` 統一產�
 唯音 v2.5.0 更換了新的 FolderMonitor 監視模組，利用了 DispatchSourceFileSystemObject。這個方法不會偵測由輸入法本體對目錄做出的修改，所以筆者又在 LMMgr (Language Model Manager) 當中對「使用者手動加詞」的情況又補上了手動重新載入使用者片語的動作。這也解決了迄今為止 FSEventStreamHelper 與「唯音的使用者片語辭典格式自動整理模組」彼此的行為衝突問題。
 
 唯音 v4.0.0 對 FolderMonitor 做了改良，使其將觀測響應行為全部放在專有的 Actor 當中完成、且經過 Debouncer 處理。這不至於讓輸入法因為 iCloud 資料同步不順利的情況、而導致所有試圖接收唯音鍵盤事件輸入的軟體全部 hang 到死。
-
 
 ## 附錄 A：W3C Ruby 標記範例
 
