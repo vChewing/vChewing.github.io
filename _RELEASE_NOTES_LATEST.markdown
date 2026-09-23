@@ -1,4 +1,6 @@
 > ☕️ **唯音輸入法專案目前[正在接收贊助](https://vchewing.github.io/SPONSOR_ME.html)**，將用於年度維護更新、Apple 開發者年費等開銷。
+>
+> 請務必閱讀《[新手上路](https://vchewing.github.io/onboarding/)》與《[FAQ](https://vchewing.github.io/faq/)》，這便於您將唯音輸入法迅速配置成您想要的樣子。您也可以將這些鏈接丟給各種互動式 AI 服務來幫您解讀。
 
 #### 4.8.4 版針對 4.8.3 版更新了下述內容：
 
