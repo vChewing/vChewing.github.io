@@ -39,6 +39,7 @@ permalink: /onboarding/
 - [寫給漢音輸入法使用者](./onboarding_hanin.md)
 - [寫給雅虎奇摩輸入法的使用者](./onboarding_kimo.md)
 - [寫給小鶴音形的使用者](./onboarding_kozuru.md)
+- [寫給 macOS 10.6 開始的內建注音輸入法的使用者](./onboarding_macOSZhuyinSinceSnowLeopard.md)
 - [寫給小麥注音輸入法的使用者](./onboarding_mcbpmf.md)
 - [寫給微軟新注音的使用者](./onboarding_msnewphonetic.md)
 - [寫給 OpenVanilla 的使用者](./onboarding_ov.md)
