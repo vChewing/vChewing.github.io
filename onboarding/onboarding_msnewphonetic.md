@@ -58,4 +58,4 @@ permalink: /manual/onboarding_msnewphonetic.html
 - 《[偏好設定](../manual/preferences.md)》——逐項列出各頁面的開關與預設值。
 - 《[文字切換(半形/中英...)](../manual/toggles.md)》——中英切換、全半形切換等熱鍵的一覽。
 
-> 本文對應至少唯音輸入法 4.8.4 版。
+> 本文對應至少唯音輸入法 4.8.5 版。

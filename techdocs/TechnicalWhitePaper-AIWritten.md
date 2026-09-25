@@ -4,11 +4,11 @@ sort: 5
 has_toc: true
 permalink: /TechnicalWhitePaper-AIWritten.html
 ---
-# 技術白皮書-機器稿 (v4.8.4)
+# 技術白皮書-機器稿 (v4.8.5)
 
-# 唯音 v4.8.4 與小麥注音 v3.1.1：技術白皮書（重構版）
+# 唯音 v4.8.5 與小麥注音 v3.1.1：技術白皮書（重構版）
 
-> 資料截取日期：2026-09-22。小麥注音側依 v3.1.1（2026-09 版）、唯音側依 v4.8.4（2026-09-22 發行）整理。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）狀態整理。
+> 資料截取日期：2026-09-25。小麥注音側依 v3.1.1（2026-09 版）、唯音側依 v4.8.5（2026-09-25 發行）整理。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）狀態整理。
 
 ## 摘要
 
@@ -48,7 +48,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 | **田所第四代與 IMK 重構**<br>4.5.x | 4.5.1 田所選字窗第四代「我修院」（原生捲動）；空格鍵三態；4.5.5～4.5.7 IMK 交互層全面 MRC 化、純記憶體位址傳遞。 | 解決 CapsLock 快速切換中英輸入法的卡頓與孤棄 controller 記憶體堆積。|
 | **磁帶與記憶體工程**<br>4.6.x | 4.6.0 CIN v2.7 通配字元；4.6.1 記憶體利用效率重構；4.6.2 棄用同捆 SQLite 與 LineReader；4.6.3 狂拼模式首發。 | 磁帶支援「Shift+?」通配字元；狂拼（連續組句）現身。|
 | **狂拼進化與漢字轉換整合**<br>4.7.x | 4.7.0 簡拼整詞、替代切分候選、臨時記憶融入 n-gram、漢字轉換三態（當代繁體／康熙／JIS）、Homa trigram；4.7.1 Intel 效能改良。 | 拼音打字體驗全面升級；康熙／JIS 獨立模式整併為單一轉換模式。|
-| **先鋒引擎與中英混打強化**<br>4.8.x | 4.8.0 先鋒引擎套件正式啟用（可跨作業系統建置）、授權調整為「先鋒引擎 LGPLv3＋其餘 MulanPSLv2」、Aqua 紀念版改由主流倉庫建置；4.8.1～4.8.4 中英混打判定強化（英數閂滯狀態、依槽序鍵入判定讀音）。 | 引擎套件化與授權落定；中英混打體驗成熟。|
+| **先鋒引擎與中英混打強化**<br>4.8.x | 4.8.0 先鋒引擎套件正式啟用（可跨作業系統建置）、授權調整為「先鋒引擎 LGPLv3＋其餘 MulanPSLv2」、Aqua 紀念版改由主流倉庫建置；4.8.1～4.8.4 中英混打判定強化（英數閂滯狀態、依槽序鍵入判定讀音）；4.8.5 內建配置助手（網頁式分支問卷）、偏好設定頁面重新歸類。 | 引擎套件化與授權落定；中英混打體驗成熟；新手配置動線成形。|
 
 > 註：表中提交號僅列核心節點；1.3.x～1.9.x 完整 commit 清單請參考 AncientArchive (`1e7459a`~`345c03d`)，2.6.2 以後則可在主倉 `vChewing-macOS` 以 tag 對照。
 
@@ -116,6 +116,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 - **2026-08-01 ～ 2026-08-27 — 4.6.0～4.6.3**：CIN v2.7 磁帶通配字元、記憶體利用效率重構、棄用同捆 SQLite／LineReader、狂拼模式首發。
 - **2026-08-30 ～ 2026-08-31 — 4.7.0～4.7.1**：簡拼整詞與替代切分候選、漢字轉換三態輪替、Homa trigram 支援、Intel Mac 效能改良。
 - **2026-09-22 — 4.8.0～4.8.4**：先鋒引擎套件正式啟用（可跨作業系統建置）、授權調整為「先鋒引擎 LGPLv3＋其餘 MulanPSLv2」、Aqua 紀念版併入主流倉庫建置；中英混打判定持續強化（英數閂滯狀態、依槽序鍵入判定讀音）。
+- **2026-09-25 — 4.8.5**：內建「唯音輸入法配置助手」（TypeScript 撰寫、零 npm 相依、單檔自足 HTML；產出的配置包經剪貼簿匯入，並補上偏好設定之 JSON 匯出／匯入）；偏好設定頁面重新歸類；修復組字狀態下功能鍵（F1～F20）令未遞交內容消失的故障、辭典檢索快取之作廢缺口，並令中英混打模式的空白鍵貫徹空格鍵偏好。
 
 ## 背景與定位
 
@@ -124,7 +125,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 | 專案 | 主要語言 | 核心維運者 | 目標系統 | 授權 | 定位 |
 | -- | -- | -- | -- | -- | -- |
 | 小麥注音 (McBopomofo) 3.1.1 | Objective-C++, C++17/20, Swift | OpenVanilla 核心團隊 | macOS 13+ | MIT | Formosa::Gramambular2／Formosa::Mandarin 實作、強調穩健與開源協作 |
-| 唯音 (vChewing) 4.8.4 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 12+；Aqua 紀念版支援 10.9 | MulanPSL-2.0（先鋒引擎模組群採 LGPLv3） | Swift 原生化注音輸入法、專注安全與模組擴展 |
+| 唯音 (vChewing) 4.8.5 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 12+；Aqua 紀念版支援 10.9 | MulanPSL-2.0（先鋒引擎模組群採 LGPLv3） | Swift 原生化注音輸入法、專注安全與模組擴展 |
 
 ### 名詞釐清（摘要）
 
@@ -137,7 +138,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ### 模組對照（概要）
 
-| 面向 | 小麥注音 3.1.1 | 唯音 4.8.4 | 來源參考 |
+| 面向 | 小麥注音 3.1.1 | 唯音 4.8.5 | 來源參考 |
 | -- | -- | -- | -- |
 | 輸入訊號 | `KeyHandler` (Objective-C++) + `KeyHandlerInput` (Swift struct) | `InputHandler` (Swift) 直接擴展 `NSEvent` / `KBEvent` | `mcbopomofo/Source/KeyHandler.mm`；`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/InputHandler/InputHandler_Handle*.swift` |
 | 態械 | `InputState` 類別階層（NSObject） | `IMEState` / `IMEStateData` 單一 struct + protocol | `mcbopomofo/Source/InputState.swift`；`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/Session/IMEState.swift` |
@@ -181,30 +182,49 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ## 功能矩陣（節選）
 
-| 功能 | 小麥注音 3.1.1 | 唯音 4.8.4 | 備註 |
+| 功能 | 小麥注音 3.1.1 | 唯音 4.8.5 | 備註 |
 | -- | -- | -- | -- |
 | 注音排列 | 大千傳統、倚天傳統、IBM、許氏、倚天 26 | 上述＋神通、精業、偽精業、酷音大千 26、星光、劉氏 | 唯音動態排列可因模式調整鍵位 |
-| 拼音 | 單一漢語拼音模式（第 6 種鍵盤排列，聲調以數字 1–5 標記，未提供說明文件） | 漢語、國音二式、華羅、耶魯、通用、韋氏；並擊提示拼音；狂拼連續組句（4.6.3+）並支援簡拼整詞（4.7.0+） |
-| CIN 表格 | ✖️ | ✅（磁帶模式支援 CIN2 v2.7） |
-| Emoji 組態 | 原廠 Emoji，無獨立詞頻 | 專屬使用者 Emoji 辭典 + 開關 |
+| 拼音 | 單一漢語拼音模式（第 6 種鍵盤排列，聲調以數字 1–5 標記，未提供說明文件） | 漢語、國音二式、華羅、耶魯、通用、韋氏；並擊提示拼音；狂拼連續組句（4.6.3+）並支援簡拼整詞（4.7.0+） |  |
+| CIN 表格 | ✖️ | ✅（磁帶模式支援 CIN2 v2.7） |  |
+| Emoji 組態 | 原廠 Emoji，無獨立詞頻 | 專屬使用者 Emoji 辭典 + 開關 |  |
 | 羅馬數字輸入 | ✅（2.9.4+ Ctrl+\\）三種風格：ASCII 小寫、Unicode 大寫、Unicode 小寫 | ✅（4.1.0+ Shift+Cmd+R）1-3999 範圍，Unicode 大小寫 & ASCII 大小寫 | 兩者的實作方式與各自在輸入法當中的集成方式各異，用以呼叫該功能的方法也不一樣。 |
 | 就地加詞/刪詞/控頻 | 就地僅支援加詞；選字窗內可升頻（+）／排除（-） | 加詞、刪詞、升降頻（Shift+Command+Enter 降頻） （註：自 v4.2.0 起，對單個漢字的升權/降頻/排除操作之開關已被移至「偏好設定 → 開發道場」，預設為關閉；當此開關未啟用時，透過輸入法介面對單漢字執行的升頻/降頻/排除操作將被禁用，且使用者片語辭典中已存的單漢字升降頻覆寫亦不會生效。） | 支援詞音不等長 |
 | 選字窗刪詞/控頻 | 鍵盤交互：`+`/`=` 升頻、`-`/`_` 排除（自 2.9.3 起） | 滑鼠右鍵選單刪詞、升降頻（註：自 v4.2.0 起，對單個漢字的升權/降頻/排除操作之開關已移至「偏好設定 → 開發道場」，預設為關閉；未啟用時，使用者片語辭典內對單漢字的覆蓋不再生效。） |  |
 | 候選字朗讀 | ✅（2.9.4+）VoiceOver 可朗讀候選字詞（系統 SQLite 輔助功能資料庫）；「?」鍵選單可主動朗讀（2.7+） | ✅（4.1.0+ 可設定）查詢使用者自訂關聯詞語資料庫 | 唯音沿用了自身本來就有的語音朗讀模組 |
 | CapsLock 強制英文忽略 | ✖️ | ✅ | 顧及微軟新注音習慣 |
-| 候選矩陣 | ✖️ | ✅ 橫/縱排矩陣（田所） |
-| Unicode 資訊 | 「?」鍵字元資訊（3.1 起含 Unihan 名稱／讀音／倉頡／日韓讀音等） | ✅（田所） |
+| 候選矩陣 | ✖️ | ✅ 橫/縱排矩陣（田所） |  |
+| Unicode 資訊 | 「?」鍵字元資訊（3.1 起含 Unihan 名稱／讀音／倉頡／日韓讀音等） | ✅（田所） |  |
 | 熱鍵輪替候選 | 僅 (Shift+)Tab | Shift(+Alt)+Space、Alt+↑/↓（橫）／Alt+←/→（縱） | 唯音納入直書焦點鞏固；4.5.1 起空格鍵三態（插入空格／呼出選字窗／輪替候選） |
-| Alt 熱鍵佈局切換 | ✅（終端設定） | ✖️（避免 NSMenu 攔截） |
-| 漢音符號 | 自 3.1 起完整漢音式符號輸入（「\`」鍵標點清單，逐鍵對應符號組） | 完整漢音符號＋分層符號表（可自訂 `symbols.dat`） |
+| Alt 熱鍵佈局切換 | ✅（終端設定） | ✖️（避免 NSMenu 攔截） |  |
+| 漢音符號 | 自 3.1 起完整漢音式符號輸入（「\`」鍵標點清單，逐鍵對應符號組） | 完整漢音符號＋分層符號表（可自訂 `symbols.dat`） |  |
 | 簡繁支援 | 轉換（僅 OpenCC，詞組級） | 原生繁/簡詞庫 + Hotenka 詞組轉換 + JIS/康熙選項 | 唯音就地加詞跨模式同步 |
-| W3C Ruby | mac 版自 2.7 起可輸出注音 HTML Ruby（Ctrl+Enter）；Linux 版支援注音；無漢語拼音 Ruby | 支援注音（教科書式）、漢語拼音 Ruby |
-| 日期巨集 | ✅ | ✅（並新增銀行大寫數字等） |
+| W3C Ruby | mac 版自 2.7 起可輸出注音 HTML Ruby（Ctrl+Enter）；Linux 版支援注音；無漢語拼音 Ruby | 支援注音（教科書式）、漢語拼音 Ruby |  |
+| 日期巨集 | ✅ | ✅（並新增銀行大寫數字等） |  |
+| 配置助手（新手配置嚮導） | ✖️ | ✅（4.8.5+）內建網頁式分支問卷，最少四頁即可產生一組現成配置；產出的「配置包」經剪貼簿匯入，偏好設定亦可整個匯出／匯入為 JSON 檔案 | 問卷之題庫僅涵蓋設定介面已曝露的選項，產出值以契約測試確保唯音一概收得下 |
 
 ## 字典與資料管理
 
 - **小麥注音**：Parseless LM 以排序 TXT（`data.txt`）儲存，採 memory-mapped 檔案與二分搜尋（C++20，選配 ARM NEON 加速）；FSEventStream 監控使用者詞庫；就地加詞時執行 `EOF` 修復與可選腳本。
 - **唯音**：原廠詞庫採 VanguardTrie.TextMapTrie（排序鍵索引 + 二分搜尋 + 前綴範圍掃描），使用者詞庫仍以 TXT 儲存但由內建整理器重整；學習權重資料以 JSON 保存，可於偏好設定清除；FolderMonitor 透過 Actor + 去抖動防止高頻事件連鎖。
+
+## 配置助手與偏好可攜性
+
+這是兩者之間一項結構性的差異：**小麥注音沒有對應物**。
+
+| 面向 | 小麥注音 3.1.1 | 唯音 4.8.5 |
+| -- | -- | -- |
+| 新手配置嚮導 | 無 | 「唯音輸入法配置助手」：內建之網頁式分支問卷，最少四頁即可產生一組現成配置 |
+| 設定的可攜性 | 依賴系統偏好檔，未提供交換格式 | 偏好設定可整份匯出／匯入為 JSON；助手產出的「配置包」為該格式之超集 |
+| 偏好鍵之交換範圍 | — | 118 條偏好鍵，其中 6 條列入不可交換之黑名單（Sandbox 路徑、介面語言、暫態旗標） |
+| 選項標籤之單一真源 | — | `vChewingSharedCLI` 之 `dump-userdef-metadata` 動詞導出型別／值域／預設值／四語系標籤 |
+| 助手的題庫界線 | — | 僅涵蓋設定介面已曝露的選項，由掃描 `SettingsUI` ／ `SettingsCocoa` 之源碼生成，並以測試守住「題庫 ⊆ 曝露面」 |
+
+架構要點：
+
+- **助手與輸入法之間沒有 IPC、也沒有 URL scheme**，唯一的傳遞媒介是剪貼簿。助手本身是 TypeScript 撰寫、零 npm 相依的單檔自足 HTML（CSS 與 JS 皆已內聯），工具鏈的外部相依只有一個原生版 `tsc`，工具宿主為 macOS 內建之 JXA。
+- **偏好交換格式**落於 `Shared` 模組：`destructureExchange(_:)` 無條件摘除根層一切以 `__` 起首之鍵（中介辭典 `__UserDefMeta` 即藉此承載配置名稱與說明）、`importFromDictionary(_:)` 為逐鍵驗證之真源、`diffAgainstCurrent(_:)` 提供純查詢之差異計算、`PrefMgr.reconcileAfterExternalPrefsImport()` 負責匯入後之和解（補上 13 條帶有 `didSet` 副作用之偏好鍵不曾被觸發的長年缺口）。現行四條匯入路徑——設定介面之檔案匯入、檔案拖放、剪貼簿匯入、CLI 之 `--import-prefs-json`——共用同一收尾。
+- **契約測試**（`AssistantContractTests`）以助手自身核心邏輯產出之 fixture 為輸入，斷言唯音一概收得下，從而使「助手問了唯音不收的值」在 CI 階段即被攔下。
 
 ## 安全與隱私對照
 
@@ -253,13 +273,14 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 - 小麥注音：`mcbopomofo/Source/Engine/gramambular2/`、`mcbopomofo/Source/Engine/Mandarin/`、`mcbopomofo/Source/InputState.swift`、`mcbopomofo/Source/KeyHandler.mm`。
 - 唯音：`vChewing-LibVanguard/Sources/Homa`、`vChewing-LibVanguard/Sources/Tekkon`、`vChewing-macOS/Packages/vChewing_OSNeutral_LibVanguard/`、`vChewing-macOS/Packages/vChewing_CandidateWindow/`。
+- 唯音之配置助手：`vChewing-macOS/ValueAdd/WebConfigAssistant/`（建置來源）、`vChewing-macOS/Packages/vChewing_SettingsUI/Sources/SettingsUI/PrefsExchange.swift`、`vChewing-LibVanguard/Sources/Shared/UserDef/UserDef.swift`（偏好交換格式）。
 
 ## 建議引用格式
 
-- APA：vChewing 專案團隊（2026）。《唯音輸入法技術白皮書（重構版）》版本 4.8.4。取自 https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
-- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.8.4, 2026. Web. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
-- Chicago：vChewing Project Team. 2026. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.8.4. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- APA：vChewing 專案團隊（2026）。《唯音輸入法技術白皮書（重構版）》版本 4.8.5。取自 https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.8.5, 2026. Web. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- Chicago：vChewing Project Team. 2026. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.8.5. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
 
 ## 版本註記
 
-- 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 4.8.4；小麥注音側對照 v3.1.1（2026-09 版）。
+- 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 4.8.5；小麥注音側對照 v3.1.1（2026-09 版）。
