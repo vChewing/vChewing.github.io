@@ -35,11 +35,11 @@ hide_breadcrumbs: true
 </card>
 <card markdown="block">
 
-<card_title>拼音狂拼快打</card_title>
+<card_title>狂打模式（連續打字）</card_title>
 
-唯音輸入法的拼音狂拼模式支援多種拼音方案，允許免聲調快速連打。詳見《[寫給搜狗拼音的使用者](./manual/onboarding_pinyinsimp.html)》。
+唯音的「狂打模式」允許以不完整的讀音連續打字，分為「拼音狂打」與「注音狂打」兩個各自獨立的開關，支援多種拼音與注音方案。拼音側的用法詳見《[寫給搜狗拼音／昇陽拼音／智能狂拼／紫光拼音的使用者](./onboarding/onboarding_pinyinsimp.md)》。
 
-![拼音狂拼快打](./assets/Cards_TypingStyleSupported_PinyinFuriousTyping.gif)
+![狂打模式](./assets/Cards_TypingStyleSupported_PinyinFuriousTyping.gif)
 
 </card>
 <card markdown="block">
