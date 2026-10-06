@@ -4,11 +4,11 @@ sort: 5
 has_toc: true
 permalink: /TechnicalWhitePaper-AIWritten.html
 ---
-# 技術白皮書-機器稿 (v4.8.6)
+# 技術白皮書-機器稿 (v4.8.7)
 
-# 唯音 v4.8.6 與小麥注音 v3.1.1：技術白皮書（重構版）
+# 唯音 v4.8.7 與小麥注音 v3.1.1：技術白皮書（重構版）
 
-> 資料截取日期：2026-09-30。小麥注音側依 v3.1.1（2026-09 版）、唯音側依 v4.8.6（2026-09-30 發行）整理。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）狀態整理。
+> 資料截取日期：2026-10-07。小麥注音側依 v3.1.1（2026-09 版）、唯音側依 v4.8.7（2026-10-07 發行）整理。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）狀態整理。
 
 ## 摘要
 
@@ -118,6 +118,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 - **2026-09-22 — 4.8.0～4.8.4**：先鋒引擎套件正式啟用（可跨作業系統建置）、授權調整為「先鋒引擎 LGPLv3＋其餘 MulanPSLv2」、Aqua 紀念版併入主流倉庫建置；中英混打判定持續強化（英數閂滯狀態、依槽序鍵入判定讀音）。
 - **2026-09-25 — 4.8.5**：內建「唯音輸入法配置助手」（TypeScript 撰寫、零 npm 相依、單檔自足 HTML；產出的配置包經剪貼簿匯入，並補上偏好設定之 JSON 匯出／匯入）；偏好設定頁面重新歸類；修復組字狀態下功能鍵（F1～F20）令未遞交內容消失的故障、辭典檢索快取之作廢缺口，並令中英混打模式的空白鍵貫徹空格鍵偏好。
 - **2026-09-30 — 4.8.6**：「狂拼模式」擴充為「狂打模式」，分為拼音側與注音側兩個各自獨立的開關（拼音側承接既有設定值、注音側新增且預設停用；注音側另有自動切音節與聲母簡拼）；中英混打的 ASCII 內容改於組字區內顯示。
+- **2026-10-07 — 4.8.7**：有 CMD 鍵參與的熱鍵改為「先遞交組字內容、再交還系統」；五套 Ukelele 佈局補上含 Command 之按鍵組的 Raw Key Char Map（Chrome 與 Safari 下部分熱鍵因而恢復可用）；同梱熱鍵指南改以 Markdown 為來源編譯。
 
 ## 背景與定位
 
@@ -126,7 +127,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 | 專案 | 主要語言 | 核心維運者 | 目標系統 | 授權 | 定位 |
 | -- | -- | -- | -- | -- | -- |
 | 小麥注音 (McBopomofo) 3.1.1 | Objective-C++, C++17/20, Swift | OpenVanilla 核心團隊 | macOS 13+ | MIT | Formosa::Gramambular2／Formosa::Mandarin 實作、強調穩健與開源協作 |
-| 唯音 (vChewing) 4.8.6 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 12+；Aqua 紀念版支援 10.9 | MulanPSL-2.0（先鋒引擎模組群採 LGPLv3） | Swift 原生化注音輸入法、專注安全與模組擴展 |
+| 唯音 (vChewing) 4.8.7 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 12+；Aqua 紀念版支援 10.9 | MulanPSL-2.0（先鋒引擎模組群採 LGPLv3） | Swift 原生化注音輸入法、專注安全與模組擴展 |
 
 ### 名詞釐清（摘要）
 
@@ -139,7 +140,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ### 模組對照（概要）
 
-| 面向 | 小麥注音 3.1.1 | 唯音 4.8.6 | 來源參考 |
+| 面向 | 小麥注音 3.1.1 | 唯音 4.8.7 | 來源參考 |
 | -- | -- | -- | -- |
 | 輸入訊號 | `KeyHandler` (Objective-C++) + `KeyHandlerInput` (Swift struct) | `InputHandler` (Swift) 直接擴展 `NSEvent` / `KBEvent` | `mcbopomofo/Source/KeyHandler.mm`；`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/InputHandler/InputHandler_Handle*.swift` |
 | 態械 | `InputState` 類別階層（NSObject） | `IMEState` / `IMEStateData` 單一 struct + protocol | `mcbopomofo/Source/InputState.swift`；`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/Session/IMEState.swift` |
@@ -183,7 +184,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ## 功能矩陣（節選）
 
-| 功能 | 小麥注音 3.1.1 | 唯音 4.8.6 | 備註 |
+| 功能 | 小麥注音 3.1.1 | 唯音 4.8.7 | 備註 |
 | -- | -- | -- | -- |
 | 注音排列 | 大千傳統、倚天傳統、IBM、許氏、倚天 26 | 上述＋神通、精業、偽精業、酷音大千 26、星光、劉氏 | 唯音動態排列可因模式調整鍵位 |
 | 拼音 | 單一漢語拼音模式（第 6 種鍵盤排列，聲調以數字 1–5 標記，未提供說明文件） | 漢語、國音二式、華羅、耶魯、通用、韋氏；並擊提示拼音；狂打連續組句（拼音側 4.6.3+、注音側 4.8.6+）並支援簡拼整詞（4.7.0+） |  |
@@ -214,7 +215,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 這是兩者之間一項結構性的差異：**小麥注音沒有對應物**。
 
-| 面向 | 小麥注音 3.1.1 | 唯音 4.8.6 |
+| 面向 | 小麥注音 3.1.1 | 唯音 4.8.7 |
 | -- | -- | -- |
 | 新手配置嚮導 | 無 | 「唯音輸入法配置助手」：內建之網頁式分支問卷，最少四頁即可產生一組現成配置 |
 | 設定的可攜性 | 依賴系統偏好檔，未提供交換格式 | 偏好設定可整份匯出／匯入為 JSON；助手產出的「配置包」為該格式之超集 |
@@ -279,10 +280,10 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ## 建議引用格式
 
-- APA：vChewing 專案團隊（2026）。《唯音輸入法技術白皮書（重構版）》版本 4.8.6。取自 https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
-- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.8.6, 2026. Web. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
-- Chicago：vChewing Project Team. 2026. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.8.6. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- APA：vChewing 專案團隊（2026）。《唯音輸入法技術白皮書（重構版）》版本 4.8.7。取自 https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.8.7, 2026. Web. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- Chicago：vChewing Project Team. 2026. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 4.8.7. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
 
 ## 版本註記
 
-- 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 4.8.6；小麥注音側對照 v3.1.1（2026-09 版）。
+- 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 4.8.7；小麥注音側對照 v3.1.1（2026-09 版）。
