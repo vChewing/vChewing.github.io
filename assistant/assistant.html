@@ -19,7 +19,7 @@
 <!--
   本檔為**建置產物**（單檔自足：CSS 與 JS 皆已內聯），請勿直接編輯。
   來源：vChewing-macOS/ValueAdd/WebConfigAssistant/
-  建置：make bundle // 產出時間 2026-10-07T03:01:27.756Z
+  建置：make bundle // 產出時間 2026-10-07T05:03:15.229Z
   授權：MulanPSL-2.0（與 vChewing-macOS 之自研內容一致）
 -->
 <style>
@@ -196,6 +196,21 @@ body {
   background: #C0C0C0;
   padding: 9px 12px;
   text-align: right;
+  /* 收攏左下角那組浮動之連結，免其溢出按鈕列。 */
+  overflow: hidden;
+}
+
+/* 按鈕列左下角之站台連結（官網首頁、贊助頁）。按鈕仍在右，兩組各安其位。
+   `line-height` 取按鈕之實高（`min-height` 23 ＋ 上下各 2 之 3D 邊框），使兩者齊頭。 */
+.vca-footer-links {
+  float: left;
+  line-height: 27px;
+}
+
+.vca-footer-links a {
+  margin-right: 10px;
+  /* 此二連結之文字用粗體（2026-10-07 之指示）。 */
+  font-weight: bold;
 }
 
 /* --------------------------------- 標題層級 -------------------------------- */
@@ -667,7 +682,7 @@ var VCA_METADATA = {"schemaVersion":1,"generator":"vChewingSharedCLI dump-userde
 var VCA_SURFACE = {"keyboardParsers":{"dividerBefore":[7,100],"zhuyin":[{"name":"ofStandard","value":0,"i18nKey":"i18n:KeyboardLayout.DachenMicrosoftStandard"},{"name":"ofETen","value":1,"i18nKey":"i18n:KeyboardLayout.EtenTraditional"},{"name":"ofIBM","value":4,"i18nKey":"i18n:KeyboardLayout.IBM"},{"name":"ofMiTAC","value":5,"i18nKey":"i18n:KeyboardLayout.MiTAC"},{"name":"ofSeigyou","value":8,"i18nKey":"i18n:KeyboardLayout.Seigyou"},{"name":"ofFakeSeigyou","value":6,"i18nKey":"i18n:KeyboardLayout.FakeSeigyou"},{"name":"ofDachen26","value":7,"i18nKey":"i18n:KeyboardLayout.Dachen26"},{"name":"ofETen26","value":3,"i18nKey":"i18n:KeyboardLayout.Eten26"},{"name":"ofHsu","value":2,"i18nKey":"i18n:KeyboardLayout.Hsu"},{"name":"ofStarlight","value":9,"i18nKey":"i18n:KeyboardLayout.Starlight"},{"name":"ofAlvinLiu","value":10,"i18nKey":"i18n:KeyboardLayout.AlvinLiuImitative"}],"pinyin":[{"name":"ofHanyuPinyin","value":100,"i18nKey":"i18n:TypingMethod.HanyuPinyinNumeral"},{"name":"ofSecondaryPinyin","value":101,"i18nKey":"i18n:TypingMethod.SecondaryPinyinNumeral"},{"name":"ofYalePinyin","value":102,"i18nKey":"i18n:TypingMethod.YalePinyinNumeral"},{"name":"ofHualuoPinyin","value":103,"i18nKey":"i18n:TypingMethod.HualuoPinyinNumeral"},{"name":"ofUniversalPinyin","value":104,"i18nKey":"i18n:TypingMethod.UniversalPinyinNumeral"},{"name":"ofWadeGilesPinyin","value":105,"i18nKey":"i18n:TypingMethod.WadeGilesPinyinNumeral"}]}};
 var VCA_TARGET_VERSION = {"version":"4.8.7","build":"4870","display":"4.8.7 (4870)"};
 var VCA_DOC_BASE = "https://vchewing.github.io/";
-var VCA_BUILD_STAMP = "2026-10-07T03:01:27.756Z";
+var VCA_BUILD_STAMP = "2026-10-07T05:03:15.229Z";
 
 "use strict";
 
@@ -687,6 +702,8 @@ var VCA;
         "zh-Hant": {
             "app.title": "唯音輸入法配置助手",
             "app.stepCounter": "第 %1 步，共 %2 步",
+            "link.homepage": "官網",
+            "link.sponsor": "贊助",
             "nav.back": "＜ 上一步",
             "nav.next": "下一步 ＞",
             "nav.finish": "完成",
@@ -831,6 +848,8 @@ var VCA;
         "zh-Hans": {
             "app.title": "唯音输入法配置助手",
             "app.stepCounter": "第 %1 步，共 %2 步",
+            "link.homepage": "官网",
+            "link.sponsor": "赞助",
             "nav.back": "＜ 上一步",
             "nav.next": "下一步 ＞",
             "nav.finish": "完成",
@@ -975,6 +994,8 @@ var VCA;
         en: {
             "app.title": "vChewing Configuration Assistant",
             "app.stepCounter": "Step %1 of %2",
+            "link.homepage": "Website",
+            "link.sponsor": "Sponsor",
             "nav.back": "< Back",
             "nav.next": "Next >",
             "nav.finish": "Finish",
@@ -1119,6 +1140,8 @@ var VCA;
         ja: {
             "app.title": "唯音入力アプリ配置助手",
             "app.stepCounter": "%2 ステップ中 %1 番目",
+            "link.homepage": "公式サイト",
+            "link.sponsor": "ご支援",
             "nav.back": "＜ 戻る",
             "nav.next": "次へ ＞",
             "nav.finish": "完了",
@@ -2316,6 +2339,13 @@ var VCA;
         return VCA_DOC_BASE + docPath;
     }
     VCA.docHref = docHref;
+    function externalLink(text, href) {
+        var node = el("a", "vca-link", text);
+        node.href = href;
+        node.target = "_blank";
+        return node;
+    }
+    VCA.externalLink = externalLink;
     function choiceLabel(question, choice, lang) {
         if (choice.labelKey)
             return VCA.t(choice.labelKey);
@@ -2411,9 +2441,7 @@ var VCA;
         var help = helpShownInline ? null : questionHelp(question, state.lang);
         var host = el("div", "vca-why", null);
         if (!help) {
-            var linkOnly = el("a", "vca-link", VCA.t("q.moreInfo"));
-            linkOnly.href = docHref(docPath);
-            linkOnly.target = "_blank";
+            var linkOnly = externalLink(VCA.t("q.moreInfo"), docHref(docPath));
             host.appendChild(linkOnly);
             return host;
         }
@@ -2427,9 +2455,7 @@ var VCA;
         };
         host.appendChild(toggle);
         host.appendChild(bodyText);
-        var link = el("a", "vca-link", VCA.t("q.moreInfo"));
-        link.href = docHref(docPath);
-        link.target = "_blank";
+        var link = externalLink(VCA.t("q.moreInfo"), docHref(docPath));
         link.style.marginLeft = "8px";
         host.appendChild(link);
         return host;
@@ -2653,6 +2679,11 @@ var VCA;
         body.appendChild(left);
         body.appendChild(main);
         var footer = VCA.el("div", "vca-footer", null);
+        var footerLinks = VCA.el("span", "vca-footer-links", null);
+        var homeLink = VCA.externalLink(VCA.t("link.homepage"), VCA.docHref(""));
+        var sponsorLink = VCA.externalLink(VCA.t("link.sponsor"), VCA.docHref("SPONSOR_ME.html"));
+        footerLinks.appendChild(homeLink);
+        footerLinks.appendChild(sponsorLink);
         var cancelBtn = VCA.el("button", "vca-btn", VCA.t("nav.cancel"));
         var backBtn = VCA.el("button", "vca-btn", VCA.t("nav.back"));
         var skipBtn = VCA.el("button", "vca-btn", VCA.t("nav.toSummary"));
@@ -2665,6 +2696,7 @@ var VCA;
         backBtn.onclick = function () { handlers.onNav("back"); return false; };
         skipBtn.onclick = function () { handlers.onNav("summary"); return false; };
         nextBtn.onclick = function () { handlers.onNav("next"); return false; };
+        footer.appendChild(footerLinks);
         footer.appendChild(cancelBtn);
         footer.appendChild(backBtn);
         footer.appendChild(skipBtn);
@@ -2678,6 +2710,7 @@ var VCA;
             content: content, titleText: titleText, titleProgress: titleProgress,
             titleSegments: titleSegments,
             backBtn: backBtn, skipBtn: skipBtn, nextBtn: nextBtn, cancelBtn: cancelBtn,
+            homeLink: homeLink, sponsorLink: sponsorLink,
         };
     }
     VCA.buildShell = buildShell;
@@ -2929,6 +2962,9 @@ var VCA;
         shell.nextBtn.textContent = state.stepIndex === steps.length - 1 ? VCA.t("nav.finish") : VCA.t("nav.next");
         shell.cancelBtn.textContent = VCA.t("nav.cancel");
         shell.skipBtn.textContent = VCA.t("nav.toSummary");
+        shell.backBtn.textContent = VCA.t("nav.back");
+        shell.homeLink.textContent = VCA.t("link.homepage");
+        shell.sponsorLink.textContent = VCA.t("link.sponsor");
         var starterIndex = stepIndexOf(steps, "starter");
         var summaryIndex = steps.length - 1;
         var showSkip = starterIndex >= 0 && state.stepIndex >= starterIndex &&
