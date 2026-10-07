@@ -3,6 +3,10 @@
 set -eu
 export GEM_HOME="$HOME/.gem/ruby/2.6.0"
 export PATH="$GEM_HOME/bin:$PATH"
+# 主題的 SCSS（_dark.scss、_layout.scss 等）內含 UTF-8 字元；若 locale 為
+# US-ASCII，Sass 會以 `Invalid US-ASCII character "\xE2"` 中斷主題 CSS 的編譯。
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 TH=/Users/shikisuen/Repos/_vChewing/_OtherRepos/homepage-jekyll-theme-read-the-docs
 SRC=/Users/shikisuen/Repos/_vChewing/_MainWorkspace/vChewing-HomePage.io
 WORK=/tmp/vcsite-check
