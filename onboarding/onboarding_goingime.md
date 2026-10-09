@@ -106,6 +106,6 @@ permalink: /manual/onboarding_goingime.html
 1. 在唯音的輸入法選單內點「**開啟使用者片語辭典目錄**」；
 2. 把倒出來的詞條逐行貼進 `userdata-cht.txt`（若您也用簡體模式，另貼一份進 `userdata-chs.txt`）。唯音在載入時會自動整理格式。
 
-剩下的 `hits`（使用次數）與 `ts`（時間戳）欄位只是輔助資訊，不必搬；唯音的使用者片語檔允許另外用空格指定權重（見《[使用者片語辭典目錄](../manual/userPhrases.md)》）。
+剩下的 `hits`（使用次數）與 `ts`（時間戳）欄位只是輔助資訊，不必搬；唯音的使用者片語檔允許另外用空白字元指定權重（見《[使用者片語辭典目錄](../manual/userPhrases.md)》）。
 
 $ EOF.

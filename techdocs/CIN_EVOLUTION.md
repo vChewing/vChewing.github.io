@@ -29,11 +29,11 @@ CIN 是非常古老的輸入法碼表格式，最開始作為輸入法原始碼�
 
 ### 1. 檔案頭
 
-1. [2.0] CIN2 推薦使用單個 ASCII 空格作為分欄符號。為了應對「使用者自 Microsoft Excel 等試算表軟體複製資料到磁帶檔案內」的情況，可以事先偵測 Tab 字符的存無：如果有的話，以 Tab 作為 delimiter。
+1. [2.0] CIN2 推薦使用單個 ASCII 空白字元作為分欄符號。為了應對「使用者自 Microsoft Excel 等試算表軟體複製資料到磁帶檔案內」的情況，可以事先偵測 Tab 字符的存無：如果有的話，以 Tab 作為 delimiter。
 
 2. [2.0] CIN2 不要求檔案是否以 `%gen_inp` 開頭，但在該開頭缺失的情況下、得要求以 `%ename` 開頭。另外，**CIN2 標準對內容的忽略方法**：以段落開頭結尾來規定要讀入的內容；在段落外部的內容，除非包含特定的特徵字串（比如像是 `%wildcardkey` 這樣的），否則會被無視。
 
-3. [2.0] CIN2 要求的磁帶名稱定義方法：`%ename` 決定磁帶的英文名、`%cname` 決定磁帶的最優先的 CJK 名稱。至於 `%sname` 則是英文縮寫命名。此外，還有 `%intlname` 單行定義：用分號劃分語言區域，每個區域採 `名稱:語言標記` 的形式來記錄資料。一般情況下，`%intlname` 應該被解析讀取之後優先用於介面顯示。然而需注意 `_` 符號在這一行會被自動取代為空格、以便讓英文名支援空格。比如說 `Haifeng_Wubi` 的話，讀取結果就是 `Haifeng Wubi`。至於語言標記，除了「需要用 `-` 而非 `_` 來寫標記」以外，還請使用諸如 `zh-Hans`, `zh-Hant-HK`, `zh-Hant-TW` 這樣的現代標記來取代諸如 `zh-CN`, `zh-TW`, `zh-HK` 這樣的被淘汰的標記。定義範例如下：
+3. [2.0] CIN2 要求的磁帶名稱定義方法：`%ename` 決定磁帶的英文名、`%cname` 決定磁帶的最優先的 CJK 名稱。至於 `%sname` 則是英文縮寫命名。此外，還有 `%intlname` 單行定義：用分號劃分語言區域，每個區域採 `名稱:語言標記` 的形式來記錄資料。一般情況下，`%intlname` 應該被解析讀取之後優先用於介面顯示。然而需注意 `_` 符號在這一行會被自動取代為空白字元、以便讓英文名支援空白字元。比如說 `Haifeng_Wubi` 的話，讀取結果就是 `Haifeng Wubi`。至於語言標記，除了「需要用 `-` 而非 `_` 來寫標記」以外，還請使用諸如 `zh-Hans`, `zh-Hant-HK`, `zh-Hant-TW` 這樣的現代標記來取代諸如 `zh-CN`, `zh-TW`, `zh-HK` 這樣的被淘汰的標記。定義範例如下：
 
 	```
 	%ename Wubi
@@ -74,9 +74,9 @@ CIN 是非常古老的輸入法碼表格式，最開始作為輸入法原始碼�
 
 15. [2.4] `%keys_to_directly_commit` 用來讓輸入法故意放棄對被該行參數值包括的字元對應的按鍵訊息的「標點符號/字母」輸入處理。這可以用來略過輸入法本身對某些按鍵內建的原廠標點符號資料定義。
 
-16. [2.5] `%quickphrases_commission_key` 用來指定專門用來遞交快速詞彙的鍵盤按鍵。一旦指定了，則該遞交鍵相比空格鍵而言會導致選字窗分別出現不同的內容、以確保兩種內容在顯示上互相隔離。不指定的話，`%quickphrases` 章節的內容會被混合顯示到主要的選字窗內。`%quickphrases begin` 和 `%quickphrases end` 作為 `%quickphrases` 章節的邊界，包括了與 `%quickphrases` 有關詞語簡碼內容。
+16. [2.5] `%quickphrases_commission_key` 用來指定專門用來遞交快速詞彙的鍵盤按鍵。一旦指定了，則該遞交鍵相比空白鍵而言會導致選字窗分別出現不同的內容、以確保兩種內容在顯示上互相隔離。不指定的話，`%quickphrases` 章節的內容會被混合顯示到主要的選字窗內。`%quickphrases begin` 和 `%quickphrases end` 作為 `%quickphrases` 章節的邊界，包括了與 `%quickphrases` 有關詞語簡碼內容。
 
-17. [2.6] 為了讓實作能夠進行基於 UTF-8 byte 的效能最佳化，並確保跨平台行為一致，所有用來查詢或觸發功能的 key（包括 `%chardef`、`%quick`、`%symboldef`、`%quickphrases` 的索引鍵，以及 `%wildcardkey`、`%anysinglecharkey`、`%selkey`、`%endkey`、`%keys_to_directly_commit`、`%quickphrases_commission_key` 所指定的按鍵）必須由**可見 ASCII 字元（U+0021–U+007E）**組成。單一 ASCII 空格（U+0020）保留為預設分欄符號，因此不得出現在 key 內。單一 ASCII Tab（U+0009）因為可能會被視為 delimiter 的原因也不得出現在 key 內。為釋義用途，可用任意 Unicode 字元，不受此限。任何包含非 ASCII 字元的 key，其行為在 CIN2 標準下未定義，實作得視為無效或不予保證。此外，`%wildcardkey` 與 `%anysinglecharkey` 不得設為同一個字元，否則會造成語義衝突。
+17. [2.6] 為了讓實作能夠進行基於 UTF-8 byte 的效能最佳化，並確保跨平台行為一致，所有用來查詢或觸發功能的 key（包括 `%chardef`、`%quick`、`%symboldef`、`%quickphrases` 的索引鍵，以及 `%wildcardkey`、`%anysinglecharkey`、`%selkey`、`%endkey`、`%keys_to_directly_commit`、`%quickphrases_commission_key` 所指定的按鍵）必須由**可見 ASCII 字元（U+0021–U+007E）**組成。單一 ASCII 空白字元（U+0020）保留為預設分欄符號，因此不得出現在 key 內。單一 ASCII Tab（U+0009）因為可能會被視為 delimiter 的原因也不得出現在 key 內。為釋義用途，可用任意 Unicode 字元，不受此限。任何包含非 ASCII 字元的 key，其行為在 CIN2 標準下未定義，實作得視為無效或不予保證。此外，`%wildcardkey` 與 `%anysinglecharkey` 不得設為同一個字元，否則會造成語義衝突。
 
 	> `%anysinglecharkey` 是 CIN v2.7 新增的字段。
 
