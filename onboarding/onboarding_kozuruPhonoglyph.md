@@ -2,7 +2,7 @@
 parent: 新手上路
 sort: 9
 has_toc: true
-permalink: /manual/onboarding_kozuru.html
+permalink: /manual/onboarding_kozuruPhonoglyph.html
 ---
 # 寫給小鶴音形的使用者
 
