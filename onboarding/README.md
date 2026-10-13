@@ -37,6 +37,7 @@ permalink: /onboarding/
 
 - [寫給行列三十輸入法的使用者](./onboarding_array30.md)
 - [寫給華碩輸入法的使用者](./onboarding_asus.md)
+- [寫給雙拼使用者](./onboarding_dualpin.md)
 - [寫給自然輸入法的使用者](./onboarding_goingime.md)
 - [寫給漢音輸入法使用者](./onboarding_hanin.md)
 - [寫給雅虎奇摩輸入法的使用者](./onboarding_kimo.md)
