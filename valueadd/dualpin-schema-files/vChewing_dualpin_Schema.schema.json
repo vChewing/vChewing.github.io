@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vchewing.github.io/valueadd/dualpin-schema-files/vChewing_dualpin_Schema.schema.json",
+  "title": "唯音輸入法雙拼方案定義檔（Dualpin Schema）",
+  "description": "唯音輸入法（vChewing）之雙拼方案定義檔格式規範。檔案須以 UTF-8 編碼、內容為單一 JSON 物件、大小上限 1 MiB。本 schema 只規範「規範形」；唯音實作端對 nullOnset 與 keyInterception 另接受數種寬容形，詳見同目錄之 README.md。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rawID", "rawTitle", "initials", "finals", "nullOnset"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "選填。指向本規範檔之 URI，僅供編輯器與驗證器辨識；唯音本身不使用此欄位。",
+      "examples": [
+        "https://vchewing.github.io/valueadd/dualpin-schema-files/vChewing_dualpin_Schema.schema.json"
+      ]
+    },
+    "rawID": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9-]*(\\.[A-Za-z][A-Za-z0-9-]*)+$",
+      "description": "方案之唯一識別名，須為反向域名形（例如 dualPin.SmartABC）。不得為空、不得與唯音內建之 dualPin.Microsoft 或 dualPin.GBT17 相同，亦不得與已載入之方案相衝（引擎之 E9）。"
+    },
+    "rawTitle": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "description": "方案之原文標題，不得為空或全為空白（引擎之 E7）。"
+    },
+    "localizedTitle": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "語系標籤到標題之對照表，選填。查表順序為：精確之語系標籤、去區域之標籤、語言主標籤、en、rawTitle。缺少 en 時載入仍會成功，但引擎會發 W8 警告。",
+      "examples": [
+        {
+          "en": "Xiaohe",
+          "zh-Hant": "小鶴雙拼",
+          "zh-Hans": "小鹤双拼",
+          "ja": "小鶴双弁"
+        }
+      ]
+    },
+    "initials": {
+      "$ref": "#/$defs/pinyinToKeyTable",
+      "description": "聲母表：拼音聲母（zh、ch、sh、b、p、m…）到單一鍵之對照，必填。查表時以鍵較長者優先，故 zh／ch／sh 勝過其單鍵。"
+    },
+    "finals": {
+      "$ref": "#/$defs/pinyinToKeyTable",
+      "description": "尾綴表：韻母（a、uo、iang、v…）到單一鍵之對照，必填。查表時須與剩餘之拼音全等，不採後綴吞噬。"
+    },
+    "nullOnset": {
+      "anyOf": [
+        {
+          "const": "finalInitial"
+        },
+        {
+          "const": "finalInitialOrVerbatimDigraph"
+        },
+        {
+          "$ref": "#/$defs/key"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fixedKey"],
+          "properties": {
+            "fixedKey": {
+              "$ref": "#/$defs/key"
+            }
+          }
+        }
+      ],
+      "description": "零聲母政策，必填。'finalInitial'：以尾綴之首字元為鍵；'finalInitialOrVerbatimDigraph'：尾綴恰為二字元時原樣輸出，否則取首字元；單一鍵（如 'o'）：一律以該鍵起首。亦可寫作 {\"fixedKey\": \"o\"}。"
+    },
+    "keyInterception": {
+      "anyOf": [
+        {
+          "const": "none"
+        },
+        {
+          "const": "schemeAlphabet"
+        },
+        {
+          "$ref": "#/$defs/keySet"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["explicit"],
+          "properties": {
+            "explicit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "#/$defs/key"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "description": "按鍵攔截政策，選填（預設 'none'）。'none'：不攔截；'schemeAlphabet'：攔截本方案之全部可用鍵；字串：攔截該字串所含之字元（寬容形，非規範形）；{\"explicit\": …}：明確列出所攔截之鍵。所列出之鍵若不在本方案之可用鍵內，即為引擎之 E6。"
+    },
+    "autochopPolicy": {
+      "enum": [
+        "disabled",
+        "backtrackToShorterReading",
+        "prefixCandidates",
+        "passThroughVerbatim"
+      ],
+      "default": "disabled",
+      "description": "自動斷詞政策，選填（預設 'disabled'）。非 'disabled' 時載入仍會成功，但引擎會發 W7 警告。"
+    },
+    "overrides": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/pinyinFragment"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/code"
+      },
+      "description": "詞幹到碼之強制覆寫，選填。所指定之碼優先於兩表之推算結果；碼長非 2 即為引擎之 E8。",
+      "examples": [
+        {
+          "dei": "dw"
+        }
+      ]
+    },
+    "aliases": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/code"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/pinyinFragment"
+      },
+      "description": "別名碼：額外可接受之碼到詞幹之對照，選填。別名碼與他詞幹之主碼相撞即為引擎之 E5。",
+      "examples": [
+        {
+          "ad": "ai",
+          "ew": "ei"
+        }
+      ]
+    },
+    "acknowledgedUnreachable": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/pinyinFragment"
+      },
+      "description": "已知無法得碼之詞幹清單，選填。列出後引擎不再為這些詞幹發 E3；但仍會發 W1 提醒。"
+    }
+  },
+  "$defs": {
+    "pinyinFragment": {
+      "type": "string",
+      "pattern": "^[a-zü]+$",
+      "description": "拼音片段：小寫拉丁字母（ü 可作 ü，亦可依 v 化慣例寫作 v）。"
+    },
+    "key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1,
+      "pattern": "^[^1-5\\sˊˇˋ˙\\u0000-\\u001F\\u007F]$",
+      "description": "單一鍵：恰一個可見字元。聲調鍵（1 至 5、空白、ˊ、ˇ、ˋ、˙）不得作為鍵（引擎之 E4）。"
+    },
+    "keySet": {
+      "type": "string",
+      "minLength": 1,
+      "description": "鍵之集合，以字串之各字元表示（寬容形）。"
+    },
+    "code": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "pattern": "^[^1-5\\sˊˇˋ˙\\u0000-\\u001F\\u007F]{2}$",
+      "description": "一個音節之碼，恆為兩個鍵（引擎之碼長為 2；碼長非 2 即為引擎之 E2）。"
+    },
+    "pinyinToKeyTable": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/pinyinFragment"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/key"
+      },
+      "description": "拼音片段到單一鍵之對照表。"
+    }
+  }
+}
