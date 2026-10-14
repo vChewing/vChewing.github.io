@@ -25,7 +25,6 @@ hide_breadcrumbs: true
 </centerbox>
 
 <card markdown="block">
-
 <card_title>注音中英文混打</card_title>
 
 如果您想在中英文混打時免於切換中英模式的話，在「唯音輸入法偏好設定->行為設定」啟用「中英文輸入回退」即可。詳見《[寫給華碩輸入法的使用者](./manual/onboarding_asus.html)》。
@@ -33,17 +32,17 @@ hide_breadcrumbs: true
 ![注音中英文混打](./assets/Cards_TypingStyleSupported_ZhuyinMixedAlnum.gif)
 
 </card>
-<card markdown="block">
 
+<card markdown="block">
 <card_title>狂打模式（連續打字）</card_title>
 
-唯音的「狂打模式」允許以不完整的讀音連續打字，分為「拼音狂打」與「注音狂打」兩個各自獨立的開關，支援多種拼音與注音方案。拼音側的用法詳見《[寫給搜狗拼音／昇陽拼音／智能狂拼／紫光拼音的使用者](./onboarding/onboarding_pinyinsimp.md)》。
+唯音的「狂打模式」允許以不完整的讀音連續打字，分為「拼音狂打」與「注音狂打」兩個各自獨立的開關，支援多種拼音與注音方案，也可在雙拼模式下使用。拼音側的用法詳見《[寫給搜狗拼音／昇陽拼音／智能狂拼／紫光拼音的使用者](./onboarding/onboarding_pinyinsimp.md)》。
 
 ![狂打模式](./assets/Cards_TypingStyleSupported_PinyinFuriousTyping.gif)
 
 </card>
-<card markdown="block">
 
+<card markdown="block">
 <card_title>ㄅ半注音</card_title>
 
 從 DOS 倚天中文系統與 Windows 3.x 年代活到現在的ㄅ半戰士們，只需要在「唯音輸入法偏好設定->一般設定」點按「我姓ㄅ」按鈕，就可以找回自己熟悉的ㄅ半輸入體驗啦！
@@ -51,8 +50,17 @@ hide_breadcrumbs: true
 ![ㄅ半注音](./assets/Cards_TypingStyleSupported_ZhuyinBoBan.gif)
 
 </card>
-<card markdown="block">
 
+<card markdown="block">
+<card_title>任何雙拼輸入法</card_title>
+
+唯音輸入法支援雙拼輸入，內建微軟雙拼方案與 GB/T 關標雙拼方案，亦允許使用者讀入諸如小鶴雙拼等單獨的雙拼配置檔案。詳見《[寫給雙拼使用者](./onboarding/onboarding_dualpin.md)》。
+
+![雙拼輸入法](./assets/Cards_TypingStyleSupported_Dualpin.gif)
+
+</card>
+
+<card markdown="block">
 <card_title>行列輸入法</card_title>
 
 將 Gontera 提供的 [CIN2 格式的行列輸入法表格](https://github.com/gontera/array30/tree/master/cin2) 載入唯音輸入法的磁帶模式，就可以使用行列輸入法。詳見《[寫給行列三十輸入法的使用者](./manual/onboarding_array30.html)》。
@@ -60,8 +68,8 @@ hide_breadcrumbs: true
 ![行列輸入法](./assets/Cards_TypingStyleSupported_Array30.gif)
 
 </card>
-<card markdown="block">
 
+<card markdown="block">
 <card_title>其他 CIN 表格輸入法</card_title>
 
 唯音輸入法的 CIN 磁帶模式也支援 CIN1 格式的輸入法表格，可以用來打倉頡、行列、嘸蝦米。詳見《[寫給 OpenVanilla 的使用者](./manual/onboarding_ov.html)》。
@@ -69,6 +77,7 @@ hide_breadcrumbs: true
 ![其他 CIN 表格輸入法](./assets/Cards_TypingStyleSupported_OtherCIN.gif)
 
 </card>
+
 </cardset>
 
 <centerbox markdown="block">
