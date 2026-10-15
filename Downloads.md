@@ -13,7 +13,7 @@ hide_breadcrumbs: true
 
 | 下載地點 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |----|----|----|----|
-| [GitHub](https://github.com/vChewing/vChewing-macOS/releases)<br >[Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7)<br >[敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.9.0 GM<br />(Oct 14, 2026) |
+| [GitHub](https://github.com/vChewing/vChewing-macOS/releases)<br >[Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7)<br >[敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 4.9.1 GM<br />(Oct 15, 2026) |
 
 > 嫌偏好設定選項太多？試試「[配置助手](./assistant/)」，只需要最少四步就可以搞定輸入法配置。
 
@@ -24,6 +24,7 @@ hide_breadcrumbs: true
 
 部分近期主打更新內容概要：
 
+- [4.9.1] 雙拼在尚未配對成碼時遇到標點等非碼鍵的處理方式比照全拼；敲入不可能開啟任何碼之首鍵時當場示警並丟棄；客體端組字區不再無謂地先清空、再重建；選字窗在螢幕底端時的位置避讓更準確。
 - [4.9.0] 新增雙拼（Dualpin）打字支援，只需有序兩鍵即可鎖定漢語拼音讀音；修復了漸退記憶模組的兩樁故障（打字學習得越久、敲字就越遲鈍；已淡出或已汰除的記憶會在下次啟動時復活）。
 - [4.8.8] 「空白鍵對內文組字區的行為」新增「插入空白字元（內文組字區）」，可直接在尚未遞交的組字內容中間補上留白；換裝唯音之後，舊版輸入法的殘存行程現在會確實退場；「開發道場」新增四個診斷用開關用於排查事件投遞失靈。
 - [4.8.7] 修復「中英文混合輸入回退模式」與「注音狂打」並用時會遞交未經確認之臆測內容的故障；有 CMD 鍵參與的熱鍵現會先遞交組字內容、再交還系統；同捆熱鍵指南更新；選字窗縮放動畫之美術瑕疵修正。
