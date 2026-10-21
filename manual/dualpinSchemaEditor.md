@@ -7,7 +7,7 @@ has_toc: true
 
 > 本文的原始 markdown 可以[點此存取](https://raw.githubusercontent.com/vChewing/vChewing.github.io/refs/heads/main/manual/dualpinSchemaEditor.md)，以便使用者轉交給各種 AI 服務代為閱讀講解。
 
-本文對應至少唯音輸入法 4.9.1 版。文中所述之編輯器位於「偏好設定 → 鍵盤設定」頁面的「雙拼方案」區塊底端；SwiftUI 偏好設定介面需 macOS 14 以上，舊版 AppKit 介面的同名區塊外觀不同、**功能一致**。
+本文對應至少唯音輸入法 4.9.2 版。文中所述之編輯器位於「偏好設定 → 鍵盤設定」頁面的「雙拼方案」區塊底端；SwiftUI 偏好設定介面需 macOS 14 以上，舊版 AppKit 介面的同名區塊外觀不同、**功能一致**。
 
 - [雙拼方案編輯器](#雙拼方案編輯器)
 	- [雙拼與本編輯器](#雙拼與本編輯器)
