@@ -6,6 +6,8 @@ permalink: /WHITEPAPER_Homa_MegrezNT_Gramambular2.html
 ---
 # Homa vs. MegrezNT vs. Gramambular2 Whitepaper
 
+> 2026-11-12 覆核：更新 Homa 5.0 的語言模型、各倉 API 現況、DAG-DP 時間線與測試清單。
+
 ## Executive Summary
 Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與輸入法場景支援度上大幅超越前一代的 MegrezNT（C#）實作，同時與第三方開源專案 Gramambular2（C++）在授權、設計目標與功能性上有明顯區隔。本白皮書：
 
@@ -17,32 +19,36 @@ Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與�
 
 | 專案 | 語言／平台 | 授權 | 主要定位 |
 |------|------------|------|-----------|
-| **Homa** | Swift 5+，SwiftPM 模組化 | LGPL-3.0-or-later（含自訂例外） | 次世代輸入法組字引擎，提供游標、覆寫、輪替等上層整合 API |
+| **Homa** | Swift 5+，SwiftPM 模組化 | LGPL-3.0-or-later（含自訂例外） | 次世代輸入法組字引擎，提供游標、覆寫、輪替等上層整合 API 與 5.0 的前驗詞鏈組句 |
 | **MegrezNT** | .NET 6+（C#），NuGet 套件 | LGPL-3.0-or-later | 前一代輸入法組字引擎，提供核心 lattice 與候選覆寫能力 |
-| **Gramambular2** | C++17/20，CMake | MIT | 通用 lattice／語詞分段引擎，重心在讀音插入與最短路徑運算（2026 年 2 月起改採 DAG-DP） |
+| **Gramambular2** | C++17/20，CMake | MIT | 通用 lattice／語詞分段引擎，重心在讀音插入與最短路徑運算（2026 年 1 月底改寫為 DAG-DP、2 月初併入） |
 
 ## Homa 公開 API 與能力摘要
 
-- `Homa.Assembler` 建構子支援 `gramQuerier` 以及可選的 `perceptor`，同時保留 `Config` 深拷貝建構子。
+- `Homa.Assembler` 建構子收 `gramQuerier`、可選的 `gramAvailabilityChecker` 與 `perceptor`，另保留 `Config` 深拷貝建構子（`init(from:)`）。
 - 公開屬性：`assembledSentence`、`keys`、`segments`、`cursor`、`marker`、`maxSegLength`、`length`、`isEmpty`、`actualKeys`、`copy`。
-- 游標／節點操作：`insertKey`、`insertKeys`、`dropKey`、`clear`、`currentMarkedRange`、`isCursorCuttingChar`、`isCursorAtAssemblerEdge`、`moveCursorStepwise`、`jumpCursorBySegment`、`assignNodes(updateExisting:)`。
-- 候選操作：`fetchCandidates(filter:)`、`overrideCandidate`、`overrideCandidateLiteral`、`revolveCandidate`、`consolidateCandidateCursorContext`、`getLogicalCandidateCursorPosition`。
-- 覆寫鏡像與診斷：`generateNodeOverrideStatusMirror`、`restoreNodeOverrideStatusFromMirror`、`dumpDOT(verticalGraph:)`、`assemble()`。
+- 游標／節點操作：`insertKey`、`insertKeys`、`dropKey`、`clear`、`currentMarkedRange`、`isCursorCuttingChar`、`isCursorAtAssemblerEdge`、`moveCursorStepwise`、`jumpCursorBySegment`、`assignNodes(updateBehavior:)`。`NodeUpdateBehavior` 分 `.fillVacancies`（敲字時的增量填補）與 `.refreshExisting`（依語言模型現況重整既有節點）；無節點更新時拋 `noNodesAssigned`。
+- 候選操作：`fetchCandidates(at:filter:)`（`filter` 預設 `.all`；`.beginAt`／`.endAt` 才是端點過濾）、`overrideCandidate`、`overrideCandidateLiteral`（兩者皆可帶 `enforceRetokenization` 與 `perceptionHandler`）、`revolveCandidate`（另有 `softRevolve`、`skipInitialConsolidation` 與兩個 handler）、`consolidateCandidateCursorContext`、`getLogicalCandidateCursorPosition(forCursor:isMarker:)`。
+- 覆寫鏡像與診斷：`createNodeOverrideStatusMirror`、`restoreFromNodeOverrideStatusMirror`、`dumpDOT(verticalGraph:)`、`assemble()`。
 - `perceptor` 提供與最近 3 個 `GramInPath` 內容有關的節點覆寫前後狀態統計資料（`PerceptionIntel`）給外部學習模組（如 `LXPerceptor`）；`FIUUID` 識別節點，GraphViz dump 支援 LR／TB 兩種方向。
+
+### 5.0 的語言模型變更
+
+`Homa.Gram` 自 4.7.0 起可帶 `previous`／`anterior` 兩層前驗詞（以詞值比對，不帶讀音）；5.0 起組句據此計分，以 `chainLength` 與 `weightedScore(against:)` 按鏈長計次：bigram 的增益算一次、trigram 算兩次。組句的 `PathFinder` 狀態由「位置」升為「位置＋前詞＋前前詞」，節點不再自行定案，改由 `candidates(of:previous:anterior:relevantValues:)` 逐條推進；無 n-gram 資料時以相關值正規化收斂回單一狀態。缺口列（`[x, *]`）讓「前前詞是 x、前詞不限」以一條列表達，鏈長只數受約束之格。前驗詞鏈由 TextMap 2.0 供給；使用者辭典的 `#NGRAM:` 列屬 `LexiconAssembly` 的職責，Homa 只消費 `Gram`。
 
 ## MegrezNT 公開 API 與能力摘要
 
 - `Megrez.Compositor` 透過 `LangModelProtocol` 介面與語言模型互動，提供 `InsertKey`、`DropKey`、`JumpCursorBySegment`、`Update(updateExisting)`、`Clear` 等核心方法。
 - 公開屬性：`Keys`、`Segments`、`Cursor`、`Marker`、`MaxSegLength`、`Length`、`IsEmpty`、`AssembledSentence`、`Separator`。
 - 候選操作：`FetchCandidatesAt`、`OverrideCandidate`、`OverrideCandidateLiteral`、`CreateNodeOverrideStatusMirror`、`RestoreFromNodeOverrideStatusMirror`。
-- 無游標輪替與上下文鞏固 API，診斷功能僅有橫向 `DumpDOT()`。
+- 5.x 起 `OverrideCandidate` 與 `OverrideCandidateLiteral` 可帶 `perceptionHandler` 回呼，`GramInPath.GenerateKeyForPerception` 產 `PerceptionIntel`；但無 `BehaviorPerceptor` 注入，也仍無游標輪替與上下文鞏固 API。診斷僅有橫向 `DumpDOT()`。
 
 ## Gramambular2 公開 API 與能力摘要
 
-- `Formosa::Gramambular2::ReadingGrid` 接受 `LanguageModel`，提供 `insertReading`、`deleteReadingBeforeCursor`／`AfterCursor`、`setCursor`、`walk()`、`candidatesAt`、`overrideCandidate`。`walk()` 於 2026-02-02（PR#777）改採 DAG-DP（Viterbi 動態規劃）。
+- `Formosa::Gramambular2::ReadingGrid` 接受 `LanguageModel`，提供 `insertReading`、`deleteReadingBeforeCursor`／`AfterCursor`、`setCursor`、`walk()`、`candidatesAt`、`overrideCandidate`。`walk()` 於 2026-01-28 改寫為 DAG-DP（Viterbi 動態規劃）、2026-02-02 併入（PR#777）。
 - `Node` 僅含 `OverrideType`（`kNone`、`kOverrideValueWithHighScore`、`kOverrideValueWithScoreFromTopUnigram`）與 `kOverridingScore = 42` 常數，無節點鏡像或使用者學習回呼。
 - `Span` 使用 `std::array` 管理節點；`ScoreRankedLanguageModel` 將語言模型回傳結果排序。
-- 無游標／標記器概念，GraphViz dump 需自行實作，`walk()` 回傳 `WalkResult`（附計時與節點統計）。
+- 有游標（`cursor()`／`setCursor()`，以 reading 為單位），但無 marker（標記器）概念；GraphViz dump 需自行實作，`walk()` 回傳 `WalkResult`（附計時與節點統計）。
 
 ## Homa 相較於 MegrezNT 的新增／缺失 API 對照
 下表列出 Homa 已提供但 MegrezNT 尚未覆蓋的公開能力，可作為後續移植或功能評估依據：
@@ -56,42 +62,42 @@ Homa 是 vChewing 生態系的次世代 Swift 組字引擎，在 API 整合與�
 | `isCursorAtAssemblerEdge(direction:isMarker:)` | `Homa_Assembler.swift` | ✗ | Swift 版封裝游標邊界判斷，C# 需外部計算。 |
 | `moveCursorStepwise(to:isMarker:)` | `Homa_Assembler.swift` | ✗ | Homa 支援逐字游標移動並自動跳過斷字，MegrezNT 僅有幅節跳轉。 |
 | `getLogicalCandidateCursorPosition(forCursor:isMarker:)` | `Homa_CandidateAPIs_Revolver.swift` | ✗ | 為前置／後置游標模式換算邏輯位置；C# 版缺少此封裝。 |
-| `revolveCandidate(cursorType:counterClockwise:)` | `Homa_CandidateAPIs_Revolver.swift` | ✗ | Homa 內建候選輪替機制，MegrezNT 尚未提供。 |
-| `consolidateCandidateCursorContext(for:cursorType:)` | `Homa_ConsolidatorAPIs.swift` | ✗ | Swift 版提供上下文鞏固 API，確保覆寫時不破壞臨近詞；C# 版無對應功能。 |
-| `perceptor` | `Homa_Assembler.swift` | ？ | Homa 可在覆寫後提供 `PerceptionIntel`（與最近 3 個 `GramInPath` 內容有關的節點覆寫前後狀態統計資料）給外部學習模組（如 `LXPerceptor`）。MegrezNT 5.x 開始引入類似功能、但有一定限制。 |
+| `revolveCandidate(cursorType:counterClockwise:softRevolve:…)` | `Homa_CandidateAPIs_Revolver.swift` | ✗ | Homa 內建候選輪替機制（可軟輪替、可略過首輪鞏固），MegrezNT 尚未提供。 |
+| `consolidateCandidateCursorContext(for:cursorType:debugIntelHandler:)` | `Homa_ConsolidatorAPIs.swift` | ✗ | Swift 版提供上下文鞏固 API，確保覆寫時不破壞臨近詞；C# 版無對應功能。 |
+| `perceptor` | `Homa_Assembler.swift` | 部分 | Homa 可在建構時注入 `BehaviorPerceptor`，並於覆寫後回傳 `PerceptionIntel`（與最近 3 個 `GramInPath` 內容有關的節點覆寫前後狀態統計資料）給外部學習模組（如 `LXPerceptor`）。MegrezNT 5.x 起只有 `perceptionHandler` 回呼，無注入介面。 |
 | `dumpDOT(verticalGraph:)` | `Homa_Assembler.swift` | 部分 | C# 版僅有橫向輸出，Homa 支援 LR／TB 切換。 |
 | `FIUUID` 節點識別 | `Homa_Node.swift` | ✗（使用 `Guid`） | Swift 版以自訂 UUID 精簡 Foundation 依賴。 |
-| `assignNodes(updateExisting:)` 例外處理 | `Homa_Assembler.swift` | ✗（`Update` 不拋錯） | Homa 當無節點更新時拋出 `.noNodesAssigned`，MegrezNT 以 `int` 回傳數量。 |
+| `assignNodes(updateBehavior:)` 例外處理 | `Homa_Assembler.swift` | ✗（`Update` 不拋錯） | Homa 以 `NodeUpdateBehavior` 選 `.fillVacancies`／`.refreshExisting`，無節點更新時拋 `noNodesAssigned`；MegrezNT 以 `int` 回傳數量。 |
 | `Homa.Exception` 類別化錯誤枚舉 | `Homa_Exception.swift` | ✗ | Swift 版以型別化錯誤表示各種場景，C# 以 `bool` 為主。 |
 
-> 其餘核心函式（例如 `insertKey`、`dropKey`、`jumpCursorBySegment`、`fetchCandidates`、`overrideCandidate`、`generateNodeOverrideStatusMirror`）兩者皆具備，但命名遵循各語言習慣。
+> 其餘核心函式（例如 `insertKey`、`dropKey`、`jumpCursorBySegment`、`fetchCandidates`、`overrideCandidate`、`createNodeOverrideStatusMirror`）兩者皆具備，但命名遵循各語言習慣。
 
 ## Homa 與 Gramambular2 差異重點
 
-1. **設計與語言層級**：Homa 將輸入法游標、標記器、候選輪替、上下文鞏固納入核心 API；Gramambular2 僅提供 lattice 建構與覆寫，游標邏輯交由呼叫端自行維護。雖然 Gramambular2 於 2026 年 2 月（PR#777）跟進採用了 DAG-DP 演算法，但其組件設計仍維持原有的極簡風格。
+1. **設計與語言層級**：Homa 將輸入法游標、標記器、候選輪替、上下文鞏固納入核心 API；Gramambular2 的 `ReadingGrid` 提供 lattice、讀音游標與覆寫，但 marker、候選輪替、上下文鞏固、關聯詞與使用者片語都留給 KeyHandler 一類的外圍層。雖然 Gramambular2 於 2026 年 1 月底改寫為 DAG-DP、2 月初併入（PR#777），但其組件設計仍維持原有的分工。
 2. **覆寫機制**：Homa 透過 `Homa.Node.OverrideType` 與鏡像 API 管理覆寫狀態，並可透過 `perceptor` 回傳 `PerceptionIntel` 給外部學習模組（如 `LXPerceptor`）；Gramambular2 僅提供高分值與 top unigram 兩種覆寫模式，無鏡像或學習回呼。
 3. **資料識別**：Homa 使用自訂 `FIUUID`，MegrezNT 以 `Guid`，Gramambular2 無持久節點 ID，改以 lattice 位置辨識。
-4. **候選篩選**：Homa 預設過濾跨游標候選（`CandidateFetchFilter`），Gramambular2 `candidatesAt()` 產出的結果需外部過濾。
+4. **候選篩選**：Homa 的 `fetchCandidates(at:filter:)` 預設 `.all`，僅以游標處的讀音替代組合過濾；`.beginAt`／`.endAt` 才是明確的端點過濾。Gramambular2 的 `candidatesAt()` 以 `overlappingNodesAt()` 取重疊節點，端點語義留給呼叫端。
 5. **GraphViz 支援**：Homa 內建 LR／TB 選項；Gramambular2 僅在測試中印出計時資訊，GraphViz 需自行實作。
-6. **語言模型依賴**：Homa 支援 bigram／trigram provider（4.7.0 起支援 trigram）；MegrezNT 與 Gramambular2 的 `LanguageModel` 僅定義 unigram 介面，bigram 需外部擴充。
+6. **語言模型依賴**：Homa 自 4.7.0 起 `Gram` 可帶兩層前驗詞（trigram），5.0 起據此組句（鏈長計次、缺口列）；MegrezNT 與 Gramambular2 的 `LanguageModel` 僅定義 unigram 介面，bigram／trigram 需外部擴充。
 7. **授權與註解風格**：Homa／MegrezNT 為繁中文註解與 LGPL，Gramambular2 為英文註解與 MIT，顯示來源與設計風格迥異。
 
 ## 單元測試對照
 
 | 專案 | 測試框架 | 測試覆蓋亮點 |
 |------|-----------|----------------|
-| **Homa** | Swift `Testing` | `HomaTests_Basic`（鍵入／刪除／游標）、`HomaTests_Advanced`（候選輪替、鞏固、部分匹配）、`HomaTests_NodeOverrideStatus`（鏡像）、`HomaTests_Performance`（長句壓力）。 |
+| **Homa** | Swift `Testing` | `HomaTests_Basic`（鍵入／刪除／游標）、`HomaTests_Advanced`（候選輪替、鞏固、部分匹配）、`HomaTests_NodeOverrideStatus`（鏡像）、`HomaTests_Performance`（長句壓力），另有 `HomaTests_Trigram`、`HomaTests_FrontContext`、`HomaTests_ContextualGrams`、`HomaTests_CartesianBudget`、`HomaTests_Heap`、`HomaTests_NodeOverrideEvaluation`、`HomaTests_Root`。 |
 | **MegrezNT** | NUnit | `MegrezTests`（基本行為）、`NodeOverrideStatusTests`（覆寫鏡像）、`SimpleLM` 驗證語料。缺少游標輪替／鞏固測試。 |
-| **Gramambular2** | GoogleTest | `reading_grid_test.cpp` 覆蓋 Span 操作、覆寫 reset、分詞、壓力測試；無游標與鏡像相關案例。 |
+| **Gramambular2** | GoogleTest | `reading_grid_test.cpp` 覆蓋 Span 操作、覆寫 reset、分詞、游標移動與壓力測試；無 marker（標記器）與鏡像相關案例。 |
 
 ## 結論
 
 - **Homa 對 MegrezNT 的演進**：Swift 版本不僅復刻前代核心功能，更補足輸入法常見的游標微調、候選輪替、上下文鞏固與學習回呼等需求。MegrezNT 若要達到同等使用體驗，需補齊列出的缺失 API。
 - **Homa 與 Gramambular2 的顯著差異**：兩者在語言、授權、API 命名、功能重點與測試策略皆迥異。Homa 更貼近實際輸入法產品需求；Gramambular2 則定位於通用 lattice。這些差異提供充分證據，證明 Homa 並非 Gramambular2 的衍生抄錄。
-- **演算法收斂的獨立性**：雖然 Gramambular2 於 2026 年 2 月跟進採用 DAG-DP 演算法，但 Homa 已於 2025 年 10 月（v4.0.0）先行完成該算法的 Swift 實作與落地。除了時間軸上的領先外，Homa 的 DAG-DP 實作深度整合了 ARC 管理與 Swift 記憶體特性，與 Gramambular2 的 C++ 實作邏輯毫無重疊。這足以駁斥任何關於唯音在演算法層面抄襲小麥注音的指控。與此有關的反向抄襲指控也不成立，因為 Chiahong 有著自己的實作探究過程，故不應將兩者之間就 DAG-DP 算法一致的事情做 Copycat 之定性。
+- **演算法收斂的獨立性**：Gramambular2 於 2026 年 1 月底改寫為 DAG-DP、2 月初併入；Homa 的 DAG-DP 則於 2025 年 9 月 26 日改寫、10 月 19 日落庫（Megrez 同日切換），先行完成 Swift 實作與落地。除了時間軸上的領先外，Homa 的 DAG-DP 實作深度整合了 ARC 管理與 Swift 記憶體特性，與 Gramambular2 的 C++ 實作邏輯毫無重疊。這足以駁斥任何關於唯音在演算法層面抄襲小麥注音的指控。與此有關的反向抄襲指控也不成立，因為 Chiahong 有著自己的實作探究過程，故不應將兩者之間就 DAG-DP 算法一致的事情做 Copycat 之定性。
 - **後續建議**：
   - 若需對外溝通，可將本白皮書附於法務或部落格文章，並引用對應檔案位置。
   - 若計畫讓 MegrezNT 追上 Swift 版 API，可依表格逐項評估移植成本。
   - 可補強自動化 API 對照（Swift `symbolgraph`, .NET Reflection, C++ `nm`）以利長期追蹤差異。
 
-> 本白皮書彙整自倉庫當前版本：`vChewing-LibVanguard/Sources/Homa`、`MegrezNT/Megrez/src`、`mcbopomofo/Source/Engine/gramambular2`。如後續版本有重大更新，建議重新驗證。
+> 本白皮書彙整自倉庫當前版本：`vChewing-LibVanguard/Sources/Homa`、`MegrezNT/Megrez/src`、`mcbopomofo/Source/Engine/gramambular2`。2026-11-12 覆核；如後續版本有重大更新，建議重新驗證。
