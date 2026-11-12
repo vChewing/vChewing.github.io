@@ -4,7 +4,7 @@ sort: 6
 has_toc: true
 permalink: /TechnicalWhitePaper.html
 ---
-# 技術白皮書-手工稿 (v5.0.1)
+# 與小麥對比的技術白皮書-手工稿 (v5.0.1)
 
 > 註：本文提到的 SessionCtl 是 IMKInputController 的派生型別、在小麥注音當中被稱為「InputMethodController」。此前，該型別在唯音當中曾一度被命名為「ctlInputMethod」。自唯音 2.7.5 版開始，ctlInputMethod (ctlIME) 被更名為 SessionCtl，意為「會話控制器」。
 

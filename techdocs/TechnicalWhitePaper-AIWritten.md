@@ -4,7 +4,7 @@ sort: 5
 has_toc: true
 permalink: /TechnicalWhitePaper-AIWritten.html
 ---
-# 技術白皮書-機器稿 (v5.0.1)
+# 與小麥對比的技術白皮書-機器稿 (v5.0.1)
 
 # 唯音 v5.0.1 與小麥注音 v3.1.1：技術白皮書（重構版）
 
