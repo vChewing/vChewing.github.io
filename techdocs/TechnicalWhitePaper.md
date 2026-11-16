@@ -16,6 +16,10 @@ permalink: /TechnicalWhitePaper.html
 >
 > 更新註記（2026-11-16）：唯音側已更新至 v5.0.3（2026-11-16 發行）；小麥注音側仍對照 v3.1.1（2026-09 版）。本次為一處緊急修復：選字窗在每次籌備候選資料時效能退步（乃 5.0.0 修復另一問題時不慎引入，會嚴重妨礙狂拼模式）；另「就地加詞」與「候選詞升權／降權」改為寫入後自動複查是否真的生效。例行語彙與複元圖資料亦更新。正文之架構敘述與比較表內容不變，僅同步版本標記、里程碑與資料截取日期。
 
+> 更新註記（2026-11-17）：新增「比較範圍」註與「附錄 H：非主倉庫的 Swift 化實驗」；正文的官方對照與比較表未變。
+
+> **比較範圍（2026-11-17 增註）：** 本文「小麥注音」側，除另有註明外，一律以官方主倉庫 [`openvanilla/McBopomofo`](https://github.com/openvanilla/McBopomofo) 的**正式發行版**為準（本文資料截取時為 v3.1.1，2026-09）。個人 fork、未合併 PR、實驗分支**不列入正文的模組對照**；僅在「附錄 H：非主倉庫的 Swift 化實驗」一節作為觀察訊號追蹤。若官方版日後合併相關變動，本文會另註更新。
+
 ## 本文目的與讀者對象
 
 本文件旨在以技術與產品設計層面之客觀差異，回應少部分將「唯音」與「小麥注音」視為「前者抄襲後者」關係的外部討論。本文希望：
@@ -76,7 +80,9 @@ permalink: /TechnicalWhitePaper.html
 
 註：vChewing-macOS 專案歷史於提交 8de659f 之後重新整理（該提交 cherry-pick 自上游，未被上游正式版本收錄）；此前紀錄對應小麥注音至 ddbe363 為止之歷史。
 
-自 2022 年三月底開始，唯音嘗試繼續之前上游的 Swift 化計畫所未完成的內容：用 Swift 將整個專案的 ObjC(++) 與 C++ 的部分用 Swift 徹底重寫。先是重寫了輸入調度模組，之後是組字引擎「Megrez」，最後唯音又有了自己原創的功能更豐富的聲韻並擊引擎「（齊）鐵恨 Tekkon」。此外，唯音當時嘗試用 C# 語言重寫這些模組，但因為 Windows「沒有與 InputMethodKit 一樣方便的輸入法開發套裝體驗」而只能作罷，相關倉庫荒廢至今。在此之後，Megrez 引擎做過一輪技術升級。
+自 2022 年三月底開始，唯音（當時仍稱威注音）嘗試繼續之前上游的 Swift 化計畫所未完成的內容：用 Swift 將整個專案的 ObjC(++) 與 C++ 的部分用 Swift 徹底重寫。先是重寫了輸入調度模組，之後是組字引擎「Megrez」，最後唯音又有了自己原創的功能更豐富的聲韻並擊引擎「（齊）鐵恨 Tekkon」。此外，唯音當時嘗試用 C# 語言重寫這些模組，但因為 Windows「沒有與 InputMethodKit 一樣方便的輸入法開發套裝體驗」而只能作罷，相關倉庫荒廢至今。在此之後，Megrez 引擎做過一輪技術升級。
+
+唯音 2022 年的 Swift 化，是從當時的 ObjCpp 版改寫而來；相關檔案的檔頭明載「Refactored from the ObjCpp-version ... OpenVanilla 2011」。這與 2026 年小麥 fork 的 Swift 化是同一份祖先的兩個子代，不是誰抄誰。
 
 然後就是到了 2022 年八月初，唯音實現了 IMK 矩陣選字窗的支援。之後，唯音緊接著開始將輸入法本體的所有「直接從上游繼承來的 Swift 模組」全部淘汰，且用 SwiftUI 完成了唯音自家的全新的田所選字窗：這套選字窗同時實現了（類似 IMK 選字窗的）橫排矩陣佈局與（類似微軟新注音的）縱排矩陣佈局。
 
@@ -85,6 +91,8 @@ permalink: /TechnicalWhitePaper.html
 這篇技術白皮書主要是為了讓部分使用者明白小麥注音與唯音至少有哪些技術上與產品功能上的不同。至於 Homa 組字引擎與 Gramambular 組字引擎的差異，請洽《[Homa vs. MegrezNT vs. Gramambular2 Whitepaper](./WHITEPAPER_Homa_MegrezNT_Gramambular2.md)》一文。
 
 P.S.: IMK 選字窗一度受唯音支援，但因為其利用方式太複雜不利於唯音輸入法長遠發展的原因、而在唯音 3.5.4 版內遭到了移除。
+
+另見附錄 H：非主倉庫的 Swift 化實驗（zonble fork PR #6）。
 
 ## 總括概述
 
@@ -115,7 +123,10 @@ CIN 模組 | 不具備 | 支援 CIN2（v2.7）標準 | 小麥注音團隊另有 
 注音並擊引擎 | Formosa::Mandarin (C++)<br />by Lukhnos Liu | Tekkon (Swift)<br />支援更多注音排列與拼音種類 | 均無允許使用者自行設計注音排列之能力 。
 詞庫管理模組 | Objective-C++ & C++<br />ParselessLM<br />採 TXT 格式的原廠辭典 | Swift<br />採 VanguardTrie.TextMapTrie 格式的原廠辭典<br />使用者片語辭典採 txt 格式 |
 態械引擎 | 多型別狀態策略設計模式<br />無專有內部資料型別 | 單結構狀態策略設計模式<br />有專有內部資料型別 | 雙方的開發習慣不同、導致各自的取捨不同。
+併發模型 | `InputState` 為 `NSObject` 類別樹、帶可變 UI 資料，無法直接 `Sendable`；state/handler 層無 `@MainActor` 模型 | 以 `@MainActor` 為主；`IMEState`／`IMEStateData` 為 struct，但 `IMEState` 內含 `CandidateNode`（open class），故非 `Sendable`；`KBEvent` 為 struct | 唯音有明確的 `@MainActor` 併發模型；小麥的 state/handler 層尚未建立對應模型（官方 controller 層已開始加 `@MainActor`，但 `InputState`／`KeyHandler` 未動）。
 資料截取日期 | 2026-09-22 | 2026-11-16 | 小麥注音側依 v3.1.1、唯音側依 v5.0.3 更新
+
+> 註：本表小麥側以官方 v3.1.1 為準；2026-05 的 zonble fork Swift 化 draft 不列入本表，詳見附錄 H。
 
 ###  選字窗
 
@@ -349,8 +360,11 @@ Dijkstra 算法的實作難免需要一個專門用來排序的機器。Swift Fo
 UI 維度 | 狀態類別內建 `NSAttributedString` | `IMEStateData` 統一產生，前端僅需繪製
 候選處理 | 以 `CandidateProvider` 協議回傳字串 | `[(keyArray, value)]` 保留讀音陣列，方便後續過濾
 擴充性 | 新增狀態需建立子類別並處理 KVC | 透過建構器與資料欄位擴充，value semantics 便於複製與比較
+併發模型（Swift 6） | `NSObject` 類別樹 + 可變 UI 資料，state/handler 層無 `@MainActor` 模型 | `@MainActor` 為主；`IMEState` struct 內含 `CandidateNode` class，非 `Sendable`；`KBEvent` struct
 
 整體而言，唯音態械的 value-type 重構使狀態切換更容易測試與推導，也為 Swift Concurrency、Actor 化模組（例如 FolderMonitor）打下基礎，並直接支撐了就地降頻 / 過濾、開發者模式提示等新功能。
+
+**Sendable 與 Swift 6：** `InputState` 的 `NSObject` 類別樹與可變 UI 資料，使它無法在 Swift 6 嚴格併發下直接成為 `Sendable`。唯音的做法不是「全面 Sendable」，而是以 `@MainActor` 為主；`IMEState`／`IMEStateData` 雖是 struct，但 `IMEState` 內含 `CandidateNode`（`open class`，帶遞迴 `members`／`weak previous` 與 static cache），所以 `IMEState` 本身也不是 Sendable；`KBEvent` 則是 struct。重點是唯音有明確的 `@MainActor` 併發模型；小麥在 controller 層（CandidateKit 整合後）已開始加 `@MainActor`，但 `InputState`／`KeyHandler` 這一層仍沒有，PR6 也沒有處理。這不是風格差異，而是能否平移到 Swift 6 concurrency 的結構差異。
 
 ### 配置助手（Configuration Assistant）
 
@@ -484,5 +498,34 @@ FolderMonitor 事件抖動率 | 120 次建立＋刪除產生的原始事件數 |
 FolderMonitor 事件抖動率 | Debounce 截流比（快速增刪 240 檔） | `swift -e 'DispatchSource.makeFileSystemObjectSource(...)'` | 360 原始事件 → 1 通知（99.7% 抑制） | Debounce 0.25 s；TMP 目錄模擬 iCloud 抖動
 
 *以上測試均於 Apple Silicon (arm64e) macOS 14.0、Swift Package Manager 5.10 工具鏈下執行。*
+
+## 附錄 H：非主倉庫的 Swift 化實驗（zonble fork PR #6）
+
+> **本節不屬於正文的官方對照。** 本節討論的是 `zonble/McBopomofo` 的個人 fork PR #6；它不在 `openvanilla/McBopomofo` 主倉庫、未合併、也未經官方背書。列入本節的唯一理由，是外部討論可能會拿它來比較兩專案；為避免正文與官方版混淆，特此分節收錄。
+
+### H.1 事實
+
+- PR #6（分支 `copilot/swiftify-objc-code`，2026-05-27，7 筆 commit，+3,851/−40，16 檔）把 `KeyHandler.mm`、`LanguageModelManager.mm`、`ServiceProviderInputHelper.mm` 三個 ObjC++ 外殼改寫為 Swift；C++ 引擎仍由 ObjC++ bridge 持有，`Source/Engine` 未被改寫。
+- 該 PR 目前為 **draft**、**conflicting**、建置與 Analyze 未通過、落後 fork `master` 165 筆；截至 2026-11-17 未合併。
+- PR6 由 zonble 全權委託 GitHub Copilot 施工（7 筆 commit 作者均為 `copilot-swe-agent[bot]`）；這使它的產出來源比一般人工 PR 更難追溯。
+- 官方 `openvanilla/McBopomofo` 的 v3.1.1（2026-09）仍以 ObjC++ `KeyHandler` 為輸入調度；官方在 2026 年合併的是 SwiftUI 偏好設定（PR #880）與 CandidateKit（PR #921），屬 UI 層變動。
+- PR6 仍是 `SWIFT_VERSION = 5.0`、沒有 `SWIFT_STRICT_CONCURRENCY`，新 Swift 檔也沒有 `Sendable`／`@MainActor`／`async` 標註；它沒有處理 Swift 6 concurrency。`InputState` 的 `NSObject` 類別樹是後續 Swift 6 化的結構障礙。（唯音以 `@MainActor` 為主，不是全面 Sendable；`CandidateNode` 仍是 class。）
+
+### H.2 為什麼它看起來像唯音 2022 年的程式
+
+PR6 的 Swift 版是從**同一份 2011 年 ObjC 祖先**翻譯而來；唯音 2022 年的 Swift 化也是。兩者是「同源兄弟」，不是誰抄誰。唯音 2022 年的 `KeyHandler_HandleInput.swift`／`KeyHandler_States.swift` 檔頭明載：
+
+```
+// Refactored from the ObjCpp-version of this class by:
+// (c) 2011 and onwards The OpenVanilla Project (MIT License).
+```
+
+唯音在 2022-09 把 `InputState` 換成 `IMEState`；之後又把 `KeyHandler` 換成 `InputHandler`／`InputSession`／`Typewriter`。現行 5.0.3 與 PR6 的結構相似度已大幅降低。PR6 的相似對象是 2022 年的存檔，不是現行唯音。
+
+此外，2022 年的威注音 Swift codebase 是公開的 GitHub 倉庫；PR6 由 Copilot 全權產出，其訓練語料是否包含該 codebase 無法從公開資料確認。因此只能說：PR6 的產出「可能」與 2022 年譯本有來源重疊，但這不是可證實的結論。
+
+### H.3 對照表的處理
+
+本節不列入正文的模組對照；正文的「小麥注音」側仍以官方 v3.1.1 為準。若 PR6 或其後續真的合併進 `openvanilla/McBopomofo`，本文會另註更新，並重新檢查「輸入調度模組」「詞庫管理模組」兩格。
 
 $ EOF.

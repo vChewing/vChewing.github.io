@@ -10,9 +10,11 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 > 資料截取日期：2026-11-16。小麥注音側依 v3.1.1（2026-09 版）、唯音側依 v5.0.3（2026-11-16 發行）整理。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）狀態整理。
 
+> **比較範圍（2026-11-17 增註）：** 本文小麥注音側以官方主倉庫 `openvanilla/McBopomofo` 的正式發行版為準（v3.1.1）；fork、未合併 PR 與實驗分支不列入正文，僅在「附錄：非主倉庫的 Swift 化實驗」一節追蹤。完整說明見手工稿的「比較範圍」註。
+
 ## 摘要
 
-- **架構重寫幅度顯著不同**：唯音自 2022 年起以 Swift 為主體重構輸入調度、組字引擎、候選窗與安全模組；小麥注音延續 Objective-C++ / C++ 基建並聚焦效能與穩定維護。
+- **架構重寫幅度顯著不同**：唯音自 2022 年起以 Swift 為主體重構輸入調度、組字引擎、候選窗與安全模組；小麥注音延續 Objective-C++ / C++ 基建並聚焦效能與穩定維護（zonble fork 的 Swift 化 draft 未合併；官方 3.1.1 仍為 ObjC++／C++，見附錄）。
 - **安全模型差異鮮明**：唯音以 macOS Sandbox、浮動組字窗強化模式與可選客體清單阻絕 markedText 洩露；小麥注音保留腳本掛鉤與無沙箱設計，提供高度開放但安全自負的體驗。
 - **語言模組策略分歧**：小麥注音採 Formosa::Gramambular2（原為 DAG-Relax，2026 年 2 月（PR#777）起改為 DAG-DP／Viterbi）搭配 Formosa::Mandarin；唯音自研 Homa（次世代 DAG-DP 組字引擎，前身為 Megrez），針對就地加詞、UTF-8 游標、候選輪替、上下文鞏固與自訂權重做最佳化。
 - **候選窗與 UX**：唯音第四代田所選字窗「我修院」採前後端分離、支援橫/縱排矩陣、Unicode 資訊與原生捲動；小麥注音維持 Voltaire（現為 CandidateUI 套件）+ VoiceOver 支援並提供熱鍵升頻／排除介面。
@@ -153,6 +155,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 | -- | -- | -- | -- |
 | 輸入訊號 | `KeyHandler` (Objective-C++) + `KeyHandlerInput` (Swift struct) | `InputHandler` (Swift) 直接擴展 `NSEvent` / `KBEvent` | `mcbopomofo/Source/KeyHandler.mm`；`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/InputHandler/InputHandler_Handle*.swift` |
 | 態械 | `InputState` 類別階層（NSObject） | `IMEState` / `IMEStateData` 單一 struct + protocol | `mcbopomofo/Source/InputState.swift`；`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/Session/IMEState.swift` |
+| 併發 | `InputState` 類別階層，非 `Sendable`；state/handler 層無 `@MainActor` 模型 | `@MainActor` 為主；`IMEState` struct 內含 `CandidateNode` class，非 `Sendable`；`KBEvent` struct | `mcbopomofo/Source/InputState.swift`；`vChewing_OSNeutral_LibVanguard/Sources/Shared/KBEvent.swift` |
 | 組字引擎 | Gramambular 2 (C++, 原為 DAG-Relax，2026 年 2 月（PR#777）起改為 DAG-DP／Viterbi) | Homa (Swift, DAG-DP；前身 Megrez 3.9 系列曾採強化版 Dijkstra) | `mcbopomofo/Source/Engine/gramambular2`；`vChewing-LibVanguard/Sources/Homa`（前身 Megrez） |
 | 聲韻並擊 | Formosa::Mandarin (C++) | Tekkon (Swift) | `mcbopomofo/Source/Engine/Mandarin`；`vChewing-LibVanguard/Sources/Tekkon` |
 | 候選窗 | Voltaire（現為 CandidateUI 套件，Swift Cocoa） | 田所選字窗第四代「我修院」（Cocoa + CoreGraphics，自繪矩陣，原生捲動，前後端分離） | `mcbopomofo/Source/NonModalAlertWindowController.swift` 等；`vChewing_CandidateWindow` |
@@ -160,15 +163,18 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 | 字典 | Parseless LM (TXT) + 使用者詞庫 TXT | VanguardTrie.TextMapTrie 原廠詞庫 + 使用者 TXT，內建整理器 | `mcbopomofo/Source/LanguageModelManager.mm`；`vChewing_OSNeutral_LibVanguard/Sources/LexiconAssembly/` |
 | 監控 | FSEventStream | DispatchSourceFileSystemObject + Actor + Debounce | `Packages/FSEventStreamHelper`；`DanielGalasko_FolderMonitor` 改造 |
 
+> 註：本表小麥側以官方 v3.1.1 為準；zonble fork 的 Swift 化 draft 不列入，詳見附錄「非主倉庫的 Swift 化實驗」。
+
 ### 輸入訊號管線
 
 - **小麥注音**：`KeyHandlerInput` 將 `NSEvent` 轉換成內部 struct，`KeyHandler` 依狀態機驅動。Emacs key 等特殊鍵需逐層傳遞。
-- **唯音**：直接對 `NSEvent` 擴展 `InputSignalProtocol`，並提供 `KBEvent` 克隆以 struct semantics 處理；在訊號入口即翻譯 Emacs 熱鍵並塞入狀態資訊（例如直書模式）。
+- **唯音**：直接對 `NSEvent` 擴展 `InputSignalProtocol`，並提供 `KBEvent` 克隆以 struct semantics 處理；`KBEvent` 是 `NSEvent` 的鏡照（為跨平臺需求而做），API 與 `NSEvent` 幾乎相同，差異在使用方式而非型別本身。訊號入口即翻譯 Emacs 熱鍵並塞入狀態資訊（例如直書模式）。
 
 ### 態械設計
 
 - **小麥注音**：每種狀態為獨立子類別，依賴 `NSStringUtils` 處理 UTF-16 範圍；UI 資料（`NSAttributedString`）與狀態緊耦合。
 - **唯音**：`IMEState` + `IMEStateData` 拆分資料與行為，預設以 UTF-8 游標記錄，僅在回傳 IMK 時投影到 UTF-16；就地加詞/刪詞/降頻、Tooltip 顏色與候選過濾皆以 value-type 快照儲存。
+- **併發模型**：小麥的 `InputState` 是 `NSObject` 類別樹、帶可變 UI 資料，無法直接 `Sendable`；官方在 controller 層（CandidateKit 整合後）已開始加 `@MainActor`，但 `InputState`／`KeyHandler` 這一層仍沒有。唯音的策略是以 `@MainActor` 為主；`IMEState`／`IMEStateData` 雖是 struct，但 `IMEState` 內含 `CandidateNode`（open class，帶遞迴 `members`／`weak previous`），所以 `IMEState` 本身也不是 Sendable；`KBEvent` 則是 struct。重點是唯音有明確的 `@MainActor` 併發模型，小麥則還沒有覆蓋到 state/handler 層。
 
 ### 組字與語言模型
 
@@ -281,6 +287,17 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 - **SwiftUI 選字窗**：因效能犧牲已退場；待 SwiftUI 繪製效率提升再評估混合方案。
 - **SandBox 限制**：無法防範使用者允許的系統層錄音工具。
 
+## 附錄：非主倉庫的 Swift 化實驗（zonble fork PR #6）
+
+> **本節不屬於正文的官方對照。** 本節討論 `zonble/McBopomofo` 的個人 fork PR #6；它不在官方主倉庫、未合併、未經官方背書。正文的「小麥注音」側仍以官方 v3.1.1 為準。
+
+- PR #6（2026-05-27，7 筆 commit，+3,851/−40，16 檔）把 `KeyHandler`／`LanguageModelManager`／`ServiceProviderInputHelper` 三個 ObjC++ 外殼改寫為 Swift；架構是「Swift 業務層 + ObjC++ bridge + 原 C++ 引擎」，`Source/Engine` 未動。
+- 狀態：draft、conflicting、建置與 Analyze 未通過、未合併；官方 v3.1.1 仍以 ObjC++ `KeyHandler` 為輸入調度。
+- PR6 由 zonble 全權委託 GitHub Copilot 施工（7 筆 commit 作者均為 `copilot-swe-agent[bot]`）；2022 年威注音 Swift codebase 是公開的，但 Copilot 的訓練語料是否包含它無法確認。因此只能說產出「可能」與 2022 年譯本有來源重疊，不是可證實的結論。
+- PR6 仍是 `SWIFT_VERSION = 5.0`、無 `SWIFT_STRICT_CONCURRENCY`；新 Swift 檔沒有 `Sendable`／`@MainActor`／`async` 標註，沒有處理 Swift 6 concurrency（唯音以 `@MainActor` 為主，不是全面 Sendable）。
+- 它與唯音 2022 年的 Swift 化是同一份 ObjC 祖先的兩個子代；唯音 2022 年檔案頭明載「Refactored from the ObjCpp-version ... OpenVanilla 2011」。唯音現行 5.0.3 已改用 `InputSession`／`Typewriter`／`IMEState`／`LXMgr`，與 PR6 的相似對象是 2022 年存檔，不是現行碼。
+- 若 PR6 或其後續合併進官方主倉庫，本文會更新「輸入訊號」「字典」等相關列。
+
 ## 參考原始碼位置
 
 - 小麥注音：`mcbopomofo/Source/Engine/gramambular2/`、`mcbopomofo/Source/Engine/Mandarin/`、`mcbopomofo/Source/InputState.swift`、`mcbopomofo/Source/KeyHandler.mm`。
@@ -295,4 +312,5 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ## 版本註記
 
+- 2026-11-17：新增「比較範圍」註與「非主倉庫的 Swift 化實驗」附錄；正文的官方對照未變。
 - 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 5.0.3；小麥注音側對照 v3.1.1（2026-09 版）。
