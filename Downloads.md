@@ -13,7 +13,7 @@ hide_breadcrumbs: true
 
 | 下載地點 | 更新履歷 | 程式碼倉庫 | 版本＆日期 |
 |----|----|----|----|
-| [GitHub](https://github.com/vChewing/vChewing-macOS/releases)<br >[Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7)<br >[敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 5.0.3 GM<br />(Nov 16, 2026) |
+| [GitHub](https://github.com/vChewing/vChewing-macOS/releases)<br >[Gitee](https://gitee.com/vChewing/vChewing-macOS/releases) | [GitHub](https://github.com/vChewing/vChewing-macOS/wiki/%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B7)<br >[敝站](./ReleaseNotes.md) | [GitHub](https://github.com/vChewing/vChewing-macOS/), [Gitee](https://gitee.com/vChewing/vChewing-macOS/),<br />[Homebrew Cask](https://github.com/windwords/homebrew-vchewing) | 5.0.4 GM<br />(Nov 18, 2026) |
 
 > 嫌偏好設定選項太多？試試「[配置助手](./assistant/)」，只需要最少四步就可以搞定輸入法配置。
 
@@ -24,6 +24,7 @@ hide_breadcrumbs: true
 
 部分近期主打更新內容概要：
 
+- [5.0.4] 停用了 macOS 26 系統下的 SwiftUI 與 LiquidGlass；在偵測到 SecureEventInput (SEI) 濫用情形時不再嘗試關閉 SEI；偵錯日誌訊息現改用非同步推播處理。
 - [5.0.3] 緊急修復了選字窗籌備候選資料時的效能退步（乃 5.0.0 修復另一問題時不慎引入，會嚴重妨礙狂拼模式）；「就地加詞」與「候選詞升權／降權」現在會在寫入後自動複查是否真的生效。
 - [5.0.2] 修復了拼音狂打模式在有全拼上下文時、簡拼副駕選字窗無法以「Shift+選字鍵」選字之故障；並使敲字代令輸入農曆日期時不再遺漏結尾的「日」字。
 - [5.0.1] 重新設計了使用者辭典檔案的寫入任務管理模組，使其不再阻塞 IMK 打字事件流程——解決了就地加詞或對候選詞控頻之後、輸入法與正在接收打字的軟體一同失去響應的極端情形。
