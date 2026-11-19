@@ -83,11 +83,11 @@ has_toc: true
 - 僅支援**漢語拼音**方案；其他拼音方案（耶魯、華羅、通用等）不在自動轉換的範圍內；
 - 單音節詞建議直接寫注音（如 `ㄨㄛˇ`），因為純英數的單音節拼音（如 `wo3`）不會被轉換。
 
-另外，「Option+Shift+符號鍵」的選單內容可在這個檔案內擴充，只需將讀音鍵設為「`_punctuation_list`」即可。範例：
+另外，「Option+Shift+符號鍵」的選單內容可在這個檔案內擴充，只需將讀音鍵設為「`_punct_list`」即可。範例：
 ```
-？ _punctuation_list
-！ _punctuation_list
-︰ _punctuation_list
+？ _punct_list
+！ _punct_list
+︰ _punct_list
 ```
 
 ### B. 使用者繪文字辭典

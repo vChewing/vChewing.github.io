@@ -4,11 +4,11 @@ sort: 5
 has_toc: true
 permalink: /TechnicalWhitePaper-AIWritten.html
 ---
-# 與小麥對比的技術白皮書-機器稿 (v5.0.4)
+# 與小麥對比的技術白皮書-機器稿 (v5.0.5)
 
-# 唯音 v5.0.4 與小麥注音 v3.1.1：技術白皮書（重構版）
+# 唯音 v5.0.5 與小麥注音 v3.1.1：技術白皮書（重構版）
 
-> 資料截取日期：2026-11-18。小麥注音側依 v3.1.1（2026-09 版）、唯音側依 v5.0.4（2026-11-18 發行）整理。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）狀態整理。
+> 資料截取日期：2026-11-20。小麥注音側依 v3.1.1（2026-09 版）、唯音側依 v5.0.5（2026-11-20 發行）整理。除非另行註明，以下內容係依本倉庫與 `mcbopomofo`、`vChewing-macOS` 專案主分支（main）狀態整理。
 
 > **比較範圍（2026-11-17 增註）：** 本文小麥注音側以官方主倉庫 `openvanilla/McBopomofo` 的正式發行版為準（v3.1.1）；fork、未合併 PR 與實驗分支不列入正文，僅在「附錄：非主倉庫的 Swift 化實驗」一節追蹤。完整說明見手工稿的「比較範圍」註。
 
@@ -125,6 +125,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 - **2026-10-14 — 4.9.0**：新增雙拼（Dualpin）打字支援（自家「Arimitsu」雙拼轉譯模組，以有序兩碼鎖定唯一漢語拼音讀音）與可自行定義方案之「雙拼方案編輯器」，官網另提供現成的方案 JSON 資料；修復漸退記憶模組之記憶量失控（打字越久越遲鈍）與「已汰除／已淡出之記憶於下次啟動復活」兩樁故障；成功施加聲調覆寫時，於工具提示末尾追註此時已施加的新聲調。
 - **2026-10-15 — 4.9.1**：雙拼尚未配對成碼時遇到非碼鍵之處理比照全拼；敲入不可能開啟任何碼之首鍵時當場示警並丟棄；客體端組字區不再先清空再重建；選字窗在螢幕底端時之位置避讓更準確；修復浮動組字窗與 Mozilla 軟體部分輸入框之相容性缺陷。
 - **2026-10-21 — 4.9.2**：修復 Shift 鍵偶發切換不了中英、事後按鍵仍以英文原樣送出之故障（打字會話副本改由至多四份之會話池按輸入控制器配發，並於每次事件把該副本之客體指回當下客體）；修復注音狂打模式下刪除未完成讀音時漢語拼音工具提示殘留之故障。
+- **2026-11-20 — 5.0.5**：改良「成對出現的標點符號」之輸入體驗（選入 `【】`／`《》` 時拆成左右兩半並置中游標、改動一邊時另一邊同步、方向鍵越過時先拆對置中再吃掉該步；Tab／空白鍵輪替仍保持整對，Shift／Option／Command 不觸發；半形標點模式同步提供 `[]`／`{}`／`()`／`<>`；縱排強制轉換亦納入）；修復以系統監視程式監聽偵錯訊息時之打字遲鈍；先鋒語料庫移除標點符號語料；例行語彙與複元圖資料更新、全字庫資料更新至 2026-11-16。
 - **2026-11-18 — 5.0.4**：在 macOS 26 上停用 LiquidGlass 與 SwiftUI 版偏好設定視窗（介面改回與 macOS 10.9～13 一致）；SecureEventInput 濫用偵測不再主動嘗試關閉該機制，並修正相關 NSAlert 用法；偵錯模式下改以非同步方式遞交日誌；先鋒語料庫移除「建置成小麥注音原廠詞庫格式」之能力，改提供可摻入 n-gram 資料的 `textKVSTableCHS`／`textKVSTableCHT`；例行語彙與複元圖資料更新。
 - **2026-11-16 — 5.0.3**：緊急修復選字窗籌備候選資料時之效能退步（乃 5.0.0 修復另一問題時不慎引入，會嚴重妨礙狂拼模式）；「就地加詞」與「候選詞升權／降權」改為寫入後自動複查，若被既有的打字學習記憶或辭典內同分舊記錄抵銷則自動清除或改寫；例行語彙與複元圖資料更新。
 - **2026-11-13 — 5.0.2**：修復拼音狂打模式在有全拼上下文時、簡拼副駕選字窗無法以「Shift+選字鍵」選字之故障；修復以敲字代令輸入農曆日期時遺漏結尾「日」字之故障；例行語彙與複元圖資料更新。
@@ -139,7 +140,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 | 專案 | 主要語言 | 核心維運者 | 目標系統 | 授權 | 定位 |
 | -- | -- | -- | -- | -- | -- |
 | 小麥注音 (McBopomofo) 3.1.1 | Objective-C++, C++17/20, Swift | OpenVanilla 核心團隊 | macOS 13+ | MIT | Formosa::Gramambular2／Formosa::Mandarin 實作、強調穩健與開源協作 |
-| 唯音 (vChewing) 5.0.4 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 12+；Aqua 紀念版支援 10.9 | MulanPSL-2.0（先鋒引擎模組群採 LGPLv3） | Swift 原生化注音輸入法、專注安全與模組擴展 |
+| 唯音 (vChewing) 5.0.5 | Swift 5.9+, 極少量 ObjC | Shiki Suen 等 | 主流版 macOS 12+；Aqua 紀念版支援 10.9 | MulanPSL-2.0（先鋒引擎模組群採 LGPLv3） | Swift 原生化注音輸入法、專注安全與模組擴展 |
 
 ### 名詞釐清（摘要）
 
@@ -152,7 +153,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ### 模組對照（概要）
 
-| 面向 | 小麥注音 3.1.1 | 唯音 5.0.4 | 來源參考 |
+| 面向 | 小麥注音 3.1.1 | 唯音 5.0.5 | 來源參考 |
 | -- | -- | -- | -- |
 | 輸入訊號 | `KeyHandler` (Objective-C++) + `KeyHandlerInput` (Swift struct) | `InputHandler` (Swift) 直接擴展 `NSEvent` / `KBEvent` | `mcbopomofo/Source/KeyHandler.mm`；`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/InputHandler/InputHandler_Handle*.swift` |
 | 態械 | `InputState` 類別階層（NSObject） | `IMEState` / `IMEStateData` 單一 struct + protocol | `mcbopomofo/Source/InputState.swift`；`vChewing_OSNeutral_LibVanguard/Sources/LibVanguard/Session/IMEState.swift` |
@@ -200,7 +201,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ## 功能矩陣（節選）
 
-| 功能 | 小麥注音 3.1.1 | 唯音 5.0.4 | 備註 |
+| 功能 | 小麥注音 3.1.1 | 唯音 5.0.5 | 備註 |
 | -- | -- | -- | -- |
 | 注音排列 | 大千傳統、倚天傳統、IBM、許氏、倚天 26 | 上述＋神通、精業、偽精業、酷音大千 26、星光、劉氏 | 唯音動態排列可因模式調整鍵位 |
 | 拼音 | 單一漢語拼音模式（第 6 種鍵盤排列，聲調以數字 1–5 標記，未提供說明文件） | 漢語、國音二式、華羅、耶魯、通用、韋氏；並擊提示拼音；狂打連續組句（拼音側 4.6.3+、注音側 4.8.6+）並支援簡拼整詞（4.7.0+）；雙拼（4.9.0+，能以自訂方案 JSON 擴充） |  |
@@ -231,7 +232,7 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 這是兩者之間一項結構性的差異：**小麥注音沒有對應物**。
 
-| 面向 | 小麥注音 3.1.1 | 唯音 5.0.4 |
+| 面向 | 小麥注音 3.1.1 | 唯音 5.0.5 |
 | -- | -- | -- |
 | 新手配置嚮導 | 無 | 「唯音輸入法配置助手」：內建之網頁式分支問卷，最少四頁即可產生一組現成配置 |
 | 設定的可攜性 | 依賴系統偏好檔，未提供交換格式 | 偏好設定可整份匯出／匯入為 JSON；助手產出的「配置包」為該格式之超集 |
@@ -307,11 +308,11 @@ permalink: /TechnicalWhitePaper-AIWritten.html
 
 ## 建議引用格式
 
-- APA：vChewing 專案團隊（2026）。《唯音輸入法技術白皮書（重構版）》版本 5.0.4。取自 https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
-- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 5.0.4, 2026. Web. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
-- Chicago：vChewing Project Team. 2026. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 5.0.4. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- APA：vChewing 專案團隊（2026）。《唯音輸入法技術白皮書（重構版）》版本 5.0.5。取自 https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- MLA：vChewing Project Team. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 5.0.5, 2026. Web. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
+- Chicago：vChewing Project Team. 2026. *vChewing Input Method Technical Whitepaper (Rewritten)*. Version 5.0.5. Accessed YYYY-MM-DD. https://vchewing.github.io/TechnicalWhitePaper-AIWritten.html
 
 ## 版本註記
 
 - 2026-11-17：新增「比較範圍」註與「非主倉庫的 Swift 化實驗」附錄；正文的官方對照未變。
-- 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 5.0.4；小麥注音側對照 v3.1.1（2026-09 版）。
+- 本白皮書為 `TechnicalWhitePaper.md` 的重構版，以資訊架構重整、聚焦關鍵差異與安全模型。原始文檔保留作為歷史背景與細部敘述參考。適用版本：vChewing 5.0.5；小麥注音側對照 v3.1.1（2026-09 版）。
