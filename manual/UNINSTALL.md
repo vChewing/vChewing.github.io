@@ -35,10 +35,12 @@ permalink: /UNINSTALL.html
 1. 安裝到正確位置的輸入法主程式：
 	```sh
 	rm -rf ~/Library/Input\ Methods/vChewing.app
+	## 下述 bundle 僅存在於 v5.0.6 及更早之安裝；自 v5.1.0 起不再隨安裝包提供，列出僅為清理殘檔。
 	rm -rf ~/Library/Keyboard\ Layouts/vChewingKeyLayout.bundle
 	rm ~/Library/Keyboard\ Layouts/vChewing\ MiTAC.keylayout
 	rm ~/Library/Keyboard\ Layouts/vChewing\ IBM.keylayout
 	rm ~/Library/Keyboard\ Layouts/vChewing\ FakeSeigyou.keylayout
+	rm ~/Library/Keyboard\ Layouts/vChewing\ Seigyou.keylayout
 	rm ~/Library/Keyboard\ Layouts/vChewing\ ETen.keylayout
 	rm ~/Library/Keyboard\ Layouts/vChewing\ Dachen.keylayout
 	rm ~/Library/Receipts/org.atelierInmu.vChewing.bom
@@ -71,10 +73,12 @@ permalink: /UNINSTALL.html
 6. 如果輸入法因為 macOS 10.x - macOS 11.x 的安裝程式的 bug 而沒能被正確安裝的話，您還需要清理下述檔案：
 	```sh
 	sudo rm -rf /Library/Input\ Methods/vChewing.app
+	## 同上（v5.0.6 及更早）。
 	sudo rm -rf /Library/Keyboard\ Layouts/vChewingKeyLayout.bundle
 	sudo rm -rf /Library/Keyboard\ Layouts/vChewing\ MiTAC.keylayout
 	sudo rm -rf /Library/Keyboard\ Layouts/vChewing\ IBM.keylayout
 	sudo rm -rf /Library/Keyboard\ Layouts/vChewing\ FakeSeigyou.keylayout
+	sudo rm -rf /Library/Keyboard\ Layouts/vChewing\ Seigyou.keylayout
 	sudo rm -rf /Library/Keyboard\ Layouts/vChewing\ ETen.keylayout
 	sudo rm -rf /Library/Keyboard\ Layouts/vChewing\ Dachen.keylayout
 	sudo rm -rf /Library/Receipts/org.atelierInmu.vChewing.bom
